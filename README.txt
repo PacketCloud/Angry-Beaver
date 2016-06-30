@@ -17,6 +17,6 @@ Minimum System Requirements:
 
 CPU: Potato
 GPU: Toaster
-RAM: 7
+RAM: Over 9000
 OS: Windows 7 or Newer
 ==============================================================
