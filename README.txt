@@ -5,6 +5,11 @@ down trees, or swat things with its tail. You have to
 fight or avoid enemies as you munch trees to alter the level 
 and make it to the exit.
 ==============================================================
+Project Details:
+
+IDE: Eclipse Mars 2.0 for Java Developers
+Source: http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/mars2
+==============================================================
 Controls:
 
 **To Be Added**
