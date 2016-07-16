@@ -8,7 +8,9 @@ public class MainRuntime {
 		// Opens a 1920x1080 window to start the game
 		JFrame frame = new JFrame();
 		frame.setSize(1280, 720);
+		frame.setResizable(false);
 		frame.setVisible(true);
+		
 		/*
 		Graphics graphics = frame.getGraphics();
 		graphics.setColor(Color.BLUE);
