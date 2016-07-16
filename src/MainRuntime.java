@@ -10,13 +10,13 @@ public class MainRuntime extends JPanel {
 	public static void main(String[] args) {
 		// Opens a 1920x1080 window to start the game
 		JFrame frame = new JFrame();
+		MainRuntime mrt = new MainRuntime();
+		frame.add(mrt);
 		frame.setSize(1280, 720);
 		frame.setResizable(false);
 		frame.setVisible(true);
 
-
-		Graphics graphics = frame.getGraphics();
-		frame.paint(graphics);
+		frame.update(frame.getGraphics());
 	}
 
 	@Override
