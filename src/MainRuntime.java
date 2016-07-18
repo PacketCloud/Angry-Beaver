@@ -1,33 +1,61 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class MainRuntime extends JPanel {
-
+/* Brief: MainRuntime is the class which will initialize
+ * 		a window and the game loop. Images will be drawn
+ * 		inside the window and updated by the game loop.
+ */
+public class MainRuntime extends JFrame {
+	
+	// Currently this sets a point to 0.
+	public static int x = 0;
+	// This is a list of Entities which can be used to track all
+	// entities in the game.
+	private ArrayList<Entity> entityList = new ArrayList<Entity>();
+	
 	public static void main(String[] args) {
 		// Opens a 1920x1080 window to start the game
-		JFrame frame = new JFrame();
-		MainRuntime mrt = new MainRuntime();
-		frame.add(mrt);
-		frame.setSize(1280, 720);
-		frame.setResizable(false);
-		frame.setVisible(true);
-
-		frame.update(frame.getGraphics());
+		MainRuntime gameWindow = new MainRuntime();
+		gameWindow.runLoop();
+		System.exit(0);
 	}
-
-	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		Graphics2D g2D = (Graphics2D) g;
+	
+	// This initializes the game settings. We can later save
+	// User settings in a file to read and set them here
+	public void init(String title, int width, int height) {
+		this.setTitle(title);
+		this.setSize(width, height);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+	
+	// This is the game loop
+	// TODO: FPS handling?
+	public void runLoop() {
+		init("Angry-Beaver", 1080, 720);
+        while(true)
+        {
+                draw();
+        }
+	}
+	
+	// Draw a blank Graphics, then update and
+	// draw the next movement.
+	public void draw() {
+		Graphics g = getGraphics();
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 1080, 720);
 		
-		g2D.setColor(Color.BLUE);
-
-		g2D.fillRect(0, 0, 100, 100);
-		g2D.drawRect(0, 0, 100, 100);
+		// Increment x by 1
+		if(x != 500){
+			x++;
+		}
+		
+		g.setColor(Color.BLUE);
+		g.fillRect(x, x, 100, 100);
 	}
-
 }
