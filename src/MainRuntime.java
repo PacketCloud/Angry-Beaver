@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import entities.Entity;
+import basic_types.Coords;
+
 /* Brief: MainRuntime is the class which will initialize
  * 		a window and the game loop. Images will be drawn
  * 		inside the window and updated by the game loop.
  */
 public class MainRuntime extends JFrame {
-	
+
 	// Currently this sets a point to 0.
 	public static int x = 0;
 	// This is a list of Entities which can be used to track all
@@ -17,7 +20,7 @@ public class MainRuntime extends JFrame {
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	
 	public static void main(String[] args) {
-		// Opens a 1920x1080 window to start the game
+/*		// Opens a 1280x720 window to start the game
 <<<<<<< HEAD
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
@@ -32,6 +35,7 @@ public class MainRuntime extends JFrame {
 		Graphics graphics = frame.getGraphics();
 		frame.paint(graphics);
 >>>>>>> parent of 19ae1f6... Now draws a blue rectangle
+*/
 	}
 	
 	// This initializes the game settings. We can later save
