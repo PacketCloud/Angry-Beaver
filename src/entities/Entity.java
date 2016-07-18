@@ -1,19 +1,23 @@
 package entities;
 
-import basic_types.Coords;
+import java.awt.Point;
 
 public class Entity {
-	private Coords Position;
+	private Point Position;
 	private String Type, Model;
 	
-	public Entity(Coords position, String type, String Model) {
+	public Entity(Point position, String type, String Model) {
 		this.setPosition(position);
 		this.setType(type);
 		this.setModel(Model);
 	}
 	
-	public void setPosition(Coords newPosition) {
+	public void setPosition(Point newPosition) {
 		this.Position = newPosition;
+	}
+	
+	public Point getPosition() {
+		return this.Position;
 	}
 	
 	public void setType(String type) {

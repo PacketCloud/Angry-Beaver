@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import entities.Entity;
-import basic_types.Coords;
+import entities.*;
 
 /* Brief: MainRuntime is the class which will initialize
  * 		a window and the game loop. Images will be drawn
