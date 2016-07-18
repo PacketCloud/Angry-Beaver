@@ -1,2 +1,2 @@
-/MainRuntime.class
-/entities/
+// Ignore all compiled classes
+*.class
