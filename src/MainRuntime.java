@@ -18,9 +18,20 @@ public class MainRuntime extends JFrame {
 	
 	public static void main(String[] args) {
 		// Opens a 1920x1080 window to start the game
+<<<<<<< HEAD
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
 		System.exit(0);
+=======
+		JFrame frame = new JFrame();
+		frame.setSize(1280, 720);
+		frame.setResizable(false);
+		frame.setVisible(true);
+
+
+		Graphics graphics = frame.getGraphics();
+		frame.paint(graphics);
+>>>>>>> parent of 19ae1f6... Now draws a blue rectangle
 	}
 	
 	// This initializes the game settings. We can later save
