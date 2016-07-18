@@ -38,7 +38,7 @@ public class MainRuntime extends JFrame {
 	// This is the game loop
 	// TODO: FPS handling?
 	public void runLoop() {
-		init("Angry-Beaver", 1080, 720);
+		init("Angry-Beaver", 1080, 720);//will get resolution parameters from settings.cfg file in the future.
         while(true)
         {
                 draw();

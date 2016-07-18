@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Entity {
 	private Point Position;
-	private String Type, Model;
+	private String Type, Model; //TODO: Change Model to its own type, storing path information for asset(s) and other related data.
 	
 	public Entity(Point position, String type, String Model) {
 		this.setPosition(position);

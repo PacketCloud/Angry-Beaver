@@ -7,7 +7,8 @@ import java.awt.Point;
  */
 public class EntityPlayer extends CombatEntity {
 	
-	public EntityPlayer(Point position, String type, String model, int health, int walkSpeed, int attackSpeed, int attackDamage, int jumpHeight, int...) { //Work in progress.
-		super( position, type, model, health, walkSpeed, attackSpeed,
+	public EntityPlayer(Point position, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
+		super(position, type, model, health, attackResistance, knockbackResistance, attackSpeed, attackDamage, attackCooldown, attackKnockback, walkSpeed, jumpHeight);
+		//TODO: Add EntityPlayer-specific values, methods, and add to constructor.
 	}
 }
