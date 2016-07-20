@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -9,16 +11,18 @@ import entities.*;
  * 		a window and the game loop. Images will be drawn
  * 		inside the window and updated by the game loop.
  */
-public class MainRuntime extends JFrame {
+public class MainRuntime extends JFrame implements KeyListener {
 
 	// Currently this sets a point to 0.
 	public static int x = 0;
+	public static int y = 0;
+	
 	// This is a list of Entities which can be used to track all
 	// entities in the game.
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	
 	public static void main(String[] args) {
-		// Opens a 1280x720 window to start the game
+		// Opens a 1080x720 window to start the game
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
 		System.exit(0);
@@ -33,6 +37,7 @@ public class MainRuntime extends JFrame {
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		this.addKeyListener(this);
 	}
 	
 	// This is the game loop
@@ -59,12 +64,35 @@ public class MainRuntime extends JFrame {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1080, 720);
 		
-		// Increment x by 1
-		if(x != 500){
-			x++;
+		g.setColor(Color.RED);
+		g.fillRect(x, y, 100, 100);
+	}
+
+	// Currently this moves the box
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_UP) {
+			y -= 5;
+		} if(key == KeyEvent.VK_DOWN) {
+			y += 5;
+		} if(key == KeyEvent.VK_RIGHT) {
+			x += 5;
+		} if(key == KeyEvent.VK_LEFT) {
+			x -= 5;
 		}
+		repaint();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
-		g.setColor(Color.BLUE);
-		g.fillRect(x, x, 100, 100);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
