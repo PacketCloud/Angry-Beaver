@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 import entities.*;
@@ -28,6 +27,7 @@ public class MainRuntime extends JFrame {
 	// This initializes the game settings. We can later save
 	// User settings in a file to read and set them here
 	public void init(String title, int width, int height) {
+
 		this.setTitle(title);
 		this.setSize(width, height);
 		this.setResizable(false);
@@ -41,7 +41,14 @@ public class MainRuntime extends JFrame {
 		init("Angry-Beaver", 1080, 720);//will get resolution parameters from settings.cfg file in the future.
         while(true)
         {
-                draw();
+        	try{
+        		draw();
+        		// Delay game loop
+        		Thread.sleep(20);
+        	} catch (Exception e) {
+        		System.out.println(e);
+        	}
+                
         }
 	}
 	
