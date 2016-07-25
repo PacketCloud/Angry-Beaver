@@ -14,9 +14,13 @@ public class GameFrame {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 		//frame.addKeyListener(this);
 		frame.setLocationRelativeTo(null);
 		loop = new GameLoop(this);
+		frame.add(loop);
+		
+		new Thread(loop).start();
 	}
 	
 	public JFrame getFrame() {

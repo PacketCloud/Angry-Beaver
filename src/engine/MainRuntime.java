@@ -63,7 +63,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 	public void draw() {
 		Graphics g = getGraphics();
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1080, 720);
+		g.fillRect(0, 0, 1280, 720);
 		
 		g.setColor(Color.RED);
 		g.fillRect(x, y, 100, 100);
