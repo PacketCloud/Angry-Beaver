@@ -44,7 +44,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 	// This is the game loop
 	// TODO: FPS handling?
 	public void runLoop() {
-		init("Angry-Beaver", 1080, 720);//will get resolution parameters from settings.cfg file in the future.
+		init("Angry-Beaver", 1280, 720);//will get resolution parameters from settings.cfg file in the future.
         while(true)
         {
         	try{
