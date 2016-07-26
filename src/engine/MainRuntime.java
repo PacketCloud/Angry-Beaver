@@ -67,6 +67,8 @@ public class MainRuntime extends JFrame implements KeyListener {
 		
 		g.setColor(Color.RED);
 		g.fillRect(x, y, 100, 100);
+		
+
 	}
 
 	// Currently this moves the box
@@ -82,7 +84,6 @@ public class MainRuntime extends JFrame implements KeyListener {
 		} if(key == KeyEvent.VK_LEFT) {
 			x -= 5;
 		}
-		repaint();
 	}
 
 	@Override
