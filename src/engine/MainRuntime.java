@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 
 import entities.*;
 
-/* Brief: MainRuntime is the class which will initialize
- * 		a window and the game loop. Images will be drawn
- * 		inside the window and updated by the game loop.
+/* MainRuntime is the class which will initialize
+ * 	a window and the game loop. Images will be drawn
+ * 	inside the window and updated by the game loop.
  */
 public class MainRuntime extends JFrame implements KeyListener {
 
@@ -70,8 +70,6 @@ public class MainRuntime extends JFrame implements KeyListener {
 		
 		g.setColor(Color.RED);
 		g.fillRect(x, y, 100, 100);
-		
-
 	}
 
 	// Currently this moves the box

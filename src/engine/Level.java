@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import entities.Entity;
 
 public class Level {
-	/*
-	 * Currently one ArrayList. This is the level Singleton which
-	 * will hold a list of all Entities to draw and update on.
-	 * In order to use this class:
-	 * 		Level level = Level.getInstance();
-	 */
-	 
+/* Currently one ArrayList. This is the level Singleton which
+ * 	will hold a list of all Entities to draw and update on.
+ * 	In order to use this class:
+ * 		Level level = Level.getInstance();
+ */
+ 
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
     private static Level firstInstance = null;
     
