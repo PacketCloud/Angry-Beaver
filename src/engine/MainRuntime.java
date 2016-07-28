@@ -20,7 +20,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 	
 	// This is a list of Entities which can be used to track all
 	// entities in the game.
-	private ArrayList<Entity> entityList = new ArrayList<Entity>();
+	Level level = Level.getInstance();
 	
 	public static void main(String[] args) {
 		// Opens a 1080x720 window to start the game
@@ -62,6 +62,9 @@ public class MainRuntime extends JFrame implements KeyListener {
 	// draw the next movement.
 	public void draw() {
 		Graphics g = getGraphics();
+		level.updateLevel();
+		level.drawLevel(g);
+		
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1280, 720);
 		

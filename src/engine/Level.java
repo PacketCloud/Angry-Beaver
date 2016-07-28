@@ -1,5 +1,6 @@
 package engine;
 
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 import entities.Entity;
@@ -26,6 +27,10 @@ public class Level {
         return firstInstance;
     }
 	
+	public boolean loadLevel(String s) {
+		//TODO
+		return false;
+	}
 	public void addEntity(Entity ent) {
 		entityList.add(ent);
 	}
@@ -34,8 +39,18 @@ public class Level {
 		entityList.clear();
 	}
 	
+	//Updates all entities to their correct location/action/ect
 	public void updateLevel(){
-		//TODO
+		for(int i = 0; i < entityList.size(); i++){
+			//entityList.get(i).update();
+		}
+	}
+	
+	//Draws all entities to Graphics
+	public void drawLevel(Graphics g){
+		for(int i = 0; i < entityList.size(); i++){
+			//entityList.get(i).draw();
+		}
 	}
 	
 	// FOR TESTING
@@ -47,6 +62,8 @@ public class Level {
 			System.out.println(entityList.get(0));
 		}
 	}
+	
+	
 
 	public static void main(String[] args) {
 		Level level = Level.getInstance();
