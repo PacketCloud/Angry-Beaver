@@ -12,7 +12,7 @@ public interface EntityInterface {
 	public void setModel(String model);
 	public String getModel();
 
-	public void Update();
+	public void update();
 	public void draw(Graphics g);
 	
 	// onUpdate() and onDraw() methods will change for
