@@ -38,17 +38,17 @@ public class Level {
 		entityList.clear();
 	}
 	
-	//Updates all entities to their correct location/action/ect
+	//Updates all entities to their correct location/action
 	public void updateLevel(){
 		for(int i = 0; i < entityList.size(); i++){
-			//entityList.get(i).update();
+			entityList.get(i).update();
 		}
 	}
 	
 	//Draws all entities to Graphics
 	public void drawLevel(Graphics g){
 		for(int i = 0; i < entityList.size(); i++){
-			//entityList.get(i).draw();
+			entityList.get(i).draw(g);
 		}
 	}
 	
@@ -63,16 +63,16 @@ public class Level {
 	}
 	
 	
-
+/*
 	public static void main(String[] args) {
 		Level level = Level.getInstance();
-		Entity ent = new Entity(new Point(0,0), "", "");
+		//Entity ent = new Entity(new Point(0,0), "", "");
 		level.addEntity(ent);
 		level.print();
 		//Level level = new Level();
 		Level level2 = Level.getInstance();
 
-		level2.print();
-		
+		level2.print();	
 	}
+*/
 }

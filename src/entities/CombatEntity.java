@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Point;
 
-public class CombatEntity extends Entity {
+public abstract class CombatEntity extends Entity {
 	private int Health, AttackResistance, KnockbackResistance, AttackSpeed, AttackDamage, AttackCooldown, AttackKnockback, WalkSpeed, JumpHeight;
 
 	public CombatEntity(Point position, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
