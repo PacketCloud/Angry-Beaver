@@ -4,17 +4,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class OpenFile {
+import engine.MainRuntime;
+
+public class OpenFile /*extends  whatever class that has main function*/{
 
 	/*  
-	           main function for testing
+	      main function for testing
 	public static void main(String[] args) throws IOException {
-		Open();		
+		Open();	
+		
+		//for using from other class file that has main function
+		OpenFile OF = new OpenFile();
+		OF.Open();
 	}
 	
 	*/
 	
-	static void Open()throws IOException{
+	public void Open()throws IOException{
 		//for open actual text file
 		Runtime rt= Runtime.getRuntime();
 		//scanning user input
