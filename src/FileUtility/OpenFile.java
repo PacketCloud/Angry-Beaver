@@ -5,30 +5,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class OpenFile {
-/*
- *  Currently in the process of moving OpenFile out of main()
-	File file;
-	public OpenFile(String filename) {
-			file = new File(filename);
-			scan();
+
+	/*  
+	           main function for testing
+	public static void main(String[] args) throws IOException {
+		Open();		
 	}
 	
-	public void scan() {
-		try {
-			Scanner sc = new Scanner(file);
-			
-			while (sc.hasNextLine()) {
-		      String line = sc.nextLine();
-		      System.out.println (line);
-		    }
-		    sc.close();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("file does not exist");
-		}
-	}
-*/
-	public static void main(String[] args) throws IOException {
+	*/
+	
+	static void Open()throws IOException{
 		//for open actual text file
 		Runtime rt= Runtime.getRuntime();
 		//scanning user input
@@ -60,5 +46,6 @@ public class OpenFile {
 			System.out.println("file does not exist");
 		}
 	}
+	
 	
 }
