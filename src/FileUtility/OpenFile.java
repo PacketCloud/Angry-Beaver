@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 import engine.MainRuntime;
 
-public class OpenFile /*extends  whatever class that has main function*/{
+public class OpenFile /*extends whatever main class */ {
 
+	  
 	/*  
-	      main function for testing
+	 * main function for testing    
 	public static void main(String[] args) throws IOException {
 		Open();	
 		
@@ -17,8 +18,8 @@ public class OpenFile /*extends  whatever class that has main function*/{
 		OpenFile OF = new OpenFile();
 		OF.Open();
 	}
-	
 	*/
+	
 	
 	public void Open()throws IOException{
 		//for open actual text file
@@ -34,10 +35,20 @@ public class OpenFile /*extends  whatever class that has main function*/{
 		
 		//open up file and print line
 		try{
-			
+			String path = "";
 			File file = new File(filename);
+			
+			//get path and print path
+			path =file.getAbsolutePath();
+			System.out.print("Absolute Pathname "+ path);
+			//newline for spreading out the path and the content in the file
+			System.out.print("\n");
+			System.out.print("\n");
+			
+			//scan stuff inside the file
 			Scanner sc = new Scanner (file);
 			
+			//print file content
 		    while (sc.hasNextLine())
 		    {
 		      String line = sc.nextLine();
