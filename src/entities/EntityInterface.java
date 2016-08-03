@@ -14,7 +14,8 @@ public interface EntityInterface {
 
 	public void update();
 	public void draw(Graphics g);
-	
+	public void hit();
+
 	// onUpdate() and onDraw() methods will change for
 	// each entity class
 	public void onUpdate();

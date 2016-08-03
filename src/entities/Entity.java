@@ -44,4 +44,8 @@ public abstract class Entity implements EntityInterface {
 	public void draw(Graphics g) {
 		onDraw(g);
 	}
+	
+	public void hit() {
+		onHit();
+	}
 }
