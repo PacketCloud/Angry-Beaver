@@ -71,19 +71,17 @@ public class MainRuntime extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		int y = (int) level.getPlayer().getPosition().getY();
-		int x = (int) level.getPlayer().getPosition().getX();
+		Point point = level.getPlayer().getPosition();
 		if(key == KeyEvent.VK_UP) {
-			y -= 5;
+			point.move(point.x, point.y - 5);
 		} if(key == KeyEvent.VK_DOWN) {
-			y += 5;
+			point.move(point.x, point.y + 5);
 		} if(key == KeyEvent.VK_RIGHT) {
-			x += 5;
+			point.move(point.x + 5, point.y);
 		} if(key == KeyEvent.VK_LEFT) {
-			x -= 5;
+			point.move(point.x - 5, point.y);
 		}
-		
-		level.getPlayer().setPosition(new Point(x,y));
+		level.getPlayer().setPosition(point);
 	}
 
 	@Override
