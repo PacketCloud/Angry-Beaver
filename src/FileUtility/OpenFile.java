@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import engine.MainRuntime;
-
 public class OpenFile /*extends whatever main class */ {
 
 	  

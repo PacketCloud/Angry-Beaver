@@ -21,6 +21,7 @@ public class ImageSet {
             synchronized(Level.class){
                 if(firstInstance == null){
                 	firstInstance = new ImageSet ();
+                	firstInstance.loadImages();
                 }
             }
         }
@@ -31,7 +32,7 @@ public class ImageSet {
 		//TODO call to FileUtility to open images
 		loaded = true;
 	}
-	
+
 	public BufferedImage getImage(String image) {
 		if(loaded == true) {
 			return getImageLogic(image);
