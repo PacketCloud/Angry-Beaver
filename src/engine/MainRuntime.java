@@ -1,6 +1,8 @@
 package engine;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -14,10 +16,6 @@ import entities.*;
  */
 public class MainRuntime extends JFrame implements KeyListener {
 
-	// Currently this sets a point to 0.
-	public static int x = 0;
-	public static int y = 0;
-	
 	// This is a list of Entities which can be used to track all
 	// entities in the game.
 	Level level = Level.getInstance();
@@ -39,6 +37,9 @@ public class MainRuntime extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.addKeyListener(this);
+		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
+		EntityPlayer player = new EntityPlayer(new Point(0,0), title, title, height, height, height, height, height, height, height, height, height);
+		level.setPlayer(player);
 	}
 	
 	// This is the game loop
@@ -54,28 +55,24 @@ public class MainRuntime extends JFrame implements KeyListener {
         	} catch (Exception e) {
         		System.out.println(e);
         	}
-                
         }
 	}
 	
 	// Draw a blank Graphics, then update and
 	// draw the next movement.
 	public void draw() {
-		Graphics g = getGraphics();
+		Graphics2D g = (Graphics2D) getGraphics();
 		level.updateLevel();
 		level.drawLevel(g);
-		
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1280, 720);
-		
-		g.setColor(Color.RED);
-		g.fillRect(x, y, 100, 100);
 	}
 
 	// Currently this moves the box
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
+		
+		int y = (int) level.getPlayer().getPosition().getY();
+		int x = (int) level.getPlayer().getPosition().getX();
 		if(key == KeyEvent.VK_UP) {
 			y -= 5;
 		} if(key == KeyEvent.VK_DOWN) {
@@ -85,6 +82,8 @@ public class MainRuntime extends JFrame implements KeyListener {
 		} if(key == KeyEvent.VK_LEFT) {
 			x -= 5;
 		}
+		
+		level.getPlayer().setPosition(new Point(x,y));
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package entities;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 /*
@@ -21,7 +21,7 @@ public class EntityMoose extends CombatEntity implements Behavior {
 	}
 
 	@Override
-	public void onDraw(Graphics g) {
+	public void onDraw(Graphics2D g) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,6 +1,6 @@
 package entities;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 public abstract class Entity implements EntityInterface {
@@ -41,7 +41,7 @@ public abstract class Entity implements EntityInterface {
 		onUpdate();
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		onDraw(g);
 	}
 	

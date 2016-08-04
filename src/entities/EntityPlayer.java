@@ -1,6 +1,7 @@
 package entities;
 
-import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 /*
@@ -20,9 +21,10 @@ public class EntityPlayer extends CombatEntity {
 	}
 
 	@Override
-	public void onDraw(Graphics g) {
+	public void onDraw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
+		g.setColor(Color.RED);
+		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 
 	@Override
