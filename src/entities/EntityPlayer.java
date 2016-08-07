@@ -3,6 +3,10 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 /*
  * EntityPlayer is the class specific to the player's character's status.
@@ -23,8 +27,17 @@ public class EntityPlayer extends CombatEntity {
 	@Override
 	public void onDraw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.setColor(Color.RED);
-		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
+		File file = new File("");
+		String path = file.getAbsolutePath();
+		BufferedImage image = null;
+		try{
+			image = ImageIO.read(new File(path + "/Resources/Sprites/Player/Beaver_Idle_1.gif"));
+			g.scale(0.5, 0.5);
+			g.drawImage(image, null, 0, 0);
+		} catch (Exception e){}
+
+		//g.setColor(Color.RED);
+		//g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 
 	@Override
