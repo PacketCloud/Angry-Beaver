@@ -20,6 +20,8 @@ public class Level {
     private static Level firstInstance = null;
     private EntityPlayer player = null;
     private BufferedImage background = null;
+    private LevelSettings levelSetting = null;
+    
 	public static Level getInstance(){
         if(firstInstance == null){
             synchronized(Level.class){
@@ -54,9 +56,9 @@ public class Level {
 	
 	//Updates all entities to their correct location/action
 	public void updateLevel(){
-		player.update();
+		player.update(levelSetting);
 		for(int i = 0; i < entityList.size(); i++){
-			entityList.get(i).update();
+			entityList.get(i).update(levelSetting);
 		}
 	}
 	

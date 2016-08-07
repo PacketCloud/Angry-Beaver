@@ -8,6 +8,8 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import engine.LevelSettings;
+
 /*
  * EntityPlayer is the class specific to the player's character's status.
  */
@@ -19,7 +21,7 @@ public class EntityPlayer extends CombatEntity {
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onUpdate(LevelSettings levelSetting) {
 		// TODO Auto-generated method stub
 		
 	}

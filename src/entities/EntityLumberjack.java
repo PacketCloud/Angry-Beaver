@@ -3,6 +3,8 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import engine.LevelSettings;
+
 /*
  * EntityPlayer is the class specific to Lumberjack enemies.
  */
@@ -15,7 +17,7 @@ public class EntityLumberjack extends CombatEntity implements Behavior {
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onUpdate(LevelSettings levelSetting) {
 		// TODO Auto-generated method stub
 		
 	}

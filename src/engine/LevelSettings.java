@@ -1,14 +1,19 @@
 package engine;
 
+import java.awt.Point;
+
+import entities.Entity;
+
 public class LevelSettings {
 	int rightBounds;
 	int leftBounds;
 	int botBounds;
-	
-	public LevelSettings(int right, int left, int bot) {
+	int fallSpeed;
+	public LevelSettings(int right, int left, int bot, int fallSpeed) {
 		setRightBounds(right);
 		setLeftBounds(left);
 		setBotBounds(bot);
+		setFallSpeed(fallSpeed);
 	}
 
 	public void setRightBounds(int rightBounds) {
@@ -23,6 +28,10 @@ public class LevelSettings {
 		this.botBounds = botBounds;
 	}
 	
+	public void setFallSpeed(int fallSpeed) {
+		this.fallSpeed = fallSpeed;
+	}
+	
 	public int getRightBounds() {
 		return rightBounds;
 	}
@@ -35,4 +44,12 @@ public class LevelSettings {
 		return botBounds;
 	}
 	
+	public int getFallSpeed() {
+		return fallSpeed;
+	}
+	
+	public void dropEntity(Entity entity) {
+		Point pos = entity.getPosition();
+		//TODO:  
+	}
 }

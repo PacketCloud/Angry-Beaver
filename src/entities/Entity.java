@@ -3,6 +3,8 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import engine.LevelSettings;
+
 public abstract class Entity implements EntityInterface {
 	private Point Position;
 	private String Type, Model; //TODO: Change Model to its own type, storing path information for asset(s) and other related data.
@@ -37,8 +39,9 @@ public abstract class Entity implements EntityInterface {
 		return this.Model;
 	}
 	
-	public void update() {
-		onUpdate();
+	public void update(LevelSettings levelSetting) {
+		levelSetting.dropEntity(this);
+		onUpdate(levelSetting);
 	}
 	
 	public void draw(Graphics2D g) {
