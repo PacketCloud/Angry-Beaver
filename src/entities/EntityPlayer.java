@@ -29,7 +29,7 @@ public class EntityPlayer extends CombatEntity {
 	@Override
 	public void onDraw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		File file = new File("");
+/*		File file = new File("");
 		String path = file.getAbsolutePath();
 		BufferedImage image = null;
 		try{
@@ -37,9 +37,10 @@ public class EntityPlayer extends CombatEntity {
 			g.scale(0.5, 0.5);
 			g.drawImage(image, null, 0, 0);
 		} catch (Exception e){}
+*/
 
-		//g.setColor(Color.RED);
-		//g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
+		g.setColor(Color.RED);
+		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 
 	@Override

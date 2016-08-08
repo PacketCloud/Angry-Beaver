@@ -33,6 +33,14 @@ public class Level {
         return firstInstance;
     }
 
+	public LevelSettings getLevelSetting() {
+		return levelSetting;
+	}
+
+	public void setLevelSetting(LevelSettings levelSetting) {
+		this.levelSetting = levelSetting;
+	}
+
 	public void setPlayer(EntityPlayer player) {
 		this.player = player;
 	}
@@ -77,6 +85,8 @@ public class Level {
 		//if (background == null), default to white
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1280, 720);
+		g.setColor(Color.BLACK);
+		g.drawLine(0, 500, 1280, 500);
 		//if (background != null, draw background image
 		//g.drawImage(background, null, null, null);
 	}

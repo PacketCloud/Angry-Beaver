@@ -42,6 +42,7 @@ public abstract class Entity implements EntityInterface {
 	public void update(LevelSettings levelSetting) {
 		levelSetting.dropEntity(this);
 		onUpdate(levelSetting);
+		levelSetting.checkBounds(this);
 	}
 	
 	public void draw(Graphics2D g) {

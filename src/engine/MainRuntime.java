@@ -18,7 +18,6 @@ public class MainRuntime extends JFrame implements KeyListener {
 	Level level = Level.getInstance();
 	
 	public static void main(String[] args) {
-		// Opens a 1080x720 window to start the game
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
 		System.exit(0);
@@ -34,9 +33,12 @@ public class MainRuntime extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.addKeyListener(this);
+		
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
 		EntityPlayer player = new EntityPlayer(new Point(0,0), title, title, height, height, height, height, height, height, height, height, height);
 		level.setPlayer(player);
+		
+		level.setLevelSetting(new LevelSettings(200, 800, 500, 2));
 	}
 	
 	// This is the game loop
