@@ -38,7 +38,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 		EntityPlayer player = new EntityPlayer(new Point(0,0), title, title, height, height, height, height, height, height, height, height, height);
 		level.setPlayer(player);
 		
-		level.setLevelSetting(new LevelSettings(200, 800, 500, 2));
+		//level.setLevelSetting(new LevelSettings(200, 800, 500, 2));
 	}
 	
 	// This is the game loop
