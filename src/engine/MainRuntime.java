@@ -2,6 +2,7 @@ package engine;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import java.util.Vector;
@@ -17,7 +18,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 	// This is a list of Entities which can be used to track all
 	// entities in the game.
 	Level level = Level.getInstance();
-	
+	BufferedImage buffer;
 	public static void main(String[] args) {
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
@@ -38,6 +39,8 @@ public class MainRuntime extends JFrame implements KeyListener {
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
 		EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), title, title, height, height, height, height, height, height, height, height, height);
 		level.setPlayer(player);
+		buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		
 		
 		//level.setLevelSetting(new LevelSettings(200, 800, 500, 2));
 	}
@@ -62,8 +65,10 @@ public class MainRuntime extends JFrame implements KeyListener {
 	// draw the next movement.
 	public void draw() {
 		Graphics2D g = (Graphics2D) getGraphics();
+		Graphics2D g2 = (Graphics2D) buffer.getGraphics();
 		level.updateLevel();
-		level.drawLevel(g);
+		level.drawLevel(g2);
+		g.drawImage(buffer, 0, 0, this);
 	}
 
 	// Currently this moves the box
