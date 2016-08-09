@@ -1,12 +1,14 @@
 package entities;
 
 import java.awt.Point;
+import java.util.Vector;
 
 public abstract class CombatEntity extends Entity {
 	private int Health, AttackResistance, KnockbackResistance, AttackSpeed, AttackDamage, AttackCooldown, AttackKnockback, WalkSpeed, JumpHeight;
+	private Vector Velocity;
 
-	public CombatEntity(Point position, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
-		super(position, type, model);
+	public CombatEntity(Point position, Vector velocity, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
+		super(position, velocity, type, model);
 		this.setHealth(health);
 		this.setAttackResistance(attackResistance);
 		this.setKnockbackResistance(knockbackResistance);

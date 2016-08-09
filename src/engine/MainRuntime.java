@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import java.util.Vector;
 
 import entities.*;
 
@@ -35,7 +36,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 		this.addKeyListener(this);
 		
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
-		EntityPlayer player = new EntityPlayer(new Point(0,0), title, title, height, height, height, height, height, height, height, height, height);
+		EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), title, title, height, height, height, height, height, height, height, height, height);
 		level.setPlayer(player);
 		
 		//level.setLevelSetting(new LevelSettings(200, 800, 500, 2));
