@@ -17,20 +17,13 @@ public class Level {
  */
  
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
-    private static Level firstInstance = null;
     private EntityPlayer player = null;
     private BufferedImage background = null;
     private LevelSettings levelSetting = null;
+    private MainRuntime mrt;
     
-	public static Level getInstance(){
-        if(firstInstance == null){
-            synchronized(Level.class){
-                if(firstInstance == null){
-                	firstInstance = new Level ();
-                }
-            }
-        }
-        return firstInstance;
+    public Level(MainRuntime mrt) {
+    	this.mrt = mrt;
     }
 
 	public LevelSettings getLevelSetting() {

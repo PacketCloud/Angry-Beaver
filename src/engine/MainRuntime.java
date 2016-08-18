@@ -17,8 +17,9 @@ public class MainRuntime extends JFrame implements KeyListener {
 
 	// This is a list of Entities which can be used to track all
 	// entities in the game.
-	Level level = Level.getInstance();
+	Level level = null;
 	BufferedImage buffer;
+	
 	public static void main(String[] args) {
 		MainRuntime gameWindow = new MainRuntime();
 		gameWindow.runLoop();
@@ -36,6 +37,7 @@ public class MainRuntime extends JFrame implements KeyListener {
 		this.setVisible(true);
 		this.addKeyListener(this);
 		
+		level = new Level(this);
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
 		EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), title, title, height, height, height, height, height, height, height, height, height);
 		level.setPlayer(player);
@@ -69,6 +71,10 @@ public class MainRuntime extends JFrame implements KeyListener {
 		level.updateLevel();
 		level.drawLevel(g2);
 		g.drawImage(buffer, 0, 0, this);
+	}
+	
+	public void loadLevel(String levelName) {
+		//TODO: Go to FileUtility to load a new level
 	}
 
 	// Currently this moves the box
