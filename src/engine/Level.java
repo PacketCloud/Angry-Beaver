@@ -1,9 +1,7 @@
 package engine;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import entities.Entity;
@@ -20,10 +18,14 @@ public class Level {
     private EntityPlayer player = null;
     private BufferedImage background = null;
     private LevelSettings levelSetting = null;
-    private MainRuntime mrt;
+    private LevelHandler lHandler;
     
-    public Level(MainRuntime mrt) {
-    	this.mrt = mrt;
+    public Level(LevelHandler lHander) {
+    	setLevelHandler(lHandler);
+    }
+    
+    public void setLevelHandler(LevelHandler lHandler) {
+    	this.lHandler = lHandler;
     }
 
 	public LevelSettings getLevelSetting() {
