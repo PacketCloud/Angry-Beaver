@@ -19,8 +19,9 @@ public class LevelHandler extends JPanel implements KeyListener {
 	MainRuntime mrt;
 	Level currentLevel = null;
 	boolean isRunning = true;
-	
-	public LevelHandler(MainRuntime mrt, int width, int height) {
+	Dimension windowSize; 
+	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
+		setWindowSize(windowSize);
 		setMrt(mrt);
 		// loadLevel("mainmenu");
 		this.addKeyListener(this);
@@ -31,10 +32,17 @@ public class LevelHandler extends JPanel implements KeyListener {
 		currentLevel.setPlayer(player);
 	}
 	
+	public void setWindowSize(Dimension windowSize) {
+		this.windowSize = windowSize;
+	}
+	
+	public Dimension getWindowSize() {
+		return windowSize;
+	}
 	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub
-		return new Dimension(1280, 720);
+		return getWindowSize();
 	}
 
 	// This is the game loop

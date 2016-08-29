@@ -1,7 +1,7 @@
 package engine;
 
 import javax.swing.JFrame;
-
+import FileUtility.*;
 /* 
  * MainRuntime is the class which will get window settings
  * 	and initialize a window frame to start the game.
@@ -9,23 +9,26 @@ import javax.swing.JFrame;
 public class MainRuntime {
 
 	LevelHandler lHandler;
+	Settings fSettings;
 	JFrame frame = new JFrame();
 	
 	// This initializes the game settings. We can later save
 	// User settings in a file to read and set them here
 	public MainRuntime() {
-		initFrame("Angry-Beaver", 1280, 720);
+		initFrame();
 	}
 	
-	public void readSettings() {
-		//TODO: Read settings
+	public void loadSettings() {
+		fSettings = new Settings();
 	}
 	
-	public void initFrame(String title, int width, int height) {
-		lHandler = new LevelHandler(this, width, height);
+	public void initFrame() {
+		loadSettings();
+		lHandler = new LevelHandler(this, fSettings.getWindowSize());
 		
-		frame.setTitle(title);
-		frame.setSize(width, height);
+		frame.setTitle(fSettings.getTitle());
+		frame.setSize(fSettings.getWindowSize());
+		
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

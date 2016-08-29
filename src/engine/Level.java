@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import entities.Entity;
-import entities.EntityPlayer;
+import entities.*;
 
 public class Level {
 /* Currently one ArrayList. This is the level Singleton which
@@ -15,6 +14,7 @@ public class Level {
  */
  
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
+	private ArrayList<Platform> platformList = new ArrayList<Platform>();
     private EntityPlayer player = null;
     private BufferedImage background = null;
     private LevelSettings levelSetting = null;
