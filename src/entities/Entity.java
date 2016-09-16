@@ -10,14 +10,24 @@ public abstract class Entity implements EntityInterface {
 	private Point Position;
 	private String Type, Model; //TODO: Change Model to its own type, storing path information for asset(s) and other related data.
 	private Vector Velocity;
+	EntityStatus status;
 	
 	public Entity(Point position, Vector velocity, String type, String model) {
+		//this.setStatus(status);
 		this.setPosition(position);
 		this.setVelocity(velocity);
 		this.setType(type);
 		this.setModel(model);
 	}
 	
+	public EntityStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(EntityStatus status) {
+		this.status = status;
+	}
+
 	public void setPosition(Point newPosition) {
 		this.Position = newPosition;
 	}

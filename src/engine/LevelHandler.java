@@ -9,7 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
-import entities.EntityPlayer;
+import entities.*;
 
 /*
  * LevelHandler holds the game loop. It also holds the current level
@@ -28,6 +28,7 @@ public class LevelHandler extends JPanel implements KeyListener {
 		this.setFocusable(true);
 		currentLevel = new Level(this);
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
+		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
 		EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		currentLevel.setPlayer(player);
 	}
