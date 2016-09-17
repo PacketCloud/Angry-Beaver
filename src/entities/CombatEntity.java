@@ -6,7 +6,7 @@ import java.util.Vector;
 public abstract class CombatEntity extends Entity {
 	private int Health, AttackResistance, KnockbackResistance, AttackSpeed, AttackDamage, AttackCooldown, AttackKnockback, WalkSpeed, JumpHeight;
 	private Vector Velocity;
-
+	//TODO: Deal with CombatEntity if it is still needed
 	public CombatEntity(Point position, Vector velocity, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
 		super(position, velocity, type, model);
 		this.setHealth(health);
@@ -20,6 +20,10 @@ public abstract class CombatEntity extends Entity {
 		this.setJumpHeight(jumpHeight);
 	}
 	
+	public CombatEntity(EntityStatus status) {
+		super(status);
+	}
+
 	public void setHealth(int health) {
 		this.Health = health;
 	}

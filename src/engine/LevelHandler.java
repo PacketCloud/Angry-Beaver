@@ -29,7 +29,8 @@ public class LevelHandler extends JPanel implements KeyListener {
 		currentLevel = new Level(this);
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
 		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
-		EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		EntityPlayer player = new EntityPlayer(status);
+		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		currentLevel.setPlayer(player);
 	}
 	
@@ -92,8 +93,8 @@ public class LevelHandler extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		
-		Point point = currentLevel.getPlayer().getPosition();
+		//TODO: Multiple Key Inputs
+		Point point = currentLevel.getPlayer().getStatus().getHitbox().getPosition();
 		if(key == KeyEvent.VK_UP) {
 			point.move(point.x, point.y - 5);
 		} if(key == KeyEvent.VK_DOWN) {

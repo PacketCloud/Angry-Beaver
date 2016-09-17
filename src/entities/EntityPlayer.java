@@ -16,6 +16,9 @@ import engine.LevelSettings;
  */
 public class EntityPlayer extends CombatEntity {
 	
+	public EntityPlayer(EntityStatus status) {
+		super(status);
+	}
 	public EntityPlayer(Point position, Vector velocity, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
 		super(position, velocity, type, model, health, attackResistance, knockbackResistance, attackSpeed, attackDamage, attackCooldown, attackKnockback, walkSpeed, jumpHeight);
 		//TODO: Add EntityPlayer-specific values, methods, and add to constructor.
@@ -41,7 +44,9 @@ public class EntityPlayer extends CombatEntity {
 */
 
 		g.setColor(Color.RED);
-		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
+		Hitbox hitbox = status.getHitbox();
+		g.fillRect((int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), hitbox.getWidth(), hitbox.getHeight());
+		//g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 
 	@Override

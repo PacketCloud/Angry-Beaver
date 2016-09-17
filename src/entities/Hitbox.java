@@ -30,7 +30,7 @@ public class Hitbox {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+	//TODO: platform intersect
 	public Boolean intersects(Platform platform) {
 		//Hitbox pHitbox = platform.getHitbox();
 		//if(this.getPosition().getX() < pHitbox.)

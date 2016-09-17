@@ -3,7 +3,11 @@ package engine;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import entities.*;
 
 public class Level {
@@ -80,8 +84,18 @@ public class Level {
 		//if (background == null), default to white
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1280, 720);
-		g.setColor(Color.BLACK);
-		g.drawLine(0, 500, 1280, 500);
+		//g.setColor(Color.BLACK);
+		//g.drawLine(0, 500, 1280, 500);
+		
+		//TODO: Read background image from FileUtility instead
+		File file = new File("");
+		String path = file.getAbsolutePath();
+		BufferedImage image = null;
+		try{
+			image = ImageIO.read(new File(path + "/Resources/Textures/Background/ExampleBackground.png"));
+			g.drawImage(image, null, 0, 0);
+		} catch (Exception e){}
+		
 		//if (background != null, draw background image
 		//g.drawImage(background, null, null, null);
 	}

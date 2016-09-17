@@ -12,13 +12,19 @@ public abstract class Entity implements EntityInterface {
 	private Vector Velocity;
 	EntityStatus status;
 	
+	public Entity(EntityStatus status) {
+		setStatus(status);
+	}
+	
 	public Entity(Point position, Vector velocity, String type, String model) {
 		//this.setStatus(status);
-		this.setPosition(position);
-		this.setVelocity(velocity);
-		this.setType(type);
-		this.setModel(model);
+		setPosition(position);
+		setVelocity(velocity);
+		setType(type);
+		setModel(model);
 	}
+	
+	
 	
 	public EntityStatus getStatus() {
 		return status;
@@ -61,9 +67,7 @@ public abstract class Entity implements EntityInterface {
 	}
 	
 	public void update(LevelSettings levelSetting) {
-		//levelSetting.dropEntity(this);
 		onUpdate(levelSetting);
-		//levelSetting.checkBounds(this);
 	}
 	
 	public void draw(Graphics2D g) {
