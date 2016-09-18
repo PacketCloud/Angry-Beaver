@@ -33,7 +33,23 @@ public class Hitbox {
 	//TODO: platform intersect
 	public Boolean intersects(Platform platform) {
 		//Hitbox pHitbox = platform.getHitbox();
-		//if(this.getPosition().getX() < pHitbox.)
+		return false;
+	}
+	
+	//TODO: These functions.
+	public Boolean intersectAbove(Hitbox hitbox) {
+		return false;
+	}
+	
+	public Boolean intersectBelow(Hitbox hitbox) {
+		return false;
+	}
+	
+	public Boolean intersectRight(Hitbox hitbox) {
+		return false;
+	}
+	
+	public Boolean intersectLeft(Hitbox hitbox) {
 		return false;
 	}
 }

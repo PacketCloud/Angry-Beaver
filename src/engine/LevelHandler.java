@@ -23,15 +23,9 @@ public class LevelHandler extends JPanel implements KeyListener {
 	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
 		setWindowSize(windowSize);
 		setMrt(mrt);
-		// loadLevel("mainmenu");
 		this.addKeyListener(this);
 		this.setFocusable(true);
-		currentLevel = new Level(this);
-		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
-		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
-		EntityPlayer player = new EntityPlayer(status);
-		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		currentLevel.setPlayer(player);
+		setCurrentLevel(loadLevel("Temp"));
 	}
 	
 	public void setWindowSize(Dimension windowSize) {
@@ -86,8 +80,18 @@ public class LevelHandler extends JPanel implements KeyListener {
 		this.currentLevel = currentLevel;
 	}
 
-	public void loadLevel(String levelName) {
-		//TODO Load level 
+	public Level loadLevel(String levelName) {
+		Level level = new Level(this);
+		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
+		Platform platform = new Platform(new Hitbox(new Point(0, 600), 50, 1280));
+		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
+		EntityPlayer player = new EntityPlayer(status);
+		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		
+		//
+		level.addPlatform(platform);
+		level.setPlayer(player);
+		return level;
 	}
 
 	@Override

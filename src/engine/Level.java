@@ -47,11 +47,6 @@ public class Level {
 	public EntityPlayer getPlayer() {
 		return player;
 	}
-
-	public boolean loadLevel(String s) {
-		//TODO: This should load entity information from a file
-		return false;
-	}
 	
 	public void addEntity(Entity ent) {
 		entityList.add(ent);
@@ -61,6 +56,10 @@ public class Level {
 		entityList.clear();
 	}
 	
+	public void addPlatform(Platform plat) {
+		platformList.add(plat);
+	}
+
 	//Updates all entities to their correct location/action
 	public void updateLevel(){
 		player.update(levelSetting);
@@ -73,6 +72,10 @@ public class Level {
 	public void drawLevel(Graphics2D g){
 		//Draw Background first
 		drawBackground(g);
+		
+		for(int i = 0; i < platformList.size(); i++){
+			platformList.get(i).draw(g);
+		}
 		// Draw Entities after
 		player.draw(g);
 		for(int i = 0; i < entityList.size(); i++){
