@@ -7,7 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Vector;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import entities.*;
 
@@ -15,17 +17,28 @@ import entities.*;
  * LevelHandler holds the game loop. It also holds the current level
  * and takes in keyboard inputs.
  */
-public class LevelHandler extends JPanel implements KeyListener {
+public class LevelHandler extends JPanel {
 	MainRuntime mrt;
 	Level currentLevel = null;
 	boolean isRunning = true;
-	Dimension windowSize; 
+	Dimension windowSize;
+	
 	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
 		setWindowSize(windowSize);
 		setMrt(mrt);
-		this.addKeyListener(this);
+		//this.addKeyListener(this);
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
+		
+		//TODO: Multiple Key Input Class
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "MOVE_UP");
+		this.getActionMap().put("MOVE_UP", new MoveUp(currentLevel));
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "MOVE_RIGHT");
+		this.getActionMap().put("MOVE_RIGHT", new MoveRight(currentLevel));
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "MOVE_LEFT");
+		this.getActionMap().put("MOVE_LEFT", new MoveLeft(currentLevel));
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "MOVE_DOWN");
+		this.getActionMap().put("MOVE_DOWN", new MoveDown(currentLevel));
 	}
 	
 	public void setWindowSize(Dimension windowSize) {
@@ -92,34 +105,5 @@ public class LevelHandler extends JPanel implements KeyListener {
 		level.addPlatform(platform);
 		level.setPlayer(player);
 		return level;
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		//TODO: Multiple Key Inputs
-		Point point = currentLevel.getPlayer().getStatus().getHitbox().getPosition();
-		if(key == KeyEvent.VK_UP) {
-			point.move(point.x, point.y - 5);
-		} if(key == KeyEvent.VK_DOWN) {
-			point.move(point.x, point.y + 5);
-		} if(key == KeyEvent.VK_RIGHT) {
-			point.move(point.x + 5, point.y);
-		} if(key == KeyEvent.VK_LEFT) {
-			point.move(point.x - 5, point.y);
-		}
-		currentLevel.getPlayer().setPosition(point);
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
