@@ -1,0 +1,20 @@
+Beaver is idle:
+	Beaver_Idle.png
+	
+Beaver is moving:
+	Beaver_Idle.png
+	Beaver_Walking_1.png
+	Beaver_Walking_2.png
+	REPEAT
+	
+Beaver attacks:
+	Beaver_Idle.png
+	Beaver_Hit_1.png
+	Beaver_Hit_2.png
+	Beaver_Hit_1.png
+	Beaver_Idle.png
+	
+Beaver muches tree:
+	Beaver_Idle.png
+	Beaver_Munch.png
+	REPEAT
