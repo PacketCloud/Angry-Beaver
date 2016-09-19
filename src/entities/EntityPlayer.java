@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.util.Vector;
 
@@ -42,10 +43,20 @@ public class EntityPlayer extends CombatEntity {
 			g.drawImage(image, null, 0, 0);
 		} catch (Exception e){}
 */
-
-		g.setColor(Color.RED);
+		
+		File file = new File("");
+		String path = file.getAbsolutePath();
+		//g.setColor(Color.RED);
 		Hitbox hitbox = status.getHitbox();
-		g.fillRect((int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), hitbox.getWidth(), hitbox.getHeight());
+		try{
+			//note: in the future, scale and position of images should be dependent on window size/resolution.
+			//note2: Entity images will be flipped horizontally depending on direction facing in the future.
+			g.scale(2, 2);
+			BufferedImage image = ImageIO.read(new File(path + "/Resources/Sprites/Player/Beaver_Idle.png"));
+			g.drawImage(image, null, (int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY());
+			g.scale(1, 1);
+		} catch (Exception e){}
+		//g.fillRect((int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), hitbox.getWidth(), hitbox.getHeight());
 		//g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 

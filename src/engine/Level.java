@@ -71,10 +71,10 @@ public class Level {
 			platformList.get(i).draw(g);
 		}
 		// Draw Entities after
-		player.draw(g);
 		for(int i = 0; i < entityList.size(); i++){
 			entityList.get(i).draw(g);
 		}
+		player.draw(g);
 	}
 	
 	public void drawBackground(Graphics2D g) {
@@ -89,8 +89,11 @@ public class Level {
 		String path = file.getAbsolutePath();
 		BufferedImage image = null;
 		try{
+			//note: in the future, image scale and position should be dependent on window size/resolution.
 			image = ImageIO.read(new File(path + "/Resources/Textures/Background/ExampleBackground.png"));
+			g.scale(0.75, 0.75);
 			g.drawImage(image, null, 0, 0);
+			g.scale(1, 1);
 		} catch (Exception e){}
 		
 		//if (background != null, draw background image
