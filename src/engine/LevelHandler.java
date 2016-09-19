@@ -12,16 +12,18 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import entities.*;
+import keyInputs.*;
 
 /*
  * LevelHandler holds the game loop. It also holds the current level
  * and takes in keyboard inputs.
  */
 public class LevelHandler extends JPanel {
-	MainRuntime mrt;
-	Level currentLevel = null;
-	boolean isRunning = true;
-	Dimension windowSize;
+	public MainRuntime mrt;
+	public Level currentLevel = null;
+	public boolean isRunning = true;
+	public Dimension windowSize;
+	public Keymap keymap;
 	
 	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
 		setWindowSize(windowSize);
@@ -30,15 +32,8 @@ public class LevelHandler extends JPanel {
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
 		
+		keymap = new Keymap(this);
 		//TODO: Multiple Key Input Class
-		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "MOVE_UP");
-		this.getActionMap().put("MOVE_UP", new MoveUp(currentLevel));
-		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("RIGHT"), "MOVE_RIGHT");
-		this.getActionMap().put("MOVE_RIGHT", new MoveRight(currentLevel));
-		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "MOVE_LEFT");
-		this.getActionMap().put("MOVE_LEFT", new MoveLeft(currentLevel));
-		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "MOVE_DOWN");
-		this.getActionMap().put("MOVE_DOWN", new MoveDown(currentLevel));
 	}
 	
 	public void setWindowSize(Dimension windowSize) {
@@ -61,6 +56,7 @@ public class LevelHandler extends JPanel {
         {
         	try{
         		repaint();
+        		keymap.updatePlayerActions(currentLevel);
         		currentLevel.updateLevel();
         		repaint();
         		// Delay game loop
