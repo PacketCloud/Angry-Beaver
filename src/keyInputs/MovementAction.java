@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-public class Movement extends AbstractAction {
+public class MovementAction extends AbstractAction {
 	Keymap map;
 	Integer x = 0;
 	Integer y = 0;
-	public Movement(Keymap map, Integer x, Integer y) {
+	public MovementAction(Keymap map, Integer x, Integer y) {
 		this.map = map;
 		if (x != null) {
 			this.x = x;

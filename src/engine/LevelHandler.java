@@ -22,6 +22,7 @@ public class LevelHandler extends JPanel {
 	public MainRuntime mrt;
 	public Level currentLevel = null;
 	public boolean isRunning = true;
+	public boolean isPaused = false;
 	public Dimension windowSize;
 	public Keymap keymap;
 	
@@ -32,7 +33,7 @@ public class LevelHandler extends JPanel {
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
 		
-		keymap = new Keymap(this);
+		setKeymap(new Keymap(this));
 		//TODO: Multiple Key Input Class
 	}
 	
@@ -54,16 +55,18 @@ public class LevelHandler extends JPanel {
 	public void runLoop() {
         while(isRunning)
         {
-        	try{
-        		repaint();
-        		keymap.updatePlayerActions(currentLevel);
-        		currentLevel.updateLevel();
-        		repaint();
-        		// Delay game loop
-        		Thread.sleep(20);
-        	} catch (Exception e) {
-        		System.out.println(e);
-        	}
+        	if(!isPaused) {
+	        	try{
+	        		repaint();
+	        		getKeymap().updatePlayerActions(currentLevel);
+	        		currentLevel.updateLevel();
+	        		repaint();
+	        		// Delay game loop
+	        		Thread.sleep(20);
+	        	} catch (Exception e) {
+	        		System.out.println(e);
+	        	}
+	        }
         }
 	}
 
@@ -89,10 +92,26 @@ public class LevelHandler extends JPanel {
 		this.currentLevel = currentLevel;
 	}
 
+	public boolean isRunning() {
+		return isRunning;
+	}
+
+	public void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
+	}
+
+	public Keymap getKeymap() {
+		return keymap;
+	}
+
+	public void setKeymap(Keymap keymap) {
+		this.keymap = keymap;
+	}
+
 	public Level loadLevel(String levelName) {
 		Level level = new Level(this);
 		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
-		Platform platform = new Platform(new Hitbox(new Point(0, 600), 50, 1280));
+		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
 		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
 		EntityPlayer player = new EntityPlayer(status);
 		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
