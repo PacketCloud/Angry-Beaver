@@ -32,21 +32,9 @@ public class EntityPlayer extends CombatEntity {
 	}
 
 	@Override
-	public void onDraw(Graphics2D g) {
-		// TODO Auto-generated method stub
-/*		File file = new File("");
-		String path = file.getAbsolutePath();
-		BufferedImage image = null;
-		try{
-			image = ImageIO.read(new File(path + "/Resources/Sprites/Player/Beaver_Idle_1.gif"));
-			g.scale(0.5, 0.5);
-			g.drawImage(image, null, 0, 0);
-		} catch (Exception e){}
-*/
-		
+	public void onDraw(Graphics2D g) {	
 		File file = new File("");
 		String path = file.getAbsolutePath();
-		//g.setColor(Color.RED);
 		Hitbox hitbox = status.getHitbox();
 		try{
 			//note: in the future, scale and position of images should be dependent on window size/resolution.
@@ -56,8 +44,6 @@ public class EntityPlayer extends CombatEntity {
 			g.drawImage(image, (int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), null);
 			g.scale(1, 1);
 		} catch (Exception e){}
-		//g.fillRect((int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), hitbox.getWidth(), hitbox.getHeight());
-		//g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), 100, 100);
 	}
 
 	@Override
