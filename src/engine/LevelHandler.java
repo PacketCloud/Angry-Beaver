@@ -1,5 +1,6 @@
 package engine;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -55,18 +56,28 @@ public class LevelHandler extends JPanel {
 	public void runLoop() {
         while(isRunning)
         {
-        	if(!isPaused) {
-	        	try{
+        	try{
+        		if(!isPaused) {
 	        		repaint();
 	        		getKeymap().updatePlayerActions(currentLevel);
-	        		currentLevel.updateLevel();
+	        		getCurrentLevel().updateLevel();
 	        		repaint();
-	        		// Delay game loop
-	        		Thread.sleep(20);
-	        	} catch (Exception e) {
-	        		System.out.println(e);
-	        	}
-	        }
+	        		System.out.println("Running");
+        		} else {
+        			// Temporary pause functionality
+        			// TODO: Pause Menu
+        			Graphics2D g = (Graphics2D) this.getGraphics();
+        			g.setColor(Color.WHITE);
+        			g.scale(5, 5);
+        			g.drawString("Paused", 100, 100);
+    	        	System.out.println("Paused");
+    	        }
+        		//TODO: FPS handling?
+        		Thread.sleep(20);
+        	} catch (Exception e) {
+	        	System.out.println(e);
+	        	isRunning = !isRunning;
+        	}
         }
 	}
 
