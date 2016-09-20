@@ -4,6 +4,7 @@ Beaver is idle:
 Beaver is moving:
 	Beaver_Idle.png
 	Beaver_Walking_1.png
+	Beaver_Idle.png
 	Beaver_Walking_2.png
 	REPEAT
 	
