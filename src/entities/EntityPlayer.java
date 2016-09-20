@@ -2,13 +2,13 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import engine.LevelSettings;
 
@@ -52,8 +52,8 @@ public class EntityPlayer extends CombatEntity {
 			//note: in the future, scale and position of images should be dependent on window size/resolution.
 			//note2: Entity images will be flipped horizontally depending on direction facing in the future.
 			g.scale(2, 2);
-			BufferedImage image = ImageIO.read(new File(path + "/Resources/Sprites/Player/Beaver_Idle.png"));
-			g.drawImage(image, null, (int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY());
+			Image image = new ImageIcon(path + "/Resources/Sprites/Player/Beaver_Walking.gif").getImage();
+			g.drawImage(image, (int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), null);
 			g.scale(1, 1);
 		} catch (Exception e){}
 		//g.fillRect((int) hitbox.getPosition().getX(), (int) hitbox.getPosition().getY(), hitbox.getWidth(), hitbox.getHeight());
