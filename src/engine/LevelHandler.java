@@ -14,6 +14,7 @@ import javax.swing.KeyStroke;
 
 import entities.*;
 import keyInputs.*;
+import states.gameState.GameState;
 
 /*
  * LevelHandler holds the game loop. It also holds the current level
@@ -24,6 +25,7 @@ public class LevelHandler extends JPanel {
 	public Level currentLevel = null;
 	public boolean isRunning = true;
 	public boolean isPaused = false;
+	public GameState state;
 	public Dimension windowSize;
 	public Keymap keymap;
 	
@@ -33,7 +35,7 @@ public class LevelHandler extends JPanel {
 		//this.addKeyListener(this);
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
-		
+		this.state = new GameState();
 		setKeymap(new Keymap(this));
 		//TODO: Multiple Key Input Class
 	}
@@ -57,6 +59,7 @@ public class LevelHandler extends JPanel {
         while(isRunning)
         {
         	try{
+        		//
         		if(!isPaused) {
 	        		repaint();
 	        		getKeymap().updatePlayerActions(currentLevel);
@@ -72,6 +75,9 @@ public class LevelHandler extends JPanel {
         			g.drawString("Paused", 100, 100);
     	        	System.out.println("Paused");
     	        }
+    	        
+        		
+        		//state.update(this);
         		//TODO: FPS handling?
         		Thread.sleep(20);
         	} catch (Exception e) {
@@ -91,6 +97,12 @@ public class LevelHandler extends JPanel {
 		this.mrt = mrt;
 	}
 	
+	public GameState getGameState() {
+		return state;
+	}
+	public void setIsRunning(Boolean bool) {
+		this.isRunning = bool;
+	}
 	public MainRuntime getMrt() {
 		return mrt;
 	}

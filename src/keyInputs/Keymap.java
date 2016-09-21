@@ -23,6 +23,7 @@ public class Keymap {
 	private final String R_MOVE_DOWN = "r_move_down";
 	private final String R_MOVE_RIGHT = "r_move_right";
 	private final String R_MOVE_LEFT = "r_move_left";
+	
 	private int moveX = 0;
 	private int moveY = 0;
 	
@@ -47,7 +48,7 @@ public class Keymap {
 	}
 	
 	private void initActions(ActionMap actionMap) {
-		//TODO: Pass the movement handling to the Entity class
+		//TODO: Pass the input handling to the LevelHandler.GameState class to deal with
 		actionMap.put(MOVE_UP, new MovementAction(this, null, -5));
 		actionMap.put(MOVE_DOWN, new MovementAction(this, null, 5));
 		actionMap.put(MOVE_RIGHT, new MovementAction(this, 5, null));
