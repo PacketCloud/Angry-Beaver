@@ -8,9 +8,13 @@ public class GameState {
 	public GameState() {
 		stateRun();
 	}
-	
+
 	public void update(LevelHandler h) {
 		state.update(h);
+	}
+
+	public void userInput(LevelHandler h, String actionType) {
+		state.userInput(h, actionType);		
 	}
 	
 	public void stateStop() {

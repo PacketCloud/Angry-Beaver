@@ -15,4 +15,11 @@ public class GameStatePause extends GameStateAbstract {
 		g.drawString("Paused", 100, 100);
     	System.out.println("Paused");
 	}
+
+	@Override
+	public void pause(LevelHandler h) {
+		// TODO Auto-generated method stub
+		super.pause(h);
+		h.getGameState().stateRun();
+	}
 }

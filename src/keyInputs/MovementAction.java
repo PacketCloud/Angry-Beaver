@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+/* This class is currently not used but will be used for later reference */
 public class MovementAction extends AbstractAction {
 	Keymap map;
 	Integer x = 0;
@@ -24,10 +25,10 @@ public class MovementAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (x != null) {
-			map.setMoveX(x);
+			//map.setMoveX(x);
 		}
 		if (y != null) {
-			map.setMoveY(y);
+			//map.setMoveY(y);
 		}
 	}
 

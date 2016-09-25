@@ -21,10 +21,10 @@ import states.gameState.GameState;
  * and takes in keyboard inputs.
  */
 public class LevelHandler extends JPanel {
+	
 	public MainRuntime mrt;
 	public Level currentLevel = null;
 	public boolean isRunning = true;
-	public boolean isPaused = false;
 	public GameState state;
 	public Dimension windowSize;
 	public Keymap keymap;
@@ -32,52 +32,22 @@ public class LevelHandler extends JPanel {
 	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
 		setWindowSize(windowSize);
 		setMrt(mrt);
-		//this.addKeyListener(this);
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
 		this.state = new GameState();
 		setKeymap(new Keymap(this));
-		//TODO: Multiple Key Input Class
-	}
-	
-	public void setWindowSize(Dimension windowSize) {
-		this.windowSize = windowSize;
-	}
-	
-	public Dimension getWindowSize() {
-		return windowSize;
-	}
-	@Override
-	public Dimension getPreferredSize() {
-		// TODO Auto-generated method stub
-		return getWindowSize();
 	}
 
+	public void keyPressed(String actionType) {
+		getGameState().userInput(this, actionType);
+	}
+	
 	// This is the game loop
-	// TODO: FPS handling?
 	public void runLoop() {
         while(isRunning)
         {
-        	try{
-        		//
-        		if(!isPaused) {
-	        		repaint();
-	        		getKeymap().updatePlayerActions(currentLevel);
-	        		getCurrentLevel().updateLevel();
-	        		repaint();
-	        		System.out.println("Running");
-        		} else {
-        			// Temporary pause functionality
-        			// TODO: Pause Menu
-        			Graphics2D g = (Graphics2D) this.getGraphics();
-        			g.setColor(Color.WHITE);
-        			g.scale(5, 5);
-        			g.drawString("Paused", 100, 100);
-    	        	System.out.println("Paused");
-    	        }
-    	        
-        		
-        		//state.update(this);
+        	try{        		
+        		getGameState().update(this);
         		//TODO: FPS handling?
         		Thread.sleep(20);
         	} catch (Exception e) {
@@ -86,13 +56,40 @@ public class LevelHandler extends JPanel {
         	}
         }
 	}
-
+	
+	public Level loadLevel(String levelName) {
+		Level level = new Level(this);
+		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
+		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
+		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
+		EntityPlayer player = new EntityPlayer(status);
+		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		
+		level.addPlatform(platform);
+		level.setPlayer(player);
+		return level;
+	}
+	
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
 		super.paintComponents(g);
 		currentLevel.drawLevel((Graphics2D) g);
 	}
 	
+	/******** Getters and Setters ********/
+	@Override
+	public Dimension getPreferredSize() {
+		// TODO Auto-generated method stub
+		return getWindowSize();
+	}
+	public void setWindowSize(Dimension windowSize) {
+		this.windowSize = windowSize;
+	}
+	
+	public Dimension getWindowSize() {
+		return windowSize;
+	}
+
 	public void setMrt(MainRuntime mrt) {
 		this.mrt = mrt;
 	}
@@ -100,13 +97,15 @@ public class LevelHandler extends JPanel {
 	public GameState getGameState() {
 		return state;
 	}
+	
 	public void setIsRunning(Boolean bool) {
 		this.isRunning = bool;
 	}
+
 	public MainRuntime getMrt() {
 		return mrt;
 	}
-	
+
 	public Level getCurrentLevel() {
 		return currentLevel;
 	}
@@ -129,19 +128,5 @@ public class LevelHandler extends JPanel {
 
 	public void setKeymap(Keymap keymap) {
 		this.keymap = keymap;
-	}
-
-	public Level loadLevel(String levelName) {
-		Level level = new Level(this);
-		// This should be done while loading the level instead of here. Temp solution instead of FileUtility
-		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
-		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
-		EntityPlayer player = new EntityPlayer(status);
-		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		
-		//
-		level.addPlatform(platform);
-		level.setPlayer(player);
-		return level;
 	}
 }

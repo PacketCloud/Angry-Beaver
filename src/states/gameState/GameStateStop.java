@@ -10,7 +10,6 @@ public class GameStateStop extends GameStateAbstract {
 	@Override
 	public void update(LevelHandler h) {
 		System.out.println("Stopping");
-		h.setIsRunning(false);
-		
+		h.setIsRunning(false);	
 	}
 }
