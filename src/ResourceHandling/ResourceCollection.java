@@ -1,6 +1,6 @@
 package ResourceHandling;
 
-import ResourceState;
+import ResourceHandling.ResourceState;
 
 public class ResourceCollection {
 //A structure referencing all assets associated with an entity for all possible states.
