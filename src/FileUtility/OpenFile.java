@@ -7,46 +7,26 @@ import java.util.Scanner;
 public class OpenFile /*extends whatever main class */ {
 
 	  
-	/*  
-	 * main function for testing    
+	/*
+	// * main function for testing    
 	public static void main(String[] args) throws IOException {
-		Open();	
+		Open("CHANGELOG.txt");	//enter filename here
 		
 		//for using from other class file that has main function
-		OpenFile OF = new OpenFile();
-		OF.Open();
+		//OpenFile OF = new OpenFile();
+		//OF.Open("FileName");
 	}
 	*/
 	
-	
-	public void Open()throws IOException{
-		//for open actual text file
-		Runtime rt= Runtime.getRuntime();
-		//scanning user input
-		Scanner Scanscan = new Scanner(System.in);
-		//include path of your file
-		//input example:  E:\Eclipse\workspace\test\src\test\test.txt
-		System.out.print("Input filename:");
-		String filename = Scanscan.nextLine();
-		//execute text file
-		Process p = rt.exec("notepad "+filename);
+	//add static when main function is in this class
+	public void Open(String Path)throws IOException{
 		
-		//open up file and print line
+		
 		try{
-			String path = "";
-			File file = new File(filename);
-			
-			//get path and print path
-			path =file.getAbsolutePath();
-			System.out.print("Absolute Pathname "+ path);
-			//newline for spreading out the path and the content in the file
-			System.out.print("\n");
-			System.out.print("\n");
-			
-			//scan stuff inside the file
+			String filePath = new File(Path).getAbsolutePath();
+			File file = new File(filePath);
 			Scanner sc = new Scanner (file);
-			
-			//print file content
+			System.out.println(filePath);
 		    while (sc.hasNextLine())
 		    {
 		      String line = sc.nextLine();
