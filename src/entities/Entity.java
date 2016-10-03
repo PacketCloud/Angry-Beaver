@@ -3,6 +3,7 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Vector;
+import java.io.IOException;
 
 import engine.LevelSettings;
 import entities.EntityStatus;
@@ -62,7 +63,7 @@ public abstract class Entity implements EntityInterface {
 		return this.Facing;
 	}
 	
-	public void setFacing(String facing) {
+	public void setFacing(String facing) throws IOException {
 		if (facing == "left"|facing == "right") {
 			this.Facing = facing;
 			return;
@@ -70,7 +71,7 @@ public abstract class Entity implements EntityInterface {
 		if(this.Facing == null) {
 			this.Facing = "right";
 		}
-		//TODO: Throw exception, since facing was invalid string.
+		throw new IOException();
 	}
 	
 	public void setType(String type) {
