@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import engine.LevelSettings;
+import ResourceHandling.ResourceCollection;
+import states.State;
 
 /*
  * EntityPlayer is the class specific to the player's character's status.
@@ -20,8 +22,8 @@ public class EntityPlayer extends CombatEntity {
 	public EntityPlayer(EntityStatus status) {
 		super(status);
 	}
-	public EntityPlayer(Point position, Vector velocity, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
-		super(position, velocity, type, model, health, attackResistance, knockbackResistance, attackSpeed, attackDamage, attackCooldown, attackKnockback, walkSpeed, jumpHeight);
+	public EntityPlayer(Point position, float velocity, String type, ResourceCollection model, String facing, State state,  int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
+		super(position, velocity, type, model, facing, state, health, attackResistance, knockbackResistance, attackSpeed, attackDamage, attackCooldown, attackKnockback, walkSpeed, jumpHeight);
 		//TODO: Add EntityPlayer-specific values, methods, and add to constructor.
 	}
 
@@ -50,5 +52,15 @@ public class EntityPlayer extends CombatEntity {
 	public void onHit() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void setModel(String model) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public String getModel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

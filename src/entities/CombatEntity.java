@@ -1,14 +1,15 @@
 package entities;
 
 import java.awt.Point;
-import java.util.Vector;
+
+import ResourceHandling.ResourceCollection;
+import states.State;
 
 public abstract class CombatEntity extends Entity {
 	private int Health, AttackResistance, KnockbackResistance, AttackSpeed, AttackDamage, AttackCooldown, AttackKnockback, WalkSpeed, JumpHeight;
-	private Vector Velocity;
 	//TODO: Deal with CombatEntity if it is still needed
-	public CombatEntity(Point position, Vector velocity, String type, String model, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
-		super(position, velocity, type, model);
+	public CombatEntity(Point position, float velocity, String type, ResourceCollection model, String facing, State state, int health, int attackResistance, int knockbackResistance, int attackSpeed, int attackDamage, int attackCooldown, int attackKnockback, int walkSpeed, int jumpHeight) {
+		super(position, velocity, type, model, facing, state);
 		this.setHealth(health);
 		this.setAttackResistance(attackResistance);
 		this.setKnockbackResistance(knockbackResistance);

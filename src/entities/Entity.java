@@ -2,7 +2,6 @@ package entities;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.Vector;
 import java.io.IOException;
 
 import engine.LevelSettings;
@@ -16,7 +15,7 @@ public abstract class Entity implements EntityInterface {
 	private float Velocity;
 	private String Facing;
 	private ResourceCollection Model;
-	private EntityStatus status;
+	protected EntityStatus status;
 	private State EntityState;
 	
 	public Entity(EntityStatus status) {
@@ -29,7 +28,12 @@ public abstract class Entity implements EntityInterface {
 		setVelocity(velocity);
 		setType(type);
 		setEntityModel(model);
-		setFacing(facing);
+		try{
+			setFacing(facing);
+		}catch (IOException e){
+			System.out.println(e.getMessage());
+			System.out.println("Direction facing was invalid");
+		}
 		setState(state);
 	}
 	
