@@ -5,23 +5,31 @@ import java.awt.Point;
 import java.util.Vector;
 
 import engine.LevelSettings;
+import entities.EntityStatus;
+import ResourceHandling.ResourceCollection;
+import states.State;
 
 public abstract class Entity implements EntityInterface {
 	private Point Position;
-	private String Type, Model; //TODO: Change Model to its own type, storing path information for asset(s) and other related data.
-	private Vector Velocity;
-	EntityStatus status;
+	private String Type; //TODO: Change Model to its own type, storing path information for asset(s) and other related data (ResourceHandling.ResourceCollection).
+	private float Velocity;
+	private String Facing;
+	private ResourceCollection Model;
+	private EntityStatus status;
+	private State EntityState;
 	
 	public Entity(EntityStatus status) {
 		setStatus(status);
 	}
 	
-	public Entity(Point position, Vector velocity, String type, String model) {
+	public Entity(Point position, float velocity, String type, ResourceCollection model, String facing, State state) {
 		//this.setStatus(status);
 		setPosition(position);
 		setVelocity(velocity);
 		setType(type);
-		setModel(model);
+		setEntityModel(model);
+		setFacing(facing);
+		setState(state);
 	}
 	
 	
@@ -42,12 +50,27 @@ public abstract class Entity implements EntityInterface {
 		return this.Position;
 	}
 	
-	public void setVelocity(Vector velocity) {
+	public void setVelocity(float velocity) {
 		this.Velocity = velocity;
 	}
 	
-	public Vector getVelocity() {
+	public float getVelocity() {
 		return this.Velocity;
+	}
+	
+	public String getFacing() {
+		return this.Facing;
+	}
+	
+	public void setFacing(String facing) {
+		if (facing == "left"|facing == "right") {
+			this.Facing = facing;
+			return;
+		}
+		if(this.Facing == null) {
+			this.Facing = "right";
+		}
+		//TODO: Throw exception, since facing was invalid string.
 	}
 	
 	public void setType(String type) {
@@ -58,12 +81,20 @@ public abstract class Entity implements EntityInterface {
 		return this.Type;
 	}	
 	
-	public void setModel(String model) {
+	public void setEntityModel(ResourceCollection model) {
 		this.Model = model;
 	}
 	
-	public String getModel() {
+	public ResourceCollection getEntityModel() {
 		return this.Model;
+	}
+	
+	public void setState(State state) {
+		this.EntityState = state;
+	}
+	
+	public State getState() {
+		return this.EntityState;
 	}
 	
 	public void update(LevelSettings levelSetting) {
