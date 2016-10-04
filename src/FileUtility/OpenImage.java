@@ -12,10 +12,10 @@ public class OpenImage {
 	
 	public static void main(String[] args) throws IOException
 	  {
-		OpenImage();
+		OpenImage("Resources/Textures/Background/ExampleBackground.png");
 	  }
 
-	  private static void OpenImage() throws IOException
+	  private static void OpenImage(String path) throws IOException
 	  {
 	    SwingUtilities.invokeLater(new Runnable()
 	    {
@@ -25,7 +25,11 @@ public class OpenImage {
 	        BufferedImage image = null;
 	        try
 	        {
-	          image = ImageIO.read(new File("C:/Users/Binu/Desktop/shit/Angry-Beaver/src/FileUtility/Blank Space.png"));
+				String filePath = new File(path).getAbsolutePath();
+				System.out.println(filePath);
+				//File file = new File(filePath);
+				image = ImageIO.read(new File(filePath));
+	          //C:/Users/Binu/Desktop/shit/Angry-Beaver/Resources/Textures/Background/ExampleBackground.png
 	        }
 	        catch (Exception e)
 	        {
