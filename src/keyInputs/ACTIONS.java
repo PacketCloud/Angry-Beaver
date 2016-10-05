@@ -1,5 +1,11 @@
 package keyInputs;
 
+/*
+ * 	ACTIONS holds Strings as final variables and is used within the packages 
+ * 		keyInputs and gameState. Variables should be defined here as we 
+ * 		decide to add in more actions for the Beaver.
+ */
+
 public class ACTIONS {
 	public final static String MOVE_UP = "move_up";
 	public final static String MOVE_DOWN = "move_down";

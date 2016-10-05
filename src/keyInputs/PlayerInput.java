@@ -6,6 +6,11 @@ import javax.swing.AbstractAction;
 
 import engine.LevelHandler;
 
+/*
+ * 	PlayerInput passes the KeyBoard stroke to the LevelHandler.
+ * 		The gameState of the LevelHandler will define how the stroke
+ * 		will be handled when passed.
+ */
 public class PlayerInput extends AbstractAction{
 	public LevelHandler handle;
 	public String actionType;

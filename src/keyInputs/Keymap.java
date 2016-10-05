@@ -10,6 +10,11 @@ import javax.swing.KeyStroke;
 
 import engine.*;
 
+/*
+ * 	Keymap uses KeyBindings to declare keyboard strokes to an ACTIONS.
+ * 		In the future, we may add functionality to change KeyBindings
+ * 		and save the changes in a file. 
+ */
 public class Keymap {
 
 	public LevelHandler handle;
