@@ -1,11 +1,13 @@
 package states.gameState;
 
+import java.awt.Graphics2D;
+
 import engine.LevelHandler;
 import keyInputs.ACTIONS;
 
 /*	All actions in the game should be defined here
  * 		The actions will be overridden and will be dealt 
- * 		with depending on the current GameState.
+ * 		with depending on the extended GameState.
  */
 
 public abstract class GameStateAbstract implements GameStateInterface{
@@ -87,4 +89,5 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	public void iThrow(LevelHandler h){
 		System.out.println("D key pressed (Throw log)");
 	}
+
 }

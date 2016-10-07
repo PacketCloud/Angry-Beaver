@@ -1,5 +1,7 @@
 package states.gameState;
 
+import java.awt.Graphics2D;
+
 import engine.LevelHandler;
 
 public class GameState {
@@ -31,5 +33,10 @@ public class GameState {
 	
 	private void setGameState(GameStateAbstract state) {
 		this.state = state;
+	}
+
+	public void render(LevelHandler h, Graphics2D g) {
+		// TODO Auto-generated method stub
+		state.render(h, g);
 	}
 }

@@ -73,7 +73,7 @@ public class LevelHandler extends JPanel {
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
 		super.paintComponents(g);
-		currentLevel.drawLevel((Graphics2D) g);
+		getGameState().render(this, (Graphics2D) g);
 	}
 	
 	/******** Getters and Setters ********/

@@ -12,4 +12,9 @@ public class GameStateStop extends GameStateAbstract {
 		System.out.println("Stopping");
 		h.setIsRunning(false);	
 	}
+
+	@Override
+	public void render(LevelHandler h, Graphics2D g) {
+		// TODO Auto-generated method stub
+	}
 }
