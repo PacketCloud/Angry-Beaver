@@ -7,14 +7,19 @@ import engine.LevelHandler;
 
 public class GameStateStop extends GameStateAbstract {
 
-	@Override
-	public void update(LevelHandler h) {
-		System.out.println("Stopping");
-		h.setIsRunning(false);	
+	public GameStateStop(LevelHandler h) {
+		super(h);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void render(LevelHandler h, Graphics2D g) {
+	public void update() {
+		System.out.println("Stopping");
+		getH().setIsRunning(false);	
+	}
+
+	@Override
+	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
 	}
 }

@@ -34,12 +34,12 @@ public class LevelHandler extends JPanel {
 		setMrt(mrt);
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
-		this.state = new GameState();
+		this.state = new GameState(this);
 		setKeymap(new Keymap(this));
 	}
 
 	public void keyPressed(String actionType) {
-		getGameState().userInput(this, actionType);
+		getGameState().userInput(actionType);
 	}
 	
 	// This is the game loop
@@ -47,7 +47,7 @@ public class LevelHandler extends JPanel {
         while(isRunning)
         {
         	try{        		
-        		getGameState().update(this);
+        		getGameState().update();
         		//TODO: FPS handling?
         		Thread.sleep(20);
         	} catch (Exception e) {
@@ -73,7 +73,7 @@ public class LevelHandler extends JPanel {
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
 		super.paintComponents(g);
-		getGameState().render(this, (Graphics2D) g);
+		getGameState().render((Graphics2D) g);
 	}
 	
 	/******** Getters and Setters ********/

@@ -7,36 +7,49 @@ import engine.LevelHandler;
 public class GameState {
 	public GameStateAbstract state;
 	
-	public GameState() {
-		stateRun();
+	public GameState(LevelHandler h) {
+		stateRun(h);
 	}
 
-	public void update(LevelHandler h) {
-		state.update(h);
+	public void update() {
+		state.update();
 	}
 
-	public void userInput(LevelHandler h, String actionType) {
-		state.userInput(h, actionType);		
+	public void userInput(String actionType) {
+		state.userInput(actionType);		
 	}
 	
 	public void stateStop() {
-		setGameState(new GameStateStop());
+		setGameState(new GameStateStop(getStateH()));
 	}
 
+	// Current stateRun method in order to initialize. This will be removed later
+	public void stateRun(LevelHandler h) {
+		setGameState(new GameStateRun(h));
+	}
+	
 	public void stateRun() {
-		setGameState(new GameStateRun());
+		setGameState(new GameStateRun(getStateH()));
 	}
 	
 	public void statePause() {
-		setGameState(new GameStatePause());
+		setGameState(new GameStatePause(getStateH()));
+	}
+	
+	public LevelHandler getStateH() {
+		return getState().getH();
 	}
 	
 	private void setGameState(GameStateAbstract state) {
 		this.state = state;
 	}
 
-	public void render(LevelHandler h, Graphics2D g) {
+	public GameStateAbstract getState() {
+		return state;
+	}
+
+	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
-		state.render(h, g);
+		state.render(g);
 	}
 }

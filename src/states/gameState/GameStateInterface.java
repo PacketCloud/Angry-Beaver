@@ -6,24 +6,26 @@ import engine.*;
 
 /*
  * GameStateInterface ensures that updating, rendering graphics,
- * 		and input methods exist in the class.
+ * 		and input methods exist in the class. This class will be
+ * 		restructured later after implementing Level Reading
+ * 		and Behaviors.
  */
 public interface GameStateInterface {
-	public void update(LevelHandler h);
-	public void userInput(LevelHandler h, String action);
-	public void render(LevelHandler h, Graphics2D g);
+	public void update();
+	public void userInput(String action);
+	public void render(Graphics2D g);
 	
-	public void up(LevelHandler h);
-	public void down(LevelHandler h);
-	public void right(LevelHandler h);
-	public void left(LevelHandler h);
+	public void up();
+	public void down();
+	public void right();
+	public void left();
 	
-	public void r_up(LevelHandler h);
-	public void r_down(LevelHandler h);
-	public void r_right(LevelHandler h);
-	public void r_left(LevelHandler h);
-	public void pause(LevelHandler h);
-	public void jump(LevelHandler h);
-	public void attack(LevelHandler h);
-	public void iThrow(LevelHandler h);
+	public void r_up();
+	public void r_down();
+	public void r_right();
+	public void r_left();
+	public void pause();
+	public void jump();
+	public void attack();
+	public void iThrow();
 }

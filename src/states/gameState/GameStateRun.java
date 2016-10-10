@@ -6,24 +6,29 @@ import engine.LevelHandler;
 
 public class GameStateRun extends GameStateAbstract {
 
-	@Override
-	public void update(LevelHandler h) {
-		// TODO: Consider how to load the next level.
-		h.getCurrentLevel().updateLevel();
-		System.out.println("Running");
-		h.repaint();
-	}
-	
-	@Override
-	public void pause(LevelHandler h) {
-		// TODO Auto-generated method stub
-		super.pause(h);
-		h.getGameState().statePause();
+	public GameStateRun(LevelHandler h) {
+		super(h);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void render(LevelHandler h, Graphics2D g) {
+	public void update() {
+		// TODO: Consider how to load the next level.
+		getH().getCurrentLevel().updateLevel();
+		System.out.println("Running");
+		getH().repaint();
+	}
+	
+	@Override
+	public void pause() {
 		// TODO Auto-generated method stub
-		h.getCurrentLevel().drawLevel(g);
+		super.pause();
+		getH().getGameState().statePause();
+	}
+
+	@Override
+	public void render(Graphics2D g) {
+		// TODO Auto-generated method stub
+		getH().getCurrentLevel().drawLevel(g);
 	}
 }

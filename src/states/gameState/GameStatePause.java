@@ -7,21 +7,26 @@ import engine.LevelHandler;
 
 public class GameStatePause extends GameStateAbstract {
 	
+	public GameStatePause(LevelHandler h) {
+		super(h);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	public void update(LevelHandler h) {
-		h.repaint();
+	public void update() {
+		getH().repaint();
     	System.out.println("Paused");
 	}
 
 	@Override
-	public void pause(LevelHandler h) {
+	public void pause() {
 		// TODO Auto-generated method stub
-		super.pause(h);
-		h.getGameState().stateRun();
+		super.pause();
+		getH().getGameState().stateRun();
 	}
 
 	@Override
-	public void render(LevelHandler h, Graphics2D g) {
+	public void render(Graphics2D g) {
 		// TODO: Create a pause menu here
 		g.setColor(Color.WHITE);
 		g.scale(5, 5);
