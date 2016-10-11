@@ -1,7 +1,5 @@
 package states.gameState;
 
-import java.awt.Graphics2D;
-
 import engine.LevelHandler;
 import keyInputs.ACTIONS;
 

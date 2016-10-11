@@ -1,17 +1,9 @@
 package engine;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Vector;
-
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-
 import entities.*;
 import keyInputs.*;
 import states.gameState.GameState;
@@ -24,7 +16,6 @@ public class LevelHandler extends JPanel {
 	
 	public MainRuntime mrt;
 	public Level currentLevel = null;
-	public boolean isRunning = true;
 	public GameState state;
 	public Dimension windowSize;
 	public Keymap keymap;
@@ -44,7 +35,7 @@ public class LevelHandler extends JPanel {
 	
 	// This is the game loop
 	public void runLoop() {
-        while(isRunning)
+        do
         {
         	try{        		
         		getGameState().update();
@@ -52,9 +43,9 @@ public class LevelHandler extends JPanel {
         		Thread.sleep(20);
         	} catch (Exception e) {
 	        	System.out.println(e);
-	        	isRunning = !isRunning;
+	        	getGameState().stateStop();
         	}
-        }
+        } while(!(getGameState().getState() instanceof states.gameState.GameStateStop));
 	}
 	
 	public Level loadLevel(String levelName) {
@@ -97,10 +88,6 @@ public class LevelHandler extends JPanel {
 	public GameState getGameState() {
 		return state;
 	}
-	
-	public void setIsRunning(Boolean bool) {
-		this.isRunning = bool;
-	}
 
 	public MainRuntime getMrt() {
 		return mrt;
@@ -112,14 +99,6 @@ public class LevelHandler extends JPanel {
 
 	public void setCurrentLevel(Level currentLevel) {
 		this.currentLevel = currentLevel;
-	}
-
-	public boolean isRunning() {
-		return isRunning;
-	}
-
-	public void setRunning(boolean isRunning) {
-		this.isRunning = isRunning;
 	}
 
 	public Keymap getKeymap() {

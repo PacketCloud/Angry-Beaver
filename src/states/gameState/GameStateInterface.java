@@ -2,8 +2,6 @@ package states.gameState;
 
 import java.awt.Graphics2D;
 
-import engine.*;
-
 /*
  * GameStateInterface ensures that updating, rendering graphics,
  * 		and input methods exist in the class. This class will be

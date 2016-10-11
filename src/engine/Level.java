@@ -1,12 +1,12 @@
 package engine;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import entities.*;
 
@@ -14,7 +14,7 @@ public class Level {
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	private ArrayList<Platform> platformList = new ArrayList<Platform>();
     private EntityPlayer player = null;
-    private BufferedImage background = null;
+    private Image background = null;
     private LevelSettings levelSetting = null;
     private LevelHandler lHandler;
     
@@ -79,20 +79,20 @@ public class Level {
 	
 	public void drawBackground(Graphics2D g) {
 		//if (background == null), default to white
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1280, 720);
-		//g.setColor(Color.BLACK);
-		//g.drawLine(0, 500, 1280, 500);
+		//g.setColor(Color.WHITE);
+		//g.fillRect(0, 0, 1280, 720);
 		
 		//TODO: Read background image from FileUtility instead
 		File file = new File("");
 		String path = file.getAbsolutePath();
-		BufferedImage image = null;
 		try{
 			//note: in the future, image scale and position should be dependent on window size/resolution.
-			image = ImageIO.read(new File(path + "/Resources/Textures/Background/ExampleBackground.png"));
+			if(background == null) {
+				background = new ImageIcon(path + "/Resources/Textures/Background/ExampleBackground.png").getImage();
+			}
+			
 			g.scale(0.75, 0.75);
-			g.drawImage(image, null, 0, 0);
+			g.drawImage(background, 0, 0, null);
 			g.scale(1, 1);
 		} catch (Exception e){}
 		
