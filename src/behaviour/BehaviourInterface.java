@@ -1,4 +1,4 @@
-package entities;
+package behaviour;
 
 public interface BehaviourInterface {
 	//Empty definition for now, so implementing classes do not complain.
