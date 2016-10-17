@@ -32,7 +32,7 @@ public abstract class Entity implements EntityInterface {
 			setFacing(facing);
 		}catch (IOException e){
 			System.out.println(e.getMessage());
-			System.out.println("Direction facing was invalid");
+			System.out.println("Direction " + this + " is facing was invalid" );
 		}
 		setState(state);
 	}
