@@ -1,13 +1,9 @@
 package FileUtility;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.ImageIcon;
-
-import entities.Hitbox;
 /*
  * 	OpenFile is a class to help in creating a scanner to read text 
  * 		files when given a file path relative to Angry-Beaver.
@@ -87,7 +83,7 @@ public class OpenFile /*extends whatever main class */ {
 			System.out.println("file does not exist");
 		}
 	}
-	
+
 	/*
 	// * main function for testing    
 	public static void main(String[] args) throws IOException {

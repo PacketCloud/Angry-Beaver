@@ -20,6 +20,7 @@ public class MainRuntime {
 	
 	public void loadSettings() {
 		fSettings = new Settings();
+		fSettings.loadUserSettings();
 	}
 	
 	public void initFrame() {
