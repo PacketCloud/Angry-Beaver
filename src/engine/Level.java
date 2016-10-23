@@ -16,15 +16,6 @@ public class Level {
     private EntityPlayer player = null;
     private Image background = null;
     private LevelSettings levelSetting = null;
-    private LevelHandler lHandler;
-    
-    public Level(LevelHandler lHander) {
-    	setLevelHandler(lHandler);
-    }
-    
-    public void setLevelHandler(LevelHandler lHandler) {
-    	this.lHandler = lHandler;
-    }
 
 	public LevelSettings getLevelSetting() {
 		return levelSetting;

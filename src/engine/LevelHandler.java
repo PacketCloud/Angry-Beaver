@@ -49,7 +49,7 @@ public class LevelHandler extends JPanel {
 	}
 	
 	public Level loadLevel(String levelName) {
-		Level level = new Level(this);
+		Level level = new Level();
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
 		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
 		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
@@ -59,6 +59,11 @@ public class LevelHandler extends JPanel {
 		level.addPlatform(platform);
 		level.setPlayer(player);
 		return level;
+		
+		/*
+		 * OpenLevel levels = new OpenLevel();
+		 * return levels.getLevel("Level 1");
+		 */
 	}
 	
 	@Override
