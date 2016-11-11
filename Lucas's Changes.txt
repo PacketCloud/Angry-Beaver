@@ -1,0 +1,29 @@
+Lucas's Changes
+~~~~~~~~~~~~~~~
+
+Sounds
+~~~~~~
+	Sounds to record:
+
+	
+	Sounds to find:
+
+
+
+Keybindings
+~~~~~~~~~~~
+
+			Normal		Hardcore Mode
+			~~~~~~		~~~~~~~~~~~~~
+
+Left			A		A
+Right			D		K
+Jump			Space		Space
+
+Toss log		F		C
+Chop tree		E		Enter
+Tail spin		Shift		N
+
+Pause			Esc		B
+Restart level		BckSpc		V
+Mute			M		X
