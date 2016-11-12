@@ -18,12 +18,12 @@ Keybindings
 
 Left			A		A
 Right			D		K
-Jump			Space		Space
+Jump			Space	Space
 
 Toss log		F		C
 Chop tree		E		Enter
-Tail spin		Shift		N
+Tail spin		Shift	N
 
 Pause			Esc		B
-Restart level		BckSpc		V
+Restart level	BckSpc	V
 Mute			M		X
