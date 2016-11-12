@@ -101,4 +101,6 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	public void setH(LevelHandler h) {
 		this.h = h;
 	}
+
+	//C:\Users\Binu\Pictures\pics on sdcard\Pictures_msd\Snapchat_MSD\thuglife.jpg
 }

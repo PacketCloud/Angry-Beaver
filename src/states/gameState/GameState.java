@@ -1,15 +1,24 @@
  package states.gameState;
 
 import java.awt.Graphics2D;
-
+import states.gameState.*;
 import engine.LevelHandler;
 
 public class GameState {
 	public GameStateAbstract state;
+	public GameStateMenu stateMenu;
 	
 	public GameState(LevelHandler h) {
-		stateRun(h);
+		//stateRun(h);
+		stateMenu(h);
 	}
+
+
+	public void stateMenu(LevelHandler h) {
+		// TODO Auto-generated method stub
+		setGameState(new GameStateMenu(h));
+	}
+
 
 	public void update() {
 		state.update();
@@ -43,7 +52,7 @@ public class GameState {
 	private void setGameState(GameStateAbstract state) {
 		this.state = state;
 	}
-
+	
 	public GameStateAbstract getState() {
 		return state;
 	}
