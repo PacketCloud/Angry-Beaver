@@ -13,7 +13,7 @@ import entities.*;
 public class Level { 
 	private ArrayList<Entity> entityList = new ArrayList<Entity>();
 	private ArrayList<Platform> platformList = new ArrayList<Platform>();
-    private EntityPlayer player = null;
+    private Entity player = null;
     private Image background = null;
     private LevelSettings levelSetting = null;
 
@@ -25,11 +25,11 @@ public class Level {
 		this.levelSetting = levelSetting;
 	}
 
-	public void setPlayer(EntityPlayer player) {
+	public void setPlayer(Entity player) {
 		this.player = player;
 	}
 
-	public EntityPlayer getPlayer() {
+	public Entity getPlayer() {
 		return player;
 	}
 	
@@ -47,9 +47,9 @@ public class Level {
 
 	//Updates all entities to their correct location/action
 	public void updateLevel(){
-		player.update(levelSetting);
+		player.update();
 		for(int i = 0; i < entityList.size(); i++){
-			entityList.get(i).update(levelSetting);
+			entityList.get(i).update();
 		}
 	}
 	

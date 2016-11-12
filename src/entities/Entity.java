@@ -2,49 +2,55 @@ package entities;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.io.IOException;
-
-import engine.LevelSettings;
-import entities.EntityStatus;
 import ResourceHandling.ResourceCollection;
 import states.State;
 
-public abstract class Entity implements EntityInterface {
+public class Entity implements EntityInterface {
 	private Point Position;
-	private String Type; //TODO: Change Model to its own type, storing path information for asset(s) and other related data (ResourceHandling.ResourceCollection).
-	private float Velocity;
-	private String Facing;
+	private Hitbox hitbox;
 	private ResourceCollection Model;
-	protected EntityStatus status;
 	private State EntityState;
-	
-	public Entity(EntityStatus status) {
-		setStatus(status);
-	}
-	
-	public Entity(Point position, float velocity, String type, ResourceCollection model, String facing, State state) {
-		//this.setStatus(status);
-		setPosition(position);
-		setVelocity(velocity);
-		setType(type);
-		setEntityModel(model);
-		try{
-			setFacing(facing);
-		}catch (IOException e){
-			System.out.println(e.getMessage());
-			System.out.println("Direction " + this + " is facing was invalid" );
-		}
-		setState(state);
-	}
-	
-	
-	
-	public EntityStatus getStatus() {
-		return status;
+		
+	public Entity(Point position, Hitbox hitbox, ResourceCollection model, State entityState) {
+		super();
+		Position = position;
+		this.hitbox = hitbox;
+		Model = model;
+		EntityState = entityState;
 	}
 
-	public void setStatus(EntityStatus status) {
-		this.status = status;
+	public void update() {
+	}
+	
+	public void draw(Graphics2D g) {
+	}
+	
+	public void hit() {
+	}
+	
+	/******** Getters and Setters ********/
+	public Hitbox getHitbox() {
+		return hitbox;
+	}
+
+	public void setHitbox(Hitbox hitbox) {
+		this.hitbox = hitbox;
+	}
+
+	public ResourceCollection getModel() {
+		return Model;
+	}
+
+	public void setModel(ResourceCollection model) {
+		Model = model;
+	}
+
+	public State getEntityState() {
+		return EntityState;
+	}
+
+	public void setEntityState(State entityState) {
+		EntityState = entityState;
 	}
 
 	public void setPosition(Point newPosition) {
@@ -55,62 +61,11 @@ public abstract class Entity implements EntityInterface {
 		return this.Position;
 	}
 	
-	public void setVelocity(float velocity) {
-		this.Velocity = velocity;
-	}
-	
-	public float getVelocity() {
-		return this.Velocity;
-	}
-	
-	public String getFacing() {
-		return this.Facing;
-	}
-	
-	public void setFacing(String facing) throws IOException {
-		if (facing == "left"|facing == "right") {
-			this.Facing = facing;
-			return;
-		}
-		if(this.Facing == null) {
-			this.Facing = "right";
-		}
-		throw new IOException();
-	}
-	
-	public void setType(String type) {
-		this.Type = type;
-	}
-	
-	public String getType() {
-		return this.Type;
-	}	
-	
-	public void setEntityModel(ResourceCollection model) {
-		this.Model = model;
-	}
-	
-	public ResourceCollection getEntityModel() {
-		return this.Model;
-	}
-	
 	public void setState(State state) {
 		this.EntityState = state;
 	}
 	
 	public State getState() {
 		return this.EntityState;
-	}
-	
-	public void update(LevelSettings levelSetting) {
-		onUpdate(levelSetting);
-	}
-	
-	public void draw(Graphics2D g) {
-		onDraw(g);
-	}
-	
-	public void hit() {
-		onHit();
 	}
 }

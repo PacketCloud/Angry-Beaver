@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JPanel;
+
+import ResourceHandling.ResourceCollection;
 import entities.*;
 import keyInputs.*;
 import states.gameState.GameState;
@@ -52,8 +54,8 @@ public class LevelHandler extends JPanel {
 		Level level = new Level();
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
 		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
-		EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
-		EntityPlayer player = new EntityPlayer(status);
+		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), new ResourceCollection(), null);
+		//EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
 		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		
 		level.addPlatform(platform);

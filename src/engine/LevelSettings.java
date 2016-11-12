@@ -11,7 +11,7 @@ public class LevelSettings {
 	 * The assumption is that LeftBounds is less than RightBounds .
 	 * TODO: There should be a default LevelSettings if no LevelSettings is
 	 * 		specified.
-	 * 
+	 * This class is current not used.
 	 */
 	private int rightBounds;
 	private int leftBounds;
