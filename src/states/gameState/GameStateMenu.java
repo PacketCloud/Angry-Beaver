@@ -1,6 +1,7 @@
 package states.gameState;
 
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
@@ -41,8 +42,11 @@ public class GameStateMenu extends GameStateAbstract {
 			g.setFont(font);
 			g.drawImage(Oimage.OpenImage(""), 0,0, null);
 			
-			g.drawString("ANGRY BEAVER", 290, 100);
+			g.setColor(Color.BLACK);
+
+			g.drawString("ANGRY BEAVER", 290, 150);
 			Font font1 = new Font("Comic Sans MS", 0, 50);
+			g.setColor(Color.RED);
 			g.setFont(font1);
 			g.drawString("PLAY", 600, 300);
 			g.drawString("OPTIONS", 550, 400);
