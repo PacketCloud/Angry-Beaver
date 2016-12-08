@@ -3,15 +3,14 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import ResourceHandling.ResourceCollection;
-import states.State;
 
 public class Entity implements EntityInterface {
 	private Point Position;
 	private Hitbox hitbox;
 	private ResourceCollection Model;
-	private State EntityState;
+	private String EntityState;
 		
-	public Entity(Point position, Hitbox hitbox, ResourceCollection model, State entityState) {
+	public Entity(Point position, Hitbox hitbox, ResourceCollection model, String entityState) {
 		super();
 		Position = position;
 		this.hitbox = hitbox;
@@ -23,6 +22,7 @@ public class Entity implements EntityInterface {
 	}
 	
 	public void draw(Graphics2D g) {
+		//g.drawImage(Model.getImageIcon(EntityState).getImage(), (int) Position.getX(), (int) Position.getY(), null); //Currently not working. Drawing needs restructuring.
 	}
 	
 	public void hit() {
@@ -45,11 +45,11 @@ public class Entity implements EntityInterface {
 		Model = model;
 	}
 
-	public State getEntityState() {
+	public String getEntityState() {
 		return EntityState;
 	}
 
-	public void setEntityState(State entityState) {
+	public void setEntityState(String entityState) {
 		EntityState = entityState;
 	}
 
@@ -59,13 +59,5 @@ public class Entity implements EntityInterface {
 	
 	public Point getPosition() {
 		return this.Position;
-	}
-	
-	public void setState(State state) {
-		this.EntityState = state;
-	}
-	
-	public State getState() {
-		return this.EntityState;
 	}
 }

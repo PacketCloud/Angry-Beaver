@@ -6,6 +6,7 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 import ResourceHandling.ResourceCollection;
+import ResourceHandling.Resource;
 import entities.*;
 import keyInputs.*;
 import states.gameState.GameState;
@@ -54,9 +55,12 @@ public class LevelHandler extends JPanel {
 		Level level = new Level();
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
 		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
-		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), new ResourceCollection(), null);
-		//EntityStatus status = new EntityStatus(new Hitbox(new Point(0,0), 100, 100));
-		//EntityPlayer player = new EntityPlayer(new Point(0,0), new Vector(2), "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		
+			//This is temporary, should be done elsewhere as the level loads.
+			ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
+			PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", null, true, "Walking"));
+			
+			Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, null);
 		
 		level.addPlatform(platform);
 		level.setPlayer(player);
