@@ -40,7 +40,7 @@ public class GameStateMenu extends GameStateAbstract {
 		try {
 			Font font = new Font("Arial", 0, 100);
 			g.setFont(font);
-			g.drawImage(Oimage.OpenImage(""), 0,0, null);
+			g.drawImage(Oimage.Open(""), 0,0, null);
 			
 			g.setColor(Color.BLACK);
 

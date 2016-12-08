@@ -2,12 +2,14 @@ package ResourceHandling;
 
 import java.io.File;
 import javax.swing.ImageIcon;
+import FileUtility.OpenImage;
+import java.awt.Image;
 
 public class Resource {
 	//Simple type, associating an entity state with the resource(s) to render while in that state, how to render them, and any sounds to play (and how/when to play them).
 	private String ResourceName;
 	private String TexturePath;
-	private ImageIcon TexturePointer;
+	private Image TexturePointer;
 	private String SoundPath;
 	private Boolean SoundLoops;
 	private String StateName;
@@ -30,10 +32,8 @@ public class Resource {
 	
 	public void setTexturePath(String localPath) {
 		TexturePath = localPath;
-		File file = new File("");
-		String rootPath = file.getAbsolutePath();
 		try {
-			TexturePointer = new ImageIcon(rootPath + TexturePath); //localPath example: "/Resources/Textures/Background/ExampleBackground.png"
+			TexturePointer = new OpenImage().Open(TexturePath);
 		} catch (Exception e) {}
 	}
 	
@@ -41,7 +41,7 @@ public class Resource {
 		return TexturePath;
 	}
 	
-	public ImageIcon getTexture() {
+	public Image getTexture() {
 		return TexturePointer;
 	}
 	

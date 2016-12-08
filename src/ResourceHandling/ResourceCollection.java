@@ -1,5 +1,6 @@
 package ResourceHandling;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -19,7 +20,7 @@ public class ResourceCollection {
 		CollectionList.add(resource);
 	}
 	
-	public ImageIcon getImageIcon(String state) {
+	public Image getImageIcon(String state) {
 		for(Resource i : CollectionList){
 			if (i.getStateName() == state) {
 				return i.getTexture();
@@ -29,7 +30,7 @@ public class ResourceCollection {
 		return null;
 	}
 	
-	public ImageIcon getImageIconFromPath(String path) {
+	public Image getImageIconFromPath(String path) {
 		for(Resource i : CollectionList){
 			if (i.getTexturePath() == path) {
 				return i.getTexture();
