@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import ResourceHandling.ResourceCollection;
 
@@ -22,7 +23,9 @@ public class Entity implements EntityInterface {
 	}
 	
 	public void draw(Graphics2D g) {
-		//g.drawImage(Model.getImageIcon(EntityState).getImage(), (int) Position.getX(), (int) Position.getY(), null); //Currently not working. Drawing needs restructuring.
+		Image texture = Model.getImageIcon(EntityState);
+		float textureScale = Model.getImageScale(EntityState);
+		g.drawImage(texture, (int) Position.getX(), (int) Position.getY(), (int) (texture.getWidth(null) * textureScale), (int) (texture.getHeight(null) * textureScale), null); //Currently not working. Drawing needs restructuring.
 	}
 	
 	public void hit() {

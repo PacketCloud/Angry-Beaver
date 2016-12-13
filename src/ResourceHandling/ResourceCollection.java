@@ -69,4 +69,24 @@ public class ResourceCollection {
 		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
 		return null;
 	}
+	
+	public float getImageScale(String state) {
+		for(Resource i : CollectionList){
+			if (i.getStateName() == state){
+				return i.getTextureScale();
+			}
+		}
+		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
+		return 0;
+	}
+	
+	public Resource getResource(String state) {
+		for(Resource i : CollectionList){
+			if (i.getStateName() == state){
+				return i;
+			}		
+		}
+		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
+		return null;
+	}
 }

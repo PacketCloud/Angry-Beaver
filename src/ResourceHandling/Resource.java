@@ -10,13 +10,15 @@ public class Resource {
 	private String ResourceName;
 	private String TexturePath;
 	private Image TexturePointer;
+	private float TextureScale;
 	private String SoundPath;
 	private Boolean SoundLoops;
 	private String StateName;
 	
-	public Resource(String resourceName, String texturePath, String soundPath, Boolean soundLoops, String stateName) {
+	public Resource(String resourceName, String texturePath, float textureScale, String soundPath, Boolean soundLoops, String stateName) {
 		setResourceName(resourceName);
 		setTexturePath(texturePath);
+		setTextureScale(textureScale);
 		setSoundPath(soundPath);
 		setSoundLoops(soundLoops);
 		setStateName(stateName);
@@ -43,6 +45,14 @@ public class Resource {
 	
 	public Image getTexture() {
 		return TexturePointer;
+	}
+	
+	public void setTextureScale(float scale) {
+		TextureScale = scale;
+	}
+	
+	public float getTextureScale() {
+		return TextureScale;
 	}
 	
 	public void setSoundPath(String path) {
