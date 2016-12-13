@@ -60,17 +60,12 @@ public class LevelHandler extends JPanel {
 			ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 			PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 			
-			Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, "Walking");
+			Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
 		
 		level.addPlatform(platform);
 		level.setPlayer(player);
 		level.addEntity(player);
 		return level;
-		
-		/*
-		 * OpenLevel levels = new OpenLevel();
-		 * return levels.getLevel("Level 1");
-		 */
 	}
 	
 	@Override

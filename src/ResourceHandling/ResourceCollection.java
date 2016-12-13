@@ -19,7 +19,7 @@ public class ResourceCollection {
 	public void add(Resource resource) {
 		CollectionList.add(resource);
 	}
-	
+	/******** Getters and Setters ********/
 	public Image getImageIcon(String state) {
 		for(Resource i : CollectionList){
 			if (i.getStateName() == state) {

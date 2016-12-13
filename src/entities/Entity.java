@@ -10,13 +10,15 @@ public class Entity implements EntityInterface {
 	private Hitbox hitbox;
 	private ResourceCollection Model;
 	private String EntityState;
+	private int Facing = 1;
 		
-	public Entity(Point position, Hitbox hitbox, ResourceCollection model, String entityState) {
+	public Entity(Point position, Hitbox hitbox, ResourceCollection model, int facing, String entityState) {
 		super();
 		Position = position;
 		this.hitbox = hitbox;
 		Model = model;
 		EntityState = entityState;
+		setFacing(facing);
 	}
 
 	public void update() {
@@ -25,7 +27,12 @@ public class Entity implements EntityInterface {
 	public void draw(Graphics2D g) {
 		Image texture = Model.getImageIcon(EntityState);
 		float textureScale = Model.getImageScale(EntityState);
-		g.drawImage(texture, (int) Position.getX(), (int) Position.getY(), (int) (texture.getWidth(null) * textureScale), (int) (texture.getHeight(null) * textureScale), null); //Currently not working. Drawing needs restructuring.
+		g.drawImage(texture,//image to draw.
+				(int) (Position.getX() + (-0.5 * getFacing() + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
+				(int) Position.getY(),//y position to draw.
+				(int) (texture.getWidth(null) * textureScale * getFacing()),//dx position to draw, dependent on direction facing and scale.
+				(int) (texture.getHeight(null) * textureScale),//dy position to draw, dependent on scale.
+				null);//observer, null.
 	}
 	
 	public void hit() {
@@ -62,5 +69,18 @@ public class Entity implements EntityInterface {
 	
 	public Point getPosition() {
 		return this.Position;
+	}
+	
+	public void setFacing(int facing) {
+		if (facing == -1) {
+			Facing = facing;
+			return;
+		}
+		Facing = 1;
+		return;
+	}
+	
+	public int getFacing() {
+		return Facing;
 	}
 }

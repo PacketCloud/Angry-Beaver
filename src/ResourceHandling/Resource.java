@@ -24,6 +24,7 @@ public class Resource {
 		setStateName(stateName);
 	}
 	
+	/******** Getters and Setters ********/
 	public void setResourceName(String name) {
 		ResourceName = name;
 	}
