@@ -7,7 +7,7 @@ import ResourceHandling.ResourceCollection;
 
 public class Entity implements EntityInterface {
 	private Point Position;
-	private Hitbox hitbox;
+	private Hitbox Hitbox;
 	private ResourceCollection Model;
 	private String EntityState;
 	private int Facing = 1;
@@ -15,13 +15,18 @@ public class Entity implements EntityInterface {
 	public Entity(Point position, Hitbox hitbox, ResourceCollection model, int facing, String entityState) {
 		super();
 		Position = position;
-		this.hitbox = hitbox;
+		setHitbox(hitbox);
 		Model = model;
 		EntityState = entityState;
 		setFacing(facing);
 	}
 
 	public void update() {
+		updateHitbox();
+	}
+	
+	public void updateHitbox() {
+		Hitbox.setPosition(Position);//TODO: Make sure hitbox is updated directly after position updates, to make sure hitbox does not lag behind entity.
 	}
 	
 	public void draw(Graphics2D g) {
@@ -40,11 +45,11 @@ public class Entity implements EntityInterface {
 	
 	/******** Getters and Setters ********/
 	public Hitbox getHitbox() {
-		return hitbox;
+		return Hitbox;
 	}
 
 	public void setHitbox(Hitbox hitbox) {
-		this.hitbox = hitbox;
+		Hitbox = hitbox;
 	}
 
 	public ResourceCollection getModel() {
