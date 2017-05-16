@@ -102,5 +102,4 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		this.h = h;
 	}
 
-	//C:\Users\Binu\Pictures\pics on sdcard\Pictures_msd\Snapchat_MSD\thuglife.jpg
 }
