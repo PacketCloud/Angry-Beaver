@@ -1,34 +1,78 @@
 package states.gameState;
 
 import java.awt.Graphics2D;
-
+import java.util.*;
 import engine.LevelHandler;
 
 public class GameStateRun extends GameStateAbstract {
 
+	public Set<String> inputSet = new HashSet<String>();
+	
 	public GameStateRun(LevelHandler h) {
 		super(h);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void update() {
-		// TODO: Consider how to load the next level.
-		getH().getCurrentLevel().updateLevel();
-		System.out.println("Running");
-		getH().repaint();
-	}
 	
 	@Override
-	public void pause() {
+	public void userInput(String action) {
 		// TODO Auto-generated method stub
-		super.pause();
-		getH().getGameState().statePause();
+		if (action.startsWith("r_")) {
+			inputSet.remove(action.substring(2));
+		} else {
+			inputSet.add(action);
+		}
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
 		getH().getCurrentLevel().drawLevel(g);
+	}
+	
+	@Override
+	public void update() {
+		// TODO: Consider how to load the next level.
+		Iterator<String> itr = inputSet.iterator();
+		while(itr.hasNext()) {
+			super.userInput(itr.next());
+		}
+		getH().getCurrentLevel().updateLevel();
+		System.out.println("Running");
+		getH().repaint();
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		super.pause();
+		getH().getGameState().statePause();
+	}
+	
+	@Override
+	public void up() {
+		// TODO Auto-generated method stub
+		super.up();
+		getH().getCurrentLevel().getPlayer().getPosition().translate(0, -5);
+	}
+	
+	@Override
+	public void down() {
+		// TODO Auto-generated method stub
+		super.down();
+		getH().getCurrentLevel().getPlayer().getPosition().translate(0, 5);
+	}
+
+	@Override
+	public void right() {
+		// TODO Auto-generated method stub
+		super.right();
+		getH().getCurrentLevel().getPlayer().getPosition().translate(5, 0);
+	}
+
+	@Override
+	public void left() {
+		// TODO Auto-generated method stub
+		super.left();
+		getH().getCurrentLevel().getPlayer().getPosition().translate(-5, 0);
 	}
 }
