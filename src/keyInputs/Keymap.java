@@ -1,8 +1,5 @@
 package keyInputs;
 
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -24,7 +21,7 @@ public class Keymap {
 		initInputs(handle.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW));
 		initActions(handle.getActionMap());
 	}
-	
+
 	private void initInputs(InputMap inputMap) {
 		inputMap.put(KeyStroke.getKeyStroke("UP"), ACTIONS.MOVE_UP);
 		inputMap.put(KeyStroke.getKeyStroke("DOWN"), ACTIONS.MOVE_DOWN);
@@ -45,20 +42,24 @@ public class Keymap {
 	
 	private void initActions(ActionMap actionMap) {
 		//TODO: Pass the input handling to the LevelHandler.GameState class to deal with
-		actionMap.put(ACTIONS.MOVE_UP, new PlayerInput(handle,ACTIONS.MOVE_UP));
-		actionMap.put(ACTIONS.MOVE_DOWN, new PlayerInput(handle,ACTIONS.MOVE_DOWN));
-		actionMap.put(ACTIONS.MOVE_RIGHT, new PlayerInput(handle,ACTIONS.MOVE_RIGHT));
-		actionMap.put(ACTIONS.MOVE_LEFT, new PlayerInput(handle,ACTIONS.MOVE_LEFT));
+		actionMap.put(ACTIONS.MOVE_UP, new PlayerInput(this,ACTIONS.MOVE_UP));
+		actionMap.put(ACTIONS.MOVE_DOWN, new PlayerInput(this,ACTIONS.MOVE_DOWN));
+		actionMap.put(ACTIONS.MOVE_RIGHT, new PlayerInput(this,ACTIONS.MOVE_RIGHT));
+		actionMap.put(ACTIONS.MOVE_LEFT, new PlayerInput(this,ACTIONS.MOVE_LEFT));
 		
-		actionMap.put(ACTIONS.R_MOVE_UP, new PlayerInput(handle,ACTIONS.R_MOVE_UP));
-		actionMap.put(ACTIONS.R_MOVE_DOWN, new PlayerInput(handle,ACTIONS.R_MOVE_DOWN));
-		actionMap.put(ACTIONS.R_MOVE_RIGHT, new PlayerInput(handle,ACTIONS.R_MOVE_RIGHT));
-		actionMap.put(ACTIONS.R_MOVE_LEFT, new PlayerInput(handle,ACTIONS.R_MOVE_LEFT));
+		actionMap.put(ACTIONS.R_MOVE_UP, new PlayerInput(this,ACTIONS.R_MOVE_UP));
+		actionMap.put(ACTIONS.R_MOVE_DOWN, new PlayerInput(this,ACTIONS.R_MOVE_DOWN));
+		actionMap.put(ACTIONS.R_MOVE_RIGHT, new PlayerInput(this,ACTIONS.R_MOVE_RIGHT));
+		actionMap.put(ACTIONS.R_MOVE_LEFT, new PlayerInput(this,ACTIONS.R_MOVE_LEFT));
 		
-		actionMap.put(ACTIONS.PAUSE, new PlayerInput(handle,ACTIONS.PAUSE));
+		actionMap.put(ACTIONS.PAUSE, new PlayerInput(this,ACTIONS.PAUSE));
 		
-		actionMap.put(ACTIONS.JUMP, new PlayerInput(handle,ACTIONS.JUMP));
-		actionMap.put(ACTIONS.ATTACK, new PlayerInput(handle,ACTIONS.ATTACK));
-		actionMap.put(ACTIONS.THROW, new PlayerInput(handle,ACTIONS.THROW));
+		actionMap.put(ACTIONS.JUMP, new PlayerInput(this,ACTIONS.JUMP));
+		actionMap.put(ACTIONS.ATTACK, new PlayerInput(this,ACTIONS.ATTACK));
+		actionMap.put(ACTIONS.THROW, new PlayerInput(this,ACTIONS.THROW));
+	}
+	
+	public void inputAction(String actionType) {
+		handle.keyPressed(actionType);
 	}
 }
