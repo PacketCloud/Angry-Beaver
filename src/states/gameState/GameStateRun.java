@@ -52,27 +52,33 @@ public class GameStateRun extends GameStateAbstract {
 	public void up() {
 		// TODO Auto-generated method stub
 		super.up();
-		getH().getCurrentLevel().getPlayer().getPosition().translate(0, -5);
+		getH().getCurrentLevel().getOffset().translate(0, 5);
+		getH().getCurrentLevel().getPlayer().translate(0, -5);
 	}
 	
 	@Override
 	public void down() {
 		// TODO Auto-generated method stub
 		super.down();
-		getH().getCurrentLevel().getPlayer().getPosition().translate(0, 5);
+		getH().getCurrentLevel().getOffset().translate(0, -5);
+		getH().getCurrentLevel().getPlayer().translate(0, 5);
 	}
 
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
 		super.right();
-		getH().getCurrentLevel().getPlayer().getPosition().translate(5, 0);
+		getH().getCurrentLevel().getOffset().translate(-5, 0);
+		getH().getCurrentLevel().getPlayer().translate(5, 0);
+		getH().getCurrentLevel().getPlayer().setFacing(-1);
 	}
 
 	@Override
 	public void left() {
 		// TODO Auto-generated method stub
 		super.left();
-		getH().getCurrentLevel().getPlayer().getPosition().translate(-5, 0);
+		getH().getCurrentLevel().getOffset().translate(5, 0);
+		getH().getCurrentLevel().getPlayer().translate(-5, 0);
+		getH().getCurrentLevel().getPlayer().setFacing(1);
 	}
 }

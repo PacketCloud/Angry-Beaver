@@ -12,6 +12,7 @@ public class Hitbox {
 		setHeight(height);
 		setWidth(width);
 	}
+	
 	public Point getPosition() {
 		return position;
 	}
@@ -30,7 +31,7 @@ public class Hitbox {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	//TODO: platform intersect
+	
 	public Boolean intersects(Platform platform) {
 		//Hitbox pHitbox = platform.getHitbox();
 		return false;

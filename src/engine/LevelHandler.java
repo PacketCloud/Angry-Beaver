@@ -52,19 +52,18 @@ public class LevelHandler extends JPanel {
 	}
 	
 	public Level loadLevel(String levelName) {
-		Level level = new Level();
+		Level level = new Level(windowSize);
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
 		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
 		
-			//This is temporary, should be done elsewhere as the level loads.
-			ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
-			PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
+		//This is temporary, should be done elsewhere as the level loads.
+		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
+		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 			
-			Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
+		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
 		
 		level.addPlatform(platform);
 		level.setPlayer(player);
-		level.addEntity(player);
 		return level;
 	}
 	

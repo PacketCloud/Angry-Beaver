@@ -43,6 +43,10 @@ public class Entity implements EntityInterface {
 	public void hit() {
 	}
 	
+	public void translate(int x, int y) {
+		Position.translate(x, y);
+	}
+	
 	/******** Getters and Setters ********/
 	public Hitbox getHitbox() {
 		return Hitbox;
