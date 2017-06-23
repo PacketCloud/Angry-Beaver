@@ -19,22 +19,20 @@ public class GameState {
 		setGameState(new GameStateMenu(h));
 	}
 
-
 	public void update() {
 		state.update();
 	}
 
 	public void userInput(String actionType) {
-		state.userInput(actionType);		
+		state.userInput(actionType);
 	}
 	
 	public void stateStop() {
 		setGameState(new GameStateStop(getStateH()));
 	}
-
-	// Current stateRun method in order to initialize. This will be removed later
-	public void stateRun(LevelHandler h) {
-		setGameState(new GameStateRun(h));
+	
+	public void stateMenu() {
+		setGameState(new GameStateMenu(getStateH()));
 	}
 	
 	public void stateRun() {

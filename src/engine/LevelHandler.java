@@ -54,7 +54,8 @@ public class LevelHandler extends JPanel {
 	public Level loadLevel(String levelName) {
 		Level level = new Level(windowSize);
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
-		Platform platform = new Platform(new Hitbox(new Point(150, 600), 50, 800));
+		Platform platform = new Platform(new Hitbox(new Point(150, 300), 800, 50));
+		Platform platform2 = new Platform(new Hitbox(new Point(900, 400), 50, 200));
 		
 		//This is temporary, should be done elsewhere as the level loads.
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
@@ -63,6 +64,7 @@ public class LevelHandler extends JPanel {
 		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
 		
 		level.addPlatform(platform);
+		level.addPlatform(platform2);
 		level.setPlayer(player);
 		return level;
 	}
