@@ -13,6 +13,11 @@ public class GameStatePause extends GameStateAbstract {
 	private ArrayList<String> pauseText = new ArrayList<String>(Arrays.asList("Resume", "Options", "Menu", "Exit"));
 	private int chosen = 0;	
 	
+	private String titleFont = "Arial";
+	private String textFont = "Comic Sans MS";
+	private int titleSize = 100;
+	private int textSize = 50;
+	
 	private Color titleColor = Color.BLACK;
 	private Color defaultColor = Color.BLACK;
 	private Color selectColor = Color.RED;
@@ -36,17 +41,16 @@ public class GameStatePause extends GameStateAbstract {
 	}
 
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics2D g) {		
+		// TODO Location of the text should depend on the window size
 		
-		Font font = new Font("Arial", 0, 100);
-		g.setFont(font);
+		// Set title text
+		g.setFont(new Font(titleFont, 0, titleSize));
 		g.setColor(titleColor);
-		
 		g.drawString(pauseTitle, 290, 150);
 		
 		// Set menu text
-		Font font1 = new Font("Comic Sans MS", 0, 50);
-		g.setFont(font1);
+		g.setFont(new Font(textFont, 0, textSize));
 		
 		int y = 300;
 		for (int i = 0; i < pauseText.size(); i++) {
@@ -69,6 +73,7 @@ public class GameStatePause extends GameStateAbstract {
 			getH().getGameState().stateRun();
 			break;
 		case 1:
+			// Options
 			break;
 		case 2:
 			getH().getGameState().stateMenu();
