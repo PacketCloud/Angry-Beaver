@@ -3,6 +3,7 @@ package states.gameState;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ public class GameStateMenu extends GameStateAbstract {
 		// TODO: Menu background?
 		drawBackground(g);
 		// TODO: Positioning of text based on the window size.
-		
+		//g.scale(1, 1);
 		// Set title
 		Font font = new Font("Arial", 0, 100);
 		g.setFont(font);
@@ -67,17 +68,13 @@ public class GameStateMenu extends GameStateAbstract {
 		//TODO: Read background image from FileUtility instead
 		File file = new File("");
 		String path = file.getAbsolutePath();
-		/*try{
+		try{
 			//note: in the future, image scale and position should be dependent on window size/resolution.
-			if(background == null) {
-				background = new ImageIcon(path + "/Resources/Textures/Background/Background_Menu.png").getImage();
-			}
-			
-			g.scale(0.75, 0.75);
-			g.drawImage(background, 0, 0, null);
-			g.scale(1, 1);
-		} catch (Exception e){}
-		*/
+			Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
+			g.drawImage(background, 0, 0, 1280, 720, null);
+		} catch (Exception e){
+			System.out.println(e.toString());
+		}
 	}
 	
 	@Override

@@ -34,6 +34,7 @@ public class MainRuntime {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.add(lHandler);
+		frame.pack();
 	}
 	
 	public void startGame() {

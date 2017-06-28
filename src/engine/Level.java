@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -86,13 +85,10 @@ public class Level {
 				background = new ImageIcon(path + "/Resources/Textures/Background/ExampleBackground.png").getImage();
 			}
 			
-			g.scale(0.75, 0.75);
-			g.drawImage(background, 0, 0, null);
-			g.scale(1, 1);
-		} catch (Exception e){}
-		
-		//if (background != null, draw background image
-		//g.drawImage(background, null, null, null);
+			g.drawImage(background, 0, 0, 1280, 720, null);
+		} catch (Exception e){
+			System.out.println(e.toString());
+		}
 	}
 	
 	public void setPlayer(Entity player) {
