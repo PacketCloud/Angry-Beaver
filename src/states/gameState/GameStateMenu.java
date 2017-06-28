@@ -3,8 +3,12 @@ package states.gameState;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.ImageIcon;
+
 import engine.LevelHandler;
 
 public class GameStateMenu extends GameStateAbstract {
@@ -33,6 +37,7 @@ public class GameStateMenu extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		
 		// TODO: Menu background?
+		drawBackground(g);
 		// TODO: Positioning of text based on the window size.
 		
 		// Set title
@@ -58,6 +63,23 @@ public class GameStateMenu extends GameStateAbstract {
 		}
 	}
  
+	public void drawBackground(Graphics2D g) {
+		//TODO: Read background image from FileUtility instead
+		File file = new File("");
+		String path = file.getAbsolutePath();
+		/*try{
+			//note: in the future, image scale and position should be dependent on window size/resolution.
+			if(background == null) {
+				background = new ImageIcon(path + "/Resources/Textures/Background/Background_Menu.png").getImage();
+			}
+			
+			g.scale(0.75, 0.75);
+			g.drawImage(background, 0, 0, null);
+			g.scale(1, 1);
+		} catch (Exception e){}
+		*/
+	}
+	
 	@Override
 	public void jump() {
 		// TODO Auto-generated method stub

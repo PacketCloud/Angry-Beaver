@@ -6,17 +6,17 @@ import engine.LevelHandler;
 
 public class GameState {
 	public GameStateAbstract state;
-	public GameStateMenu stateMenu;
 	
 	public GameState(LevelHandler h) {
 		//stateRun(h);
-		stateMenu(h);
+		//stateMenu(h);
+		stateStart(h);
 	}
 
 
-	public void stateMenu(LevelHandler h) {
+	public void stateStart(LevelHandler h) {
 		// TODO Auto-generated method stub
-		setGameState(new GameStateMenu(h));
+		setGameState(new GameStateStart(h));
 	}
 
 	public void update() {
