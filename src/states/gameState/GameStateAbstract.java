@@ -1,6 +1,6 @@
 package states.gameState;
 
-import engine.LevelHandler;
+import engine.GameHandler;
 import keyInputs.ACTIONS;
 
 /*	All actions in the game should be defined here
@@ -9,10 +9,10 @@ import keyInputs.ACTIONS;
  */
 
 public abstract class GameStateAbstract implements GameStateInterface{
-	private LevelHandler h;
+	protected GameStateContext context;
 	
-	public GameStateAbstract(LevelHandler h) {
-		this.h = h;
+	public GameStateAbstract(GameStateContext context) {
+		this.context = context;
 	}
 
 	public void userInput(String action) {
@@ -93,13 +93,4 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	public void iThrow(){
 		System.out.println("D key pressed (Throw log)");
 	}
-
-	public LevelHandler getH() {
-		return h;
-	}
-
-	public void setH(LevelHandler h) {
-		this.h = h;
-	}
-
 }

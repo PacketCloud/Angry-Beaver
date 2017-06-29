@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 
-import engine.LevelHandler;
+import engine.GameHandler;
 
 public class GameStateMenu extends GameStateAbstract {
 	private String menuTitle = "ANGRY BEAVER";
@@ -21,15 +21,15 @@ public class GameStateMenu extends GameStateAbstract {
 	private Color defaultColor = Color.BLACK;
 	private Color selectColor = Color.RED;
 	
-	public GameStateMenu(LevelHandler h) {
-		super(h);
+	public GameStateMenu(GameStateContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		getH().repaint();
+		context.repaint();
     	System.out.println("Menu");
 	}
 
@@ -83,12 +83,13 @@ public class GameStateMenu extends GameStateAbstract {
 		super.jump();
 		switch(chosen) {
 		case 0:
-			getH().getGameState().stateRun();
+			context.setGameState(new GameStateRun(context, ""));
 			break;
 		case 1:
 			break;
 		case 2:
-			getH().getGameState().stateStop();
+			context.setGameState(new GameStateStop(context));
+			//getH().getGameState().stateStop();
 		}
 	}
 

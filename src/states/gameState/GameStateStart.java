@@ -9,21 +9,21 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 
-import engine.LevelHandler;
+import engine.GameHandler;
 
 public class GameStateStart extends GameStateAbstract {
 	private String startText = "PRESS ANY KEY TO START";
 	
 	private Color defaultColor = Color.BLACK;
-	public GameStateStart(LevelHandler h) {
-		super(h);
+	public GameStateStart(GameStateContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		getH().repaint();
+		context.repaint();
     	System.out.println("Start");
 	}
 
@@ -59,6 +59,6 @@ public class GameStateStart extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		//super.userInput(action);
 		
-		getH().getGameState().stateMenu();
+		context.setGameState(new GameStateMenu(context));
 	}
 }

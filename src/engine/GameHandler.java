@@ -9,23 +9,21 @@ import ResourceHandling.ResourceCollection;
 import ResourceHandling.Resource;
 import entities.*;
 import keyInputs.*;
-import states.gameState.GameState;
+import states.gameState.*;
 
 /*
  * LevelHandler holds the game loop. It also holds the current level
  * and takes in keyboard inputs.
  */
-public class LevelHandler extends JPanel {
+public class GameHandler extends JPanel {
 	
 	public MainRuntime mrt;
-	public Level currentLevel = null;
-	public GameState state;
+	public GameStateContext state;
 	public Keymap keymap;
 	
-	public LevelHandler() {
+	public GameHandler() {
 		this.setFocusable(true);
-		setCurrentLevel(loadLevel("Temp"));
-		this.state = new GameState(this);
+		this.state = new GameStateContext(this);
 		setKeymap(new Keymap(this));
 	}
 
@@ -43,28 +41,12 @@ public class LevelHandler extends JPanel {
         		Thread.sleep(20);
         	} catch (Exception e) {
 	        	System.out.println(e);
-	        	getGameState().stateStop();
+	        	state.setGameState(new GameStateStop(state));;
         	}
         } while(!(getGameState().getState() instanceof states.gameState.GameStateStop));
 	}
 	
-	public Level loadLevel(String levelName) {
-		Level level = new Level();
-		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
-		Platform platform = new Platform(new Hitbox(new Point(150, 300), 800, 50));
-		Platform platform2 = new Platform(new Hitbox(new Point(900, 400), 50, 200));
-		
-		//This is temporary, should be done elsewhere as the level loads.
-		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
-		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
-			
-		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
-		
-		level.addPlatform(platform);
-		level.addPlatform(platform2);
-		level.setPlayer(player);
-		return level;
-	}
+	
 	
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
@@ -80,16 +62,8 @@ public class LevelHandler extends JPanel {
 		return MainRuntime.getSettings().getWindowSize();
 	}
 	
-	public GameState getGameState() {
+	public GameStateContext getGameState() {
 		return state;
-	}
-
-	public Level getCurrentLevel() {
-		return currentLevel;
-	}
-
-	public void setCurrentLevel(Level currentLevel) {
-		this.currentLevel = currentLevel;
 	}
 
 	public Keymap getKeymap() {

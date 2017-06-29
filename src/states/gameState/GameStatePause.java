@@ -6,7 +6,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import engine.LevelHandler;
+import engine.GameHandler;
+import engine.Level;
 
 public class GameStatePause extends GameStateAbstract {
 	private String pauseTitle = "GAME PAUSED";
@@ -22,14 +23,17 @@ public class GameStatePause extends GameStateAbstract {
 	private Color defaultColor = Color.BLACK;
 	private Color selectColor = Color.RED;
 	
-	public GameStatePause(LevelHandler h) {
-		super(h);
+	private Level pausedLevel;
+	
+	public GameStatePause(GameStateContext context, Level level) {
+		super(context);
+		this.pausedLevel = level;
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
-		getH().repaint();
+		context.repaint();
     	System.out.println("Paused");
 	}
 
@@ -37,7 +41,8 @@ public class GameStatePause extends GameStateAbstract {
 	public void pause() {
 		// TODO Auto-generated method stub
 		super.pause();
-		getH().getGameState().stateRun();
+		context.setGameState(new GameStateRun(context, pausedLevel));
+		//getH().getGameState().stateRun();
 	}
 
 	@Override
@@ -70,16 +75,17 @@ public class GameStatePause extends GameStateAbstract {
 		super.jump();
 		switch(chosen) {
 		case 0:
-			getH().getGameState().stateRun();
+			context.setGameState(new GameStateRun(context, pausedLevel));
 			break;
 		case 1:
 			// Options
+			//context.setGameState(new GameStateOptions(context));
 			break;
 		case 2:
-			getH().getGameState().stateMenu();
+			context.setGameState(new GameStateMenu(context));
 			break;
 		case 3:
-			getH().getGameState().stateStop();
+			context.setGameState(new GameStateStop(context));
 		}
 	}
 

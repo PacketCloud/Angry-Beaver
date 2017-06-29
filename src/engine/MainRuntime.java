@@ -8,7 +8,7 @@ import FileUtility.*;
  */
 public class MainRuntime {
 
-	private LevelHandler lHandler;
+	private GameHandler lHandler;
 	private static Settings fSettings;
 	private JFrame frame = new JFrame();
 	
@@ -25,7 +25,7 @@ public class MainRuntime {
 	
 	public void initFrame() {
 		loadSettings();
-		lHandler = new LevelHandler();
+		lHandler = new GameHandler();
 		
 		frame.setTitle(fSettings.getTitle());
 		frame.setSize(fSettings.getWindowSize());

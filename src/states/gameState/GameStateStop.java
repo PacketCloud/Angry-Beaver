@@ -2,12 +2,12 @@ package states.gameState;
 
 import java.awt.Graphics2D;
 
-import engine.LevelHandler;
+import engine.GameHandler;
 
 public class GameStateStop extends GameStateAbstract {
 
-	public GameStateStop(LevelHandler h) {
-		super(h);
+	public GameStateStop(GameStateContext context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 	}
 

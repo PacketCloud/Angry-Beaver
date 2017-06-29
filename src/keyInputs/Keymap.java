@@ -14,9 +14,9 @@ import engine.*;
  */
 public class Keymap {
 
-	public LevelHandler handle;
+	public GameHandler handle;
 	
-	public Keymap(LevelHandler handle) {
+	public Keymap(GameHandler handle) {
 		this.handle = handle;
 		initInputs(handle.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW));
 		initActions(handle.getActionMap());
