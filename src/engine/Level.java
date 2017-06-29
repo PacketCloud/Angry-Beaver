@@ -18,8 +18,10 @@ public class Level {
     //private LevelSettings levelSetting = null;
     private Point offset;
 
-    public Level(Dimension windowSize) {
+    public Level() {
     	// Current rough working of Camera
+    	
+    	Dimension windowSize = MainRuntime.getSettings().getWindowSize();
 		setOffset(new Point(windowSize.width/2, windowSize.height/2));
 	}
 /*
@@ -72,20 +74,15 @@ public class Level {
 	}
 	
 	public void drawBackground(Graphics2D g) {
-		//if (background == null), default to white
-		//g.setColor(Color.WHITE);
-		//g.fillRect(0, 0, 1280, 720);
-		
 		//TODO: Read background image from FileUtility instead
 		File file = new File("");
 		String path = file.getAbsolutePath();
 		try{
-			//note: in the future, image scale and position should be dependent on window size/resolution.
 			if(background == null) {
 				background = new ImageIcon(path + "/Resources/Textures/Background/ExampleBackground.png").getImage();
 			}
 			
-			g.drawImage(background, 0, 0, 1280, 720, null);
+			g.drawImage(background, 0, 0, 1920, 1080, null);
 		} catch (Exception e){
 			System.out.println(e.toString());
 		}

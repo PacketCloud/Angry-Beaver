@@ -71,7 +71,7 @@ public class GameStateMenu extends GameStateAbstract {
 		try{
 			//note: in the future, image scale and position should be dependent on window size/resolution.
 			Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
-			g.drawImage(background, 0, 0, 1280, 720, null);
+			g.drawImage(background, 0, 0, 1920, 1080, null);
 		} catch (Exception e){
 			System.out.println(e.toString());
 		}

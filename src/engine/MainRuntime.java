@@ -8,9 +8,9 @@ import FileUtility.*;
  */
 public class MainRuntime {
 
-	LevelHandler lHandler;
-	Settings fSettings;
-	JFrame frame = new JFrame();
+	private LevelHandler lHandler;
+	private static Settings fSettings;
+	private JFrame frame = new JFrame();
 	
 	// This initializes the game settings. We can later save
 	// User settings in a file to read and set them here
@@ -25,13 +25,20 @@ public class MainRuntime {
 	
 	public void initFrame() {
 		loadSettings();
-		lHandler = new LevelHandler(this, fSettings.getWindowSize());
+		lHandler = new LevelHandler();
 		
 		frame.setTitle(fSettings.getTitle());
 		frame.setSize(fSettings.getWindowSize());
 		
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// If fullscreen is enabled
+		if(fSettings.isFullscreen()) {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+			frame.setUndecorated(true);
+		}
+		
 		frame.setVisible(true);
 		frame.add(lHandler);
 		frame.pack();
@@ -39,6 +46,10 @@ public class MainRuntime {
 	
 	public void startGame() {
 		lHandler.runLoop();
+	}
+	
+	public static Settings getSettings() {
+		return fSettings;
 	}
 	
 	public static void main(String[] args) {

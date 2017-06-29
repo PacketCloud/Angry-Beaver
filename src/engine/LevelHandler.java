@@ -20,12 +20,9 @@ public class LevelHandler extends JPanel {
 	public MainRuntime mrt;
 	public Level currentLevel = null;
 	public GameState state;
-	public Dimension windowSize;
 	public Keymap keymap;
 	
-	public LevelHandler(MainRuntime mrt, Dimension windowSize) {
-		setWindowSize(windowSize);
-		setMrt(mrt);
+	public LevelHandler() {
 		this.setFocusable(true);
 		setCurrentLevel(loadLevel("Temp"));
 		this.state = new GameState(this);
@@ -52,7 +49,7 @@ public class LevelHandler extends JPanel {
 	}
 	
 	public Level loadLevel(String levelName) {
-		Level level = new Level(windowSize);
+		Level level = new Level();
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
 		Platform platform = new Platform(new Hitbox(new Point(150, 300), 800, 50));
 		Platform platform2 = new Platform(new Hitbox(new Point(900, 400), 50, 200));
@@ -79,26 +76,12 @@ public class LevelHandler extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub
-		return getWindowSize();
-	}
-	public void setWindowSize(Dimension windowSize) {
-		this.windowSize = windowSize;
-	}
-	
-	public Dimension getWindowSize() {
-		return windowSize;
-	}
-
-	public void setMrt(MainRuntime mrt) {
-		this.mrt = mrt;
+		
+		return MainRuntime.getSettings().getWindowSize();
 	}
 	
 	public GameState getGameState() {
 		return state;
-	}
-
-	public MainRuntime getMrt() {
-		return mrt;
 	}
 
 	public Level getCurrentLevel() {

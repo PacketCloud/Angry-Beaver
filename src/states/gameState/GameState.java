@@ -1,16 +1,21 @@
  package states.gameState;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import states.gameState.*;
 import engine.LevelHandler;
+import engine.MainRuntime;
 
 public class GameState {
 	public GameStateAbstract state;
+	double xScale;
+	double yScale;
 	
 	public GameState(LevelHandler h) {
-		//stateRun(h);
-		//stateMenu(h);
 		stateStart(h);
+		Dimension windowSize = MainRuntime.getSettings().getWindowSize();
+		xScale = (double) windowSize.getWidth()/1920;
+		yScale = (double) windowSize.getHeight()/1080;
 	}
 
 
@@ -57,6 +62,7 @@ public class GameState {
 
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
+		g.scale(xScale, yScale);
 		state.render(g);
 	}
 }

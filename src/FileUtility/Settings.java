@@ -11,19 +11,17 @@ import java.awt.Dimension;
 public class Settings {
 	String title;
 	Dimension windowSize;
+	boolean isFullscreen;
 	
 	public Settings() {
 		// Default settings
 		setTitle("");
-		setWindowSize(new Dimension(1280, 720));
+		setWindowSize(new Dimension(1920, 1080));
+		isFullscreen = true;
 	}
 	
 	public void loadUserSettings() {
-		// Go to OpenFile to open and parse settings.cfg
-		// Temporary settings
-		setTitle("Angry-Beaver");
-		setWindowSize(new Dimension(1280, 720));
-		
+		// Go to OpenFile to open and parse settings.cfg		
 		
 		OpenFile settingFile = new OpenFile("/Settings.cfg");
 		while(settingFile.hasNextLine()) {
@@ -31,6 +29,13 @@ public class Settings {
 		 	switch (split[0].toLowerCase()) {
 		 		case "title":
 		 			setTitle(split[1]);
+		 			break;
+		 		case "fullscreen":
+		 			if(Integer.valueOf(split[1]) == 1) {
+		 				isFullscreen = true;
+		 			} else {
+		 				isFullscreen = false;
+		 			}
 		 			break;
 		 		case "width":
 		 			windowSize.setSize(Integer.valueOf(split[1]), getWindowSize().getHeight());
@@ -58,6 +63,14 @@ public class Settings {
 
 	public void setWindowSize(Dimension windowSize) {
 		this.windowSize = windowSize;
+	}
+
+	public boolean isFullscreen() {
+		return isFullscreen;
+	}
+
+	public void setisFullscreen(boolean fullscreen) {
+		this.isFullscreen = fullscreen;
 	}
 
 }
