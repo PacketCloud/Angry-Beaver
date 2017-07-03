@@ -1,6 +1,6 @@
 package states.entityState;
 
-public class entityStateAbstract {
+public class EntityStateAbstract {
 
 	// Current placeholder
 }

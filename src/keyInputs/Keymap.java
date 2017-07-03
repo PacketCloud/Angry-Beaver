@@ -37,7 +37,7 @@ public class Keymap {
 		
 		inputMap.put(KeyStroke.getKeyStroke("SPACE"), ACTIONS.JUMP);
 		inputMap.put(KeyStroke.getKeyStroke("S"), ACTIONS.ATTACK);
-		inputMap.put(KeyStroke.getKeyStroke("D"), ACTIONS.THROW);
+		inputMap.put(KeyStroke.getKeyStroke("D"), ACTIONS.ATTACK2);
 	}
 	
 	private void initActions(ActionMap actionMap) {
@@ -56,7 +56,7 @@ public class Keymap {
 		
 		actionMap.put(ACTIONS.JUMP, new PlayerInput(this,ACTIONS.JUMP));
 		actionMap.put(ACTIONS.ATTACK, new PlayerInput(this,ACTIONS.ATTACK));
-		actionMap.put(ACTIONS.THROW, new PlayerInput(this,ACTIONS.THROW));
+		actionMap.put(ACTIONS.ATTACK2, new PlayerInput(this,ACTIONS.ATTACK2));
 	}
 	
 	public void inputAction(String actionType) {

@@ -21,5 +21,5 @@ public interface GameStateInterface {
 	public void pause();
 	public void jump();
 	public void attack();
-	public void iThrow();
+	public void attack2();
 }

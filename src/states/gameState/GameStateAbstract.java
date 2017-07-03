@@ -38,8 +38,8 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		case ACTIONS.ATTACK:
 			attack();
 			break;
-		case ACTIONS.THROW:
-			iThrow();
+		case ACTIONS.ATTACK2:
+			attack2();
 			break;
 		}
 	}
@@ -66,7 +66,7 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	public void attack(){
 		System.out.println("S key pressed (Attack)");
 	}
-	public void iThrow(){
+	public void attack2(){
 		System.out.println("D key pressed (Throw log)");
 	}
 }
