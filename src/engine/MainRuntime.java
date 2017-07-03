@@ -1,7 +1,8 @@
 package engine;
 
 import javax.swing.JFrame;
-import FileUtility.*;
+
+import fileUtility.*;
 /* 
  * MainRuntime is the class which will get window settings
  * 	and initialize a window frame to start the game.

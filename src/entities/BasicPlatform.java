@@ -3,8 +3,8 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ResourceHandling.ResourceCollection;
 import engine.Level;
+import resourceHandling.ResourceCollection;
 
 public class BasicPlatform extends Object {
 

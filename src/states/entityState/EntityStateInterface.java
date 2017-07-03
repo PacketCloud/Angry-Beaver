@@ -2,7 +2,7 @@ package states.entityState;
 
 import java.awt.Graphics2D;
 
-import ResourceHandling.ResourceCollection;
+import resourceHandling.ResourceCollection;
 
 public interface EntityStateInterface {
 

@@ -3,8 +3,8 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import ResourceHandling.ResourceCollection;
 import engine.LevelSettings;
+import resourceHandling.ResourceCollection;
 
 /* Currently not in use*/
 

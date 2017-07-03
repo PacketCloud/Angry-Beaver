@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JPanel;
 
-import ResourceHandling.ResourceCollection;
-import ResourceHandling.Resource;
 import entities.*;
 import keyInputs.*;
+import resourceHandling.Resource;
+import resourceHandling.ResourceCollection;
 import states.gameState.*;
 
 /*

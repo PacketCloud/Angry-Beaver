@@ -3,8 +3,8 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import ResourceHandling.ResourceCollection;
 import engine.Level;
+import resourceHandling.ResourceCollection;
 
 public class BasicEntity extends Object {
 	private int health;

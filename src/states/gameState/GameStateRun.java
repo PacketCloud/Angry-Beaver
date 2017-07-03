@@ -4,10 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.*;
 
-import ResourceHandling.Resource;
-import ResourceHandling.ResourceCollection;
 import engine.Level;
 import entities.*;
+import resourceHandling.Resource;
+import resourceHandling.ResourceCollection;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
