@@ -5,37 +5,61 @@ import java.awt.Image;
 import java.awt.Point;
 
 import ResourceHandling.ResourceCollection;
+import engine.Level;
 import states.entityState.entityStateAbstract;
 
 public abstract class Object {
 	
-	private ResourceCollection model;
-	private int behaviour;
-	private DevLevel level;
+	protected Level level;
+	protected ResourceCollection model;
+	protected int behaviour;
+	
 	//TODO: entityStateContext is required
-	private entityStateAbstract state;
+	protected entityStateAbstract state;
 	
-	private Point position;
-	private int width;
-	private int height;
+	protected Point position;
+	protected int width;
+	protected int height;
 	
-	private String id;
+	protected String id;
 
-	private boolean facingRight = true;
-	private boolean isSolid;
+	protected boolean facingRight;
+	protected boolean isSolid;
+	protected boolean isStatic;
 	
-	private int moveSpeed;
+	protected int moveSpeedX;
+	protected int moveSpeedY;
 	
 	
-	public Object() {
+	public Object(Level level, ResourceCollection model) {
+		initialize(level, model);
+	}
+	
+	public void initialize(Level level, ResourceCollection model) {
+		this.level = level;
+		this.model = model;
+		this.behaviour = 0;
+		this.state = null;
 		
+		this.position = new Point(0, 0);
+		this.width = 10;
+		this.height = 10;
+		
+		this.id = null;
+		
+		this.facingRight = true;
+		this.isSolid = false;
+		this.isStatic = false;
+		
+		this.moveSpeedX = 5;
+		this.moveSpeedY = 5;
 	}
 	
 	public void update() {
 		// From Behaviour;
 	}
 	
-	public void draw(Graphics2D g) {
+	public void render(Graphics2D g) {
 		/*
 		Image texture = Model.getImageIcon(EntityState);
 		float textureScale = Model.getImageScale(EntityState);
@@ -70,5 +94,101 @@ public abstract class Object {
 
 	public void setId(String id) {
 		this.id = id;
-	}	
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
+	}
+
+	public ResourceCollection getModel() {
+		return model;
+	}
+
+	public void setModel(ResourceCollection model) {
+		this.model = model;
+	}
+
+	public int getBehaviour() {
+		return behaviour;
+	}
+
+	public void setBehaviour(int behaviour) {
+		this.behaviour = behaviour;
+	}
+
+	public entityStateAbstract getState() {
+		return state;
+	}
+
+	public void setState(entityStateAbstract state) {
+		this.state = state;
+	}
+
+	public Point getPosition() {
+		return position;
+	}
+
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public boolean isFacingRight() {
+		return facingRight;
+	}
+
+	public void setFacingRight(boolean facingRight) {
+		this.facingRight = facingRight;
+	}
+
+	public boolean isSolid() {
+		return isSolid;
+	}
+
+	public void setSolid(boolean isSolid) {
+		this.isSolid = isSolid;
+	}
+
+	public boolean isStatic() {
+		return isStatic;
+	}
+
+	public void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
+	}
+
+	public int getMoveSpeedX() {
+		return moveSpeedX;
+	}
+
+	public void setMoveSpeedX(int moveSpeedX) {
+		this.moveSpeedX = moveSpeedX;
+	}
+
+	public int getMoveSpeedY() {
+		return moveSpeedY;
+	}
+
+	public void setMoveSpeedY(int moveSpeedY) {
+		this.moveSpeedY = moveSpeedY;
+	}
 }

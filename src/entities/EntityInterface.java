@@ -6,6 +6,8 @@ import java.awt.Point;
 import ResourceHandling.ResourceCollection;
 import engine.LevelSettings;
 
+/* Currently not in use*/
+
 public interface EntityInterface {
 	
 	public void update();

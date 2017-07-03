@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.Point;
 import ResourceHandling.ResourceCollection;
 
+/* Currently not in use*/
+
 public class Entity implements EntityInterface {
 	private Point Position;
 	private Hitbox Hitbox;

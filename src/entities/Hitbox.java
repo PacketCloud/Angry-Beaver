@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.Point;
 
+/* Currently not in use*/
+
 public class Hitbox {
 	Point position;
 	int height;
