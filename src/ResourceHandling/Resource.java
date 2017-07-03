@@ -1,8 +1,10 @@
-package ResourceHandling;
+package resourceHandling;
 
 import java.io.File;
 import javax.swing.ImageIcon;
-import FileUtility.OpenImage;
+
+import fileUtility.OpenImage;
+
 import java.awt.Image;
 
 public class Resource {
