@@ -67,6 +67,6 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		System.out.println("S key pressed (Attack)");
 	}
 	public void attack2(){
-		System.out.println("D key pressed (Throw log)");
+		System.out.println("D key pressed (Attack2)");
 	}
 }
