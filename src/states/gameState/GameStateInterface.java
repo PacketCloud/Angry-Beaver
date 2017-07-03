@@ -18,10 +18,6 @@ public interface GameStateInterface {
 	public void right();
 	public void left();
 	
-	public void r_up();
-	public void r_down();
-	public void r_right();
-	public void r_left();
 	public void pause();
 	public void jump();
 	public void attack();

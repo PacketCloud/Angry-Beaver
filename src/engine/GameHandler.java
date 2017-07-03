@@ -38,6 +38,7 @@ public class GameHandler extends JPanel {
         	try{        		
         		getGameState().update();
         		//TODO: FPS handling?
+        		repaint();
         		Thread.sleep(20);
         	} catch (Exception e) {
 	        	System.out.println(e);

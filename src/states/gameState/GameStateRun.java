@@ -85,7 +85,7 @@ public class GameStateRun extends GameStateAbstract {
 		}
 		currentLevel.updateLevel();
 		System.out.println("Running");
-		context.repaint();
+		//context.repaint();
 	}
 
 	@Override

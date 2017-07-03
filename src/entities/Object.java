@@ -6,7 +6,7 @@ import java.awt.Point;
 
 import ResourceHandling.ResourceCollection;
 import engine.Level;
-import states.entityState.entityStateAbstract;
+import states.entityState.EntityStateAbstract;
 
 public abstract class Object {
 	
@@ -15,7 +15,7 @@ public abstract class Object {
 	protected int behaviour;
 	
 	//TODO: entityStateContext is required
-	protected entityStateAbstract state;
+	protected EntityStateAbstract state;
 	
 	protected Point position;
 	protected int width;
@@ -120,11 +120,11 @@ public abstract class Object {
 		this.behaviour = behaviour;
 	}
 
-	public entityStateAbstract getState() {
+	public EntityStateAbstract getState() {
 		return state;
 	}
 
-	public void setState(entityStateAbstract state) {
+	public void setState(EntityStateAbstract state) {
 		this.state = state;
 	}
 
