@@ -2,19 +2,21 @@ package states.entityState;
 
 import java.awt.Graphics2D;
 
-import resourceHandling.ResourceCollection;
+import entities.AbstractEntity;
 
 public interface EntityStateInterface {
 
-	public void render(Graphics2D g, ResourceCollection model);
+	public void render(Graphics2D g, AbstractEntity entity);
 	
-	public void up(Object obj);
-	public void down(Object obj);
-	public void right(Object obj);
-	public void left(Object obj);
+	public void up(AbstractEntity entity);
+	public void down(AbstractEntity entity);
+	public void right(AbstractEntity entity);
+	public void left(AbstractEntity entity);
 	
-	public void pause(Object obj);
-	public void jump(Object obj);
-	public void attack(Object obj);
-	public void attack2(Object obj);
+	public void pause(AbstractEntity entity);
+	public void jump(AbstractEntity entity);
+	public void attack(AbstractEntity entity);
+	public void attack2(AbstractEntity entity);
+	
+	public String toString();
 }

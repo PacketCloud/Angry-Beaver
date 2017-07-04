@@ -7,15 +7,16 @@ import java.awt.Point;
 import engine.Level;
 import resourceHandling.ResourceCollection;
 import states.entityState.EntityStateAbstract;
+import states.entityState.EntityStateContext;
 
-public abstract class Object {
+public abstract class AbstractEntity {
 	
 	protected Level level;
 	protected ResourceCollection model;
 	protected int behaviour;
 	
 	//TODO: entityStateContext is required
-	protected EntityStateAbstract state;
+	protected EntityStateContext state;
 	
 	protected Point position;
 	protected int width;
@@ -31,7 +32,7 @@ public abstract class Object {
 	protected int moveSpeedY;
 	
 	
-	public Object(Level level, ResourceCollection model) {
+	public AbstractEntity(Level level, ResourceCollection model) {
 		initialize(level, model);
 	}
 	
@@ -39,7 +40,7 @@ public abstract class Object {
 		this.level = level;
 		this.model = model;
 		this.behaviour = 0;
-		this.state = null;
+		this.state = new EntityStateContext(this, "");
 		
 		this.position = new Point(0, 0);
 		this.width = 10;
@@ -56,20 +57,11 @@ public abstract class Object {
 	}
 	
 	public void update() {
-		// From Behaviour;
+		// From Behavior;
 	}
 	
 	public void render(Graphics2D g) {
-		/*
-		Image texture = Model.getImageIcon(EntityState);
-		float textureScale = Model.getImageScale(EntityState);
-		g.drawImage(texture,//image to draw.
-			(int) (Position.getX() + (-0.5 * getFacing() + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
-			(int) Position.getY(),//y position to draw.
-			(int) (texture.getWidth(null) * textureScale * getFacing()),//dx position to draw, dependent on direction facing and scale.
-			(int) (texture.getHeight(null) * textureScale),//dy position to draw, dependent on scale.
-			null);//observer, null.
-			*/
+		state.render(g);
 	}
 	
 	public void isHit() {
@@ -80,7 +72,7 @@ public abstract class Object {
 		
 	}
 	
-	public void intersects(Object obj) {
+	public void intersects(AbstractEntity obj) {
 		
 	}
 	
@@ -120,11 +112,11 @@ public abstract class Object {
 		this.behaviour = behaviour;
 	}
 
-	public EntityStateAbstract getState() {
+	public EntityStateContext getState() {
 		return state;
 	}
 
-	public void setState(EntityStateAbstract state) {
+	public void setState(EntityStateContext state) {
 		this.state = state;
 	}
 

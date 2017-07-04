@@ -60,6 +60,7 @@ public class GameStateRun extends GameStateAbstract {
 		level.addObject(p1);
 		return level;
 	}
+	
 	@Override
 	public void userInput(String action) {
 		// TODO Auto-generated method stub

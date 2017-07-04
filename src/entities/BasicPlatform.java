@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import engine.Level;
 import resourceHandling.ResourceCollection;
 
-public class BasicPlatform extends Object {
+public class BasicPlatform extends AbstractEntity {
 
 	public BasicPlatform(Level level, ResourceCollection model) {
 		super(level, model);

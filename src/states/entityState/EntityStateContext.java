@@ -2,23 +2,25 @@ package states.entityState;
 
 import java.awt.Graphics2D;
 
-import entities.Object;
+import entities.AbstractEntity;
+import states.entityState.basicEntityStates.BasicEntityState;
 
 public class EntityStateContext {
 	public EntityStateAbstract entityState;
-	public Object obj;
+	public AbstractEntity obj;
 	
-	public EntityStateContext(Object obj, String entityStateName) {
+	public EntityStateContext(AbstractEntity obj, String entityStateName) {
 		this.obj = obj;
 		initState(entityStateName);
 	}
 	
 	public void initState(String stateName) {
-		
+		// Use EntityStateFactory to decide which state to initialize to
+		entityState = new BasicEntityState(this);
 	}
 	
 	public void render(Graphics2D g) {
-		entityState.render(g, obj.getModel());
+		entityState.render(g, obj);
 	}
 	
 	public void up() {

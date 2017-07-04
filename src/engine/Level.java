@@ -9,23 +9,23 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 
-import entities.Object;
+import entities.AbstractEntity;
 
 public class Level {
-	private Map<String, Object> ids = new HashMap<String, Object>();
-	private ArrayList<Object> objectList = new ArrayList<Object>();
+	private Map<String, AbstractEntity> ids = new HashMap<String, AbstractEntity>();
+	private ArrayList<AbstractEntity> entityList = new ArrayList<AbstractEntity>();
 	private Image background = null;
 	
 	public Level() {
 		
 	}
 	
-	public void addObject(Object obj) {
+	public void addObject(AbstractEntity obj) {
 		if (obj.getId() != null) {
 			ids.put(obj.getId(), obj);
 		}
 		
-		objectList.add(obj);
+		entityList .add(obj);
 	}
 	
 	public void drawBackground(Graphics2D g) {
@@ -50,8 +50,8 @@ public class Level {
 	}
 	
 	public void updateLevel(){
-		for(Object obj : objectList){
-			obj.update();
+		for(AbstractEntity entity : entityList){
+			entity.update();
 		}
 	}
 	
@@ -59,8 +59,8 @@ public class Level {
 		//Draw Background first
 		drawBackground(g);
 		
-		for(Object obj : objectList){
-			obj.render(g);
+		for(AbstractEntity entity : entityList){
+			entity.render(g);
 		}
 	}
 }
