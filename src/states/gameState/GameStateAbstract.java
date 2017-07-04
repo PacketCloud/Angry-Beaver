@@ -29,18 +29,6 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		case ACTIONS.MOVE_LEFT:
 			left();
 			break;
-		case ACTIONS.R_MOVE_UP:
-			r_up();
-			break;
-		case ACTIONS.R_MOVE_DOWN:
-			r_down();
-			break;
-		case ACTIONS.R_MOVE_RIGHT:
-			r_right();
-			break;
-		case ACTIONS.R_MOVE_LEFT:
-			r_left();
-			break;
 		case ACTIONS.PAUSE:
 			pause();
 			break;
@@ -50,8 +38,8 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		case ACTIONS.ATTACK:
 			attack();
 			break;
-		case ACTIONS.THROW:
-			iThrow();
+		case ACTIONS.ATTACK2:
+			attack2();
 			break;
 		}
 	}
@@ -69,18 +57,6 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		System.out.println("Left arrow key pressed");
 	}
 	
-	public void r_up(){
-		System.out.println("Up arrow key released");
-	}
-	public void r_down(){
-		System.out.println("Down arrow key released");
-	}
-	public void r_right(){
-		System.out.println("Right arrow key released");
-	}
-	public void r_left(){
-		System.out.println("Left arrow key released");
-	}
 	public void pause(){
 		System.out.println("Escape key pressed");
 	}
@@ -90,7 +66,7 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	public void attack(){
 		System.out.println("S key pressed (Attack)");
 	}
-	public void iThrow(){
-		System.out.println("D key pressed (Throw log)");
+	public void attack2(){
+		System.out.println("D key pressed (Attack2)");
 	}
 }

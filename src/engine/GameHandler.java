@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.JPanel;
 
-import ResourceHandling.ResourceCollection;
-import ResourceHandling.Resource;
 import entities.*;
 import keyInputs.*;
+import resourceHandling.Resource;
+import resourceHandling.ResourceCollection;
 import states.gameState.*;
 
 /*
@@ -38,6 +38,7 @@ public class GameHandler extends JPanel {
         	try{        		
         		getGameState().update();
         		//TODO: FPS handling?
+        		repaint();
         		Thread.sleep(20);
         	} catch (Exception e) {
 	        	System.out.println(e);

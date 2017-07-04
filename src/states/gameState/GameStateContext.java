@@ -30,9 +30,9 @@ public class GameStateContext {
 		state.update();
 	}
 	
-	public void repaint() {
+	/*public void repaint() {
 		h.repaint();
-	}
+	}*/
 
 	public void userInput(String actionType) {
 		state.userInput(actionType);

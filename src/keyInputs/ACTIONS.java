@@ -21,5 +21,4 @@ public class ACTIONS {
 	public final static String JUMP = "jump";
 	public final static String ATTACK = "attack";
 	public final static String ATTACK2 = "attack2";
-	public final static String THROW = "throw";
 }

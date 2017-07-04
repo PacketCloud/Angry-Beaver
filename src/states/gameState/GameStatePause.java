@@ -33,7 +33,7 @@ public class GameStatePause extends GameStateAbstract {
 
 	@Override
 	public void update() {
-		context.repaint();
+		//context.repaint();
     	System.out.println("Paused");
 	}
 

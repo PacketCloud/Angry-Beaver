@@ -2,7 +2,7 @@ package engine;
 
 import java.awt.Point;
 
-import entities.Entity;
+//import entities.Entity;
 
 public class LevelSettings {
 	/* LevelSettings is used for setting the boundary of the Level, as well
@@ -55,7 +55,7 @@ public class LevelSettings {
 	public int getFallSpeed() {
 		return fallSpeed;
 	}
-	
+/*
 	public void dropEntity(Entity entity) {
 		Point pos = entity.getPosition();
 		pos.translate(0, fallSpeed);
@@ -70,7 +70,7 @@ public class LevelSettings {
 		pos = checkBotBounds(pos);
 		entity.setPosition(pos);
 	}
-	
+*/
 	public Point checkRightBounds(Point pos){
 		if ((int) pos.getX() > rightBounds) {
 			pos.setLocation(rightBounds, pos.getY());

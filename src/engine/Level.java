@@ -1,76 +1,44 @@
 package engine;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import javax.swing.ImageIcon;
 
-import entities.*;
+import entities.AbstractEntity;
 
-public class Level { 
-	private ArrayList<Entity> entityList = new ArrayList<Entity>();
-	private ArrayList<Platform> platformList = new ArrayList<Platform>();
-    private Entity player = null;
-    private Image background = null;
-    //private LevelSettings levelSetting = null;
-    private Point offset;
-
-    public Level() {
-    	// Current rough working of Camera
-    	
-    	Dimension windowSize = MainRuntime.getSettings().getWindowSize();
-		setOffset(new Point(windowSize.width/2, windowSize.height/2));
-	}
-/*
- * Not currently in use
-	public LevelSettings getLevelSetting() {
-		return levelSetting;
-	}
-
-	public void setLevelSetting(LevelSettings levelSetting) {
-		this.levelSetting = levelSetting;
-	}
-*/	
-	public void addEntity(Entity ent) {
-		entityList.add(ent);
-	}
+public class Level {
+	private Map<String, AbstractEntity> ids = new HashMap<String, AbstractEntity>();
+	private ArrayList<AbstractEntity> entityList = new ArrayList<AbstractEntity>();
+	private Image background = null;
 	
-	public void clearLevel() {
-		entityList.clear();
-	}
+	public Set<String> inputSet = new HashSet<String>();
 	
-	public void addPlatform(Platform plat) {
-		platformList.add(plat);
-	}
-
-	//Updates all entities to their correct location/action
-	public void updateLevel(){
-		player.update();
-		for(int i = 0; i < entityList.size(); i++){
-			entityList.get(i).update();
-		}
-	}
-	
-	//Draws all entities to Graphics
-	public void drawLevel(Graphics2D g){
-		//Draw Background first
-		drawBackground(g);
+	public Level() {
 		
-		g.translate(getOffset().x, getOffset().y);
+	}
+	
+	public void addObject(AbstractEntity obj) {
+		obj.setLevel(this);
+		if (obj.getId() != null) {
+			ids.put(obj.getId(), obj);
+		}
 		
-		for(int i = 0; i < platformList.size(); i++){
-			platformList.get(i).draw(g);
-		}
-
-		// Draw Entities after
-		for(int i = 0; i < entityList.size(); i++){
-			entityList.get(i).draw(g);
-		}
-
-		player.draw(g);
+		entityList .add(obj);
+	}
+	
+	public void addInput(String action) {
+		inputSet.add(action);
+	}
+	
+	public void removeInput(String action) {
+		inputSet.remove(action);
 	}
 	
 	public void drawBackground(Graphics2D g) {
@@ -88,34 +56,28 @@ public class Level {
 		}
 	}
 	
-	public void setPlayer(Entity player) {
-		this.player = player;
+	
+	public String findByID(String id){
+		//TODO
+		return null;
 	}
-	public ArrayList<Entity> getEntityList() {
-		return entityList;
+	
+	public void updateLevel(){
+		for(AbstractEntity entity : entityList){
+			entity.update();
+		}
 	}
-	public void setEntityList(ArrayList<Entity> entityList) {
-		this.entityList = entityList;
+	
+	public void drawLevel(Graphics2D g){
+		//Draw Background first
+		drawBackground(g);
+		
+		for(AbstractEntity entity : entityList){
+			entity.render(g);
+		}
 	}
-	public ArrayList<Platform> getPlatformList() {
-		return platformList;
-	}
-	public void setPlatformList(ArrayList<Platform> platformList) {
-		this.platformList = platformList;
-	}
-	public Image getBackground() {
-		return background;
-	}
-	public void setBackground(Image background) {
-		this.background = background;
-	}
-	public Entity getPlayer() {
-		return player;
-	}
-	public Point getOffset() {
-		return offset;
-	}
-	public void setOffset(Point offset) {
-		this.offset = offset;
+	
+	public Set<String> getInput() {
+		return inputSet;
 	}
 }

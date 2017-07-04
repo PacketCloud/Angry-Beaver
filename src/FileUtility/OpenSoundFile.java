@@ -1,4 +1,4 @@
-package FileUtility;
+package fileUtility;
 
 import java.io.File;
 

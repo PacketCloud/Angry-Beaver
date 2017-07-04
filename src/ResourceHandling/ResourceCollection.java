@@ -1,10 +1,10 @@
-package ResourceHandling;
+package resourceHandling;
 
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
-import ResourceHandling.Resource;
+import resourceHandling.Resource;
 
 public class ResourceCollection {
 //A structure referencing all assets associated with an entity for all possible states.

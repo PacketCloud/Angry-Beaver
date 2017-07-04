@@ -4,17 +4,16 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.*;
 
-import ResourceHandling.Resource;
-import ResourceHandling.ResourceCollection;
-import engine.GameHandler;
+import behaviour.NoBehaviour;
+import behaviour.PlayerBehaviour;
 import engine.Level;
-import entities.Entity;
-import entities.Hitbox;
-import entities.Platform;
+import entities.*;
+import keyInputs.ACTIONS;
+import resourceHandling.Resource;
+import resourceHandling.ResourceCollection;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
-	public Set<String> inputSet = new HashSet<String>();
 	
 	public GameStateRun(GameStateContext context, Level level) {
 		super(context);
@@ -24,9 +23,9 @@ public class GameStateRun extends GameStateAbstract {
 	public GameStateRun(GameStateContext context, String levelName) {
 		super(context);
 		// Level loading should be done with file utility
-		currentLevel = loadLevel(levelName);
+		this.currentLevel = loadLevel(levelName);
 	}
-	
+	/*
 	public Level loadLevel(String levelName) {
 		Level level = new Level();
 		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
@@ -44,14 +43,40 @@ public class GameStateRun extends GameStateAbstract {
 		level.setPlayer(player);
 		return level;
 	}
+	*/
+	
+	public Level loadLevel(String name) {
+		Level level = new Level();
+		
+		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
+		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
+		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
+		BasicEntity player = new BasicEntity(PlayerResourceCollection);
+		player.setBehaviour(playerBehaviour);
+		
+		BasicPlatform p1 = new BasicPlatform(new ResourceCollection("Platform"));
+		
+		p1.setWidth(800);
+		p1.setHeight(50);
+		p1.setPosition(new Point(350,300));
+		
+		level.addObject(player);
+		level.addObject(p1);
+		return level;
+	}
 	
 	@Override
 	public void userInput(String action) {
 		// TODO Auto-generated method stub
+		if (action.equals(ACTIONS.PAUSE)) {
+			pause();
+		}
 		if (action.startsWith("r_")) {
-			inputSet.remove(action.substring(2));
+			currentLevel.removeInput(action.substring(2));
+			//inputSet.remove(action.substring(2));
 		} else {
-			inputSet.add(action);
+			currentLevel.addInput(action);
+			//inputSet.add(action);
 		}
 	}
 
@@ -64,13 +89,13 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
-		Iterator<String> itr = inputSet.iterator();
+		/*Iterator<String> itr = inputSet.iterator();
 		while(itr.hasNext()) {
 			super.userInput(itr.next());
-		}
+		}*/
 		currentLevel.updateLevel();
 		System.out.println("Running");
-		context.repaint();
+		//context.repaint();
 	}
 
 	@Override
@@ -84,33 +109,35 @@ public class GameStateRun extends GameStateAbstract {
 	public void up() {
 		// TODO Auto-generated method stub
 		super.up();
+		/*
 		currentLevel.getOffset().translate(0, 5);
 		currentLevel.getPlayer().translate(0, -5);
+		*/
 	}
 	
 	@Override
 	public void down() {
 		// TODO Auto-generated method stub
 		super.down();
-		currentLevel.getOffset().translate(0, -5);
-		currentLevel.getPlayer().translate(0, 5);
+		/*currentLevel.getOffset().translate(0, -5);
+		currentLevel.getPlayer().translate(0, 5);*/
 	}
 
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
 		super.right();
-		currentLevel.getOffset().translate(-5, 0);
+		/*currentLevel.getOffset().translate(-5, 0);
 		currentLevel.getPlayer().translate(5, 0);
-		currentLevel.getPlayer().setFacing(-1);
+		currentLevel.getPlayer().setFacing(-1);*/
 	}
 
 	@Override
 	public void left() {
 		// TODO Auto-generated method stub
 		super.left();
-		currentLevel.getOffset().translate(5, 0);
+		/*currentLevel.getOffset().translate(5, 0);
 		currentLevel.getPlayer().translate(-5, 0);
-		currentLevel.getPlayer().setFacing(1);
+		currentLevel.getPlayer().setFacing(1);*/
 	}
 }

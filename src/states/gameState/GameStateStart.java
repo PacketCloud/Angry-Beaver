@@ -23,7 +23,7 @@ public class GameStateStart extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		context.repaint();
+		//context.repaint();
     	System.out.println("Start");
 	}
 
