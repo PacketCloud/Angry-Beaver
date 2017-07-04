@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 
+import behaviour.AbstractBehaviour;
+import behaviour.NoBehaviour;
 import engine.Level;
 import resourceHandling.ResourceCollection;
 import states.entityState.EntityStateAbstract;
@@ -13,7 +15,7 @@ public abstract class AbstractEntity {
 	
 	protected Level level;
 	protected ResourceCollection model;
-	protected int behaviour;
+	protected AbstractBehaviour behaviour;
 	
 	//TODO: entityStateContext is required
 	protected EntityStateContext state;
@@ -38,7 +40,7 @@ public abstract class AbstractEntity {
 	
 	public void initialize(ResourceCollection model) {
 		this.model = model;
-		this.behaviour = 0;
+		this.behaviour = new NoBehaviour();
 		this.state = new EntityStateContext(this);
 		
 		this.position = new Point(0, 0);
@@ -57,6 +59,7 @@ public abstract class AbstractEntity {
 	
 	public void update() {
 		// From Behavior;
+		behaviour.run(this);
 		
 	}
 	
@@ -80,6 +83,36 @@ public abstract class AbstractEntity {
 		position.translate(x, y);
 	}
 
+	public void up() {
+		state.up();
+	}
+	
+	public void down() {
+		state.down();
+	}
+	
+	public void right() {
+		state.right();
+	}
+	
+	public void left() {
+		state.left();
+	}
+	
+	public void jump() {
+		state.jump();
+	}
+	
+	public void attack() {
+		state.attack();
+	}
+	
+	public void attack2() {
+		state.attack2();
+	}
+	
+	/* Getters and Setters */
+	
 	public String getId() {
 		return id;
 	}
@@ -104,11 +137,11 @@ public abstract class AbstractEntity {
 		this.model = model;
 	}
 
-	public int getBehaviour() {
+	public AbstractBehaviour getBehaviour() {
 		return behaviour;
 	}
 
-	public void setBehaviour(int behaviour) {
+	public void setBehaviour(AbstractBehaviour behaviour) {
 		this.behaviour = behaviour;
 	}
 

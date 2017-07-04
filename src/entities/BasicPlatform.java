@@ -3,12 +3,13 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import behaviour.AbstractBehaviour;
 import engine.Level;
 import resourceHandling.ResourceCollection;
 
 public class BasicPlatform extends AbstractEntity {
 
-	public BasicPlatform(Level level, ResourceCollection model) {
+	public BasicPlatform(ResourceCollection model) {
 		super(model);
 		initializePlatform();
 	}

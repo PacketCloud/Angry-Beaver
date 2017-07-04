@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.*;
 
+import behaviour.NoBehaviour;
+import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
 import keyInputs.ACTIONS;
@@ -48,10 +50,12 @@ public class GameStateRun extends GameStateAbstract {
 		
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
-		
+		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
 		BasicEntity player = new BasicEntity(PlayerResourceCollection);
+		player.setBehaviour(playerBehaviour);
 		
-		BasicPlatform p1 = new BasicPlatform(level, new ResourceCollection("Platform"));
+		BasicPlatform p1 = new BasicPlatform(new ResourceCollection("Platform"));
+		
 		p1.setWidth(800);
 		p1.setHeight(50);
 		p1.setPosition(new Point(350,300));
