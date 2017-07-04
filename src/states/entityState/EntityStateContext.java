@@ -1,22 +1,22 @@
 package states.entityState;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import entities.AbstractEntity;
-import states.entityState.basicEntityStates.BasicEntityState;
 
 public class EntityStateContext {
 	public EntityStateAbstract entityState;
 	public AbstractEntity obj;
 	
-	public EntityStateContext(AbstractEntity obj, String entityStateName) {
+	public EntityStateContext(AbstractEntity obj) {
 		this.obj = obj;
-		initState(entityStateName);
+		initState(obj.toString());
 	}
 	
 	public void initState(String stateName) {
 		// Use EntityStateFactory to decide which state to initialize to
-		entityState = new BasicEntityState(this);
+		entityState = new EntityStateFactory().createState(this, stateName);
 	}
 	
 	public void render(Graphics2D g) {
@@ -49,5 +49,21 @@ public class EntityStateContext {
 	
 	public void attack2() {
 		entityState.attack2(obj);
+	}
+	
+	public Point getPosition() {
+		return obj.getPosition();
+	}
+	
+	public int getMoveSpeedX() {
+		return obj.getMoveSpeedX();
+	}
+	
+	public int getMoveSpeedY() {
+		return obj.getMoveSpeedY();
+	}
+	
+	public void translate(int x, int y) {
+		getPosition().translate(x, y);
 	}
 }

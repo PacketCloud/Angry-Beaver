@@ -6,12 +6,12 @@ import java.util.*;
 
 import engine.Level;
 import entities.*;
+import keyInputs.ACTIONS;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
-	public Set<String> inputSet = new HashSet<String>();
 	
 	public GameStateRun(GameStateContext context, Level level) {
 		super(context);
@@ -49,7 +49,7 @@ public class GameStateRun extends GameStateAbstract {
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 		
-		BasicEntity player = new BasicEntity(level, PlayerResourceCollection);
+		BasicEntity player = new BasicEntity(PlayerResourceCollection);
 		
 		BasicPlatform p1 = new BasicPlatform(level, new ResourceCollection("Platform"));
 		p1.setWidth(800);
@@ -64,10 +64,15 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void userInput(String action) {
 		// TODO Auto-generated method stub
+		if (action.equals(ACTIONS.PAUSE)) {
+			pause();
+		}
 		if (action.startsWith("r_")) {
-			inputSet.remove(action.substring(2));
+			currentLevel.removeInput(action.substring(2));
+			//inputSet.remove(action.substring(2));
 		} else {
-			inputSet.add(action);
+			currentLevel.addInput(action);
+			//inputSet.add(action);
 		}
 	}
 
@@ -80,10 +85,10 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
-		Iterator<String> itr = inputSet.iterator();
+		/*Iterator<String> itr = inputSet.iterator();
 		while(itr.hasNext()) {
 			super.userInput(itr.next());
-		}
+		}*/
 		currentLevel.updateLevel();
 		System.out.println("Running");
 		//context.repaint();

@@ -32,15 +32,14 @@ public abstract class AbstractEntity {
 	protected int moveSpeedY;
 	
 	
-	public AbstractEntity(Level level, ResourceCollection model) {
-		initialize(level, model);
+	public AbstractEntity(ResourceCollection model) {
+		initialize(model);
 	}
 	
-	public void initialize(Level level, ResourceCollection model) {
-		this.level = level;
+	public void initialize(ResourceCollection model) {
 		this.model = model;
 		this.behaviour = 0;
-		this.state = new EntityStateContext(this, "");
+		this.state = new EntityStateContext(this);
 		
 		this.position = new Point(0, 0);
 		this.width = 10;
@@ -58,6 +57,7 @@ public abstract class AbstractEntity {
 	
 	public void update() {
 		// From Behavior;
+		
 	}
 	
 	public void render(Graphics2D g) {

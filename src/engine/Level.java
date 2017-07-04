@@ -5,7 +5,9 @@ import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 
@@ -16,16 +18,27 @@ public class Level {
 	private ArrayList<AbstractEntity> entityList = new ArrayList<AbstractEntity>();
 	private Image background = null;
 	
+	public Set<String> inputSet = new HashSet<String>();
+	
 	public Level() {
 		
 	}
 	
 	public void addObject(AbstractEntity obj) {
+		obj.setLevel(this);
 		if (obj.getId() != null) {
 			ids.put(obj.getId(), obj);
 		}
 		
 		entityList .add(obj);
+	}
+	
+	public void addInput(String action) {
+		inputSet.add(action);
+	}
+	
+	public void removeInput(String action) {
+		inputSet.remove(action);
 	}
 	
 	public void drawBackground(Graphics2D g) {
@@ -62,5 +75,9 @@ public class Level {
 		for(AbstractEntity entity : entityList){
 			entity.render(g);
 		}
+	}
+	
+	public Set<String> getInput() {
+		return inputSet;
 	}
 }

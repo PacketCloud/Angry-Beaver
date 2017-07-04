@@ -6,9 +6,9 @@ import entities.AbstractEntity;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
 
-public class BasicEntityState extends EntityStateAbstract {
+public class BasicEntityStateIdle extends EntityStateAbstract {
 
-	public BasicEntityState(EntityStateContext context) {
+	public BasicEntityStateIdle(EntityStateContext context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
@@ -34,13 +34,14 @@ public class BasicEntityState extends EntityStateAbstract {
 	@Override
 	public void right(AbstractEntity entity) {
 		// TODO Auto-generated method stub
+		context.translate(context.getMoveSpeedX(), 0);
 		
 	}
 
 	@Override
 	public void left(AbstractEntity entity) {
 		// TODO Auto-generated method stub
-		
+		context.translate(context.getMoveSpeedX() * -1, 0);
 	}
 
 	@Override

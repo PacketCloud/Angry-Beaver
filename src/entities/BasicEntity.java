@@ -9,12 +9,18 @@ import resourceHandling.ResourceCollection;
 public class BasicEntity extends AbstractEntity {
 	private int health;
 
-	public BasicEntity(Level level, ResourceCollection model) {
-		super(level, model);
+	public BasicEntity(ResourceCollection model) {
+		super(model);
 		initializeEntity();
 	}
 	
 	public void initializeEntity() {
 		this.health = 0;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Basic Entity";
 	}
 }
