@@ -58,9 +58,9 @@ public abstract class AbstractEntity {
 	}
 	
 	public void update() {
-		// From Behavior;
+		state.setForNextState();
 		behaviour.run(this);
-		
+		state.checkForNextState();
 	}
 	
 	public void render(Graphics2D g) {

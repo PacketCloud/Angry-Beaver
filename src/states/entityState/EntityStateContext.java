@@ -20,9 +20,9 @@ public class EntityStateContext {
 	}
 	
 	public void render(Graphics2D g) {
-		entityState.render(g, obj);
+		entityState.render(g, obj.getModel(), obj.getPosition());
 	}
-	
+
 	public void up() {
 		entityState.up(obj);
 	}
@@ -51,19 +51,33 @@ public class EntityStateContext {
 		entityState.attack2(obj);
 	}
 	
-	public Point getPosition() {
-		return obj.getPosition();
-	}
-	
-	public int getMoveSpeedX() {
-		return obj.getMoveSpeedX();
-	}
-	
-	public int getMoveSpeedY() {
-		return obj.getMoveSpeedY();
-	}
-	
 	public void translate(int x, int y) {
-		getPosition().translate(x, y);
+		obj.getPosition().translate(x, y);
+	}
+
+	public EntityStateAbstract getEntityState() {
+		return entityState;
+	}
+
+	public void setEntityState(EntityStateAbstract entityState) {
+		this.entityState = entityState;
+	}
+
+	public AbstractEntity getEntity() {
+		return obj;
+	}
+
+	public void setEntity(AbstractEntity obj) {
+		this.obj = obj;
+	}
+	
+	public void setForNextState() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void checkForNextState() {
+		// TODO Auto-generated method stub
+		
 	}
 }

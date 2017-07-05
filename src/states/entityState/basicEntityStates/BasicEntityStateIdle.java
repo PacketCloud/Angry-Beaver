@@ -12,64 +12,26 @@ public class BasicEntityStateIdle extends EntityStateAbstract {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void render(Graphics2D g, AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		super.render(g, entity);
-	}
-
-	@Override
-	public void up(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void down(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void right(AbstractEntity entity) {
 		// TODO Auto-generated method stub
-		context.translate(context.getMoveSpeedX(), 0);
-		
-	}
-
-	@Override
-	public void left(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		context.translate(context.getMoveSpeedX() * -1, 0);
-	}
-
-	@Override
-	public void pause(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void jump(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void attack(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void attack2(AbstractEntity entity) {
-		// TODO Auto-generated method stub
-		
+		super.right(entity);
+		int x = context.getEntity().getMoveSpeedX();
+		context.translate(x, 0);
 	}
 	
 	@Override
-	public String toString() {
+	public void left(AbstractEntity entity) {
+		// TODO Auto-generated method stub
+		super.left(entity);
+		int x = context.getEntity().getMoveSpeedX();
+		context.translate(-x, 0);
+	}	
+	
+	@Override
+	public String stateToString() {
+		// TODO Auto-generated method stub
 		return "Walking";
 	}
 }
