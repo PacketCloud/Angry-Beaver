@@ -22,7 +22,7 @@ public abstract class EntityStateAbstract implements EntityStateInterface {
 		g.drawImage(texture,//image to draw.
 			(int) (pos.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
 			(int) pos.getY(),//y position to draw.
-			(int) (texture.getWidth(null) * textureScale),//dx position to draw, dependent on direction facing and scale.
+			(int) (texture.getWidth(null) * textureScale * facing),//dx position to draw, dependent on direction facing and scale.
 			(int) (texture.getHeight(null) * textureScale),//dy position to draw, dependent on scale.
 			null);//observer, null.
 	}

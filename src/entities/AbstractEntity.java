@@ -183,9 +183,9 @@ public abstract class AbstractEntity {
 
 	public int facing() {
 		if(facingRight) {
-			return 1;
+			return -1;
 		}
-		return -1;
+		return 1;
 	}
 	
 	public void setFacingRight(boolean facingRight) {
