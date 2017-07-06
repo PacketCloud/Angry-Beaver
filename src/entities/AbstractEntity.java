@@ -53,8 +53,8 @@ public abstract class AbstractEntity {
 		this.isSolid = false;
 		this.isStatic = false;
 		
-		this.moveSpeedX = 5;
-		this.moveSpeedY = 5;
+		this.moveSpeedX = 2;
+		this.moveSpeedY = 2;
 	}
 	
 	public void update() {
@@ -181,10 +181,17 @@ public abstract class AbstractEntity {
 		return facingRight;
 	}
 
+	public int facing() {
+		if(facingRight) {
+			return 1;
+		}
+		return -1;
+	}
+	
 	public void setFacingRight(boolean facingRight) {
 		this.facingRight = facingRight;
 	}
-
+	
 	public boolean isSolid() {
 		return isSolid;
 	}
