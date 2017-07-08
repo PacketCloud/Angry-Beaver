@@ -42,8 +42,8 @@ public class GameStateRun extends GameStateAbstract {
 		p1.setHeight(50);
 		p1.setPosition(new Point(350,300));
 		
-		level.addObject(player);
-		level.addObject(p1);
+		level.addEntity(player);
+		level.addEntity(p1);
 		return level;
 	}
 	

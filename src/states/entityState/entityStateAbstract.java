@@ -18,7 +18,6 @@ public abstract class EntityStateAbstract implements EntityStateInterface {
 		Image texture = model.getImageIcon(stateToString());
 		float textureScale = model.getImageScale(stateToString());
 		int facing = context.getEntity().facing();
-		System.out.println(facing);
 		g.drawImage(texture,//image to draw.
 			(int) (pos.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
 			(int) pos.getY(),//y position to draw.

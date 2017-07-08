@@ -16,21 +16,22 @@ import entities.AbstractEntity;
 public class Level {
 	private Map<String, AbstractEntity> ids = new HashMap<String, AbstractEntity>();
 	private ArrayList<AbstractEntity> entityList = new ArrayList<AbstractEntity>();
+	private CollisionDetector detector;
 	private Image background = null;
 	
 	public Set<String> inputSet = new HashSet<String>();
 	
 	public Level() {
-		
+		detector = new CollisionDetector(this);
 	}
 	
-	public void addObject(AbstractEntity obj) {
-		obj.setLevel(this);
-		if (obj.getId() != null) {
-			ids.put(obj.getId(), obj);
+	public void addEntity(AbstractEntity entity) {
+		entity.setLevel(this);
+		if (entity.getId() != null) {
+			ids.put(entity.getId(), entity);
 		}
 		
-		entityList .add(obj);
+		entityList.add(entity);
 	}
 	
 	public void addInput(String action) {
@@ -66,6 +67,7 @@ public class Level {
 		for(AbstractEntity entity : entityList){
 			entity.update();
 		}
+		//detector.detectCollisions();
 	}
 	
 	public void drawLevel(Graphics2D g){
@@ -75,6 +77,11 @@ public class Level {
 		for(AbstractEntity entity : entityList){
 			entity.render(g);
 		}
+	}
+	
+	public ArrayList<AbstractEntity> getEntities() {
+		return entityList;
+		
 	}
 	
 	public Set<String> getInput() {

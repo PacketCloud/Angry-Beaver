@@ -75,8 +75,10 @@ public abstract class AbstractEntity {
 		
 	}
 	
-	public void intersects(AbstractEntity obj) {
-		
+	public void hasIntersected(AbstractEntity obj) {
+		if (!isSolid) {
+			position.setLocation(0, 0);
+		}
 	}
 	
 	public void translate(int x, int y) {
