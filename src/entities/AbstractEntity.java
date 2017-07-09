@@ -72,7 +72,7 @@ public abstract class AbstractEntity {
 	}
 	
 	public void destroy() {
-		
+		level.removeEntity(this);
 	}
 	
 	public void hasIntersected(AbstractEntity obj) {

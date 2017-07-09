@@ -13,35 +13,51 @@ import javax.swing.ImageIcon;
 
 import entities.AbstractEntity;
 
+/*
+ * Level contains all entities
+ */
 public class Level {
-	private Map<String, AbstractEntity> ids = new HashMap<String, AbstractEntity>();
-	private ArrayList<AbstractEntity> entityList = new ArrayList<AbstractEntity>();
+	private Map<String, AbstractEntity> ids;
+	private ArrayList<AbstractEntity> entityList;
 	private CollisionDetector detector;
 	private Image background = null;
 	
-	public Set<String> inputSet = new HashSet<String>();
+	public Set<String> inputSet;
 	
 	public Level() {
+		ids = new HashMap<String, AbstractEntity>();
+		entityList = new ArrayList<AbstractEntity>();
 		detector = new CollisionDetector(this);
+		inputSet = new HashSet<String>();
 	}
 	
-	public void addEntity(AbstractEntity entity) {
-		entity.setLevel(this);
-		if (entity.getId() != null) {
-			ids.put(entity.getId(), entity);
+	/*
+	 * Updates entities in the level
+	 */
+	public void updateLevel(){
+		for(AbstractEntity entity : entityList){
+			entity.update();
 		}
+		//detector.detectCollisions();
+	}
+	
+	/*
+	 * Draws entities in the level
+	 */
+	public void drawLevel(Graphics2D g){
+		//Draw Background first
+		drawBackground(g);
 		
-		entityList.add(entity);
+		for(AbstractEntity entity : entityList){
+			entity.render(g);
+		}
 	}
 	
-	public void addInput(String action) {
-		inputSet.add(action);
-	}
-	
-	public void removeInput(String action) {
-		inputSet.remove(action);
-	}
-	
+	/*
+	 * Draws the background based on the background set
+	 * 
+	 *  Currently, the background defaults to ExampleBackground.png.
+	 */
 	public void drawBackground(Graphics2D g) {
 		//TODO: Read background image from FileUtility instead
 		File file = new File("");
@@ -57,34 +73,61 @@ public class Level {
 		}
 	}
 	
-	
-	public String findByID(String id){
-		//TODO
-		return null;
+	/*
+	 * Get the entity associated with a given ID
+	 */
+	public AbstractEntity findByID(String id){
+		return ids.get(id);
 	}
 	
-	public void updateLevel(){
-		for(AbstractEntity entity : entityList){
-			entity.update();
-		}
-		//detector.detectCollisions();
-	}
-	
-	public void drawLevel(Graphics2D g){
-		//Draw Background first
-		drawBackground(g);
-		
-		for(AbstractEntity entity : entityList){
-			entity.render(g);
-		}
-	}
-	
+	/* 
+	 * Get a list of all entities in the level
+	 */
 	public ArrayList<AbstractEntity> getEntities() {
 		return entityList;
-		
 	}
 	
+	/*
+	 * Get a list of all keys being pressed by the user
+	 */
 	public Set<String> getInput() {
 		return inputSet;
+	}
+	
+	/*
+	 * Adds an Entity into the level
+	 */
+	public void addEntity(AbstractEntity entity) {
+		entity.setLevel(this);
+		if (entity.getId() != null) {
+			ids.put(entity.getId(), entity);
+		}
+		
+		entityList.add(entity);
+	}
+
+	/*
+	 * Removes an Entity from the level
+	 */
+	public void removeEntity(AbstractEntity entity) {
+		if(entity.getId() != null ) {
+			ids.remove(entity.getId());
+		}
+		
+		entityList.remove(entity);
+	}
+	
+	/*
+	 * Adds the String to the set of keys being pressed 
+	 */
+	public void addInput(String action) {
+		inputSet.add(action);
+	}
+
+	/*
+	 * Removes the String to the set of keys being pressed 
+	 */
+	public void removeInput(String action) {
+		inputSet.remove(action);
 	}
 }
