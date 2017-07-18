@@ -35,11 +35,11 @@ public class GameStateRun extends GameStateAbstract {
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
 		BasicEntity player = new BasicEntity(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
-		
+		player.addHitbox(new Hitbox(10,10));
+		player.addHitbox(new Hitbox(10, 10, 10, 10));
 		BasicPlatform p1 = new BasicPlatform(new ResourceCollection("Platform"));
 		
-		p1.setWidth(800);
-		p1.setHeight(50);
+		p1.addHitbox(new Hitbox(800, 50));
 		p1.setPosition(new Point(350,300));
 		
 		level.addEntity(player);

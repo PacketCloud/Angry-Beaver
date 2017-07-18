@@ -1,16 +1,27 @@
 package entities;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 
-/* Currently not in use*/
-
 public class Hitbox {
-	Point position;
+	Point position; // This is the position relative to the entity the Hitbox is associated with
 	int height;
 	int width;
 	
 	public Hitbox(Point position, int width, int height) {
 		setPosition(position);
+		setHeight(height);
+		setWidth(width);
+	}
+
+	public Hitbox(int xPos, int yPos, int width, int height) {
+		setPosition(new Point(xPos,yPos));
+		setHeight(height);
+		setWidth(width);
+	}
+	
+	public Hitbox(int width, int height) {
+		setPosition(new Point(0,0));
 		setHeight(height);
 		setWidth(width);
 	}
@@ -32,27 +43,5 @@ public class Hitbox {
 	}
 	public void setWidth(int width) {
 		this.width = width;
-	}
-	
-	public Boolean intersects(Platform platform) {
-		//Hitbox pHitbox = platform.getHitbox();
-		return false;
-	}
-	
-	//TODO: These functions.
-	public Boolean intersectAbove(Hitbox hitbox) {
-		return false;
-	}
-	
-	public Boolean intersectBelow(Hitbox hitbox) {
-		return false;
-	}
-	
-	public Boolean intersectRight(Hitbox hitbox) {
-		return false;
-	}
-	
-	public Boolean intersectLeft(Hitbox hitbox) {
-		return false;
 	}
 }

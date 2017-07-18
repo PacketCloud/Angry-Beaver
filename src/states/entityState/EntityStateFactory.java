@@ -17,7 +17,7 @@ public class EntityStateFactory {
 		case "Basic Entity":
 			return (new BasicEntityStateIdle(context));
 		case "Basic Platform":
-			return (new BasicEntityStateIdle(context));
+			return (new NoEntityState(context));
 		default:
 			return null;
 		}

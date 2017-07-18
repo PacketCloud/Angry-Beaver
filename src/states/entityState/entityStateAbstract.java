@@ -16,14 +16,16 @@ public abstract class EntityStateAbstract implements EntityStateInterface {
 	
 	public void render(Graphics2D g, ResourceCollection model, Point pos) {
 		Image texture = model.getImageIcon(stateToString());
-		float textureScale = model.getImageScale(stateToString());
-		int facing = context.getEntity().facing();
-		g.drawImage(texture,//image to draw.
-			(int) (pos.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
-			(int) pos.getY(),//y position to draw.
-			(int) (texture.getWidth(null) * textureScale * facing),//dx position to draw, dependent on direction facing and scale.
-			(int) (texture.getHeight(null) * textureScale),//dy position to draw, dependent on scale.
-			null);//observer, null.
+		if(texture != null) {
+			float textureScale = model.getImageScale(stateToString());
+			int facing = context.getEntity().facing();
+			g.drawImage(texture,//image to draw.
+				(int) (pos.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * textureScale),//x position to draw, dependent on direction facing and scale.
+				(int) pos.getY(),//y position to draw.
+				(int) (texture.getWidth(null) * textureScale * facing),//dx position to draw, dependent on direction facing and scale.
+				(int) (texture.getHeight(null) * textureScale),//dy position to draw, dependent on scale.
+				null);//observer, null.
+		}
 	}
 
 	public void up(AbstractEntity entity) { }

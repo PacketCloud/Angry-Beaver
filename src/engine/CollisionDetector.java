@@ -23,6 +23,9 @@ public class CollisionDetector {
 	}
 	
 	public boolean intersects(AbstractEntity e1, AbstractEntity e2) {
+		/*
+			Temporary until Hitboxes are implemented
+		 
 		int xPos1 = (int) e1.getPosition().getX();
 		int yPos1 = (int) e1.getPosition().getY();
 		int width1 = e1.getWidth();
@@ -38,7 +41,8 @@ public class CollisionDetector {
 		boolean xTouches = checkSperatingAxis(xPos1, xPos1 + width1, xPos2, xPos2 + width2);
 		boolean yTouches = checkSperatingAxis(yPos1, yPos1 + height1, yPos2, yPos2 + height2);
 
-		return (xTouches && yTouches);
+		return (xTouches && yTouches);*/
+		return false;
 	}
 	
 	

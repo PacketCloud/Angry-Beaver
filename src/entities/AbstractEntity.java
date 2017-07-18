@@ -1,8 +1,10 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import behaviour.AbstractBehaviour;
 import behaviour.NoBehaviour;
@@ -16,13 +18,10 @@ public abstract class AbstractEntity {
 	protected Level level;
 	protected ResourceCollection model;
 	protected AbstractBehaviour behaviour;
-	
-	//TODO: entityStateContext is required
 	protected EntityStateContext state;
 	
 	protected Point position;
-	protected int width;
-	protected int height;
+	protected ArrayList<Hitbox> hitboxes;
 	
 	protected String id;
 
@@ -44,8 +43,7 @@ public abstract class AbstractEntity {
 		this.state = new EntityStateContext(this);
 		
 		this.position = new Point(0, 0);
-		this.width = 10;
-		this.height = 10;
+		this.hitboxes = new ArrayList<Hitbox>();
 		
 		this.id = null;
 		
@@ -65,6 +63,14 @@ public abstract class AbstractEntity {
 	
 	public void render(Graphics2D g) {
 		state.render(g);
+		
+		// Temporary rendering the outline of hitboxes
+		g.setColor(Color.GREEN);
+		for(Hitbox h : hitboxes) {
+			
+			// TODO: implement drawing of hitboxes to change depending on the direction the entity is facing
+			g.drawRect(position.x + h.position.x, position.y + h.position.y, h.getWidth(), h.getHeight());
+		}
 	}
 	
 	public void isHit() {
@@ -163,22 +169,14 @@ public abstract class AbstractEntity {
 		this.position = position;
 	}
 
-	public int getWidth() {
-		return width;
+	public void addHitbox(Hitbox hitbox) {
+		hitboxes.add(hitbox);
 	}
-
-	public void setWidth(int width) {
-		this.width = width;
+	
+	public void removeHitbox(Hitbox hitbox) {
+		hitboxes.remove(hitbox);
 	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
+	
 	public boolean isFacingRight() {
 		return facingRight;
 	}
