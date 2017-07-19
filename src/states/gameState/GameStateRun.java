@@ -37,7 +37,11 @@ public class GameStateRun extends GameStateAbstract {
 		player.setBehaviour(playerBehaviour);
 		player.addHitbox(new Hitbox(10,10));
 		player.addHitbox(new Hitbox(10, 10, 10, 10));
-		BasicPlatform p1 = new BasicPlatform(new ResourceCollection("Platform"));
+		player.setScaling(2.5);
+		
+		ResourceCollection PlatformResourceCollection = new ResourceCollection("Platform");
+		PlatformResourceCollection.add(new Resource("Grass1", "/Resources/Textures/Environment/grass1.png", (float) 2.5, null, true, "NoEntityState"));
+		BasicPlatform p1 = new BasicPlatform(PlatformResourceCollection);
 		
 		p1.addHitbox(new Hitbox(800, 50));
 		p1.setPosition(new Point(350,300));

@@ -18,10 +18,6 @@ public class EntityStateContext {
 		// Use EntityStateFactory to decide which state to initialize to
 		entityState = new EntityStateFactory().createState(this, stateName);
 	}
-	
-	public void render(Graphics2D g) {
-		entityState.render(g, obj.getModel(), obj.getPosition());
-	}
 
 	public void up() {
 		entityState.up(obj);
@@ -69,6 +65,12 @@ public class EntityStateContext {
 
 	public void setEntity(AbstractEntity obj) {
 		this.obj = obj;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return entityState.stateToString();
 	}
 	
 	public void setForNextState() {

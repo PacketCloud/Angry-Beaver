@@ -24,7 +24,7 @@ public abstract class AbstractEntity {
 	protected ArrayList<Hitbox> hitboxes;
 	
 	protected String id;
-
+	protected double scaling;
 	protected boolean facingRight;
 	protected boolean isSolid;
 	protected boolean isStatic;
@@ -46,7 +46,7 @@ public abstract class AbstractEntity {
 		this.hitboxes = new ArrayList<Hitbox>();
 		
 		this.id = null;
-		
+		this.scaling = 1;
 		this.facingRight = true;
 		this.isSolid = false;
 		this.isStatic = false;
@@ -54,7 +54,7 @@ public abstract class AbstractEntity {
 		this.moveSpeedX = 2;
 		this.moveSpeedY = 2;
 	}
-	
+
 	public void update() {
 		state.setForNextState();
 		behaviour.run(this);
@@ -62,14 +62,35 @@ public abstract class AbstractEntity {
 	}
 	
 	public void render(Graphics2D g) {
-		state.render(g);
+		//state.render(g);
 		
-		// Temporary rendering the outline of hitboxes
+		Image texture = model.getImageIcon(state.toString());
+		//float textureScale = model.getImageScale(state.toString());
+		int facing = facing();
+		
+		// Render image
+		if(texture != null) {
+			g.drawImage(texture,//image to draw.
+				(int) (position.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * scaling),//x position to draw, dependent on direction facing and scale.
+				(int) position.getY(),//y position to draw.
+				(int) (texture.getWidth(null) * facing * scaling),//dx position to draw, dependent on direction facing and scale.
+				(int) (texture.getHeight(null) * scaling),//dy position to draw, dependent on scale.
+				null);//observer, null.
+			g.setColor(Color.WHITE);
+			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+		}
+				
+		// Temporary rendering of the hitboxes
 		g.setColor(Color.GREEN);
-		for(Hitbox h : hitboxes) {
-			
-			// TODO: implement drawing of hitboxes to change depending on the direction the entity is facing
-			g.drawRect(position.x + h.position.x, position.y + h.position.y, h.getWidth(), h.getHeight());
+		
+		for(Hitbox h : hitboxes) {			
+			g.drawRect(
+					(int) (position.getX() + ((0.5 * facing + 0.5) * texture.getWidth(null) * scaling) 
+							- (facing * h.getPosition().getX() * scaling) - ((0.5 * facing + 0.5) * h.getWidth() * scaling)),//x position to draw, dependent on direction facing and scale.
+					(int) (position.getY() + h.getPosition().getY() * scaling),//y position to draw.
+					(int) (h.getWidth() * scaling),//dx position to draw, dependent on scale.
+					(int) (h.getHeight() * scaling)//dy position to draw, dependent on scale.
+					);
 		}
 	}
 	
@@ -222,5 +243,13 @@ public abstract class AbstractEntity {
 
 	public void setMoveSpeedY(int moveSpeedY) {
 		this.moveSpeedY = moveSpeedY;
+	}
+	
+	public double getScaling() {
+		return scaling;
+	}
+
+	public void setScaling(double scaling) {
+		this.scaling = scaling;
 	}
 }

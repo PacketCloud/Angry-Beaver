@@ -7,8 +7,6 @@ import entities.AbstractEntity;
 import resourceHandling.ResourceCollection;
 
 public interface EntityStateInterface {
-
-	public void render(Graphics2D g, ResourceCollection model, Point pos);
 	
 	public void up(AbstractEntity entity);
 	public void down(AbstractEntity entity);
