@@ -14,23 +14,19 @@ public abstract class EntityStateAbstract implements EntityStateInterface {
 		this.context = context;
 	}
 
-	public void up(AbstractEntity entity) { }
+	public void up() { }
 
-	public void down(AbstractEntity entity) { }
+	public void down() { }
 
-	public void right(AbstractEntity entity) { }
+	public void right() { }
 
-	public void left(AbstractEntity entity) { }
+	public void left() { }
 
-	public void pause(AbstractEntity entity) { }
+	public void pause() { }
 
-	public void jump(AbstractEntity entity) { }
+	public void jump() { }
 	
-	public void attack(AbstractEntity entity) {	}
+	public void attack() {	}
 
-	public void attack2(AbstractEntity entity) { }
-
-	public void setForNextState(AbstractEntity entity) { }
-
-	public void checkForNextState(AbstractEntity entity) { }
+	public void attack2() { }
 }

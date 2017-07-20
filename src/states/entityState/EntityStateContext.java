@@ -20,31 +20,31 @@ public class EntityStateContext {
 	}
 
 	public void up() {
-		entityState.up(obj);
+		entityState.up();
 	}
 	
 	public void down() {
-		entityState.down(obj);
+		entityState.down();
 	}
 	
 	public void right() {
-		entityState.right(obj);
+		entityState.right();
 	}
 	
 	public void left() {
-		entityState.left(obj);
+		entityState.left();
 	}
 	
 	public void jump() {
-		entityState.jump(obj);
+		entityState.jump();
 	}
 	
 	public void attack() {
-		entityState.attack(obj);
+		entityState.attack();
 	}
 	
 	public void attack2() {
-		entityState.attack2(obj);
+		entityState.attack2();
 	}
 	
 	public void translate(int x, int y) {
@@ -72,14 +72,17 @@ public class EntityStateContext {
 		// TODO Auto-generated method stub
 		return entityState.stateToString();
 	}
-	
-	public void setForNextState() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void checkForNextState() {
 		// TODO Auto-generated method stub
-		
+		entityState.checkForNextState();
+	}
+	
+	public Point getCurrentPosition() {
+		return obj.getPosition();
+	}
+	
+	public Point getLastPosition() {
+		return obj.getLastPosition();
 	}
 }

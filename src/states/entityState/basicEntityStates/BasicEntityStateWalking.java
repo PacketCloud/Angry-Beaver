@@ -1,5 +1,7 @@
 package states.entityState.basicEntityStates;
 
+import java.awt.Point;
+
 import entities.AbstractEntity;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
@@ -13,34 +15,34 @@ public class BasicEntityStateWalking extends EntityStateAbstract {
 
 	// Methods Up and Down are temporary for movement
 	@Override
-	public void up(AbstractEntity entity) {
+	public void up() {
 		// TODO Auto-generated method stub
-		super.up(entity);
+		super.up();
 		int y = context.getEntity().getMoveSpeedY();
 		context.translate(0, -y);
 	}
 
 	@Override
-	public void down(AbstractEntity entity) {
+	public void down() {
 		// TODO Auto-generated method stub
-		super.down(entity);
+		super.down();
 		int y = context.getEntity().getMoveSpeedY();
 		context.translate(0, y);
 	}
 
 	@Override
-	public void right(AbstractEntity entity) {
+	public void right() {
 		// TODO Auto-generated method stub
-		super.right(entity);
+		super.right();
 		int x = context.getEntity().getMoveSpeedX();
 		context.translate(x, 0);
 		context.getEntity().setFacingRight(true);
 	}
 	
 	@Override
-	public void left(AbstractEntity entity) {
+	public void left() {
 		// TODO Auto-generated method stub
-		super.left(entity);
+		super.left();
 		int x = context.getEntity().getMoveSpeedX();
 		context.translate(-x, 0);
 		context.getEntity().setFacingRight(false);
@@ -52,4 +54,27 @@ public class BasicEntityStateWalking extends EntityStateAbstract {
 		return "Walking";
 	}
 
+	@Override
+	public void checkForNextState() {
+		// TODO Auto-generated method stub
+		Point curPos = context.getCurrentPosition();
+		Point lastPos = context.getLastPosition();
+		
+		/*
+		 * Change state to falling/rising if moving on y axis
+		if ((curPos.y - lastPos.y) < 0){
+			context.setEntityState(new BasicEntityStateRising(context));
+		}
+		
+		if ((curPos.y - lastPos.y) > 0){
+			context.setEntityState(new BasicEntityStateFalling(context));
+		}
+		*/
+		
+		
+		// Change state to idle if not moving on x axis
+		if ((curPos.x - lastPos.x) == 0){
+			context.setEntityState(new BasicEntityStateIdle(context));
+		}
+	}
 }

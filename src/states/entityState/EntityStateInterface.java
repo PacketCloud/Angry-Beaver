@@ -8,18 +8,17 @@ import resourceHandling.ResourceCollection;
 
 public interface EntityStateInterface {
 	
-	public void up(AbstractEntity entity);
-	public void down(AbstractEntity entity);
-	public void right(AbstractEntity entity);
-	public void left(AbstractEntity entity);
+	public void up();
+	public void down();
+	public void right();
+	public void left();
 	
-	public void pause(AbstractEntity entity);
-	public void jump(AbstractEntity entity);
-	public void attack(AbstractEntity entity);
-	public void attack2(AbstractEntity entity);
+	public void pause();
+	public void jump();
+	public void attack();
+	public void attack2();
 	
-	public void setForNextState(AbstractEntity entity);
-	public void checkForNextState(AbstractEntity entity);
+	public void checkForNextState();
 	
 	public String stateToString();
 }

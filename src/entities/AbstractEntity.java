@@ -21,6 +21,7 @@ public abstract class AbstractEntity {
 	protected EntityStateContext state;
 	
 	protected Point position;
+	protected Point lastPosition;
 	protected ArrayList<Hitbox> hitboxes;
 	
 	protected String id;
@@ -43,6 +44,7 @@ public abstract class AbstractEntity {
 		this.state = new EntityStateContext(this);
 		
 		this.position = new Point(0, 0);
+		this.lastPosition = new Point(0, 0);
 		this.hitboxes = new ArrayList<Hitbox>();
 		
 		this.id = null;
@@ -56,8 +58,10 @@ public abstract class AbstractEntity {
 	}
 
 	public void update() {
-		state.setForNextState();
+		this.lastPosition = new Point(position);
+		//state.setForNextState();
 		behaviour.run(this);
+		// Update movement due to external forces
 		state.checkForNextState();
 	}
 	
@@ -140,6 +144,13 @@ public abstract class AbstractEntity {
 		state.attack2();
 	}
 	
+	public int facing() {
+		if(facingRight) {
+			return -1;
+		}
+		return 1;
+	}
+	
 	/* Getters and Setters */
 	
 	public String getId() {
@@ -201,13 +212,6 @@ public abstract class AbstractEntity {
 	public boolean isFacingRight() {
 		return facingRight;
 	}
-
-	public int facing() {
-		if(facingRight) {
-			return -1;
-		}
-		return 1;
-	}
 	
 	public void setFacingRight(boolean facingRight) {
 		this.facingRight = facingRight;
@@ -251,5 +255,14 @@ public abstract class AbstractEntity {
 
 	public void setScaling(double scaling) {
 		this.scaling = scaling;
+	}
+	
+	public Point getLastPosition() {
+		return lastPosition;
+	}
+
+	public void setLastPosition(Point lastPosition) {
+		// Not required?
+		this.lastPosition = lastPosition;
 	}
 }

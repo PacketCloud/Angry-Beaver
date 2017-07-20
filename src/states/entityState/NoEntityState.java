@@ -1,5 +1,7 @@
 package states.entityState;
 
+import entities.AbstractEntity;
+
 public class NoEntityState extends EntityStateAbstract {
 
 	public NoEntityState(EntityStateContext context) {
@@ -11,6 +13,12 @@ public class NoEntityState extends EntityStateAbstract {
 	public String stateToString() {
 		// TODO Auto-generated method stub
 		return "NoEntityState";
+	}
+
+	@Override
+	public void checkForNextState() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
