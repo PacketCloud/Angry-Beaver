@@ -45,7 +45,7 @@ public abstract class AbstractEntity {
 		
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);
-		this.hitboxes = new ArrayList<Hitbox>();
+		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity
 		
 		this.id = null;
 		this.scaling = 1;
@@ -83,23 +83,18 @@ public abstract class AbstractEntity {
 			g.setColor(Color.WHITE);
 			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
 		}
-				
+
 		// Temporary rendering of the hitboxes
 		g.setColor(Color.GREEN);
+		ArrayList<Hitbox> absoluteHitboxes = getAbsHitboxes();
 		
-		for(Hitbox h : hitboxes) {			
-			g.drawRect(
-					(int) (position.getX() + ((0.5 * facing + 0.5) * texture.getWidth(null) * scaling) 
-							- (facing * h.getPosition().getX() * scaling) - ((0.5 * facing + 0.5) * h.getWidth() * scaling)),//x position to draw, dependent on direction facing and scale.
-					(int) (position.getY() + h.getPosition().getY() * scaling),//y position to draw.
-					(int) (h.getWidth() * scaling),//dx position to draw, dependent on scale.
-					(int) (h.getHeight() * scaling)//dy position to draw, dependent on scale.
-					);
+		for(Hitbox h : absoluteHitboxes) {
+			g.drawRect(h.position.x, h.position.y, h.width, h.height);
 		}
 	}
 	
 	public void isHit() {
-		
+		// Not used
 	}
 	
 	public void destroy() {
@@ -107,6 +102,7 @@ public abstract class AbstractEntity {
 	}
 	
 	public void hasIntersected(AbstractEntity obj) {
+		// Not used
 		if (!isSolid) {
 			position.setLocation(0, 0);
 		}
@@ -203,6 +199,28 @@ public abstract class AbstractEntity {
 
 	public void addHitbox(Hitbox hitbox) {
 		hitboxes.add(hitbox);
+	}
+	
+	// GetAbsHitboxes will return the hitboxes relative to the world rather than relative to the entity
+	// Should tie relative hitboxes to the model rather than to the entity
+	public ArrayList<Hitbox> getAbsHitboxes() {
+		Image texture = model.getImageIcon(state.toString());
+		int facing = facing();
+		ArrayList<Hitbox> absHitboxes = new ArrayList<Hitbox>();
+		
+		for (Hitbox h : hitboxes) {
+			Hitbox absHitbox = new Hitbox( (int) (position.getX() + ((0.5 * facing + 0.5) * texture.getWidth(null) * scaling) 
+					- (facing * h.getPosition().getX() * scaling) - ((0.5 * facing + 0.5) * h.getWidth() * scaling)),//x position to draw, dependent on direction facing and scale.
+					(int) (position.getY() + h.getPosition().getY() * scaling),//y position to draw.
+					(int) (h.getWidth() * scaling),//dx position to draw, dependent on scale.
+					(int) (h.getHeight() * scaling));
+			absHitboxes.add(absHitbox);
+		}
+		return absHitboxes;
+	}
+
+	public void setHitboxes(ArrayList<Hitbox> hitboxes) {
+		this.hitboxes = hitboxes;
 	}
 	
 	public void removeHitbox(Hitbox hitbox) {

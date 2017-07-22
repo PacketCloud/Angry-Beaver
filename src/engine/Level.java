@@ -38,7 +38,7 @@ public class Level {
 		for(AbstractEntity entity : entityList){
 			entity.update();
 		}
-		//detector.detectCollisions();
+		detector.detectCollisions();
 	}
 	
 	/*
