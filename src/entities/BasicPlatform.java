@@ -15,7 +15,6 @@ public class BasicPlatform extends AbstractEntity {
 	}
 
 	public void initializePlatform() {
-		this.isSolid = true;
 		this.isStatic = true;
 	}
 	

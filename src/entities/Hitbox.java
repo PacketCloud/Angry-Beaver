@@ -8,6 +8,8 @@ public class Hitbox {
 	int height;
 	int width;
 	
+	public boolean isSolid = true;
+	
 	public Hitbox(Point position, int width, int height) {
 		setPosition(position);
 		setHeight(height);

@@ -27,7 +27,8 @@ public abstract class AbstractEntity {
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
-	protected boolean isSolid;
+	protected boolean lastFacing;
+	
 	protected boolean isStatic;
 	
 	protected int moveSpeedX;
@@ -50,7 +51,7 @@ public abstract class AbstractEntity {
 		this.id = null;
 		this.scaling = 1;
 		this.facingRight = true;
-		this.isSolid = false;
+
 		this.isStatic = false;
 		
 		this.moveSpeedX = 2;
@@ -103,9 +104,6 @@ public abstract class AbstractEntity {
 	
 	public void hasIntersected(AbstractEntity obj) {
 		// Not used
-		if (!isSolid) {
-			position.setLocation(0, 0);
-		}
 	}
 	
 	public void translate(int x, int y) {
@@ -233,14 +231,6 @@ public abstract class AbstractEntity {
 	
 	public void setFacingRight(boolean facingRight) {
 		this.facingRight = facingRight;
-	}
-	
-	public boolean isSolid() {
-		return isSolid;
-	}
-
-	public void setSolid(boolean isSolid) {
-		this.isSolid = isSolid;
 	}
 
 	public boolean isStatic() {
