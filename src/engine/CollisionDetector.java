@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import entities.AbstractEntity;
-import entities.Hitbox;
+import hitbox.Hitbox;
 
 public class CollisionDetector {
 	
@@ -116,11 +116,44 @@ public class CollisionDetector {
 		    	} else if (e1.isStatic()) {
 		    		// e1 can not move but e2 can move
 		    		System.out.println("e1 static");
+		    		
+		    		//TODO: Code cleanup
+		    		int x = getXDistance(h1, h2);
+		    		int y = getYDistance(h1, h2);
+		    		if(x > y) {
+		    			if(h1.getPosition().x > h2.getPosition().x) {
+		    				e2.translate(x, 0);
+		    			} else {
+		    				e2.translate(-x, 0);
+		    			}
+		    		} else {
+		    			if(h1.getPosition().y > h2.getPosition().y) {
+		    				e2.translate(0, y);
+		    			} else {
+		    				e2.translate(0, -y);
+		    			}
+		    		}
 
 		    	} else if (e2.isStatic()) {
 		    		// e2 can not move but e1 can move
 		    		System.out.println("e2 static");
 		    		
+		    		//TODO: Code cleanup
+		    		int x = getXDistance(h1, h2);
+		    		int y = getYDistance(h1, h2);
+		    		if(x > y) {
+		    			if(h1.getPosition().x > h2.getPosition().x) {
+		    				e1.translate(-x, 0);
+		    			} else {
+		    				e1.translate(x, 0);
+		    			}
+		    		} else {
+		    			if(h1.getPosition().y > h2.getPosition().y) {
+		    				e1.translate(0, -y);
+		    			} else {
+		    				e1.translate(0, y);
+		    			}
+		    		}
 		    	} else {
 		    		// Both entities can move
 		    		System.out.println("None static");

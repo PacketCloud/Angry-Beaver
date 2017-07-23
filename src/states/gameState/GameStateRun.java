@@ -8,9 +8,11 @@ import behaviour.NoBehaviour;
 import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
+import hitbox.Hitbox;
 import keyInputs.ACTIONS;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
+import states.entityState.EntityStateFactory;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -29,6 +31,7 @@ public class GameStateRun extends GameStateAbstract {
 	public Level loadLevel(String name) {
 		Level level = new Level();
 		
+		// Player
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 		PlayerResourceCollection.add(new Resource("Beaver Idle", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Idle"));
@@ -38,16 +41,25 @@ public class GameStateRun extends GameStateAbstract {
 		player.addHitbox(new Hitbox(10,10));
 		player.addHitbox(new Hitbox(10, 10, 10, 10));
 		player.setScaling(2.5);
-		
+
+		// Platform
 		ResourceCollection PlatformResourceCollection = new ResourceCollection("Platform");
 		PlatformResourceCollection.add(new Resource("Grass1", "/Resources/Textures/Environment/grass1.png", (float) 2.5, null, true, "NoEntityState"));
 		BasicPlatform p1 = new BasicPlatform(PlatformResourceCollection);
-		
 		p1.addHitbox(new Hitbox(800, 50));
 		p1.setPosition(new Point(350,300));
 		
+		// Tree
+		ResourceCollection TreeResourceCollection = new ResourceCollection("Tree");
+		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Idle"));
+		BasicEntity tree = new BasicEntity(TreeResourceCollection);
+		tree.setPosition(new Point(500, 150));
+		tree.setScaling(2);
+		tree.addHitbox(new Hitbox(2, 2, 20, 20));
+		
 		level.addEntity(player);
 		level.addEntity(p1);
+		level.addEntity(tree);
 		return level;
 	}
 	

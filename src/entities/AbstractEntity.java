@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import behaviour.AbstractBehaviour;
 import behaviour.NoBehaviour;
 import engine.Level;
+import hitbox.Hitbox;
 import resourceHandling.ResourceCollection;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;

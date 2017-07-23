@@ -3,6 +3,8 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import hitbox.Hitbox;
+
 /* Currently not in use*/
 
 public class Platform {
