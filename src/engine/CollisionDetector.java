@@ -105,8 +105,9 @@ public class CollisionDetector {
 		    // if(h1.isAttack && h2.isBody) { }	e1 attacks e2
 		    // if(h2.isAttack && h1.isBody) { }	e2 attacks e1
 		    
-		    // Solid hitboxes should not intersect
-		    if(h1.isSolid && h2.isSolid) {
+		    // If the hitboxes are both solid, correct the positioning of the entity
+		    // If one hitbox is a body and the other is a solid, correct the positioning of the entity
+		    if((h1.isSolid() && h2.isSolid()) || (h1.isBody() && h2.isSolid()) || (h1.isSolid() && h2.isBody())) {
 		    	System.out.println("Solid Collision Detected");
 		    	
 		    	if(e1.isStatic() && e2.isStatic()) {

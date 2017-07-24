@@ -87,10 +87,19 @@ public abstract class AbstractEntity {
 		}
 
 		// Temporary rendering of the hitboxes
-		g.setColor(Color.GREEN);
 		ArrayList<Hitbox> absoluteHitboxes = getAbsHitboxes();
 		
 		for(Hitbox h : absoluteHitboxes) {
+			// Change color of the hitbox depending on what kind of hitbox it is
+			if(h.isTrigger()) {
+				g.setColor(Color.RED);
+			} else if(h.isBody()) {
+				g.setColor(Color.CYAN);
+			} else if(h.isSolid()) {
+				g.setColor(Color.GREEN);
+			} else {
+				g.setColor(Color.YELLOW);
+			}
 			g.drawRect(h.position.x, h.position.y, h.width, h.height);
 		}
 	}
@@ -213,6 +222,9 @@ public abstract class AbstractEntity {
 					(int) (position.getY() + h.getPosition().getY() * scaling),//y position to draw.
 					(int) (h.getWidth() * scaling),//dx position to draw, dependent on scale.
 					(int) (h.getHeight() * scaling));
+			absHitbox.setSolid(h.isSolid());
+			absHitbox.setBody(h.isBody());
+			absHitbox.setTrigger(h.isTrigger());
 			absHitboxes.add(absHitbox);
 		}
 		return absHitboxes;

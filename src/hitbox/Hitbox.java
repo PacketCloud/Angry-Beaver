@@ -3,12 +3,10 @@ package hitbox;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Hitbox {
+public class Hitbox extends HitboxProperties{
 	public Point position; // This is the position relative to the entity the Hitbox is associated with
 	public int height;
 	public int width;
-	
-	public boolean isSolid = true;
 	
 	public Hitbox(Point position, int width, int height) {
 		setPosition(position);

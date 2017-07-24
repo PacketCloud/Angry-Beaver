@@ -24,13 +24,13 @@ public class GameStateRun extends GameStateAbstract {
 	
 	public GameStateRun(GameStateContext context, String levelName) {
 		super(context);
-		// Level loading should be done with file utility
+		// TODO: Level loading should be done with file utility
 		this.currentLevel = loadLevel(levelName);
 	}
 	
 	public Level loadLevel(String name) {
 		Level level = new Level();
-		
+		// TODO: Level loading should be done with file utility
 		// Player
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
@@ -39,14 +39,18 @@ public class GameStateRun extends GameStateAbstract {
 		BasicEntity player = new BasicEntity(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
 		player.addHitbox(new Hitbox(10,10));
-		player.addHitbox(new Hitbox(10, 10, 10, 10));
+		Hitbox playerh= new Hitbox(10, 10, 10, 10);
+		playerh.setBody(true);
+		player.addHitbox(playerh);
 		player.setScaling(2.5);
 
 		// Platform
 		ResourceCollection PlatformResourceCollection = new ResourceCollection("Platform");
 		PlatformResourceCollection.add(new Resource("Grass1", "/Resources/Textures/Environment/grass1.png", (float) 2.5, null, true, "NoEntityState"));
 		BasicPlatform p1 = new BasicPlatform(PlatformResourceCollection);
-		p1.addHitbox(new Hitbox(800, 50));
+		Hitbox plath =  new Hitbox(800, 50);
+		plath.setSolid(true);
+		p1.addHitbox(plath);
 		p1.setPosition(new Point(350,300));
 		
 		// Tree
