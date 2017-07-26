@@ -35,11 +35,12 @@ public class GameStateRun extends GameStateAbstract {
 		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
 		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 		PlayerResourceCollection.add(new Resource("Beaver Idle", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Idle"));
+		PlayerResourceCollection.add(new Resource("Beaver Attack", "/Resources/Sprites/Player/Beaver_Munch.gif", (float) 2.5, null, true, "Attack1"));
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
 		BasicEntity player = new BasicEntity(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
-		player.addHitbox(new Hitbox(10,10));
-		Hitbox playerh= new Hitbox(10, 10, 10, 10);
+		
+		Hitbox playerh= new Hitbox(2, 2, 20, 15);
 		playerh.setBody(true);
 		player.addHitbox(playerh);
 		player.setScaling(2.5);
@@ -58,8 +59,11 @@ public class GameStateRun extends GameStateAbstract {
 		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Idle"));
 		BasicEntity tree = new BasicEntity(TreeResourceCollection);
 		tree.setPosition(new Point(500, 150));
-		tree.setScaling(2);
-		tree.addHitbox(new Hitbox(2, 2, 20, 20));
+		tree.addHitbox(new Hitbox(0, 0, 35, 21));
+		Hitbox treeh1 = new Hitbox(11, 21, 9, 42);
+		treeh1.setBody(true);
+		tree.addHitbox(treeh1);
+		tree.setScaling(3);
 		
 		level.addEntity(player);
 		level.addEntity(p1);

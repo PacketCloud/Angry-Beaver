@@ -12,6 +12,8 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 
 import entities.AbstractEntity;
+import force.Force;
+import force.Gravity;
 
 /*
  * Level contains all entities
@@ -19,6 +21,7 @@ import entities.AbstractEntity;
 public class Level {
 	private Map<String, AbstractEntity> ids;
 	private ArrayList<AbstractEntity> entityList;
+	private ArrayList<AbstractEntity> entityBufferList;
 	private CollisionDetector detector;
 	private Image background = null;
 	
@@ -27,6 +30,7 @@ public class Level {
 	public Level() {
 		ids = new HashMap<String, AbstractEntity>();
 		entityList = new ArrayList<AbstractEntity>();
+		entityBufferList = new ArrayList<AbstractEntity>();
 		detector = new CollisionDetector(this);
 		inputSet = new HashSet<String>();
 	}
@@ -35,6 +39,10 @@ public class Level {
 	 * Updates entities in the level
 	 */
 	public void updateLevel(){
+		
+		entityList.addAll(entityBufferList);
+		entityBufferList.clear();
+		
 		for(AbstractEntity entity : entityList){
 			entity.update();
 		}
@@ -98,12 +106,18 @@ public class Level {
 	 * Adds an Entity into the level
 	 */
 	public void addEntity(AbstractEntity entity) {
+		
 		entity.setLevel(this);
 		if (entity.getId() != null) {
 			ids.put(entity.getId(), entity);
 		}
 		
-		entityList.add(entity);
+		// Temporary to add gravity to all entities
+		// TODO: How to initialize forces for all entities?
+		Force f = new Gravity(1);
+		entity.addForce(f);
+		
+		entityBufferList.add(entity);
 	}
 
 	/*

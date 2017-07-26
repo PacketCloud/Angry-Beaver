@@ -5,10 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import behaviour.AbstractBehaviour;
 import behaviour.NoBehaviour;
 import engine.Level;
+import force.Force;
 import hitbox.Hitbox;
 import resourceHandling.ResourceCollection;
 import states.entityState.EntityStateAbstract;
@@ -25,6 +29,8 @@ public abstract class AbstractEntity {
 	protected Point lastPosition;
 	protected ArrayList<Hitbox> hitboxes;
 	
+	protected Set<Force> forces;
+
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
@@ -49,9 +55,11 @@ public abstract class AbstractEntity {
 		this.lastPosition = new Point(0, 0);
 		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity
 		
+		this.forces = new HashSet<Force>();
+		
 		this.id = null;
 		this.scaling = 1;
-		this.facingRight = true;
+		this.facingRight = false;
 
 		this.isStatic = false;
 		
@@ -64,9 +72,16 @@ public abstract class AbstractEntity {
 		//state.setForNextState();
 		behaviour.run(this);
 		// Update movement due to external forces
+		updateForces();
 		state.checkForNextState();
 	}
 	
+	private void updateForces() {
+		for(Force f : forces) {
+			f.update(this);
+		}
+	}
+
 	public void render(Graphics2D g) {
 		//state.render(g);
 		
@@ -117,7 +132,9 @@ public abstract class AbstractEntity {
 	}
 	
 	public void translate(int x, int y) {
-		position.translate(x, y);
+		if (!isStatic) {
+			position.translate(x, y);
+		}
 	}
 
 	public void up() {
@@ -217,8 +234,8 @@ public abstract class AbstractEntity {
 		ArrayList<Hitbox> absHitboxes = new ArrayList<Hitbox>();
 		
 		for (Hitbox h : hitboxes) {
-			Hitbox absHitbox = new Hitbox( (int) (position.getX() + ((0.5 * facing + 0.5) * texture.getWidth(null) * scaling) 
-					- (facing * h.getPosition().getX() * scaling) - ((0.5 * facing + 0.5) * h.getWidth() * scaling)),//x position to draw, dependent on direction facing and scale.
+			Hitbox absHitbox = new Hitbox( (int) (position.getX() + ((0.5 * -facing + 0.5) * texture.getWidth(null) * scaling) 
+					- (-facing * h.getPosition().getX() * scaling) - ((0.5 * -facing + 0.5) * h.getWidth() * scaling)),//x position to draw, dependent on direction facing and scale.
 					(int) (position.getY() + h.getPosition().getY() * scaling),//y position to draw.
 					(int) (h.getWidth() * scaling),//dx position to draw, dependent on scale.
 					(int) (h.getHeight() * scaling));
@@ -236,6 +253,18 @@ public abstract class AbstractEntity {
 	
 	public void removeHitbox(Hitbox hitbox) {
 		hitboxes.remove(hitbox);
+	}
+	
+	public void addForce(Force f) {
+		forces.add(f);
+	}
+	
+	public Set<Force> getForces() {
+		return forces;
+	}
+
+	public void setForces(Set<Force> forces) {
+		this.forces = forces;
 	}
 	
 	public boolean isFacingRight() {

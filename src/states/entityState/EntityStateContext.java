@@ -48,7 +48,7 @@ public class EntityStateContext {
 	}
 	
 	public void translate(int x, int y) {
-		obj.getPosition().translate(x, y);
+		obj.translate(x, y);
 	}
 
 	public EntityStateAbstract getEntityState() {

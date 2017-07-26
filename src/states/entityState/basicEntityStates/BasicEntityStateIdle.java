@@ -53,6 +53,13 @@ public class BasicEntityStateIdle extends EntityStateAbstract {
 	}
 	
 	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		super.attack();
+		context.setEntityState(new BasicEntityStateAttack(context));
+	}
+
+	@Override
 	public String stateToString() {
 		// TODO Auto-generated method stub
 		return "Idle";
