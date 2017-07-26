@@ -21,10 +21,13 @@ public class GameHandler extends JPanel {
 	public GameStateContext state;
 	public Keymap keymap;
 	
+	public int maxFPS;
+	
 	public GameHandler() {
 		this.setFocusable(true);
 		this.state = new GameStateContext(this);
 		setKeymap(new Keymap(this));
+		maxFPS = MainRuntime.getSettings().getMaxFPS();
 	}
 
 	public void keyPressed(String actionType) {
@@ -35,11 +38,25 @@ public class GameHandler extends JPanel {
 	public void runLoop() {
         do
         {
-        	try{        		
+        	try{
+                long fps = 1000 / maxFPS;
+                // Start time of updating the game
+                long startTime = System.nanoTime() / 1000000;
+
+                // Update game state and draw
         		getGameState().update();
-        		//TODO: FPS handling?
         		repaint();
-        		Thread.sleep(20);
+
+                // End time of updating the game
+        		long endTime = System.nanoTime() / 1000000 - startTime;
+
+                // Time left over
+                long sleepTime = fps - endTime;
+
+                if (sleepTime > 0) {
+            		Thread.sleep(sleepTime);
+                }
+                
         	} catch (Exception e) {
 	        	System.out.println(e);
 	        	state.setGameState(new GameStateStop(state));;
@@ -73,5 +90,9 @@ public class GameHandler extends JPanel {
 
 	public void setKeymap(Keymap keymap) {
 		this.keymap = keymap;
+	}
+
+	public int getMaxFPS() {
+		return maxFPS;
 	}
 }

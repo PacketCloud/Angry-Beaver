@@ -12,12 +12,14 @@ public class Settings {
 	String title;
 	Dimension windowSize;
 	boolean isFullscreen;
+	int maxFPS;
 	
 	public Settings() {
 		// Default settings
 		setTitle("");
 		setWindowSize(new Dimension(1920, 1080));
 		isFullscreen = true;
+		maxFPS = 60;
 	}
 	
 	public void loadUserSettings() {
@@ -26,28 +28,35 @@ public class Settings {
 		OpenFile settingFile = new OpenFile("/Settings.cfg");
 		while(settingFile.hasNextLine()) {
 			String[] split = settingFile.getNextLine().split("=", 2);
-		 	switch (split[0].toLowerCase()) {
-		 		case "title":
-		 			setTitle(split[1]);
-		 			break;
-		 		case "fullscreen":
-		 			if(Integer.valueOf(split[1]) == 1) {
-		 				isFullscreen = true;
-		 			} else {
-		 				isFullscreen = false;
-		 			}
-		 			break;
-		 		case "width":
-		 			windowSize.setSize(Integer.valueOf(split[1]), getWindowSize().getHeight());
-		 			break;
-		 		case "height":
-		 			windowSize.setSize(getWindowSize().getWidth(), Integer.valueOf(split[1]));
-		 			break;
-		 		// More cases should be added as more Settings features are defined
-		 	}
+			parseLine(split);
 		 }
 		 settingFile.close();
-		
+	}
+	
+	
+	public void parseLine(String[] split) {
+		// More cases should be added as more Settings features are defined
+		switch (split[0].toLowerCase()) {
+ 		case "title":
+ 			setTitle(split[1]);
+ 			break;
+ 		case "fullscreen":
+ 			if(Integer.valueOf(split[1]) == 1) {
+ 				isFullscreen = true;
+ 			} else {
+ 				isFullscreen = false;
+ 			}
+ 			break;
+ 		case "width":
+ 			windowSize.setSize(Integer.valueOf(split[1]), getWindowSize().getHeight());
+ 			break;
+ 		case "height":
+ 			windowSize.setSize(getWindowSize().getWidth(), Integer.valueOf(split[1]));
+ 			break;
+ 		case "max_fps":
+ 			setMaxFPS(Integer.valueOf(split[1]));
+ 			break;
+		}
 	}
 	
 	public String getTitle() {
@@ -73,4 +82,11 @@ public class Settings {
 		this.isFullscreen = fullscreen;
 	}
 
+	public int getMaxFPS() {
+		return maxFPS;
+	}
+
+	public void setMaxFPS(int max_fps) {
+		this.maxFPS = max_fps;
+	}	
 }
