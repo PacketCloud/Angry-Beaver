@@ -11,10 +11,10 @@ A platformer game where you play as a beaver who can munch down trees, or swat t
 >*To be added*
 
 ## Minimum System Requirements
-**CPU:** Potato
-**GPU:** Toaster
-**RAM:** Over 9000
-**OS:** Windows 7 or Newer
+**CPU:** Potato   
+**GPU:** Toaster   
+**RAM:** Over 9000   
+**OS:** Windows 7 or Newer   
 
 ## Project Details
 **Organization:**  
