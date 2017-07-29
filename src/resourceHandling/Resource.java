@@ -1,8 +1,5 @@
 package resourceHandling;
 
-import java.io.File;
-import javax.swing.ImageIcon;
-
 import fileUtility.OpenImage;
 
 import java.awt.Image;
@@ -39,6 +36,7 @@ public class Resource {
 		TexturePath = localPath;
 		try {
 			TexturePointer = new OpenImage().Open(TexturePath);
+			TexturePointer.flush();
 		} catch (Exception e) {}
 	}
 	

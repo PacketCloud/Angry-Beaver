@@ -85,4 +85,12 @@ public class EntityStateContext {
 	public Point getLastPosition() {
 		return obj.getLastPosition();
 	}
+	
+	public boolean isFacingRight() {
+		return obj.isFacingRight();
+	}
+	
+	public double getScaling() {
+		return obj.getScaling();
+	}
 }

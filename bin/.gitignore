@@ -2,8 +2,8 @@
 /engine/
 /entities/
 /fileUtility/
+/force/
+/hitbox/
 /keyInputs/
 /resourceHandling/
 /states/
-/hitbox/
-/force/

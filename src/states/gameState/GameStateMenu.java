@@ -11,12 +11,13 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import engine.GameHandler;
+import fileUtility.OpenImage;
 
 public class GameStateMenu extends GameStateAbstract {
 	private String menuTitle = "ANGRY BEAVER";
 	private ArrayList<String> menuText  = new ArrayList<String>(Arrays.asList("Play", "Options","Exit"));
 	private int chosen = 0;	
-	
+	private Image background = null;
 	private Color titleColor = Color.BLACK;
 	private Color defaultColor = Color.BLACK;
 	private Color selectColor = Color.RED;
@@ -65,16 +66,16 @@ public class GameStateMenu extends GameStateAbstract {
 	}
  
 	public void drawBackground(Graphics2D g) {
-		//TODO: Read background image from FileUtility instead
-		File file = new File("");
-		String path = file.getAbsolutePath();
-		try{
-			//note: in the future, image scale and position should be dependent on window size/resolution.
-			Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
-			g.drawImage(background, 0, 0, 1920, 1080, null);
-		} catch (Exception e){
-			System.out.println(e.toString());
+		if(background == null) {
+			try {
+				background = new OpenImage().Open("/Resources/Textures/Background/Background_MountainHorizon.png");
+				//Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
+				
+			} catch (Exception e){
+				System.out.println(e.toString());
+			}
 		}
+		g.drawImage(background, 0, 0, 1920, 1080, null);
 	}
 	
 	@Override

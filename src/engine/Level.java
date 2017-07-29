@@ -3,6 +3,7 @@ package engine;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 
 import entities.AbstractEntity;
+import fileUtility.OpenImage;
 import force.Force;
 import force.Gravity;
 
@@ -67,18 +69,16 @@ public class Level {
 	 *  Currently, the background defaults to ExampleBackground.png.
 	 */
 	public void drawBackground(Graphics2D g) {
-		//TODO: Read background image from FileUtility instead
-		File file = new File("");
-		String path = file.getAbsolutePath();
-		try{
-			if(background == null) {
-				background = new ImageIcon(path + "/Resources/Textures/Background/ExampleBackground.png").getImage();
+		if(background == null) {
+			try {
+				background = new OpenImage().Open("/Resources/Textures/Background/ExampleBackground.png");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			g.drawImage(background, 0, 0, 1920, 1080, null);
-		} catch (Exception e){
-			System.out.println(e.toString());
 		}
+		
+		g.drawImage(background, 0, 0, 1920, 1080, null);
 	}
 	
 	/*
