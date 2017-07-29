@@ -23,7 +23,8 @@ import force.Gravity;
 public class Level {
 	private Map<String, AbstractEntity> ids;
 	private ArrayList<AbstractEntity> entityList;
-	private ArrayList<AbstractEntity> entityBufferList;
+	private ArrayList<AbstractEntity> addBufferList;
+	private ArrayList<AbstractEntity> removeBufferList;
 	private CollisionDetector detector;
 	private Image background = null;
 	
@@ -32,7 +33,8 @@ public class Level {
 	public Level() {
 		ids = new HashMap<String, AbstractEntity>();
 		entityList = new ArrayList<AbstractEntity>();
-		entityBufferList = new ArrayList<AbstractEntity>();
+		addBufferList = new ArrayList<AbstractEntity>();
+		removeBufferList = new ArrayList<AbstractEntity>();
 		detector = new CollisionDetector(this);
 		inputSet = new HashSet<String>();
 	}
@@ -42,8 +44,9 @@ public class Level {
 	 */
 	public void updateLevel(){
 		
-		entityList.addAll(entityBufferList);
-		entityBufferList.clear();
+		entityList.removeAll(removeBufferList);
+		entityList.addAll(addBufferList);
+		addBufferList.clear();
 		
 		for(AbstractEntity entity : entityList){
 			entity.update();
@@ -117,18 +120,18 @@ public class Level {
 		Force f = new Gravity(1);
 		entity.addForce(f);
 		
-		entityBufferList.add(entity);
+		addBufferList.add(entity);
 	}
 
 	/*
 	 * Removes an Entity from the level
 	 */
-	public void removeEntity(AbstractEntity entity) {
+	public void removeEntity(AbstractEntity entity) {		
 		if(entity.getId() != null ) {
 			ids.remove(entity.getId());
 		}
 		
-		entityList.remove(entity);
+		removeBufferList.add(entity);
 	}
 	
 	/*
