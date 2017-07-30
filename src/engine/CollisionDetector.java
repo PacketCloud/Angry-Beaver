@@ -102,8 +102,16 @@ public class CollisionDetector {
 			Hitbox h1 = overlap.getKey();
 		    Hitbox h2 = overlap.getValue();
 		    
-		    // if(h1.isAttack && h2.isBody) { }	e1 attacks e2
-		    // if(h2.isAttack && h1.isBody) { }	e2 attacks e1
+		    // e1 attacks e2
+		    if(h1.isTrigger() && h2.isBody()) {
+		    	e2.isHitBy(e1);
+		    }
+
+		    // e2 attacks e1
+		    if(h1.isTrigger() && h2.isBody()) {
+		    	e1.isHitBy(e2);
+		    }
+		    
 		    
 		    // If the hitboxes are both solid, correct the positioning of the entity
 		    // If one hitbox is a body and the other is a solid, correct the positioning of the entity

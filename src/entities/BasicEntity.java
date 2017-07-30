@@ -8,7 +8,6 @@ import engine.Level;
 import resourceHandling.ResourceCollection;
 
 public class BasicEntity extends AbstractEntity {
-	private int health;
 
 	public BasicEntity(ResourceCollection model) {
 		super(model);
@@ -16,7 +15,6 @@ public class BasicEntity extends AbstractEntity {
 	}
 	
 	public void initializeEntity() {
-		this.health = 0;
 	}
 
 	@Override

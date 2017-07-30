@@ -93,4 +93,9 @@ public class EntityStateContext {
 	public double getScaling() {
 		return obj.getScaling();
 	}
+
+	public AbstractEntity makeEntity() {
+		// TODO Auto-generated method stub
+		return obj.makeEntity();
+	}
 }

@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import behaviour.AbstractBehaviour;
@@ -14,8 +13,7 @@ import behaviour.NoBehaviour;
 import engine.Level;
 import force.Force;
 import hitbox.Hitbox;
-import resourceHandling.ResourceCollection;
-import states.entityState.EntityStateAbstract;
+import resourceHandling.*;
 import states.entityState.EntityStateContext;
 
 public abstract class AbstractEntity {
@@ -28,18 +26,21 @@ public abstract class AbstractEntity {
 	protected Point position;
 	protected Point lastPosition;
 	protected ArrayList<Hitbox> hitboxes;
-	
-	protected Set<Force> forces;
 
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
 	protected boolean lastFacing;
 	
+	// Movement
+	protected Set<Force> forces;
 	protected boolean isStatic;
-	
 	protected int moveSpeedX;
 	protected int moveSpeedY;
+	
+	protected boolean isInvulnerable;
+	protected int health;
+	protected int damage;
 	
 	
 	public AbstractEntity(ResourceCollection model) {
@@ -53,23 +54,31 @@ public abstract class AbstractEntity {
 		
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);
-		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity
-		
-		this.forces = new HashSet<Force>();
-		
+		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity		
+
 		this.id = null;
 		this.scaling = 1;
 		this.facingRight = false;
 
+		this.forces = new HashSet<Force>();
 		this.isStatic = false;
-		
 		this.moveSpeedX = 2;
 		this.moveSpeedY = 2;
+		
+		this.isInvulnerable = false;
+		this.health = 1;
+		this.damage = 0;
 	}
 
 	public void update() {
 		this.lastPosition = new Point(position);
 		//state.setForNextState();
+		
+		// Should health check be done in states?
+		if(health < 0) {
+			destroy();
+		}
+		
 		behaviour.run(this);
 		// Update movement due to external forces
 		updateForces();
@@ -119,11 +128,16 @@ public abstract class AbstractEntity {
 		}
 	}
 	
-	public void isHit() {
-		// Not used
+	public void isHitBy(AbstractEntity e) {
+		// Currently, this damage is done every frame update. Consider having a 'cooldown' on damage taken
+		// Damage is also taken by your own attacks
+		if(!isInvulnerable) {
+			health -= e.getDamage();
+		}
 	}
 	
 	public void destroy() {
+		// Other actions such as dropping items?
 		level.removeEntity(this);
 	}
 	
@@ -170,6 +184,28 @@ public abstract class AbstractEntity {
 			return -1;
 		}
 		return 1;
+	}
+	
+	
+	// Temporary helper function inside AbstractEntity
+	public AbstractEntity makeEntity() {
+		
+		Image texture = model.getImageIcon(state.toString());
+
+		// TODO: Code Cleanup
+		ResourceCollection ClawResourceCollection = new ResourceCollection("Claw");
+		ClawResourceCollection.add(new Resource("Claw", "/Resources/Sprites/Entities/Beaver_Claw.gif", (float) 2.5, null, true, "Idle"));
+		AbstractEntity claw = new BasicEntity(ClawResourceCollection);
+		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
+				(int) (position.getY() - 5 * scaling)));
+		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
+		clawh1.setTrigger(true);
+		claw.addHitbox(clawh1);
+		claw.setStatic(true);
+		claw.setScaling(scaling);
+		claw.setFacingRight(facingRight);
+		claw.setDamage(1);
+		return claw;		
 	}
 	
 	/* Getters and Setters */
@@ -315,4 +351,29 @@ public abstract class AbstractEntity {
 		// Not required?
 		this.lastPosition = lastPosition;
 	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public boolean isInvulnerable() {
+		return isInvulnerable;
+	}
+
+	public void setInvulnerable(boolean isInvulnerable) {
+		this.isInvulnerable = isInvulnerable;
+	}
+	
 }

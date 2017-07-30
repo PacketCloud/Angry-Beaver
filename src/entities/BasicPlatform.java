@@ -16,6 +16,7 @@ public class BasicPlatform extends AbstractEntity {
 
 	public void initializePlatform() {
 		this.isStatic = true;
+		this.isInvulnerable = true;
 	}
 	
 	@Override
