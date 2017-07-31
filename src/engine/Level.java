@@ -1,16 +1,15 @@
 package engine;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
+import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import javax.swing.ImageIcon;
 
 import entities.AbstractEntity;
 import fileUtility.OpenImage;
@@ -25,6 +24,7 @@ public class Level {
 	private ArrayList<AbstractEntity> entityList;
 	private ArrayList<AbstractEntity> addBufferList;
 	private ArrayList<AbstractEntity> removeBufferList;
+	private Camera camera;
 	private CollisionDetector detector;
 	private Image background = null;
 	
@@ -37,6 +37,7 @@ public class Level {
 		removeBufferList = new ArrayList<AbstractEntity>();
 		detector = new CollisionDetector(this);
 		inputSet = new HashSet<String>();
+		camera = new Camera();
 	}
 	
 	/*
@@ -52,6 +53,8 @@ public class Level {
 			entity.update();
 		}
 		detector.detectCollisions();
+		
+		camera.updateCamera();
 	}
 	
 	/*
@@ -60,6 +63,13 @@ public class Level {
 	public void drawLevel(Graphics2D g){
 		//Draw Background first
 		drawBackground(g);
+		
+		g.translate(-camera.getX(), -camera.getY());
+		
+		// For temporary reference, draw the Origin (0,0)
+		g.setColor(Color.CYAN);
+		g.drawOval(0, 0, 3, 3);
+		g.drawString("Origin", 2, -2);
 		
 		for(AbstractEntity entity : entityList){
 			entity.render(g);
@@ -89,6 +99,20 @@ public class Level {
 	 */
 	public AbstractEntity findByID(String id){
 		return ids.get(id);
+	}
+	
+	/*
+	 * Have the Camera follow the given entity
+	 */
+	public void focusCamera(AbstractEntity e) {
+		camera.setFocusEntity(e);
+	}
+
+	/*
+	 * Have the Camera follow the given Point
+	 */
+	public void focusCamera(Point p) {
+		camera.setFocusPoint(p);
 	}
 	
 	/* 

@@ -66,6 +66,7 @@ public class GameStateRun extends GameStateAbstract {
 		tree.setScaling(3);
 		
 		level.addEntity(player);
+		level.focusCamera(player);
 		level.addEntity(p1);
 		level.addEntity(tree);
 		return level;
