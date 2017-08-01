@@ -25,6 +25,7 @@ public class Level {
 	private ArrayList<AbstractEntity> addBufferList;
 	private ArrayList<AbstractEntity> removeBufferList;
 	private Camera camera;
+	private HeadUpDisplay HUD;
 	private CollisionDetector detector;
 	private Image background = null;
 	
@@ -38,6 +39,7 @@ public class Level {
 		detector = new CollisionDetector(this);
 		inputSet = new HashSet<String>();
 		camera = new Camera();
+		HUD = new HeadUpDisplay();
 	}
 	
 	/*
@@ -64,6 +66,7 @@ public class Level {
 		//Draw Background first
 		drawBackground(g);
 		
+		// Set camera
 		g.translate(-camera.getX(), -camera.getY());
 		
 		// For temporary reference, draw the Origin (0,0)
@@ -71,9 +74,14 @@ public class Level {
 		g.drawOval(0, 0, 3, 3);
 		g.drawString("Origin", 2, -2);
 		
+		// Render all entities in the level
 		for(AbstractEntity entity : entityList){
 			entity.render(g);
 		}
+		
+		// Render HUD 
+		g.translate(camera.getX(), camera.getY());
+		HUD.render(g);
 	}
 	
 	/*
@@ -113,6 +121,14 @@ public class Level {
 	 */
 	public void focusCamera(Point p) {
 		camera.setFocusPoint(p);
+	}
+	
+	public void displayHud(boolean display) {
+		HUD.setDisplayHUD(display);
+	}
+
+	public void focusHUD(AbstractEntity e) {
+		HUD.setFocusEntity(e);
 	}
 	
 	/* 

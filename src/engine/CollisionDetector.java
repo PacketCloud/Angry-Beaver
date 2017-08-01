@@ -124,17 +124,22 @@ public class CollisionDetector {
 		    		
 		    	} else if (e1.isStatic()) {
 		    		// e1 can not move but e2 can move
+		    		// Check by how much e2 intersects e1, and then move e2 away from e1 that distance
 		    		System.out.println("e1 static");
 		    		
 		    		//TODO: Code cleanup
 		    		int x = getXDistance(h1, h2);
 		    		int y = getYDistance(h1, h2);
+		    		
+		    		// If the hitboxes intersect on the x-axis more than the y-axis
 		    		if(x > y) {
 		    			if(h1.getPosition().x > h2.getPosition().x) {
 		    				e2.translate(x, 0);
 		    			} else {
 		    				e2.translate(-x, 0);
 		    			}
+		    		
+		    		// If the hitboxes intersect on the y-axis more than the x-axis
 		    		} else {
 		    			if(h1.getPosition().y > h2.getPosition().y) {
 		    				e2.translate(0, y);
@@ -145,17 +150,22 @@ public class CollisionDetector {
 
 		    	} else if (e2.isStatic()) {
 		    		// e2 can not move but e1 can move
+		    		// Check by how much e1 intersects e2, and then move e1 away from e2 that distance
 		    		System.out.println("e2 static");
 		    		
 		    		//TODO: Code cleanup
 		    		int x = getXDistance(h1, h2);
 		    		int y = getYDistance(h1, h2);
+		    		
+		    		// If the hitboxes intersect on the x-axis more than the y-axis
 		    		if(x > y) {
 		    			if(h1.getPosition().x > h2.getPosition().x) {
 		    				e1.translate(-x, 0);
 		    			} else {
 		    				e1.translate(x, 0);
 		    			}
+		    			
+			    	// If the hitboxes intersect on the y-axis more than the x-axis
 		    		} else {
 		    			if(h1.getPosition().y > h2.getPosition().y) {
 		    				e1.translate(0, -y);
@@ -164,8 +174,33 @@ public class CollisionDetector {
 		    			}
 		    		}
 		    	} else {
-		    		// Both entities can move
+		    		// Allow entities to push each other since both can be moved
+		    		// Check by how much the entities intersect, and then move both entities away from each other half that distance
 		    		System.out.println("None static");
+		    		
+		    		//TODO: Code cleanup
+		    		int x = getXDistance(h1, h2);
+		    		int y = getYDistance(h1, h2);
+		    		// If the hitboxes intersect on the x-axis more than the y-axis
+		    		if(x > y) {
+		    			if(h1.getPosition().x > h2.getPosition().x) {
+		    				e1.translate(-x/2, 0);
+		    				e2.translate(x/2, 0);
+		    			} else {
+		    				e1.translate(x/2, 0);
+		    				e2.translate(-x/2, 0);
+		    			}
+
+		    		// If the hitboxes intersect on the y-axis more than the x-axis
+		    		} else {
+		    			if(h1.getPosition().y > h2.getPosition().y) {
+		    				e1.translate(0, -y/2);
+		    				e2.translate(0, y/2);
+		    			} else {
+		    				e1.translate(0, y/2);
+		    				e2.translate(0, -y/2);
+		    			}
+		    		}
 		    	}
 		    }
 		}

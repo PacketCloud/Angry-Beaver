@@ -65,10 +65,29 @@ public class GameStateRun extends GameStateAbstract {
 		tree.addHitbox(treeh1);
 		tree.setScaling(3);
 		
+		// Crate
+		ResourceCollection  CrateResourceCollection = new ResourceCollection("Crate");
+		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "Idle"));
+		BasicEntity crate = new BasicEntity(CrateResourceCollection);
+		crate.setPosition(new Point(800, 200));
+		Hitbox crateh1 = new Hitbox(2, 2, 15, 15);
+		crateh1.setSolid(true);
+		crateh1.setBody(true);
+		crate.addHitbox(crateh1);
+		crate.setScaling(2);
+		
+		// Add player into the level
 		level.addEntity(player);
+		// Set Camera to follow the player
 		level.focusCamera(player);
+		// Set HUD to display information related to the player
+		level.focusHUD(player);
+		level.displayHud(true);
+		// Add other entities into the level
 		level.addEntity(p1);
 		level.addEntity(tree);
+		level.addEntity(crate);
+		
 		return level;
 	}
 	
