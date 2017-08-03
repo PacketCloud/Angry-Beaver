@@ -26,6 +26,7 @@ public abstract class AbstractEntity {
 	protected Point position;
 	protected Point lastPosition;
 	protected ArrayList<Hitbox> hitboxes;
+	protected ArrayList<AbstractEntity> entities;	
 
 	protected String id;
 	protected double scaling;
@@ -55,7 +56,8 @@ public abstract class AbstractEntity {
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);
 		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity		
-
+		this.entities = new ArrayList<AbstractEntity>(); // Entities which are related
+		
 		this.id = null;
 		this.scaling = 1;
 		this.facingRight = false;
@@ -71,6 +73,8 @@ public abstract class AbstractEntity {
 	}
 
 	public void update() {
+		state.checkForNextState();
+		
 		this.lastPosition = new Point(position);
 		//state.setForNextState();
 		
@@ -82,7 +86,6 @@ public abstract class AbstractEntity {
 		behaviour.run(this);
 		// Update movement due to external forces
 		updateForces();
-		state.checkForNextState();
 	}
 	
 	private void updateForces() {
@@ -138,6 +141,12 @@ public abstract class AbstractEntity {
 	
 	public void destroy() {
 		// Other actions such as dropping items?
+		
+		// Destroy all related entities
+		for(AbstractEntity e : entities) {
+			e.destroy();
+		}
+		
 		level.removeEntity(this);
 	}
 	
@@ -256,6 +265,7 @@ public abstract class AbstractEntity {
 
 	public void setPosition(Point position) {
 		this.position = position;
+		this.lastPosition = new Point(position);
 	}
 
 	public void addHitbox(Hitbox hitbox) {
@@ -301,6 +311,14 @@ public abstract class AbstractEntity {
 
 	public void setForces(Set<Force> forces) {
 		this.forces = forces;
+	}
+	
+	public void addEntity(AbstractEntity e) {
+		entities.add(e);
+	}
+	
+	public void removeEntity(AbstractEntity e) {
+		entities.remove(e);
 	}
 	
 	public boolean isFacingRight() {

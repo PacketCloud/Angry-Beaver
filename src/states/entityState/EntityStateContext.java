@@ -98,4 +98,12 @@ public class EntityStateContext {
 		// TODO Auto-generated method stub
 		return obj.makeEntity();
 	}
+	
+	public void addSubEntity(AbstractEntity e) {
+		obj.addEntity(e);
+	}
+	
+	public void removeSubEntity(AbstractEntity e) {
+		obj.removeEntity(e);
+	}
 }

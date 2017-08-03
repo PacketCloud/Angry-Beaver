@@ -2,24 +2,14 @@ package states.entityState.basicEntityStates;
 
 import java.awt.Point;
 
-import entities.AbstractEntity;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
 
-public class BasicEntityStateWalking extends EntityStateAbstract {
+public class BasicEntityStateFalling extends EntityStateAbstract {
 
-	public BasicEntityStateWalking(EntityStateContext context) {
+	public BasicEntityStateFalling(EntityStateContext context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-	}
-
-	// Methods Up and Down are temporary for movement
-	@Override
-	public void up() {
-		// TODO Auto-generated method stub
-		super.up();
-		int y = context.getEntity().getMoveSpeedY();
-		context.translate(0, -y);
 	}
 
 	@Override
@@ -48,36 +38,27 @@ public class BasicEntityStateWalking extends EntityStateAbstract {
 	}
 	
 	@Override
-	public String stateToString() {
-		// TODO Auto-generated method stub
-		return "Walking";
-	}
-
-	@Override
 	public void checkForNextState() {
 		// TODO Auto-generated method stub
+		
 		Point curPos = context.getCurrentPosition();
 		Point lastPos = context.getLastPosition();
+
+		// Change to Idle if the entity stops moving on the y-axis
+		if ((curPos.y - lastPos.y) == 0){
+			context.setEntityState(new BasicEntityStateIdle(context));
+		}
 		
-		/*
-		 * Change state to falling/rising if moving on y axis
+		// Change state to rising if moving up on y axis
 		if ((curPos.y - lastPos.y) < 0){
 			context.setEntityState(new BasicEntityStateRising(context));
 		}
-		
-		if ((curPos.y - lastPos.y) > 0){
-			context.setEntityState(new BasicEntityStateFalling(context));
-		}
-		*/
-		
-		// Change state to falling if moving down on y axis		
-		if ((curPos.y - lastPos.y) > 0){
-			context.setEntityState(new BasicEntityStateFalling(context));
-		}
-		
-		// Change state to idle if not moving on x axis
-		if ((curPos.x - lastPos.x) == 0){
-			context.setEntityState(new BasicEntityStateIdle(context));
-		}
 	}
+
+	@Override
+	public String stateToString() {
+		// TODO Auto-generated method stub
+		return "Falling";
+	}
+
 }

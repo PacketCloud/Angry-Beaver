@@ -1,5 +1,7 @@
 package states.entityState.basicEntityStates;
 
+import java.awt.Point;
+
 import entities.AbstractEntity;
 
 import states.entityState.EntityStateAbstract;
@@ -15,6 +17,9 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 		// Currently testing
 		startTime = System.nanoTime() / 1000000;
 		claw = context.makeEntity();
+		
+		// Add claw as a sub-entity and as an entity in the level
+		context.addSubEntity(claw);
 		context.getEntity().getLevel().addEntity(claw);
 	}
 
@@ -43,8 +48,27 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 		long endTime = System.nanoTime() / 1000000 - startTime;
 		// The duration of Beaver_Claw.gif is 1000 milliseconds
 		if(endTime > 1000){
+			// Remove claw as a sub-entity and as an entity in the level
+			context.removeSubEntity(claw);
 			claw.destroy();
-			context.setEntityState(new BasicEntityStateIdle(context));
+			
+			Point curPos = context.getCurrentPosition();
+			Point lastPos = context.getLastPosition();
+			
+			// Change to Idle if the entity stops moving on the y-axis
+			if ((curPos.y - lastPos.y) == 0){
+				context.setEntityState(new BasicEntityStateIdle(context));
+			}
+			
+			// Change state to rising if moving up on y axis
+			if ((curPos.y - lastPos.y) < 0){
+				context.setEntityState(new BasicEntityStateRising(context));
+			}
+			
+			// Change state to falling if moving down on y axis
+			if ((curPos.y - lastPos.y) > 0){
+				context.setEntityState(new BasicEntityStateFalling(context));
+			}
 		}
 	}
 
