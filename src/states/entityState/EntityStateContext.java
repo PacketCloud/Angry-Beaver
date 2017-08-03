@@ -106,4 +106,12 @@ public class EntityStateContext {
 	public void removeSubEntity(AbstractEntity e) {
 		obj.removeEntity(e);
 	}
+	
+	public int getMoveSpeedX() {
+		return obj.getMoveSpeedX();
+	}
+	
+	public int getJumpStrength() {
+		return obj.getJumpStrength();
+	}
 }

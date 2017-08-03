@@ -16,8 +16,7 @@ public class BasicEntityStateFalling extends EntityStateAbstract {
 	public void right() {
 		// TODO Auto-generated method stub
 		super.right();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(x, 0);
+		context.translate(context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(true);
 	}
 	
@@ -25,8 +24,7 @@ public class BasicEntityStateFalling extends EntityStateAbstract {
 	public void left() {
 		// TODO Auto-generated method stub
 		super.left();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(-x, 0);
+		context.translate(-context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(false);
 	}
 	

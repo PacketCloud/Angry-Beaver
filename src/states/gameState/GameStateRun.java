@@ -39,7 +39,7 @@ public class GameStateRun extends GameStateAbstract {
 		PlayerResourceCollection.add(new Resource("Beaver Rising", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Rising"));
 		PlayerResourceCollection.add(new Resource("Beaver Attack", "/Resources/Sprites/Player/Beaver_Munch.gif", (float) 2.5, null, true, "Attack1"));
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		BasicEntity player = new BasicEntity(PlayerResourceCollection);
+		AbstractEntity player = new BasicEntity(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
 		
 		Hitbox playerh= new Hitbox(2, 2, 20, 15);
@@ -51,18 +51,17 @@ public class GameStateRun extends GameStateAbstract {
 		// Platform
 		ResourceCollection PlatformResourceCollection = new ResourceCollection("Platform");
 		PlatformResourceCollection.add(new Resource("Grass1", "/Resources/Textures/Environment/grass1.png", (float) 2.5, null, true, "NoEntityState"));
-		BasicPlatform p1 = new BasicPlatform(PlatformResourceCollection);
+		AbstractEntity p1 = new BasicNullEntity(PlatformResourceCollection);
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
+		p1.setStatic(true);
 		p1.addHitbox(plath);
 		p1.setPosition(new Point(350,300));
 		
 		// Tree
 		ResourceCollection TreeResourceCollection = new ResourceCollection("Tree");
-		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Idle"));
-		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Falling"));
-		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Rising"));
-		BasicEntity tree = new BasicEntity(TreeResourceCollection);
+		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "NoEntityState"));
+		AbstractEntity tree = new BasicNullEntity(TreeResourceCollection);
 		tree.setPosition(new Point(500, 150));
 		tree.addHitbox(new Hitbox(0, 0, 35, 21));
 		Hitbox treeh1 = new Hitbox(11, 21, 9, 42);
@@ -72,10 +71,8 @@ public class GameStateRun extends GameStateAbstract {
 		
 		// Crate
 		ResourceCollection  CrateResourceCollection = new ResourceCollection("Crate");
-		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "Idle"));
-		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "Falling"));
-		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "Rising"));
-		BasicEntity crate = new BasicEntity(CrateResourceCollection);
+		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "NoEntityState"));
+		AbstractEntity crate = new BasicNullEntity(CrateResourceCollection);
 		crate.setPosition(new Point(800, 200));
 		Hitbox crateh1 = new Hitbox(2, 2, 15, 15);
 		crateh1.setSolid(true);

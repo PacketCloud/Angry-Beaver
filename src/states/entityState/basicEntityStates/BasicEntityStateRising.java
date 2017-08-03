@@ -12,21 +12,11 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 		// TODO Auto-generated constructor stub
 	}
 	
-	// Methods Up and Down are temporary for movement
-	@Override
-	public void up() {
-		// TODO Auto-generated method stub
-		super.up();
-		int y = context.getEntity().getMoveSpeedY();
-		context.translate(0, -y);
-	}
-	
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
 		super.right();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(x, 0);
+		context.translate(context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(true);
 	}
 	
@@ -34,8 +24,7 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 	public void left() {
 		// TODO Auto-generated method stub
 		super.left();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(-x, 0);
+		context.translate(-context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(false);
 	}
 	

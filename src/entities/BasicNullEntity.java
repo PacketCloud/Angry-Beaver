@@ -7,21 +7,19 @@ import behaviour.AbstractBehaviour;
 import engine.Level;
 import resourceHandling.ResourceCollection;
 
-public class BasicPlatform extends AbstractEntity {
+public class BasicNullEntity extends AbstractEntity {
 
-	public BasicPlatform(ResourceCollection model) {
+	public BasicNullEntity(ResourceCollection model) {
 		super(model);
 		initializePlatform();
 	}
 
 	public void initializePlatform() {
-		this.isStatic = true;
-		this.isInvulnerable = true;
 	}
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Basic Platform";
+		return "Basic Null Entity";
 	}
 }

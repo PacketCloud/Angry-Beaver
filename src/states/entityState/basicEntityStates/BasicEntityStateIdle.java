@@ -2,6 +2,8 @@ package states.entityState.basicEntityStates;
 
 import java.awt.Point;
 
+import force.Force;
+import force.TimedForce;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
 
@@ -12,21 +14,20 @@ public class BasicEntityStateIdle extends EntityStateAbstract {
 		// TODO Auto-generated constructor stub
 	}
 	
-	// Methods Up and Down are temporary for movement
 	@Override
 	public void up() {
 		// TODO Auto-generated method stub
 		super.up();
-		int y = context.getEntity().getMoveSpeedY();
-		context.translate(0, -y);
+		// Create a TimedForce with the entity's jump strength
+		context.getEntity().addForce(new TimedForce(0, -context.getJumpStrength(), 500));
+		context.setEntityState(new BasicEntityStateRising(context));
 	}
 
 	@Override
 	public void right() {
 		// TODO Auto-generated method stub
 		super.right();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(x, 0);
+		context.translate(context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(true);
 		context.setEntityState(new BasicEntityStateWalking(context));
 	}
@@ -35,8 +36,7 @@ public class BasicEntityStateIdle extends EntityStateAbstract {
 	public void left() {
 		// TODO Auto-generated method stub
 		super.left();
-		int x = context.getEntity().getMoveSpeedX();
-		context.translate(-x, 0);
+		context.translate(-context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(false);
 		context.setEntityState(new BasicEntityStateWalking(context));
 	}
@@ -60,11 +60,6 @@ public class BasicEntityStateIdle extends EntityStateAbstract {
 				
 		Point curPos = context.getCurrentPosition();
 		Point lastPos = context.getLastPosition();
-		
-		// Change state to rising if moving up on y axis
-		if ((curPos.y - lastPos.y) < 0){
-			context.setEntityState(new BasicEntityStateRising(context));
-		}
 		
 		// Change state to falling if moving down on y axis		
 		if ((curPos.y - lastPos.y) > 0){

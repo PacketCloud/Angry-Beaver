@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import behaviour.AbstractBehaviour;
@@ -37,7 +38,7 @@ public abstract class AbstractEntity {
 	protected Set<Force> forces;
 	protected boolean isStatic;
 	protected int moveSpeedX;
-	protected int moveSpeedY;
+	protected int jumpStrength;
 	
 	protected boolean isInvulnerable;
 	protected int health;
@@ -65,7 +66,7 @@ public abstract class AbstractEntity {
 		this.forces = new HashSet<Force>();
 		this.isStatic = false;
 		this.moveSpeedX = 2;
-		this.moveSpeedY = 2;
+		this.jumpStrength = 3;
 		
 		this.isInvulnerable = false;
 		this.health = 1;
@@ -89,8 +90,18 @@ public abstract class AbstractEntity {
 	}
 	
 	private void updateForces() {
+		/*
 		for(Force f : forces) {
 			f.update(this);
+		}*/
+		
+		for (Iterator<Force> iterator = forces.iterator(); iterator.hasNext();) {
+		    Force f = iterator.next();
+		    if (f.expired) {
+		        iterator.remove();
+		    } else {
+		    	f.update(this);
+		    }
 		}
 	}
 
@@ -344,15 +355,15 @@ public abstract class AbstractEntity {
 	public void setMoveSpeedX(int moveSpeedX) {
 		this.moveSpeedX = moveSpeedX;
 	}
-
-	public int getMoveSpeedY() {
-		return moveSpeedY;
-	}
-
-	public void setMoveSpeedY(int moveSpeedY) {
-		this.moveSpeedY = moveSpeedY;
-	}
 	
+	public int getJumpStrength() {
+		return jumpStrength;
+	}
+
+	public void setJumpStrength(int jumpStrength) {
+		this.jumpStrength = jumpStrength;
+	}
+
 	public double getScaling() {
 		return scaling;
 	}
