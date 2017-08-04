@@ -4,6 +4,11 @@ import java.awt.Point;
 
 import entities.AbstractEntity;
 
+/*
+ * The Camera class provides values to offset rendering.
+ * Camera will smoothly position itself to a given Entity or Point.
+ */
+
 public class Camera {
 	protected Point position;
 	protected double OFFSETX = 1920/2; // Offset camera to center on X axis
@@ -18,14 +23,23 @@ public class Camera {
 		this.focusPoint = null;
 	}
 
+	/*
+	 * Return the X-axis offset so that drawing is centered around the camera position
+	 */
 	public double getX() {
 		return position.getX() - OFFSETX;
 	}
-	
+
+	/*
+	 * Return the Y-axis offset so that drawing is centered around the camera position
+	 */
 	public double getY() {
 		return position.getY() - OFFSETY;
 	}
 	
+	/*
+	 * Calculate the next position of the Camera 
+	 */
 	public void updateCamera() {
 		// For now, the camera will only focus on entities
 		if(focusEntity != null) {
@@ -34,7 +48,7 @@ public class Camera {
 		}
 	}
 	
-	/** Getters and Setters **/
+	/******** Getters and Setters ********/
 	
 	public AbstractEntity getFocusEntity() {
 		return focusEntity;

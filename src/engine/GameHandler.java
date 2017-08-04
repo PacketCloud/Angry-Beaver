@@ -2,18 +2,13 @@ package engine;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import javax.swing.JPanel;
 
-import entities.*;
 import keyInputs.*;
-import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 import states.gameState.*;
 
 /*
- * LevelHandler holds the game loop. It also holds the current level
- * and takes in keyboard inputs.
+ * GameHandler holds the game loop and the current state of the game
  */
 public class GameHandler extends JPanel {
 	
@@ -64,8 +59,6 @@ public class GameHandler extends JPanel {
         } while(!(getGameState().getState() instanceof states.gameState.GameStateStop));
 	}
 	
-	
-	
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
 		super.paintComponents(g);
@@ -73,6 +66,7 @@ public class GameHandler extends JPanel {
 	}
 	
 	/******** Getters and Setters ********/
+	
 	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub
