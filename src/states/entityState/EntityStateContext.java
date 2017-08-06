@@ -1,6 +1,5 @@
 package states.entityState;
 
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 import entities.AbstractEntity;
@@ -94,9 +93,9 @@ public class EntityStateContext {
 		return obj.getScaling();
 	}
 
-	public AbstractEntity makeEntity() {
+	public AbstractEntity makeEntity(String entity) {
 		// TODO Auto-generated method stub
-		return obj.makeEntity();
+		return obj.makeEntity(entity);
 	}
 	
 	public void addSubEntity(AbstractEntity e) {
@@ -105,6 +104,10 @@ public class EntityStateContext {
 	
 	public void removeSubEntity(AbstractEntity e) {
 		obj.removeEntity(e);
+	}
+	
+	public void destroy() {
+		obj.destroy();
 	}
 	
 	public int getMoveSpeedX() {

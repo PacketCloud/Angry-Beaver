@@ -2,17 +2,15 @@ package states.gameState;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.*;
 
-import behaviour.NoBehaviour;
 import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
+import entities.prefab.Beaver;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
-import states.entityState.EntityStateFactory;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -39,7 +37,7 @@ public class GameStateRun extends GameStateAbstract {
 		PlayerResourceCollection.add(new Resource("Beaver Rising", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Rising"));
 		PlayerResourceCollection.add(new Resource("Beaver Attack", "/Resources/Sprites/Player/Beaver_Munch.gif", (float) 2.5, null, true, "Attack1"));
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		AbstractEntity player = new BasicEntity(PlayerResourceCollection);
+		AbstractEntity player = new Beaver(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
 		
 		Hitbox playerh= new Hitbox(2, 2, 20, 15);

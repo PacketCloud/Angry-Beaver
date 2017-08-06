@@ -77,9 +77,9 @@ public abstract class AbstractEntity {
 		state.checkForNextState();
 		
 		this.lastPosition = new Point(position);
-		//state.setForNextState();
 		
-		// Should health check be done in states?
+		// Temporary code
+		// TODO: BasicEntityStateDying
 		if(health < 0) {
 			destroy();
 		}
@@ -151,7 +151,8 @@ public abstract class AbstractEntity {
 	}
 	
 	public void destroy() {
-		// Other actions such as dropping items?
+		// Other actions on the destruction of an entity should be handled
+		// by the State and the MakeEntity() method
 		
 		// Destroy all related entities
 		for(AbstractEntity e : entities) {
@@ -206,26 +207,9 @@ public abstract class AbstractEntity {
 		return 1;
 	}
 	
-	
 	// Temporary helper function inside AbstractEntity
-	public AbstractEntity makeEntity() {
-		
-		Image texture = model.getImageIcon(state.toString());
-
-		// TODO: Code Cleanup
-		ResourceCollection ClawResourceCollection = new ResourceCollection("Claw");
-		ClawResourceCollection.add(new Resource("Claw", "/Resources/Sprites/Entities/Beaver_Claw.gif", (float) 2.5, null, true, "Idle"));
-		AbstractEntity claw = new BasicEntity(ClawResourceCollection);
-		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
-				(int) (position.getY() - 5 * scaling)));
-		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
-		clawh1.setTrigger(true);
-		claw.addHitbox(clawh1);
-		claw.setStatic(true);
-		claw.setScaling(scaling);
-		claw.setFacingRight(facingRight);
-		claw.setDamage(1);
-		return claw;		
+	public AbstractEntity makeEntity(String entity) {
+		return null;
 	}
 	
 	/* Getters and Setters */

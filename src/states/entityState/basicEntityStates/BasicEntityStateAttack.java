@@ -16,11 +16,13 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 		
 		// Currently testing
 		startTime = System.nanoTime() / 1000000;
-		attackEntity = context.makeEntity();
+		attackEntity = context.makeEntity(stateToString());
 		
-		// Add claw as a sub-entity and as an entity in the level
-		context.addSubEntity(attackEntity);
-		context.getEntity().getLevel().addEntity(attackEntity);
+		if(attackEntity != null) {
+			// Add claw as a sub-entity and as an entity in the level
+			context.addSubEntity(attackEntity);
+			context.getEntity().getLevel().addEntity(attackEntity);
+		}
 	}
 
 	@Override
@@ -48,9 +50,11 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 		long endTime = System.nanoTime() / 1000000 - startTime;
 		// The duration of Beaver_Claw.gif is 1000 milliseconds
 		if(endTime > 1000){
-			// Remove claw as a sub-entity and as an entity in the level
-			context.removeSubEntity(attackEntity);
-			attackEntity.destroy();
+			if(attackEntity != null) {
+				// Remove claw as a sub-entity and as an entity in the level
+				context.removeSubEntity(attackEntity);
+				attackEntity.destroy();
+			}
 			
 			Point curPos = context.getCurrentPosition();
 			Point lastPos = context.getLastPosition();
