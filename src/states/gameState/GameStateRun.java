@@ -9,6 +9,10 @@ import entities.*;
 import entities.prefab.Beaver;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
+import model.BeaverModel;
+import model.CrateModel;
+import model.PlatformModel;
+import model.TreeModel;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
@@ -29,17 +33,10 @@ public class GameStateRun extends GameStateAbstract {
 	public Level loadLevel(String name) {
 		Level level = new Level();
 		// TODO: Level loading should be done with file utility
-		// Player
-		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
-		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
-		PlayerResourceCollection.add(new Resource("Beaver Idle", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Idle"));
-		PlayerResourceCollection.add(new Resource("Beaver Falling", "/Resources/Sprites/Player/Beaver_Falling.png", (float) 2.5, null, true, "Falling"));
-		PlayerResourceCollection.add(new Resource("Beaver Rising", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Rising"));
-		PlayerResourceCollection.add(new Resource("Beaver Attack", "/Resources/Sprites/Player/Beaver_Munch.gif", (float) 2.5, null, true, "Attack1"));
+		// Player		
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		AbstractEntity player = new Beaver(PlayerResourceCollection);
+		AbstractEntity player = new Beaver(new BeaverModel());
 		player.setBehaviour(playerBehaviour);
-		
 		Hitbox playerh= new Hitbox(2, 2, 20, 15);
 		playerh.setBody(true);
 		player.addHitbox(playerh);
@@ -47,19 +44,15 @@ public class GameStateRun extends GameStateAbstract {
 		player.setPosition(new Point(400, 200));
 
 		// Platform
-		ResourceCollection PlatformResourceCollection = new ResourceCollection("Platform");
-		PlatformResourceCollection.add(new Resource("Grass1", "/Resources/Textures/Environment/grass1.png", (float) 2.5, null, true, "NoEntityState"));
-		AbstractEntity p1 = new BasicNullEntity(PlatformResourceCollection);
+		AbstractEntity p1 = new BasicNullEntity(new PlatformModel());
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
-		p1.setStatic(true);
 		p1.addHitbox(plath);
+		p1.setStatic(true);
 		p1.setPosition(new Point(350,300));
 		
 		// Tree
-		ResourceCollection TreeResourceCollection = new ResourceCollection("Tree");
-		TreeResourceCollection.add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "NoEntityState"));
-		AbstractEntity tree = new BasicNullEntity(TreeResourceCollection);
+		AbstractEntity tree = new BasicNullEntity(new TreeModel());
 		tree.setPosition(new Point(500, 150));
 		tree.addHitbox(new Hitbox(0, 0, 35, 21));
 		Hitbox treeh1 = new Hitbox(11, 21, 9, 42);
@@ -68,9 +61,7 @@ public class GameStateRun extends GameStateAbstract {
 		tree.setScaling(3);
 		
 		// Crate
-		ResourceCollection  CrateResourceCollection = new ResourceCollection("Crate");
-		CrateResourceCollection.add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "NoEntityState"));
-		AbstractEntity crate = new BasicNullEntity(CrateResourceCollection);
+		AbstractEntity crate = new BasicNullEntity(new CrateModel());
 		crate.setPosition(new Point(800, 200));
 		Hitbox crateh1 = new Hitbox(2, 2, 15, 15);
 		crateh1.setSolid(true);

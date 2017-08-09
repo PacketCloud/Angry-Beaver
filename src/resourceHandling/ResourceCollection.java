@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
+import hitbox.Hitbox;
 import resourceHandling.Resource;
 
 public class ResourceCollection {

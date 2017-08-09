@@ -21,6 +21,7 @@ public class Resource {
 		setSoundPath(soundPath);
 		setSoundLoops(soundLoops);
 		setStateName(stateName);
+		
 	}
 	
 	/******** Getters and Setters ********/

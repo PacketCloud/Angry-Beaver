@@ -6,6 +6,7 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import entities.BasicEntity;
 import hitbox.Hitbox;
+import model.ClawModel;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
@@ -31,9 +32,8 @@ public class Beaver extends BasicEntity {
 		Image texture = model.getImageIcon(state.toString());
 
 		// TODO: Code Cleanup
-		ResourceCollection ClawResourceCollection = new ResourceCollection("Claw");
-		ClawResourceCollection.add(new Resource("Claw", "/Resources/Sprites/Entities/Beaver_Claw.gif", (float) 2.5, null, true, "Idle"));
-		AbstractEntity claw = new BasicEntity(ClawResourceCollection);
+		
+		AbstractEntity claw = new BasicEntity(new ClawModel());
 		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
 				(int) (position.getY() - 5 * scaling)));
 		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);

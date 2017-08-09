@@ -263,6 +263,7 @@ public abstract class AbstractEntity {
 		this.lastPosition = new Point(position);
 	}
 
+	
 	public void addHitbox(Hitbox hitbox) {
 		hitboxes.add(hitbox);
 	}
@@ -288,6 +289,7 @@ public abstract class AbstractEntity {
 		return absHitboxes;
 	}
 
+	
 	public void setHitboxes(ArrayList<Hitbox> hitboxes) {
 		this.hitboxes = hitboxes;
 	}
