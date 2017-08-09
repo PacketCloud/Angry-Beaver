@@ -1,10 +1,5 @@
 package entities;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-
-import behaviour.AbstractBehaviour;
-import engine.Level;
 import resourceHandling.ResourceCollection;
 
 public class BasicEntity extends AbstractEntity {

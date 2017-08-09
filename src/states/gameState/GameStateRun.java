@@ -44,7 +44,7 @@ public class GameStateRun extends GameStateAbstract {
 		player.setPosition(new Point(400, 200));
 
 		// Platform
-		AbstractEntity p1 = new BasicNullEntity(new PlatformModel());
+		AbstractEntity p1 = new BasicPlatform(new PlatformModel());
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
 		p1.addHitbox(plath);

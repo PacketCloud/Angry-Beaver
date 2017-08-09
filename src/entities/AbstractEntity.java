@@ -106,10 +106,12 @@ public abstract class AbstractEntity {
 	}
 
 	public void render(Graphics2D g) {
-		//state.render(g);
-		
+		renderTexture(g);
+		renderHitboxes(g);
+	}
+	
+	public void renderTexture(Graphics2D g) {
 		Image texture = model.getImageIcon(state.toString());
-		//float textureScale = model.getImageScale(state.toString());
 		int facing = facing();
 		
 		// Render image
@@ -123,8 +125,10 @@ public abstract class AbstractEntity {
 			g.setColor(Color.WHITE);
 			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
 		}
-
-		// Temporary rendering of the hitboxes
+	}
+	
+	public void renderHitboxes(Graphics2D g){
+		// Temporary rendering of the hitboxes for development purposes
 		ArrayList<Hitbox> absoluteHitboxes = getAbsHitboxes();
 		
 		for(Hitbox h : absoluteHitboxes) {
@@ -160,10 +164,6 @@ public abstract class AbstractEntity {
 		}
 		
 		level.removeEntity(this);
-	}
-	
-	public void hasIntersected(AbstractEntity obj) {
-		// Not used
 	}
 	
 	public void translate(int x, int y) {
