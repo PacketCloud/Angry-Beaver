@@ -47,13 +47,15 @@ public class Level {
 	 */
 	public void updateLevel(){
 		
-		entityList.removeAll(removeBufferList);
-		entityList.addAll(addBufferList);
-		addBufferList.clear();
-		
 		for(AbstractEntity entity : entityList){
 			entity.update();
 		}
+		
+		entityList.removeAll(removeBufferList);
+		entityList.addAll(addBufferList);
+		addBufferList.clear();
+		removeBufferList.clear();
+		
 		detector.detectCollisions();
 		
 		camera.updateCamera();

@@ -7,8 +7,8 @@ import entities.AbstractEntity;
 import entities.BasicEntity;
 import hitbox.Hitbox;
 import model.ClawModel;
-import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
+import trigger.TriggerFactory;
 
 public class Beaver extends BasicEntity {
 
@@ -39,10 +39,12 @@ public class Beaver extends BasicEntity {
 		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
 		clawh1.setTrigger(true);
 		claw.addHitbox(clawh1);
+		claw.setTrigger(new TriggerFactory().createTrigger("Damage"));
 		claw.setStatic(true);
 		claw.setScaling(scaling);
 		claw.setFacingRight(facingRight);
 		claw.setDamage(1);
+		
 		return claw;
 	}
 

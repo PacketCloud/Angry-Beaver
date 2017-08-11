@@ -6,6 +6,7 @@ import java.util.Map;
 
 import entities.AbstractEntity;
 import hitbox.Hitbox;
+import trigger.Trigger;
 
 /*
  * CollisionDetector checks for collisions between entities by
@@ -127,14 +128,22 @@ public class CollisionDetector {
 			Hitbox h1 = overlap.getKey();
 		    Hitbox h2 = overlap.getValue();
 		    
-		    // e1 attacks e2
-		    if(h1.isTrigger() && h2.isBody()) {
-		    	e2.isHitBy(e1);
+		    // e1 touches a trigger from e2
+		    if(h1.isBody() && h2.isTrigger()) {
+		    	// e1.isTriggeredBy(e2);
+		    	Trigger trigger = e2.getTrigger();
+		    	if(trigger != null) {
+		    		trigger.triggerEffects(e1, e2);
+		    	}
 		    }
 
-		    // e2 attacks e1
-		    if(h1.isTrigger() && h2.isBody()) {
-		    	e1.isHitBy(e2);
+		    // e2 touches a trigger from e1
+		    if(h2.isBody() && h1.isTrigger()) {
+		    	// e2.isTriggeredBy(e1);
+		    	Trigger trigger = e1.getTrigger();
+		    	if(trigger != null) {
+		    		trigger.triggerEffects(e2, e1);
+		    	}
 		    }
 		    
 		    

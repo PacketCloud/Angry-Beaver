@@ -16,6 +16,7 @@ import force.Force;
 import hitbox.Hitbox;
 import resourceHandling.*;
 import states.entityState.EntityStateContext;
+import trigger.Trigger;
 
 public abstract class AbstractEntity {
 	
@@ -28,7 +29,8 @@ public abstract class AbstractEntity {
 	protected Point lastPosition;
 	protected ArrayList<Hitbox> hitboxes;
 	protected ArrayList<AbstractEntity> entities;	
-
+	protected Trigger trigger;
+	
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
@@ -146,14 +148,6 @@ public abstract class AbstractEntity {
 		}
 	}
 	
-	public void isHitBy(AbstractEntity e) {
-		// Currently, this damage is done every frame update. Consider having a 'cooldown' on damage taken
-		// Damage is also taken by your own attacks
-		if(!isInvulnerable) {
-			health -= e.getDamage();
-		}
-	}
-	
 	public void destroy() {
 		// Other actions on the destruction of an entity should be handled
 		// by the State and the MakeEntity() method
@@ -207,12 +201,12 @@ public abstract class AbstractEntity {
 		return 1;
 	}
 	
-	// Temporary helper function inside AbstractEntity
+	// Overridable method inside AbstractEntity to create sub-entities
 	public AbstractEntity makeEntity(String entity) {
 		return null;
 	}
 	
-	/* Getters and Setters */
+	/******** Getters and Setters ********/
 	
 	public String getId() {
 		return id;
@@ -318,6 +312,14 @@ public abstract class AbstractEntity {
 		entities.remove(e);
 	}
 	
+	public ArrayList<AbstractEntity> getEntities() {
+		return entities;
+	}
+
+	public void setEntities(ArrayList<AbstractEntity> entities) {
+		this.entities = entities;
+	}
+
 	public boolean isFacingRight() {
 		return facingRight;
 	}
@@ -390,5 +392,12 @@ public abstract class AbstractEntity {
 	public void setInvulnerable(boolean isInvulnerable) {
 		this.isInvulnerable = isInvulnerable;
 	}
-	
+
+	public Trigger getTrigger() {
+		return trigger;
+	}
+
+	public void setTrigger(Trigger trigger) {
+		this.trigger = trigger;
+	}
 }
