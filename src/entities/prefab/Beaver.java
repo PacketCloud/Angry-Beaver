@@ -39,7 +39,7 @@ public class Beaver extends BasicEntity {
 		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
 		clawh1.setTrigger(true);
 		claw.addHitbox(clawh1);
-		claw.setTrigger(new TriggerFactory().createTrigger("Damage"));
+		claw.setTrigger(new TriggerFactory().createTrigger("Damage KnockBack"));
 		claw.setStatic(true);
 		claw.setScaling(scaling);
 		claw.setFacingRight(facingRight);

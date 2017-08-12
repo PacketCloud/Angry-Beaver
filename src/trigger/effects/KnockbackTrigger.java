@@ -4,17 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import entities.AbstractEntity;
+import force.TimedForce;
 import trigger.AbstractTrigger;
 import trigger.Trigger;
 
-/*
- * Used for if Entity2 will Damage Entity1
- */
-public class DamageTrigger extends AbstractTrigger {
+public class KnockbackTrigger extends AbstractTrigger {
 	protected Map<AbstractEntity, AbstractEntity> previousHits;
 	
-	
-	public DamageTrigger(Trigger nextTrigger) {
+	public KnockbackTrigger(Trigger nextTrigger) {
 		super(nextTrigger);
 		previousHits = new HashMap<AbstractEntity, AbstractEntity>();
 	}
@@ -24,14 +21,11 @@ public class DamageTrigger extends AbstractTrigger {
 		// TODO Auto-generated method stub
 		super.triggerEffects(entity1, entity2);
 		
-		// If entity2 is not a sub-entity of entity1 and this hit has not happened yet
+		// Example of a knockback effect for an attack
+		// TODO: Allow TriggerFactory to dynamically create different forces of knockback
 		if(!entity1.getEntities().contains(entity2) && previousHits.get(entity1) != entity2) {
-			if(!entity1.isInvulnerable()) {
-				// Entity1 is damaged by Entity2
-				entity1.setHealth(entity1.getHealth() - entity2.getDamage());
-				previousHits.put(entity1, entity2);
-				// TODO: Handle Attack Cooldowns?
-			}
+			entity1.addForce(new TimedForce(-5 * entity2.facing(), -2, 250));
+			previousHits.put(entity1, entity2);
 		}
 	}
 }

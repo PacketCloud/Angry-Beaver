@@ -8,7 +8,6 @@ import entities.AbstractEntity;
 public abstract class AbstractTrigger implements Trigger {
 	protected Trigger nextTrigger;
 	
-	
 	public AbstractTrigger(Trigger nextTrigger) {
 		this.nextTrigger = nextTrigger;
 	}

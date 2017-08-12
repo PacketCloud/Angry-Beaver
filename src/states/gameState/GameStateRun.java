@@ -59,6 +59,7 @@ public class GameStateRun extends GameStateAbstract {
 		treeh1.setBody(true);
 		tree.addHitbox(treeh1);
 		tree.setScaling(3);
+		tree.setHealth(5);
 		
 		// Crate
 		AbstractEntity crate = new BasicNullEntity(new CrateModel());
@@ -68,6 +69,7 @@ public class GameStateRun extends GameStateAbstract {
 		crateh1.setBody(true);
 		crate.addHitbox(crateh1);
 		crate.setScaling(2);
+		crate.setHealth(3);
 		
 		// Add player into the level
 		level.addEntity(player);

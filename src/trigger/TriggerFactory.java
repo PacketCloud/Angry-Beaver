@@ -1,6 +1,7 @@
 package trigger;
 
 import trigger.effects.DamageTrigger;
+import trigger.effects.KnockbackTrigger;
 import trigger.effects.SimpleTrigger;
 
 
@@ -24,6 +25,8 @@ public class TriggerFactory {
 		switch(split[0]) {
 		case "Damage":
 			return new DamageTrigger(holder);
+		case "KnockBack":
+			return new KnockbackTrigger(holder);
 		default:
 			return new SimpleTrigger();
 		}

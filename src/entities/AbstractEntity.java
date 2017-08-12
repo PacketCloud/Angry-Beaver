@@ -82,7 +82,7 @@ public abstract class AbstractEntity {
 		
 		// Temporary code
 		// TODO: BasicEntityStateDying
-		if(health < 0) {
+		if(health <= 0) {
 			destroy();
 		}
 		
