@@ -8,9 +8,9 @@ public class EntityStateContext {
 	public EntityStateAbstract entityState;
 	public AbstractEntity obj;
 	
-	public EntityStateContext(AbstractEntity obj) {
+	public EntityStateContext(AbstractEntity obj, String state) {
 		this.obj = obj;
-		initState(obj.toString());
+		initState(state);
 	}
 	
 	public void initState(String stateName) {
@@ -116,5 +116,9 @@ public class EntityStateContext {
 	
 	public int getJumpStrength() {
 		return obj.getJumpStrength();
+	}
+	
+	public int getHealth() {
+		return obj.getHealth();
 	}
 }

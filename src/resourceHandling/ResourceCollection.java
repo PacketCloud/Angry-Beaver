@@ -2,14 +2,12 @@ package resourceHandling;
 
 import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
-import hitbox.Hitbox;
 import resourceHandling.Resource;
 
 public class ResourceCollection {
 //A structure referencing all assets associated with an entity for all possible states.
-//This way the game knows what to render for each entity, or what sounds to play, depending on what state it is in.
+//This way the game knows what to render for each entity, or what sounds to play, depending on what state it is in. 
 	private String CollectionName;
 	private ArrayList<Resource> CollectionList = new ArrayList<Resource>();
 	
@@ -28,7 +26,7 @@ public class ResourceCollection {
 			}
 		}
 		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
-		return null;
+		return getImageIcon("Default");
 	}
 	
 	public Image getImageIconFromPath(String path) {

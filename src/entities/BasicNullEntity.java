@@ -2,10 +2,11 @@ package entities;
 
 import resourceHandling.ResourceCollection;
 
+/* Currently not in use */
 public class BasicNullEntity extends AbstractEntity {
 
 	public BasicNullEntity(ResourceCollection model) {
-		super(model);
+		super(model, "");
 		initializeNullEntity();
 	}
 

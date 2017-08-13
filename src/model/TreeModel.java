@@ -11,6 +11,7 @@ public class TreeModel extends ResourceCollection {
 	}
 
 	public void initialize() {
+		add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "Default"));
 		add(new Resource("Tree", "/Resources/Sprites/Entities/Tree.png", (float) 2.5, null, true, "NoEntityState"));
 	}
 }

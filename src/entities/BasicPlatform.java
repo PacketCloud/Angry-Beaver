@@ -12,7 +12,7 @@ import resourceHandling.ResourceCollection;
 public class BasicPlatform extends AbstractEntity{
 
 	public BasicPlatform(ResourceCollection model) {
-		super(model);
+		super(model, "Basic Null Entity");
 		initializePlatform();
 	}
 	

@@ -1,6 +1,6 @@
 package states.entityState;
 
-import entities.AbstractEntity;
+import states.entityState.basicEntityStates.BasicEntityStateDying;
 
 public class NoEntityState extends EntityStateAbstract {
 
@@ -18,7 +18,9 @@ public class NoEntityState extends EntityStateAbstract {
 	@Override
 	public void checkForNextState() {
 		// TODO Auto-generated method stub
-		
+		if (context.getHealth() == 0) {
+			context.setEntityState(new BasicEntityStateDying(context));
+		}
 	}
 
 }

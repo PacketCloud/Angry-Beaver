@@ -11,6 +11,7 @@ public class CrateModel extends ResourceCollection {
 	}
 	
 	public void initialize() {
+		add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "Default"));
 		add(new Resource("Crate", "/Resources/Sprites/Entities/Wooden Crate.gif", (float) 2.5, null, true, "NoEntityState"));
 	}
 }

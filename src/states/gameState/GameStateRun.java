@@ -7,10 +7,14 @@ import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
 import entities.prefab.Beaver;
+import entities.prefab.Crate;
+import entities.prefab.Deer;
+import entities.prefab.Tree;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
 import model.BeaverModel;
 import model.CrateModel;
+import model.DeerModel;
 import model.PlatformModel;
 import model.TreeModel;
 import resourceHandling.Resource;
@@ -52,7 +56,7 @@ public class GameStateRun extends GameStateAbstract {
 		p1.setPosition(new Point(350,300));
 		
 		// Tree
-		AbstractEntity tree = new BasicNullEntity(new TreeModel());
+		AbstractEntity tree = new Tree(new TreeModel());
 		tree.setPosition(new Point(500, 150));
 		tree.addHitbox(new Hitbox(0, 0, 35, 21));
 		Hitbox treeh1 = new Hitbox(11, 21, 9, 42);
@@ -62,7 +66,7 @@ public class GameStateRun extends GameStateAbstract {
 		tree.setHealth(5);
 		
 		// Crate
-		AbstractEntity crate = new BasicNullEntity(new CrateModel());
+		AbstractEntity crate = new Crate(new CrateModel());
 		crate.setPosition(new Point(800, 200));
 		Hitbox crateh1 = new Hitbox(2, 2, 15, 15);
 		crateh1.setSolid(true);
@@ -70,6 +74,16 @@ public class GameStateRun extends GameStateAbstract {
 		crate.addHitbox(crateh1);
 		crate.setScaling(2);
 		crate.setHealth(3);
+		
+		// Deer
+		AbstractEntity deer = new Deer(new DeerModel());
+		// TODO: Add Deer Behaviour
+		deer.setPosition(new Point(950, 250));
+		Hitbox deerh1 = new Hitbox(15, 7, 33, 30);
+		deerh1.setBody(true);
+		deer.addHitbox(deerh1);
+		deer.setScaling(3);
+		deer.setHealth(3);
 		
 		// Add player into the level
 		level.addEntity(player);
@@ -82,6 +96,7 @@ public class GameStateRun extends GameStateAbstract {
 		level.addEntity(p1);
 		level.addEntity(tree);
 		level.addEntity(crate);
+		level.addEntity(deer);
 		
 		return level;
 	}

@@ -42,19 +42,19 @@ public abstract class AbstractEntity {
 	protected int moveSpeedX;
 	protected int jumpStrength;
 	
-	protected boolean isInvulnerable;
+	protected boolean isInvulnerable; // Currently not implemented
 	protected int health;
 	protected int damage;
 	
 	
-	public AbstractEntity(ResourceCollection model) {
-		initialize(model);
+	public AbstractEntity(ResourceCollection model, String state) {
+		initialize(model, state);
 	}
 	
-	public void initialize(ResourceCollection model) {
+	public void initialize(ResourceCollection model, String state) {
 		this.model = model;
 		this.behaviour = new NoBehaviour();
-		this.state = new EntityStateContext(this);
+		this.state = new EntityStateContext(this, state);
 		
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);
@@ -82,9 +82,9 @@ public abstract class AbstractEntity {
 		
 		// Temporary code
 		// TODO: BasicEntityStateDying
-		if(health <= 0) {
+		/*if(health <= 0) {
 			destroy();
-		}
+		}*/
 		
 		behaviour.run(this);
 		// Update movement due to external forces
@@ -117,13 +117,14 @@ public abstract class AbstractEntity {
 		int facing = facing();
 		
 		// Render image
-		if(texture != null) {
+		if(texture != null) {			
 			g.drawImage(texture,//image to draw.
 				(int) (position.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * scaling),//x position to draw, dependent on direction facing and scale.
 				(int) position.getY(),//y position to draw.
 				(int) (texture.getWidth(null) * facing * scaling),//dx position to draw, dependent on direction facing and scale.
 				(int) (texture.getHeight(null) * scaling),//dy position to draw, dependent on scale.
 				null);//observer, null.
+			
 			g.setColor(Color.WHITE);
 			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
 		}

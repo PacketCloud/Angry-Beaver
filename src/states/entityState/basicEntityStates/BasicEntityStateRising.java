@@ -51,6 +51,10 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 		if ((curPos.y - lastPos.y) > 0){
 			context.setEntityState(new BasicEntityStateFalling(context));
 		}
+		
+		if (context.getHealth() == 0) {
+			context.setEntityState(new BasicEntityStateDying(context));
+		}
 	}
 
 	@Override

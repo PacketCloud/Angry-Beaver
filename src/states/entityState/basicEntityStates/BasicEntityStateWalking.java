@@ -68,5 +68,9 @@ public class BasicEntityStateWalking extends EntityStateAbstract {
 		if ((curPos.x - lastPos.x) == 0){
 			context.setEntityState(new BasicEntityStateIdle(context));
 		}
+		
+		if (context.getHealth() == 0) {
+			context.setEntityState(new BasicEntityStateDying(context));
+		}
 	}
 }

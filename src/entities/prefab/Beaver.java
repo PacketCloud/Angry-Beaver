@@ -4,16 +4,15 @@ import java.awt.Image;
 import java.awt.Point;
 
 import entities.AbstractEntity;
-import entities.BasicEntity;
 import hitbox.Hitbox;
 import model.ClawModel;
 import resourceHandling.ResourceCollection;
 import trigger.TriggerFactory;
 
-public class Beaver extends BasicEntity {
+public class Beaver extends AbstractEntity {
 
 	public Beaver(ResourceCollection model) {
-		super(model);
+		super(model, "Basic Entity");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,7 +32,7 @@ public class Beaver extends BasicEntity {
 
 		// TODO: Code Cleanup
 		
-		AbstractEntity claw = new BasicEntity(new ClawModel());
+		AbstractEntity claw = new Claw(new ClawModel());
 		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
 				(int) (position.getY() - 5 * scaling)));
 		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
