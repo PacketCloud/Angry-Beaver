@@ -20,6 +20,8 @@ public class BeaverModel extends ResourceCollection {
 		ArrayList<Hitbox> hitboxes = new ArrayList<Hitbox>();
 		hitboxes.add(playerh);*/
 		
+		add(new Resource("Beaver Default", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Default"));
+		
 		add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
 		add(new Resource("Beaver Idle", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Idle"));
 		add(new Resource("Beaver Falling", "/Resources/Sprites/Player/Beaver_Falling.png", (float) 2.5, null, true, "Falling"));

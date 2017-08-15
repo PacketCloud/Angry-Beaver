@@ -79,6 +79,20 @@ public class CollisionDetector {
 	}
 
 	/*
+	 * Returns true if the entity intersects the given hitbox 
+	 */
+	public boolean intersectsArea(AbstractEntity e, Hitbox hitbox) {
+		ArrayList<Hitbox> hitboxes = e.getAbsHitboxes();
+		for(Hitbox h : hitboxes) {
+			if(intersects(h, hitbox)) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	/*
 	 * Returns the distance between two hitboxes on the X-axis
 	 */
 	public int getXDistance(Hitbox h1, Hitbox h2) {

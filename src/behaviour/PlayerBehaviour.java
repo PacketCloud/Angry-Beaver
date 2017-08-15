@@ -17,7 +17,7 @@ public class PlayerBehaviour extends AbstractBehaviour {
 		
 		Iterator<String> itr = inputSet.iterator();
 		while(itr.hasNext()) {
-			behaviour(itr.next(), entity);
+			doAction(itr.next(), entity);
 		}
 	}
 }

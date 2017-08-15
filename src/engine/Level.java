@@ -15,6 +15,7 @@ import entities.AbstractEntity;
 import fileUtility.OpenImage;
 import force.Force;
 import force.Gravity;
+import hitbox.Hitbox;
 
 /*
  * Level contains all entities
@@ -105,10 +106,36 @@ public class Level {
 	}
 	
 	/*
-	 * Get the entity associated with a given ID
+	 * Returns the entity associated with a given ID
 	 */
 	public AbstractEntity findByID(String id){
 		return ids.get(id);
+	}
+	
+	/*
+	 * Returns all entities of a certain class
+	 */
+	public ArrayList<AbstractEntity> findByType(Class c) {
+		ArrayList<AbstractEntity> list = new ArrayList<AbstractEntity>();
+		for(AbstractEntity e : entityList) {
+			if(c.isInstance(e)) {
+				list.add(e);
+			}
+		}
+		return list;
+	}
+	
+	/*
+	 * Returns all entities within a certain area
+	 */
+	public ArrayList<AbstractEntity> findByArea(Hitbox h) {
+		ArrayList<AbstractEntity> list = new ArrayList<AbstractEntity>();
+		for(AbstractEntity e : entityList) {
+			if(detector.intersectsArea(e, h)) {
+				list.add(e);
+			}
+		}
+		return list;
 	}
 	
 	/*

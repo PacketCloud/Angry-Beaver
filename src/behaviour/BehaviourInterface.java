@@ -7,5 +7,5 @@ public interface BehaviourInterface {
 	
 	//TODO: Define Behavior interface, then implement in subclasses.
 	public void run(AbstractEntity entity);
-	public void behaviour(String action, AbstractEntity entity);
+	public void doAction(String action, AbstractEntity entity);
 }

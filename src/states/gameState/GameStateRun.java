@@ -45,6 +45,7 @@ public class GameStateRun extends GameStateAbstract {
 		playerh.setBody(true);
 		player.addHitbox(playerh);
 		player.setScaling(2.5);
+		player.setId("Player");
 		player.setPosition(new Point(400, 200));
 
 		// Platform
@@ -76,6 +77,7 @@ public class GameStateRun extends GameStateAbstract {
 		crate.setHealth(3);
 		
 		// Deer
+		/* A Beaver is temporarily in use as Deer assets are being made
 		AbstractEntity deer = new Deer(new DeerModel());
 		// TODO: Add Deer Behaviour
 		deer.setPosition(new Point(950, 250));
@@ -84,6 +86,15 @@ public class GameStateRun extends GameStateAbstract {
 		deer.addHitbox(deerh1);
 		deer.setScaling(3);
 		deer.setHealth(3);
+		*/
+
+		AbstractEntity beaver = new Beaver(new BeaverModel());
+		beaver.setPosition(new Point(950, 250));
+		Hitbox beaverh1= new Hitbox(2, 2, 20, 15);
+		beaverh1.setBody(true);
+		beaver.addHitbox(beaverh1);
+		beaver.setScaling(3);
+		beaver.setHealth(3);
 		
 		// Add player into the level
 		level.addEntity(player);
@@ -96,7 +107,8 @@ public class GameStateRun extends GameStateAbstract {
 		level.addEntity(p1);
 		level.addEntity(tree);
 		level.addEntity(crate);
-		level.addEntity(deer);
+		//level.addEntity(deer);
+		level.addEntity(beaver);
 		
 		return level;
 	}

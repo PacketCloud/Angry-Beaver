@@ -9,7 +9,7 @@ public abstract class AbstractBehaviour implements BehaviourInterface {
 	public AbstractBehaviour () {}
 
 	@Override
-	public void behaviour(String action, AbstractEntity entity) {
+	public void doAction(String action, AbstractEntity entity) {
 		// TODO Auto-generated method stub
 		switch (action) {
 		case ACTIONS.MOVE_UP:
