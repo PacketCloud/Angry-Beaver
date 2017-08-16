@@ -1,16 +1,11 @@
 package states.gameState;
 
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.ImageIcon;
-
-import engine.GameHandler;
 import fileUtility.OpenImage;
 
 public class GameStateMenu extends GameStateAbstract {
@@ -18,9 +13,6 @@ public class GameStateMenu extends GameStateAbstract {
 	private ArrayList<String> menuText  = new ArrayList<String>(Arrays.asList("Play", "Options","Exit"));
 	private int chosen = 0;	
 	private Image background = null;
-	private Color titleColor = Color.BLACK;
-	private Color defaultColor = Color.BLACK;
-	private Color selectColor = Color.RED;
 	
 	public GameStateMenu(GameStateContext context) {
 		super(context);
@@ -37,20 +29,18 @@ public class GameStateMenu extends GameStateAbstract {
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
-		// TODO: Menu background?
 		drawBackground(g);
+		
 		// TODO: Positioning of text based on the window size.
-		//g.scale(1, 1);
-		// Set title
-		Font font = new Font("Arial", 0, 100);
+		// Set menu title
+		Font font = new Font(titleFont, 0, titleSize);
 		g.setFont(font);
 		g.setColor(titleColor);
 		
 		g.drawString(menuTitle, 290, 150);
 		
-		// Set menu text
-		Font font1 = new Font("Comic Sans MS", 0, 50);
+		// Set selection text
+		Font font1 = new Font(textFont, 0, textSize);
 		g.setFont(font1);
 		
 		int y = 300;

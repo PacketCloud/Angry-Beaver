@@ -33,6 +33,10 @@ public class Settings {
 		 settingFile.close();
 	}
 	
+	public void saveUserSettings() {
+		// TODO: Use OpenFile to save settings to settings.cfg
+		// OpenFile does not have capability for saving
+	}
 	
 	public void parseLine(String[] split) {
 		// More cases should be added as more Settings features are defined
