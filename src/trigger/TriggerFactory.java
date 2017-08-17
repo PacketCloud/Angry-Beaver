@@ -31,6 +31,4 @@ public class TriggerFactory {
 			return new SimpleTrigger();
 		}
 	}
-	
-	
 }

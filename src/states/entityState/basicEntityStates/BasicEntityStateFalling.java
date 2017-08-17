@@ -52,7 +52,7 @@ public class BasicEntityStateFalling extends EntityStateAbstract {
 			context.setEntityState(new BasicEntityStateRising(context));
 		}
 		
-		if (context.getHealth() == 0) {
+		if (context.getHealth() <= 0) {
 			context.setEntityState(new BasicEntityStateDying(context));
 		}
 	}

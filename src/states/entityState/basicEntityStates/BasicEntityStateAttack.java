@@ -54,6 +54,9 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 				// Remove claw as a sub-entity and as an entity in the level
 				context.removeSubEntity(attackEntity);
 				attackEntity.destroy();
+				
+				// Temporary solution to restarting an attack animation which only loops once
+				context.getEntity().getModel().getImageIcon(stateToString()).flush();
 			}
 			
 			Point curPos = context.getCurrentPosition();
@@ -74,7 +77,7 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 				context.setEntityState(new BasicEntityStateFalling(context));
 			}
 			
-			if (context.getHealth() == 0) {
+			if (context.getHealth() <= 0) {
 				context.setEntityState(new BasicEntityStateDying(context));
 			}
 		}

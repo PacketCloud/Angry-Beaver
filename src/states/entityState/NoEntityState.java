@@ -18,7 +18,7 @@ public class NoEntityState extends EntityStateAbstract {
 	@Override
 	public void checkForNextState() {
 		// TODO Auto-generated method stub
-		if (context.getHealth() == 0) {
+		if (context.getHealth() <= 0) {
 			context.setEntityState(new BasicEntityStateDying(context));
 		}
 	}

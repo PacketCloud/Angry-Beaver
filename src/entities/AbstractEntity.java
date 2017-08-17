@@ -86,7 +86,7 @@ public abstract class AbstractEntity {
 			destroy();
 		}*/
 		
-		behaviour.run(this);
+		behaviour.run(this, level);
 		// Update movement due to external forces
 		updateForces();
 	}

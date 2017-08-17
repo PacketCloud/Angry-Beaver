@@ -17,8 +17,6 @@ import model.CrateModel;
 import model.DeerModel;
 import model.PlatformModel;
 import model.TreeModel;
-import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -37,24 +35,33 @@ public class GameStateRun extends GameStateAbstract {
 	public Level loadLevel(String name) {
 		Level level = new Level();
 		// TODO: Level loading should be done with file utility
-		// Player		
-		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		AbstractEntity player = new Beaver(new BeaverModel());
-		player.setBehaviour(playerBehaviour);
-		Hitbox playerh= new Hitbox(2, 2, 20, 15);
-		playerh.setBody(true);
-		player.addHitbox(playerh);
-		player.setScaling(2.5);
-		player.setId("Player");
-		player.setPosition(new Point(400, 200));
-
+		
+		// Beaver
+		AbstractEntity beaver = new Beaver(new BeaverModel());
+		beaver.setPosition(new Point(400, 200));
+		Hitbox beaverh1= new Hitbox(2, 2, 20, 15);
+		beaverh1.setBody(true);
+		beaver.addHitbox(beaverh1);
+		beaver.setScaling(2.5);
+		beaver.setHealth(3);
+		
+		// Deer
+		AbstractEntity deer = new Deer(new DeerModel());
+		deer.setPosition(new Point(950, 250));
+		Hitbox deerh= new Hitbox(13, 8, 31, 30);
+		deerh.setBody(true);
+		deer.addHitbox(deerh);
+		deer.setScaling(3);
+		deer.setHealth(3);
+		
+		
 		// Platform
-		AbstractEntity p1 = new BasicPlatform(new PlatformModel());
+		AbstractEntity platform = new BasicPlatform(new PlatformModel());
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
-		p1.addHitbox(plath);
-		p1.setStatic(true);
-		p1.setPosition(new Point(350,300));
+		platform.addHitbox(plath);
+		platform.setStatic(true);
+		platform.setPosition(new Point(350,300));
 		
 		// Tree
 		AbstractEntity tree = new Tree(new TreeModel());
@@ -76,39 +83,22 @@ public class GameStateRun extends GameStateAbstract {
 		crate.setScaling(2);
 		crate.setHealth(3);
 		
-		// Deer
-		/* A Beaver is temporarily in use as Deer assets are being made
-		AbstractEntity deer = new Deer(new DeerModel());
-		// TODO: Add Deer Behaviour
-		deer.setPosition(new Point(950, 250));
-		Hitbox deerh1 = new Hitbox(15, 7, 33, 30);
-		deerh1.setBody(true);
-		deer.addHitbox(deerh1);
-		deer.setScaling(3);
-		deer.setHealth(3);
-		*/
-
-		AbstractEntity beaver = new Beaver(new BeaverModel());
-		beaver.setPosition(new Point(950, 250));
-		Hitbox beaverh1= new Hitbox(2, 2, 20, 15);
-		beaverh1.setBody(true);
-		beaver.addHitbox(beaverh1);
-		beaver.setScaling(3);
-		beaver.setHealth(3);
-		
-		// Add player into the level
-		level.addEntity(player);
-		// Set Camera to follow the player
+		// Set behaviour, ID, camera, and HUD to player
+		AbstractEntity player = deer;
+		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
+		player.setBehaviour(playerBehaviour);
+		player.setId("Player");
 		level.focusCamera(player);
-		// Set HUD to display information related to the player
 		level.focusHUD(player);
 		level.displayHud(true);
-		// Add other entities into the level
-		level.addEntity(p1);
+
+		// Add all entities into the level
+		level.addEntity(beaver);
+		level.addEntity(deer);
+		level.addEntity(platform);
 		level.addEntity(tree);
 		level.addEntity(crate);
-		//level.addEntity(deer);
-		level.addEntity(beaver);
+
 		
 		return level;
 	}
