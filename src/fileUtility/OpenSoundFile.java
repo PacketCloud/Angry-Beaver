@@ -5,39 +5,36 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+/*
+ * OpenSoundFile opens the audio file from the given path
+ * 
+ * Example Usage:
+ * 		String path = "/Resources/Audio/Sound.wav";
+ * 		OpenSoundFile sound = new OpenSoundFile(path);
+ * 		sound.playSound();
+ */
 public class OpenSoundFile {
-	
-	/*
-	 * main function for testing
-	public static void main(String[] args) throws IOException {
+	File soundFile;
 		
-		//these two lines are for opening from other main java file
-		//OpenSoundFile OSF = new OpenSoundFile();
-		//OSF.PlaySoundFile(fileIn);
-		//-----------------------------------------------
+	public OpenSoundFile(String path) {
+		try {
+			File absFile = new File("");
+			String absPath = absFile.getAbsolutePath();
 		
-		
-		
-		
-		//WAV File Only
-		File fileIn = new File("C:/Users/Chris/Desktop/wav/Anti_Gravity.wav");
-		String path = fileIn.getAbsolutePath();
-		OpenSoundFile(fileIn);	
+			System.out.println(absPath + path);
+			soundFile = new File(absPath + path);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
-	*/	
 		
-	//pass in sound file and play it	
-	public void PlaySoundFile(File sound){
-		
+	public void playSound(){
 		try{
 			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(sound));
+			clip.open(AudioSystem.getAudioInputStream(soundFile));
 			clip.start();
-			
-			
-			Thread.sleep(clip.getMicrosecondLength()/1000);
-			}catch(Exception e){
-}
-	
-}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+	}
 }

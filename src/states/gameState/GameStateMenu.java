@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import fileUtility.OpenImage;
+import fileUtility.OpenSoundFile;
 
 public class GameStateMenu extends GameStateAbstract {
 	private String menuTitle = "ANGRY BEAVER";
@@ -89,6 +90,9 @@ public class GameStateMenu extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.up();
 		
+		// Example of sound usage
+		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
+		
 		chosen--;
 		if (chosen < 0) {
 			chosen = menuText.size() - 1;
@@ -99,6 +103,9 @@ public class GameStateMenu extends GameStateAbstract {
 	public void down() {
 		// TODO Auto-generated method stub
 		super.down();
+		
+		// Example of sound usage
+		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
 		
 		chosen++;
 		if (chosen >= menuText.size()) {
