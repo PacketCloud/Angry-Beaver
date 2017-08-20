@@ -80,23 +80,12 @@ public abstract class AbstractEntity {
 		
 		this.lastPosition = new Point(position);
 		
-		// Temporary code
-		// TODO: BasicEntityStateDying
-		/*if(health <= 0) {
-			destroy();
-		}*/
-		
 		behaviour.run(this, level);
 		// Update movement due to external forces
 		updateForces();
 	}
 	
-	private void updateForces() {
-		/*
-		for(Force f : forces) {
-			f.update(this);
-		}*/
-		
+	private void updateForces() {		
 		for (Iterator<Force> iterator = forces.iterator(); iterator.hasNext();) {
 		    Force f = iterator.next();
 		    if (f.expired) {
@@ -114,20 +103,33 @@ public abstract class AbstractEntity {
 	
 	public void renderTexture(Graphics2D g) {
 		Image texture = model.getImageIcon(state.toString());
-		int facing = facing();
 		
 		// Render image
-		if(texture != null) {			
-			g.drawImage(texture,//image to draw.
-				(int) (position.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * scaling),//x position to draw, dependent on direction facing and scale.
-				(int) position.getY(),//y position to draw.
-				(int) (texture.getWidth(null) * facing * scaling),//dx position to draw, dependent on direction facing and scale.
-				(int) (texture.getHeight(null) * scaling),//dy position to draw, dependent on scale.
-				null);//observer, null.
+		if(texture != null) {
+			drawImage(g, texture);
 			
+			// Draw box around image
 			g.setColor(Color.WHITE);
 			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
 		}
+		
+		// TODO: Make classes to handle the entity changing colors to change 'Status' 
+		if(state.toString().equals("Dying")) {
+			Image mask = model.getImageIconMask(state.toString(), Color.red, 0.2f);
+			
+			drawImage(g, mask);
+		}
+	}
+	
+	public void drawImage(Graphics2D g, Image image) {
+		int facing = facing();
+		
+		g.drawImage(image,//image to draw.
+				(int) (position.getX() + (-0.5 * facing + 0.5) * image.getWidth(null) * scaling),//x position to draw, dependent on direction facing and scale.
+				(int) position.getY(),//y position to draw.
+				(int) (image.getWidth(null) * facing * scaling),//dx position to draw, dependent on direction facing and scale.
+				(int) (image.getHeight(null) * scaling),//dy position to draw, dependent on scale.
+				null);//observer, null.
 	}
 	
 	public void renderHitboxes(Graphics2D g){

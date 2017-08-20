@@ -1,5 +1,6 @@
 package resourceHandling;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -19,14 +20,30 @@ public class ResourceCollection {
 		CollectionList.add(resource);
 	}
 	/******** Getters and Setters ********/
+	
+	// TODO: Error handling on the methods getImageIcon() and getImageIconMask()
+	//	If a model does not contain state 'Default', then it will get into an infinite loop
 	public Image getImageIcon(String state) {
 		for(Resource i : CollectionList){
-			if (i.getStateName() == state) {
+			if (i.getStateName() == state) {  
 				return i.getTexture();
 			}
 		}
 		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
 		return getImageIcon("Default");
+	}
+	
+	// TODO: Clean up getImageIconMask() method
+	public Image getImageIconMask(String state, Color color, float alpha) {
+		for(Resource i : CollectionList){
+			if (i.getStateName() == state) {
+				ResourceTint rt = new ResourceTint();  
+				return rt.getTintedResource(i.getTexture(), Color.red, 0.5f);
+			}
+		}
+		System.out.println("ResourceCollection '" + CollectionName + "' does not have state '" + state + "'");
+		ResourceTint rt = new ResourceTint();  
+		return rt.getTintedResource(getImageIcon("Default"), color, alpha);
 	}
 	
 	public Image getImageIconFromPath(String path) {

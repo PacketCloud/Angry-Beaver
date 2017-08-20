@@ -10,10 +10,16 @@ import trigger.Trigger;
 
 public class KnockbackTrigger extends AbstractTrigger {
 	protected Map<AbstractEntity, AbstractEntity> previousHits;
+	int xForce;
+	int yForce;
+	int duration;
 	
-	public KnockbackTrigger(Trigger nextTrigger) {
+	public KnockbackTrigger(Trigger nextTrigger, int xForce, int yForce, int duration) {
 		super(nextTrigger);
 		previousHits = new HashMap<AbstractEntity, AbstractEntity>();
+		this.xForce = xForce;
+		this.yForce = yForce;
+		this.duration = duration;
 	}
 
 	@Override
@@ -24,7 +30,7 @@ public class KnockbackTrigger extends AbstractTrigger {
 		// Example of a knockback effect for an attack
 		// TODO: Allow TriggerFactory to dynamically create different forces of knockback
 		if(!entity1.getEntities().contains(entity2) && previousHits.get(entity1) != entity2) {
-			entity1.addForce(new TimedForce(-5 * entity2.facing(), -2, 250));
+			entity1.addForce(new TimedForce(xForce * entity2.facing(), yForce, duration));
 			previousHits.put(entity1, entity2);
 		}
 	}

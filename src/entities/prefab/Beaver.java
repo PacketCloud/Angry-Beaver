@@ -31,14 +31,14 @@ public class Beaver extends AbstractEntity {
 		Image texture = model.getImageIcon(state.toString());
 
 		// TODO: Code Cleanup
-		
+		// TODO: In line 36, should line up the position of the new entity depending on its width rather than a magic number
 		AbstractEntity claw = new Claw(new ClawModel());
 		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
 				(int) (position.getY() - 5 * scaling)));
 		Hitbox clawh1 = new Hitbox(2, 2, 12, 24);
 		clawh1.setTrigger(true);
 		claw.addHitbox(clawh1);
-		claw.setTrigger(new TriggerFactory().createTrigger("Damage KnockBack"));
+		claw.setTrigger(new TriggerFactory().createTrigger("Damage KnockBack:-5:-2:250"));
 		claw.setStatic(true);
 		claw.setScaling(scaling);
 		claw.setFacingRight(facingRight);
