@@ -33,9 +33,14 @@ public class Settings {
 		 settingFile.close();
 	}
 	
+	// Method currently not in use
 	public void saveUserSettings() {
-		// TODO: Use OpenFile to save settings to settings.cfg
-		// OpenFile does not have capability for saving
+		// Go to WriteFile to format and write to settings.cfg
+		
+		WriteFile settingFile = new WriteFile("/Settings.cfg");
+		settingFile.writeln("#This file will be used to save/load game settings.");
+		settingFile.writeln("#One setting per line.");
+		settingFile.close();
 	}
 	
 	public void parseLine(String[] split) {

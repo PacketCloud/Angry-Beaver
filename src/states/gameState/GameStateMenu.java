@@ -78,10 +78,10 @@ public class GameStateMenu extends GameStateAbstract {
 			context.setGameState(new GameStateRun(context, ""));
 			break;
 		case 1:
+			context.setGameState(new GameStateOption(context));
 			break;
 		case 2:
 			context.setGameState(new GameStateStop(context));
-			//getH().getGameState().stateStop();
 		}
 	}
 

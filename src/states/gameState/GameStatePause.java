@@ -67,8 +67,7 @@ public class GameStatePause extends GameStateAbstract {
 			context.setGameState(new GameStateRun(context, pausedLevel));
 			break;
 		case 1:
-			// Options
-			//context.setGameState(new GameStateOptions(context));
+			context.setGameState(new GameStateOption(context));
 			break;
 		case 2:
 			context.setGameState(new GameStateMenu(context));
