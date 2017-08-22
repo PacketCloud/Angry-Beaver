@@ -1,5 +1,6 @@
 package states.gameState;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import fileUtility.OpenImage;
+import fileUtility.Settings;
 
 public class GameStateOption extends GameStateAbstract {
 	private String optionTitle = "OPTIONS";
@@ -47,6 +49,33 @@ public class GameStateOption extends GameStateAbstract {
 	
 	public void saveNewSettings() {
 		// Compile and save settings into settings.cfg
+		Settings settings = new Settings();
+		settings.setTitle("Angry-Beaver");
+		for(int i = 0; i < selection.size(); i++) {
+			String s = optionsText.get(i).get(selection.get(i));
+			System.out.println(s);
+			
+			if(optionLabel.get(i).startsWith("Resolution")) {
+				String[] split = s.split("x");
+				settings.setWindowSize(new Dimension(Integer.parseInt(split[0]), Integer.parseInt(split[1])));
+				
+			} else if(optionLabel.get(i).startsWith("Fullscreen")) {
+				if(s.equals("On")) {
+					settings.setisFullscreen(true);
+				} else {
+					settings.setisFullscreen(false);
+				}
+				
+			} else if(optionLabel.get(i).startsWith("MaxFPS")) {
+				settings.setMaxFPS(Integer.parseInt(s));
+			}
+			// As more options are added, add saving feature here
+			
+		}
+		
+		settings.saveUserSettings();
+		// Restart the game to load the new settings
+		context.setGameState(new GameStateExit(context));
 	}
 	
 	@Override
@@ -163,7 +192,7 @@ public class GameStateOption extends GameStateAbstract {
 			break;
 		case 4:
 			//Save settings
-			// saveNewSettings
+			saveNewSettings();
 		}
 	}
 }

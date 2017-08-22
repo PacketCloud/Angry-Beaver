@@ -40,6 +40,18 @@ public class Settings {
 		WriteFile settingFile = new WriteFile("/Settings.cfg");
 		settingFile.writeln("#This file will be used to save/load game settings.");
 		settingFile.writeln("#One setting per line.");
+		settingFile.writeln("title=" + title);
+		settingFile.writeln("width=" + (int) windowSize.getWidth());
+		settingFile.writeln("height=" + (int) windowSize.getHeight());
+		
+		int holder = 0;
+		if(isFullscreen) {
+			holder = 1;
+		}
+		
+		settingFile.writeln("fullscreen=" + holder);
+		settingFile.writeln("max_fps=" + maxFPS);
+		
 		settingFile.close();
 	}
 	
