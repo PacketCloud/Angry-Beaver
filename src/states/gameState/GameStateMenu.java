@@ -60,7 +60,6 @@ public class GameStateMenu extends GameStateAbstract {
 		if(background == null) {
 			try {
 				background = new OpenImage().Open("/Resources/Textures/Background/Background_MountainHorizon.png");
-				//Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
 				
 			} catch (Exception e){
 				System.out.println(e.toString());
@@ -75,7 +74,8 @@ public class GameStateMenu extends GameStateAbstract {
 		super.jump();
 		switch(chosen) {
 		case 0:
-			context.setGameState(new GameStateRun(context, ""));
+			//context.setGameState(new GameStateRun(context, ""));
+			context.setGameState(new GameStateLevelSelect(context));
 			break;
 		case 1:
 			context.setGameState(new GameStateOption(context));

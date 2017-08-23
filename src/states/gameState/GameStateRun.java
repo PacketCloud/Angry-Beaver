@@ -111,10 +111,8 @@ public class GameStateRun extends GameStateAbstract {
 		}
 		if (action.startsWith("r_")) {
 			currentLevel.removeInput(action.substring(2));
-			//inputSet.remove(action.substring(2));
 		} else {
 			currentLevel.addInput(action);
-			//inputSet.add(action);
 		}
 	}
 
@@ -127,10 +125,6 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
-		/*Iterator<String> itr = inputSet.iterator();
-		while(itr.hasNext()) {
-			super.userInput(itr.next());
-		}*/
 		currentLevel.updateLevel();
 		System.out.println("Running");
 		//context.repaint();
@@ -141,41 +135,5 @@ public class GameStateRun extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.pause();
 		context.setGameState(new GameStatePause(context, currentLevel));
-	}
-	
-	@Override
-	public void up() {
-		// TODO Auto-generated method stub
-		super.up();
-		/*
-		currentLevel.getOffset().translate(0, 5);
-		currentLevel.getPlayer().translate(0, -5);
-		*/
-	}
-	
-	@Override
-	public void down() {
-		// TODO Auto-generated method stub
-		super.down();
-		/*currentLevel.getOffset().translate(0, -5);
-		currentLevel.getPlayer().translate(0, 5);*/
-	}
-
-	@Override
-	public void right() {
-		// TODO Auto-generated method stub
-		super.right();
-		/*currentLevel.getOffset().translate(-5, 0);
-		currentLevel.getPlayer().translate(5, 0);
-		currentLevel.getPlayer().setFacing(-1);*/
-	}
-
-	@Override
-	public void left() {
-		// TODO Auto-generated method stub
-		super.left();
-		/*currentLevel.getOffset().translate(5, 0);
-		currentLevel.getPlayer().translate(-5, 0);
-		currentLevel.getPlayer().setFacing(1);*/
 	}
 }

@@ -21,18 +21,7 @@ public class TriggerFactory {
 			 holder = createTrigger(split[1]);
 		}
 		
-		// TODO: As more Trigger effects are created, add them here
-		/*
-		switch(split[0]) {
-		case "Damage":
-			return new DamageTrigger(holder);
-		case "KnockBack":
-			return new KnockbackTrigger(holder);
-		default:
-			return new SimpleTrigger();
-		}
-		*/
-		
+		// TODO: As more Trigger effects are created, add them here		
 		if(split[0].startsWith("Damage")) {
 			return new DamageTrigger(holder);
 			
