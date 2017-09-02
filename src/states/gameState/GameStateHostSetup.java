@@ -7,15 +7,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import fileUtility.OpenImage;
-import fileUtility.OpenSoundFile;
 
-public class GameStateMenu extends GameStateAbstract {
-	private String menuTitle = "ANGRY BEAVER";
-	private ArrayList<String> menuText  = new ArrayList<String>(Arrays.asList("Play", "Multiplayer", "Options","Exit"));
+public class GameStateHostSetup extends GameStateAbstract {
+	private String hostSetupTitle = "CREATE A GAME";
+	private ArrayList<String> hostSetupText = new ArrayList<String>(Arrays.asList("Port Number", "Create Lobby", "Back"));
 	private int chosen = 0;	
 	private Image background = null;
 	
-	public GameStateMenu(GameStateContext context) {
+	private String address = "";
+	private String port = "";
+	
+	public GameStateHostSetup(GameStateContext context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
@@ -23,8 +25,7 @@ public class GameStateMenu extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		//context.repaint();
-    	System.out.println("Menu");
+		System.out.println("Host");
 	}
 
 	@Override
@@ -38,24 +39,22 @@ public class GameStateMenu extends GameStateAbstract {
 		g.setFont(font);
 		g.setColor(titleColor);
 		
-		g.drawString(menuTitle, 290, 150);
+		g.drawString(hostSetupTitle, 290, 150);
 		
-		// Set selection text
 		Font font1 = new Font(textFont, 0, textSize);
 		g.setFont(font1);
 		
-		int y = 300;
-		for (int i = 0; i < menuText.size(); i++) {
-			if (chosen == i) {
+		for (int i = 0; i < hostSetupText.size(); i++) {
+			if(chosen == i) {
 				g.setColor(selectColor);
 			} else {
 				g.setColor(defaultColor);
 			}
-			g.drawString(menuText.get(i), 550, y);
-			y += 100;
+			
+			g.drawString(hostSetupText.get(i), 550, 300 + i * 100);
 		}
 	}
- 
+
 	public void drawBackground(Graphics2D g) {
 		if(background == null) {
 			try {
@@ -67,38 +66,15 @@ public class GameStateMenu extends GameStateAbstract {
 		}
 		g.drawImage(background, 0, 0, 1920, 1080, null);
 	}
-	
-	@Override
-	public void jump() {
-		// TODO Auto-generated method stub
-		super.jump();
-		switch(chosen) {
-		case 0:
-			//context.setGameState(new GameStateRun(context, ""));
-			context.setGameState(new GameStateLevelSelect(context));
-			break;
-		case 1:
-			context.setGameState(new GameStateMultiplayer(context));
-			break;
-		case 2:
-			context.setGameState(new GameStateOption(context));
-			break;
-		case 3:
-			context.setGameState(new GameStateStop(context));
-		}
-	}
 
 	@Override
 	public void up() {
 		// TODO Auto-generated method stub
 		super.up();
 		
-		// Example of sound usage
-		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
-		
 		chosen--;
 		if (chosen < 0) {
-			chosen = menuText.size() - 1;
+			chosen = hostSetupText.size() - 1;
 		}
 	}
 
@@ -107,12 +83,25 @@ public class GameStateMenu extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.down();
 		
-		// Example of sound usage
-		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
-		
 		chosen++;
-		if (chosen >= menuText.size()) {
+		if (chosen >= hostSetupText.size()) {
 			chosen = 0;
 		}
 	}
+
+	@Override
+	public void jump() {
+		// TODO Auto-generated method stub
+		super.jump();
+		
+		switch(chosen) {
+		case 1:
+			// context.setGameState(new GameStateHostLobby());
+			break;
+		case 2:
+			context.setGameState(new GameStateMultiplayer(context));
+		}
+	}
+	
+	
 }
