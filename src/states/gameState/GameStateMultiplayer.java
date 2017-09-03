@@ -10,7 +10,7 @@ import fileUtility.OpenImage;
 
 public class GameStateMultiplayer extends GameStateAbstract {
 	private String multiplayerTitle = "ANGRY BEAVER MULTIPLAYER";
-	private ArrayList<String> multiplayerText  = new ArrayList<String>(Arrays.asList("Create Game", "Join Game","Back"));
+	private ArrayList<String> multiplayerText  = new ArrayList<String>(Arrays.asList("Create Game", "Join Game","Back To Main Menu"));
 	private int chosen = 0;	
 	private Image background = null;
 	
@@ -71,7 +71,7 @@ public class GameStateMultiplayer extends GameStateAbstract {
 			context.setGameState(new GameStateHostSetup(context));
 			break;
 		case 1:
-			//context.setGameState(new GameStateJoin(context));
+			context.setGameState(new GameStateJoinSetup(context));
 			break;
 		case 2:
 			context.setGameState(new GameStateMenu(context));

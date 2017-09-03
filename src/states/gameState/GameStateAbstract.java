@@ -52,9 +52,38 @@ public abstract class GameStateAbstract implements GameStateInterface{
 		case ACTIONS.ATTACK2:
 			attack2();
 			break;
+		case ACTIONS.NUM_0:
+			num0();
+			break;
+		case ACTIONS.NUM_1:
+			num1();
+			break;
+		case ACTIONS.NUM_2:
+			num2();
+			break;
+		case ACTIONS.NUM_3:
+			num3();
+			break;
+		case ACTIONS.NUM_4:
+			num4();
+			break;
+		case ACTIONS.NUM_5:
+			num5();
+			break;
+		case ACTIONS.NUM_6:
+			num6();
+			break;
+		case ACTIONS.NUM_7:
+			num7();
+			break;
+		case ACTIONS.NUM_8:
+			num8();
+			break;
+		case ACTIONS.NUM_9:
+			num9();
 		}
 	}
-	
+
 	public void up(){
 		System.out.println("Up arrow key pressed");
 	}
@@ -79,5 +108,45 @@ public abstract class GameStateAbstract implements GameStateInterface{
 	}
 	public void attack2(){
 		System.out.println("D key pressed (Attack2)");
+	}
+	
+	public void num0() {
+		System.out.println("0 key pressed");
+	}
+
+	public void num1() {
+		System.out.println("1 key pressed");
+	}
+
+	public void num2() {
+		System.out.println("2 key pressed");
+	}
+
+	public void num3() {
+		System.out.println("3 key pressed");
+	}
+
+	public void num4() {
+		System.out.println("4 key pressed");
+	}
+
+	public void num5() {
+		System.out.println("5 key pressed");
+	}
+
+	public void num6() {
+		System.out.println("6 key pressed");
+	}
+
+	public void num7() {
+		System.out.println("7 key pressed");
+	}
+
+	public void num8() {
+		System.out.println("8 key pressed");
+	}
+
+	public void num9() {
+		System.out.println("9 key pressed");
 	}
 }

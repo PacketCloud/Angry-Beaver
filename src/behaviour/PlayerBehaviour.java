@@ -16,6 +16,7 @@ public class PlayerBehaviour extends AbstractBehaviour {
 	@Override
 	public void run(AbstractEntity entity, Level level) {
 		Set<String> inputSet = level.getInput();
+		System.out.println("Player Input : " + inputSet.toString() + "\n");
 		
 		Iterator<String> itr = inputSet.iterator();
 		while(itr.hasNext()) {

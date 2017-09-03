@@ -22,4 +22,15 @@ public class ACTIONS {
 	public final static String ATTACK = "attack";
 	public final static String R_ATTACK = "r_attack";
 	public final static String ATTACK2 = "attack2";
+	
+	public final static String NUM_0 = "0";
+	public final static String NUM_1 = "1";
+	public final static String NUM_2 = "2";
+	public final static String NUM_3 = "3";
+	public final static String NUM_4 = "4";
+	public final static String NUM_5 = "5";
+	public final static String NUM_6 = "6";
+	public final static String NUM_7 = "7";
+	public final static String NUM_8 = "8";
+	public final static String NUM_9 = "9";
 }

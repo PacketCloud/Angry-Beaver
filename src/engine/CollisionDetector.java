@@ -73,8 +73,8 @@ public class CollisionDetector {
 		int xDistance = getXDistance(h1, h2);
 		int yDistance = getYDistance(h1, h2);
 
-		System.out.println(xDistance);
-		System.out.println(yDistance);
+		//System.out.println(xDistance);
+		//System.out.println(yDistance);
 		return (xDistance < 0 && yDistance < 0);
 	}
 
@@ -144,7 +144,7 @@ public class CollisionDetector {
 		    
 		    // e1 touches a trigger from e2
 		    if(h1.isBody() && h2.isTrigger()) {
-		    	// e1.isTriggeredBy(e2);
+		    	System.out.println("Trigger collision between " + e2.toString() + " and " + e1.toString() + " detected");
 		    	Trigger trigger = e2.getTrigger();
 		    	if(trigger != null) {
 		    		trigger.triggerEffects(e1, e2);
@@ -153,7 +153,7 @@ public class CollisionDetector {
 
 		    // e2 touches a trigger from e1
 		    if(h2.isBody() && h1.isTrigger()) {
-		    	// e2.isTriggeredBy(e1);
+		    	System.out.println("Trigger collision between " + e1.toString() + " and " + e2.toString() + " detected");
 		    	Trigger trigger = e1.getTrigger();
 		    	if(trigger != null) {
 		    		trigger.triggerEffects(e2, e1);
@@ -164,16 +164,16 @@ public class CollisionDetector {
 		    // If the hitboxes are both solid, correct the positioning of the entity
 		    // If one hitbox is a body and the other is a solid, correct the positioning of the entity
 		    if((h1.isSolid() && h2.isSolid()) || (h1.isBody() && h2.isSolid()) || (h1.isSolid() && h2.isBody())) {
-		    	System.out.println("Solid Collision Detected");
+		    	System.out.println("Solid collision between " + e1.toString() + " and " + e2.toString() + " detected");
 		    	
 		    	if(e1.isStatic() && e2.isStatic()) {
 		    		// Both entities can not move, ignore?
-		    		System.out.println("Both static");
+		    		System.out.println("Ignored possition correction");
 		    		
 		    	} else if (e1.isStatic()) {
 		    		// e1 can not move but e2 can move
 		    		// Check by how much e2 intersects e1, and then move e2 away from e1 that distance
-		    		System.out.println("e1 static");
+		    		System.out.println("Corrected position of " + e2.toString());
 		    		
 		    		//TODO: Code cleanup
 		    		int x = getXDistance(h1, h2);
@@ -199,7 +199,7 @@ public class CollisionDetector {
 		    	} else if (e2.isStatic()) {
 		    		// e2 can not move but e1 can move
 		    		// Check by how much e1 intersects e2, and then move e1 away from e2 that distance
-		    		System.out.println("e2 static");
+		    		System.out.println("Corrected position of " + e1.toString());
 		    		
 		    		//TODO: Code cleanup
 		    		int x = getXDistance(h1, h2);
@@ -224,7 +224,7 @@ public class CollisionDetector {
 		    	} else {
 		    		// Allow entities to push each other since both can be moved
 		    		// Check by how much the entities intersect, and then move both entities away from each other half that distance
-		    		System.out.println("None static");
+		    		System.out.println("Corrected position of both " + e1.toString() + " and " + e2.toString());
 		    		
 		    		//TODO: Code cleanup
 		    		int x = getXDistance(h1, h2);
@@ -250,6 +250,7 @@ public class CollisionDetector {
 		    			}
 		    		}
 		    	}
+		    	System.out.println("");
 		    }
 		}
 	}

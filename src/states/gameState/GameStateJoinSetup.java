@@ -8,24 +8,26 @@ import java.util.Arrays;
 
 import fileUtility.OpenImage;
 
-public class GameStateHostSetup extends GameStateAbstract {
-	private String hostSetupTitle = "CREATE A GAME LOBBY";
-	private ArrayList<String> hostSetupText = new ArrayList<String>(Arrays.asList("Port Number :", "Create Lobby!", "Back"));
+public class GameStateJoinSetup extends GameStateAbstract {
+	private String joinSetupTitle = "JOIN A GAME LOBBY";
+	private ArrayList<String> hostSetupText = new ArrayList<String>(Arrays.asList("IP address :", "Port Number :", "Join Lobby!", "Back"));
 	private int chosen = 0;	
 	private Image background = null;
 	
+	private String address;
 	private String port;
 	
-	public GameStateHostSetup(GameStateContext context) {
+	public GameStateJoinSetup(GameStateContext context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		 port = "";
+		address = "";
+		port = "";
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		System.out.println("Host Setup");
+		System.out.println("Join Setup");
 	}
 
 	@Override
@@ -34,17 +36,18 @@ public class GameStateHostSetup extends GameStateAbstract {
 		drawBackground(g);
 		
 		// TODO: Positioning of text based on the window size.
-		// Set menu title
+		// Set title
 		Font font = new Font(titleFont, 0, titleSize);
 		g.setFont(font);
 		g.setColor(titleColor);
 		
-		g.drawString(hostSetupTitle, 290, 150);
+		g.drawString(joinSetupTitle, 290, 150);
 		
 		Font font1 = new Font(textFont, 0, textSize);
 		g.setFont(font1);
 		
-		g.drawString(port, 900, 300);
+		g.drawString(address, 900, 300);
+		g.drawString(port, 900, 400);
 		
 		for (int i = 0; i < hostSetupText.size(); i++) {
 			if(chosen == i) {
@@ -97,10 +100,13 @@ public class GameStateHostSetup extends GameStateAbstract {
 		super.jump();
 		
 		switch(chosen) {
-		case 1:
-			// context.setGameState(new GameStateHostLobby(context));
+		case 0:
+			address += ".";
 			break;
 		case 2:
+			// context.setGameState(new GameStateJoinLobby(context));
+			break;
+		case 3:
 			context.setGameState(new GameStateMultiplayer(context));
 		}
 	}
@@ -109,7 +115,11 @@ public class GameStateHostSetup extends GameStateAbstract {
 	public void num0() {
 		// TODO Auto-generated method stub
 		super.num0();
+		
 		if(chosen == 0) {
+			address += "0";
+		}
+		if(chosen == 1) {
 			port += "0";
 		}
 	}
@@ -119,6 +129,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num1();
 		if(chosen == 0) {
+			address += "1";
+		}
+		if(chosen == 1) {
 			port += "1";
 		}
 	}
@@ -128,6 +141,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num2();
 		if(chosen == 0) {
+			address += "2";
+		}
+		if(chosen == 1) {
 			port += "2";
 		}
 	}
@@ -137,6 +153,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num3();
 		if(chosen == 0) {
+			address += "3";
+		}
+		if(chosen == 1) {
 			port += "3";
 		}
 	}
@@ -146,6 +165,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num4();
 		if(chosen == 0) {
+			address += "4";
+		}
+		if(chosen == 1) {
 			port += "4";
 		}
 	}
@@ -155,6 +177,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num5();
 		if(chosen == 0) {
+			address += "5";
+		}
+		if(chosen == 1) {
 			port += "5";
 		}
 	}
@@ -164,6 +189,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num6();
 		if(chosen == 0) {
+			address += "6";
+		}
+		if(chosen == 1) {
 			port += "6";
 		}
 	}
@@ -173,6 +201,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num7();
 		if(chosen == 0) {
+			address += "7";
+		}
+		if(chosen == 1) {
 			port += "7";
 		}
 	}
@@ -182,6 +213,9 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num8();
 		if(chosen == 0) {
+			address += "8";
+		}
+		if(chosen == 1) {
 			port += "8";
 		}
 	}
@@ -191,8 +225,11 @@ public class GameStateHostSetup extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.num9();
 		if(chosen == 0) {
+			address += "9";
+		}
+		if(chosen == 1) {
 			port += "9";
 		}
 	}
-
+	
 }
