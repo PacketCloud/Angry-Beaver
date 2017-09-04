@@ -98,7 +98,7 @@ public class GameStateHostSetup extends GameStateAbstract {
 		
 		switch(chosen) {
 		case 1:
-			// context.setGameState(new GameStateHostLobby(context));
+			context.setGameState(new GameStateHostLobby(context, port));
 			break;
 		case 2:
 			context.setGameState(new GameStateMultiplayer(context));

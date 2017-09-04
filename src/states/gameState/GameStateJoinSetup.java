@@ -10,7 +10,7 @@ import fileUtility.OpenImage;
 
 public class GameStateJoinSetup extends GameStateAbstract {
 	private String joinSetupTitle = "JOIN A GAME LOBBY";
-	private ArrayList<String> hostSetupText = new ArrayList<String>(Arrays.asList("IP address :", "Port Number :", "Join Lobby!", "Back"));
+	private ArrayList<String> joinSetupText = new ArrayList<String>(Arrays.asList("IP address :", "Port Number :", "Join Lobby!", "Back"));
 	private int chosen = 0;	
 	private Image background = null;
 	
@@ -49,14 +49,14 @@ public class GameStateJoinSetup extends GameStateAbstract {
 		g.drawString(address, 900, 300);
 		g.drawString(port, 900, 400);
 		
-		for (int i = 0; i < hostSetupText.size(); i++) {
+		for (int i = 0; i < joinSetupText.size(); i++) {
 			if(chosen == i) {
 				g.setColor(selectColor);
 			} else {
 				g.setColor(defaultColor);
 			}
 			
-			g.drawString(hostSetupText.get(i), 550, 300 + i * 100);
+			g.drawString(joinSetupText.get(i), 550, 300 + i * 100);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class GameStateJoinSetup extends GameStateAbstract {
 		
 		chosen--;
 		if (chosen < 0) {
-			chosen = hostSetupText.size() - 1;
+			chosen = joinSetupText.size() - 1;
 		}
 	}
 
@@ -89,7 +89,7 @@ public class GameStateJoinSetup extends GameStateAbstract {
 		super.down();
 		
 		chosen++;
-		if (chosen >= hostSetupText.size()) {
+		if (chosen >= joinSetupText.size()) {
 			chosen = 0;
 		}
 	}
@@ -104,7 +104,7 @@ public class GameStateJoinSetup extends GameStateAbstract {
 			address += ".";
 			break;
 		case 2:
-			// context.setGameState(new GameStateJoinLobby(context));
+			context.setGameState(new GameStateJoinLobby(context, address, port));
 			break;
 		case 3:
 			context.setGameState(new GameStateMultiplayer(context));

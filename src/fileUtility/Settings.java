@@ -25,7 +25,7 @@ public class Settings {
 	public void loadUserSettings() {
 		// Go to OpenFile to open and parse settings.cfg		
 		
-		OpenFile settingFile = new OpenFile("/Settings.cfg");
+		OpenFile settingFile = new OpenFile("/settings.cfg");
 		while(settingFile.hasNextLine()) {
 			String[] split = settingFile.getNextLine().split("=", 2);
 			parseLine(split);
