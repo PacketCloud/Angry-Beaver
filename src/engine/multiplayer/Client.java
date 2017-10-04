@@ -13,7 +13,11 @@ public class Client extends Thread {
 	private ArrayList<String> players;
 	private boolean isRunning;
 	
+	private MultiplayerHandler mph;
+	
 	public Client (String address, int port) throws UnknownHostException, IOException {
+	//public Client (String address, int port, MultiplayerHandler mph) throws UnknownHostException, IOException {
+		// this.mph = mph;
 		this.address = address;
 		this.port = port;
 		players = new ArrayList<String>();

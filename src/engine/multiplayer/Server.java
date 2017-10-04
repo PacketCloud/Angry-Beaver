@@ -11,7 +11,11 @@ public class Server extends Thread {
 	private ArrayList<Socket> clientSockets;
 	private boolean isRunning;
 	
+	private MultiplayerHandler mph;
+	
 	public Server(int port) throws IOException {
+	//public Server(int port, MultiplayerHandler mph) throws IOException {
+		//this.mph = mph; 
 		serverSocket = new ServerSocket(port);
 		clientSockets = new ArrayList<Socket>();
 		isRunning = true;
@@ -29,7 +33,7 @@ public class Server extends Thread {
 				
 				DataOutputStream outSocket = new DataOutputStream(socket.getOutputStream());
 				outSocket.writeUTF("Host - " + serverSocket.getInetAddress().getLocalHost());
-
+				
 				for(Socket s : clientSockets) {
 					// Notify other clients of new client
 					DataOutputStream out = new DataOutputStream(s.getOutputStream());
