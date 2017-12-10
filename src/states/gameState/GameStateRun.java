@@ -2,15 +2,21 @@ package states.gameState;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.*;
 
-import behaviour.NoBehaviour;
 import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
+import entities.prefab.Beaver;
+import entities.prefab.Crate;
+import entities.prefab.Deer;
+import entities.prefab.Tree;
+import hitbox.Hitbox;
 import keyInputs.ACTIONS;
-import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
+import model.BeaverModel;
+import model.CrateModel;
+import model.DeerModel;
+import model.PlatformModel;
+import model.TreeModel;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -22,46 +28,64 @@ public class GameStateRun extends GameStateAbstract {
 	
 	public GameStateRun(GameStateContext context, String levelName) {
 		super(context);
-		// Level loading should be done with file utility
+		// TODO: Level loading should be done with file utility
 		this.currentLevel = loadLevel(levelName);
 	}
-	/*
-	public Level loadLevel(String levelName) {
-		Level level = new Level();
-		// This should be done using FileUtility instead of here. Temp solution instead of FileUtility
-		Platform platform = new Platform(new Hitbox(new Point(150, 300), 800, 50));
-		Platform platform2 = new Platform(new Hitbox(new Point(900, 400), 50, 200));
-		
-		//This is temporary, should be done elsewhere as the level loads.
-		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
-		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
-			
-		Entity player = new Entity(new Point(0,0), new Hitbox(new Point(0,0), 50, 50), PlayerResourceCollection, -1, "Walking");
-		
-		level.addPlatform(platform);
-		level.addPlatform(platform2);
-		level.setPlayer(player);
-		return level;
-	}
-	*/
 	
 	public Level loadLevel(String name) {
 		Level level = new Level();
+		// TODO: Level loading should be done with file utility
 		
-		ResourceCollection PlayerResourceCollection = new ResourceCollection("Player");
-		PlayerResourceCollection.add(new Resource("Beaver Walking", "/Resources/Sprites/Player/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));
+		// Beaver
+		AbstractEntity beaver = new Beaver(new BeaverModel());
+		beaver.setPosition(new Point(400, 200));
+		beaver.setScaling(2.5);
+		beaver.setHealth(3);
+		
+		// Deer
+		AbstractEntity deer = new Deer(new DeerModel());
+		deer.setPosition(new Point(950, 250));
+		deer.setScaling(3);
+		deer.setHealth(3);
+		
+		
+		// Platform
+		AbstractEntity platform = new BasicPlatform(new PlatformModel());
+		Hitbox plath =  new Hitbox(800, 50);
+		plath.setSolid(true);
+		platform.addHitbox(plath);
+		platform.setStatic(true);
+		platform.setPosition(new Point(350,300));
+		
+		// Tree
+		AbstractEntity tree = new Tree(new TreeModel());
+		tree.setPosition(new Point(500, 150));
+		tree.setScaling(3);
+		tree.setHealth(5);
+		
+		// Crate
+		AbstractEntity crate = new Crate(new CrateModel());
+		crate.setPosition(new Point(800, 200));
+		crate.setScaling(2);
+		crate.setHealth(3);
+		
+		// Set behaviour, ID, camera, and HUD to player
+		AbstractEntity player = deer;
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		BasicEntity player = new BasicEntity(PlayerResourceCollection);
 		player.setBehaviour(playerBehaviour);
+		player.setId("Player");
+		level.focusCamera(player);
+		level.focusHUD(player);
+		level.displayHud(true);
+
+		// Add all entities into the level
+		level.addEntity(beaver);
+		level.addEntity(deer);
+		level.addEntity(platform);
+		level.addEntity(tree);
+		level.addEntity(crate);
+
 		
-		BasicPlatform p1 = new BasicPlatform(new ResourceCollection("Platform"));
-		
-		p1.setWidth(800);
-		p1.setHeight(50);
-		p1.setPosition(new Point(350,300));
-		
-		level.addObject(player);
-		level.addObject(p1);
 		return level;
 	}
 	
@@ -73,10 +97,8 @@ public class GameStateRun extends GameStateAbstract {
 		}
 		if (action.startsWith("r_")) {
 			currentLevel.removeInput(action.substring(2));
-			//inputSet.remove(action.substring(2));
 		} else {
 			currentLevel.addInput(action);
-			//inputSet.add(action);
 		}
 	}
 
@@ -89,10 +111,6 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
-		/*Iterator<String> itr = inputSet.iterator();
-		while(itr.hasNext()) {
-			super.userInput(itr.next());
-		}*/
 		currentLevel.updateLevel();
 		System.out.println("Running");
 		//context.repaint();
@@ -103,41 +121,5 @@ public class GameStateRun extends GameStateAbstract {
 		// TODO Auto-generated method stub
 		super.pause();
 		context.setGameState(new GameStatePause(context, currentLevel));
-	}
-	
-	@Override
-	public void up() {
-		// TODO Auto-generated method stub
-		super.up();
-		/*
-		currentLevel.getOffset().translate(0, 5);
-		currentLevel.getPlayer().translate(0, -5);
-		*/
-	}
-	
-	@Override
-	public void down() {
-		// TODO Auto-generated method stub
-		super.down();
-		/*currentLevel.getOffset().translate(0, -5);
-		currentLevel.getPlayer().translate(0, 5);*/
-	}
-
-	@Override
-	public void right() {
-		// TODO Auto-generated method stub
-		super.right();
-		/*currentLevel.getOffset().translate(-5, 0);
-		currentLevel.getPlayer().translate(5, 0);
-		currentLevel.getPlayer().setFacing(-1);*/
-	}
-
-	@Override
-	public void left() {
-		// TODO Auto-generated method stub
-		super.left();
-		/*currentLevel.getOffset().translate(5, 0);
-		currentLevel.getPlayer().translate(-5, 0);
-		currentLevel.getPlayer().setFacing(1);*/
 	}
 }

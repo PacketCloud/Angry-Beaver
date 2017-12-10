@@ -16,10 +16,10 @@ public class EntityStateFactory {
 		switch (stateName) {
 		case "Basic Entity":
 			return (new BasicEntityStateIdle(context));
-		case "Basic Platform":
-			return (new BasicEntityStateIdle(context));
+		case "Basic Null Entity":
+			return (new NoEntityState(context));
 		default:
-			return null;
+			return (new NoEntityState(context));
 		}
 	}
 }

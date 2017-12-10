@@ -1,27 +1,16 @@
 package states.gameState;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import engine.GameHandler;
 import engine.Level;
 
 public class GameStatePause extends GameStateAbstract {
 	private String pauseTitle = "GAME PAUSED";
 	private ArrayList<String> pauseText = new ArrayList<String>(Arrays.asList("Resume", "Options", "Menu", "Exit"));
 	private int chosen = 0;	
-	
-	private String titleFont = "Arial";
-	private String textFont = "Comic Sans MS";
-	private int titleSize = 100;
-	private int textSize = 50;
-	
-	private Color titleColor = Color.BLACK;
-	private Color defaultColor = Color.BLACK;
-	private Color selectColor = Color.RED;
 	
 	private Level pausedLevel;
 	
@@ -49,12 +38,12 @@ public class GameStatePause extends GameStateAbstract {
 	public void render(Graphics2D g) {		
 		// TODO Location of the text should depend on the window size
 		
-		// Set title text
+		// Set pause title
 		g.setFont(new Font(titleFont, 0, titleSize));
 		g.setColor(titleColor);
 		g.drawString(pauseTitle, 290, 150);
 		
-		// Set menu text
+		// Set selection text
 		g.setFont(new Font(textFont, 0, textSize));
 		
 		int y = 300;
@@ -78,8 +67,7 @@ public class GameStatePause extends GameStateAbstract {
 			context.setGameState(new GameStateRun(context, pausedLevel));
 			break;
 		case 1:
-			// Options
-			//context.setGameState(new GameStateOptions(context));
+			//context.setGameState(new GameStateOption(context));
 			break;
 		case 2:
 			context.setGameState(new GameStateMenu(context));

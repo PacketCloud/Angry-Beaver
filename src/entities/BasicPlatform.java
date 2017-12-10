@@ -2,32 +2,42 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.ArrayList;
 
-import behaviour.AbstractBehaviour;
-import engine.Level;
-import resourceHandling.ResourceCollection;
+import hitbox.Hitbox;
+import model.AbstractModel;
 
-public class BasicPlatform extends AbstractEntity {
+public class BasicPlatform extends AbstractEntity{
 
-	public BasicPlatform(ResourceCollection model) {
-		super(model);
+	public BasicPlatform(AbstractModel model) {
+		super(model, "Basic Null Entity");
 		initializePlatform();
 	}
-
+	
 	public void initializePlatform() {
-		this.isSolid = true;
-		this.isStatic = true;
 	}
-	
+
 	@Override
-	public void render(Graphics2D g) {
-		g.setColor(Color.GREEN);
-		g.fillRect((int) position.getX(), (int) position.getY(), width, height);
+	public void renderTexture(Graphics2D g) {
+		Image texture = model.getImageIcon(state.toString());
+		ArrayList<Hitbox> absoluteHitboxes = getAbsHitboxes();
+		int facing = facing();
+		
+		// TODO: recursive drawing of textures
+		if(texture != null) {
+			for(Hitbox h: absoluteHitboxes) {
+				g.drawImage(texture,//image to draw.
+					(int) (position.getX() + (-0.5 * facing + 0.5) * texture.getWidth(null) * scaling),//x position to draw, dependent on direction facing and scale.
+					(int) position.getY(),//y position to draw.
+					(int) (h.getWidth() * facing * scaling),//dx position to draw, dependent on direction facing and scale.
+					(int) (h.getHeight() * scaling),//dy position to draw, dependent on scale.
+					null);//observer, null.
+				g.setColor(Color.WHITE);
+				g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+			}
+		}
 	}
+
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Basic Platform";
-	}
 }

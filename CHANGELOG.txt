@@ -1,6 +1,0 @@
-Angry Beaver
-===========================
-CHANGELOG:
-
-v1.0.0 (2016.xx.xx):
-Initial Release

@@ -1,25 +1,19 @@
 package states.gameState;
 
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.ImageIcon;
-
-import engine.GameHandler;
+import fileUtility.OpenImage;
+import fileUtility.OpenSoundFile;
 
 public class GameStateMenu extends GameStateAbstract {
 	private String menuTitle = "ANGRY BEAVER";
 	private ArrayList<String> menuText  = new ArrayList<String>(Arrays.asList("Play", "Options","Exit"));
 	private int chosen = 0;	
-	
-	private Color titleColor = Color.BLACK;
-	private Color defaultColor = Color.BLACK;
-	private Color selectColor = Color.RED;
+	private Image background = null;
 	
 	public GameStateMenu(GameStateContext context) {
 		super(context);
@@ -36,20 +30,18 @@ public class GameStateMenu extends GameStateAbstract {
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
-		
-		// TODO: Menu background?
 		drawBackground(g);
+		
 		// TODO: Positioning of text based on the window size.
-		//g.scale(1, 1);
-		// Set title
-		Font font = new Font("Arial", 0, 100);
+		// Set menu title
+		Font font = new Font(titleFont, 0, titleSize);
 		g.setFont(font);
 		g.setColor(titleColor);
 		
 		g.drawString(menuTitle, 290, 150);
 		
-		// Set menu text
-		Font font1 = new Font("Comic Sans MS", 0, 50);
+		// Set selection text
+		Font font1 = new Font(textFont, 0, textSize);
 		g.setFont(font1);
 		
 		int y = 300;
@@ -65,16 +57,15 @@ public class GameStateMenu extends GameStateAbstract {
 	}
  
 	public void drawBackground(Graphics2D g) {
-		//TODO: Read background image from FileUtility instead
-		File file = new File("");
-		String path = file.getAbsolutePath();
-		try{
-			//note: in the future, image scale and position should be dependent on window size/resolution.
-			Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
-			g.drawImage(background, 0, 0, 1920, 1080, null);
-		} catch (Exception e){
-			System.out.println(e.toString());
+		if(background == null) {
+			try {
+				background = new OpenImage().Open("/Resources/Textures/Background/Background_MountainHorizon.png");
+				
+			} catch (Exception e){
+				System.out.println(e.toString());
+			}
 		}
+		g.drawImage(background, 0, 0, 1920, 1080, null);
 	}
 	
 	@Override
@@ -83,13 +74,14 @@ public class GameStateMenu extends GameStateAbstract {
 		super.jump();
 		switch(chosen) {
 		case 0:
-			context.setGameState(new GameStateRun(context, ""));
+			//context.setGameState(new GameStateRun(context, ""));
+			context.setGameState(new GameStateLevelSelect(context));
 			break;
 		case 1:
+			context.setGameState(new GameStateOption(context));
 			break;
 		case 2:
 			context.setGameState(new GameStateStop(context));
-			//getH().getGameState().stateStop();
 		}
 	}
 
@@ -97,6 +89,9 @@ public class GameStateMenu extends GameStateAbstract {
 	public void up() {
 		// TODO Auto-generated method stub
 		super.up();
+		
+		// Example of sound usage
+		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
 		
 		chosen--;
 		if (chosen < 0) {
@@ -108,6 +103,9 @@ public class GameStateMenu extends GameStateAbstract {
 	public void down() {
 		// TODO Auto-generated method stub
 		super.down();
+		
+		// Example of sound usage
+		new OpenSoundFile("/Resources/Audio/Woosh.wav").playSound();
 		
 		chosen++;
 		if (chosen >= menuText.size()) {

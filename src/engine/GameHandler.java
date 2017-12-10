@@ -2,18 +2,13 @@ package engine;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import javax.swing.JPanel;
 
-import entities.*;
 import keyInputs.*;
-import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 import states.gameState.*;
 
 /*
- * LevelHandler holds the game loop. It also holds the current level
- * and takes in keyboard inputs.
+ * GameHandler holds the game loop and the current state of the game
  */
 public class GameHandler extends JPanel {
 	
@@ -21,10 +16,13 @@ public class GameHandler extends JPanel {
 	public GameStateContext state;
 	public Keymap keymap;
 	
+	public int maxFPS;
+	
 	public GameHandler() {
 		this.setFocusable(true);
 		this.state = new GameStateContext(this);
 		setKeymap(new Keymap(this));
+		maxFPS = MainRuntime.getSettings().getMaxFPS();
 	}
 
 	public void keyPressed(String actionType) {
@@ -35,19 +33,31 @@ public class GameHandler extends JPanel {
 	public void runLoop() {
         do
         {
-        	try{        		
+        	try{
+                long fps = 1000 / maxFPS;
+                // Start time of updating the game
+                long startTime = System.nanoTime() / 1000000;
+
+                // Update game state and draw
         		getGameState().update();
-        		//TODO: FPS handling?
         		repaint();
-        		Thread.sleep(20);
+
+                // End time of updating the game
+        		long endTime = System.nanoTime() / 1000000 - startTime;
+
+                // Time left over
+                long sleepTime = fps - endTime;
+
+                if (sleepTime > 0) {
+            		Thread.sleep(sleepTime);
+                }
+                
         	} catch (Exception e) {
 	        	System.out.println(e);
 	        	state.setGameState(new GameStateStop(state));;
         	}
         } while(!(getGameState().getState() instanceof states.gameState.GameStateStop));
 	}
-	
-	
 	
 	@Override
 	public void paintComponent(java.awt.Graphics g) {
@@ -56,6 +66,7 @@ public class GameHandler extends JPanel {
 	}
 	
 	/******** Getters and Setters ********/
+	
 	@Override
 	public Dimension getPreferredSize() {
 		// TODO Auto-generated method stub
@@ -73,5 +84,9 @@ public class GameHandler extends JPanel {
 
 	public void setKeymap(Keymap keymap) {
 		this.keymap = keymap;
+	}
+
+	public int getMaxFPS() {
+		return maxFPS;
 	}
 }

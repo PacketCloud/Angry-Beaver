@@ -37,6 +37,7 @@ public class Keymap {
 		
 		inputMap.put(KeyStroke.getKeyStroke("SPACE"), ACTIONS.JUMP);
 		inputMap.put(KeyStroke.getKeyStroke("S"), ACTIONS.ATTACK);
+		inputMap.put(KeyStroke.getKeyStroke("released S"), ACTIONS.R_ATTACK);
 		inputMap.put(KeyStroke.getKeyStroke("D"), ACTIONS.ATTACK2);
 	}
 	
@@ -56,6 +57,7 @@ public class Keymap {
 		
 		actionMap.put(ACTIONS.JUMP, new PlayerInput(this,ACTIONS.JUMP));
 		actionMap.put(ACTIONS.ATTACK, new PlayerInput(this,ACTIONS.ATTACK));
+		actionMap.put(ACTIONS.R_ATTACK, new PlayerInput(this,ACTIONS.R_ATTACK));
 		actionMap.put(ACTIONS.ATTACK2, new PlayerInput(this,ACTIONS.ATTACK2));
 	}
 	

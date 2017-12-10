@@ -1,6 +1,5 @@
 package states.entityState;
 
-import java.awt.Graphics2D;
 import java.awt.Point;
 
 import entities.AbstractEntity;
@@ -9,61 +8,117 @@ public class EntityStateContext {
 	public EntityStateAbstract entityState;
 	public AbstractEntity obj;
 	
-	public EntityStateContext(AbstractEntity obj) {
+	public EntityStateContext(AbstractEntity obj, String state) {
 		this.obj = obj;
-		initState(obj.toString());
+		initState(state);
 	}
 	
 	public void initState(String stateName) {
 		// Use EntityStateFactory to decide which state to initialize to
 		entityState = new EntityStateFactory().createState(this, stateName);
 	}
-	
-	public void render(Graphics2D g) {
-		entityState.render(g, obj);
-	}
-	
+
 	public void up() {
-		entityState.up(obj);
+		entityState.up();
 	}
 	
 	public void down() {
-		entityState.down(obj);
+		entityState.down();
 	}
 	
 	public void right() {
-		entityState.right(obj);
+		entityState.right();
 	}
 	
 	public void left() {
-		entityState.left(obj);
+		entityState.left();
 	}
 	
 	public void jump() {
-		entityState.jump(obj);
+		entityState.jump();
 	}
 	
 	public void attack() {
-		entityState.attack(obj);
+		entityState.attack();
 	}
 	
 	public void attack2() {
-		entityState.attack2(obj);
+		entityState.attack2();
 	}
 	
-	public Point getPosition() {
+	public void translate(int x, int y) {
+		obj.translate(x, y);
+	}
+
+	public EntityStateAbstract getEntityState() {
+		return entityState;
+	}
+
+	public void setEntityState(EntityStateAbstract entityState) {
+		this.entityState = entityState;
+	}
+
+	public AbstractEntity getEntity() {
+		return obj;
+	}
+
+	public void setEntity(AbstractEntity obj) {
+		this.obj = obj;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return entityState.stateToString();
+	}
+
+	public void checkForNextState() {
+		// TODO Auto-generated method stub
+		entityState.checkForNextState();
+	}
+	
+	public Point getCurrentPosition() {
 		return obj.getPosition();
+	}
+	
+	public Point getLastPosition() {
+		return obj.getLastPosition();
+	}
+	
+	public boolean isFacingRight() {
+		return obj.isFacingRight();
+	}
+	
+	public double getScaling() {
+		return obj.getScaling();
+	}
+
+	public AbstractEntity makeEntity(String entity) {
+		// TODO Auto-generated method stub
+		return obj.makeEntity(entity);
+	}
+	
+	public void addSubEntity(AbstractEntity e) {
+		obj.addEntity(e);
+	}
+	
+	public void removeSubEntity(AbstractEntity e) {
+		obj.removeEntity(e);
+	}
+	
+	public void destroy() {
+		obj.destroy();
 	}
 	
 	public int getMoveSpeedX() {
 		return obj.getMoveSpeedX();
 	}
 	
-	public int getMoveSpeedY() {
-		return obj.getMoveSpeedY();
+	public int getJumpStrength() {
+		return obj.getJumpStrength();
 	}
 	
-	public void translate(int x, int y) {
-		getPosition().translate(x, y);
+	public int getHealth() {
+		return obj.getHealth();
 	}
 }

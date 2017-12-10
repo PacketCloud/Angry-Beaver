@@ -1,6 +1,7 @@
 package states.gameState;
 
-import engine.GameHandler;
+import java.awt.Color;
+
 import keyInputs.ACTIONS;
 
 /*	All actions in the game should be defined here
@@ -10,6 +11,16 @@ import keyInputs.ACTIONS;
 
 public abstract class GameStateAbstract implements GameStateInterface{
 	protected GameStateContext context;
+	
+	// Standard text fonts, sizes, and colors
+	protected String titleFont = "Arial";
+	protected String textFont = "Comic Sans MS";
+	protected int titleSize = 100;
+	protected int textSize = 50;
+	
+	protected Color titleColor = Color.BLACK;
+	protected Color defaultColor = Color.BLACK;
+	protected Color selectColor = Color.RED;
 	
 	public GameStateAbstract(GameStateContext context) {
 		this.context = context;
