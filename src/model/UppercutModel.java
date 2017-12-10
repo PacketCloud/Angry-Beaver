@@ -1,9 +1,8 @@
 package model;
 
 import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 
-public class UppercutModel extends ResourceCollection {
+public class UppercutModel extends AbstractModel {
 
 	public UppercutModel() {
 		super("Uppercut");

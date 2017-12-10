@@ -1,9 +1,8 @@
 package model;
 
 import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 
-public class LogModel extends ResourceCollection {
+public class LogModel extends AbstractModel {
 
 	public LogModel() {
 		super("Log");

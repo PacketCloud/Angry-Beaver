@@ -5,13 +5,13 @@ import java.awt.Point;
 
 import entities.AbstractEntity;
 import hitbox.Hitbox;
+import model.AbstractModel;
 import model.UppercutModel;
-import resourceHandling.ResourceCollection;
 import trigger.TriggerFactory;
 
 public class Deer extends AbstractEntity {
 
-	public Deer(ResourceCollection model) {
+	public Deer(AbstractModel model) {
 		super(model, "Basic Entity");
 		// TODO Auto-generated constructor stub
 	}

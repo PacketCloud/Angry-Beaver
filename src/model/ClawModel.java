@@ -3,7 +3,7 @@ package model;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
-public class ClawModel extends ResourceCollection {
+public class ClawModel extends AbstractModel {
 
 	public ClawModel() {
 		super("Claw");

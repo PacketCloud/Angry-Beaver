@@ -1,11 +1,11 @@
 package entities.prefab;
 
 import entities.AbstractEntity;
-import resourceHandling.ResourceCollection;
+import model.AbstractModel;
 
 public class Uppercut extends AbstractEntity {
 
-	public Uppercut(ResourceCollection model) {
+	public Uppercut(AbstractModel model) {
 		super(model, "Basic Null Entity");
 		// TODO Auto-generated constructor stub
 	}

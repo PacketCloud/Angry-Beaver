@@ -1,12 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-
-import hitbox.Hitbox;
 import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 
-public class PlatformModel extends ResourceCollection {
+public class PlatformModel extends AbstractModel {
 
 	public PlatformModel() {
 		super("Platform");

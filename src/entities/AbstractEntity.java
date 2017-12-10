@@ -14,6 +14,7 @@ import behaviour.NoBehaviour;
 import engine.Level;
 import force.Force;
 import hitbox.Hitbox;
+import model.AbstractModel;
 import resourceHandling.*;
 import states.entityState.EntityStateContext;
 import trigger.Trigger;
@@ -21,13 +22,12 @@ import trigger.Trigger;
 public abstract class AbstractEntity {
 	
 	protected Level level;
-	protected ResourceCollection model;
+	protected AbstractModel model;
 	protected AbstractBehaviour behaviour;
 	protected EntityStateContext state;
 	
 	protected Point position;
 	protected Point lastPosition;
-	protected ArrayList<Hitbox> hitboxes;
 	protected ArrayList<AbstractEntity> entities;	
 	protected Trigger trigger;
 	
@@ -47,18 +47,17 @@ public abstract class AbstractEntity {
 	protected int damage;
 	
 	
-	public AbstractEntity(ResourceCollection model, String state) {
+	public AbstractEntity(AbstractModel model, String state) {
 		initialize(model, state);
 	}
 	
-	public void initialize(ResourceCollection model, String state) {
+	public void initialize(AbstractModel model, String state) {
 		this.model = model;
 		this.behaviour = new NoBehaviour();
 		this.state = new EntityStateContext(this, state);
 		
 		this.position = new Point(0, 0);
-		this.lastPosition = new Point(0, 0);
-		this.hitboxes = new ArrayList<Hitbox>(); // Hitboxes relative to the entity		
+		this.lastPosition = new Point(0, 0);		
 		this.entities = new ArrayList<AbstractEntity>(); // Entities which are related
 		
 		this.id = null;
@@ -231,7 +230,7 @@ public abstract class AbstractEntity {
 		return model;
 	}
 
-	public void setModel(ResourceCollection model) {
+	public void setModel(AbstractModel model) {
 		this.model = model;
 	}
 
@@ -262,7 +261,7 @@ public abstract class AbstractEntity {
 
 	
 	public void addHitbox(Hitbox hitbox) {
-		hitboxes.add(hitbox);
+		model.add(hitbox);
 	}
 	
 	// GetAbsHitboxes will return the hitboxes relative to the world rather than relative to the entity
@@ -271,6 +270,7 @@ public abstract class AbstractEntity {
 		Image texture = model.getImageIcon(state.toString());
 		int facing = facing();
 		ArrayList<Hitbox> absHitboxes = new ArrayList<Hitbox>();
+		ArrayList<Hitbox> hitboxes = model.getHitboxes();
 		
 		for (Hitbox h : hitboxes) {
 			Hitbox absHitbox = new Hitbox( (int) (position.getX() + ((0.5 * -facing + 0.5) * texture.getWidth(null) * scaling) 
@@ -284,15 +284,6 @@ public abstract class AbstractEntity {
 			absHitboxes.add(absHitbox);
 		}
 		return absHitboxes;
-	}
-
-	
-	public void setHitboxes(ArrayList<Hitbox> hitboxes) {
-		this.hitboxes = hitboxes;
-	}
-	
-	public void removeHitbox(Hitbox hitbox) {
-		hitboxes.remove(hitbox);
 	}
 	
 	public void addForce(Force f) {

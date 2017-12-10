@@ -4,13 +4,12 @@ import java.awt.Point;
 
 import entities.AbstractEntity;
 import hitbox.Hitbox;
-import model.CrateModel;
+import model.AbstractModel;
 import model.LogModel;
-import resourceHandling.ResourceCollection;
 
 public class Tree extends AbstractEntity {
 
-	public Tree(ResourceCollection model) {
+	public Tree(AbstractModel model) {
 		super(model, "Basic Null Entity");
 		// TODO Auto-generated constructor stub
 	}

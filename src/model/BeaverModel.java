@@ -1,12 +1,9 @@
 package model;
 
-import java.util.ArrayList;
-
 import hitbox.Hitbox;
 import resourceHandling.Resource;
-import resourceHandling.ResourceCollection;
 
-public class BeaverModel extends ResourceCollection {
+public class BeaverModel extends AbstractModel {
 
 	public BeaverModel() {
 		super("Beaver");
@@ -27,6 +24,9 @@ public class BeaverModel extends ResourceCollection {
 		add(new Resource("Beaver Falling", "/Resources/Sprites/Player/Beaver_Falling.png", (float) 2.5, null, true, "Falling"));
 		add(new Resource("Beaver Rising", "/Resources/Sprites/Player/Beaver_Idle.png", (float) 2.5, null, true, "Rising"));
 		add(new Resource("Beaver Attack", "/Resources/Sprites/Player/Beaver_Munch.gif", (float) 2.5, null, true, "Attack1"));
+		Hitbox beaverh1= new Hitbox(2, 2, 20, 15);
+		beaverh1.setBody(true);
+		add(beaverh1);
 	}
 
 }

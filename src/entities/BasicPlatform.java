@@ -6,12 +6,11 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import hitbox.Hitbox;
-import resourceHandling.ResourceCollection;
-
+import model.AbstractModel;
 
 public class BasicPlatform extends AbstractEntity{
 
-	public BasicPlatform(ResourceCollection model) {
+	public BasicPlatform(AbstractModel model) {
 		super(model, "Basic Null Entity");
 		initializePlatform();
 	}

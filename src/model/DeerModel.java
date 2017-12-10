@@ -1,9 +1,10 @@
 package model;
 
+import hitbox.Hitbox;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
-public class DeerModel extends ResourceCollection {
+public class DeerModel extends AbstractModel {
 
 	public DeerModel() {
 		super("Deer");
@@ -19,5 +20,9 @@ public class DeerModel extends ResourceCollection {
 		add(new Resource("Deer Falling", "/Resources/Sprites/Mobs/Deer_Falling.gif", (float) 2.5, null, true, "Falling"));
 		add(new Resource("Deer Rising", "/Resources/Sprites/Mobs/Deer_Rising.gif", (float) 2.5, null, true, "Rising"));
 		add(new Resource("Deer Attack", "/Resources/Sprites/Mobs/Deer_Attack.gif", (float) 2.5, null, true, "Attack1"));
+		
+		Hitbox deerh= new Hitbox(13, 8, 31, 30);
+		deerh.setBody(true);
+		add(deerh);
 	}
 }

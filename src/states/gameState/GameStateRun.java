@@ -39,18 +39,12 @@ public class GameStateRun extends GameStateAbstract {
 		// Beaver
 		AbstractEntity beaver = new Beaver(new BeaverModel());
 		beaver.setPosition(new Point(400, 200));
-		Hitbox beaverh1= new Hitbox(2, 2, 20, 15);
-		beaverh1.setBody(true);
-		beaver.addHitbox(beaverh1);
 		beaver.setScaling(2.5);
 		beaver.setHealth(3);
 		
 		// Deer
 		AbstractEntity deer = new Deer(new DeerModel());
 		deer.setPosition(new Point(950, 250));
-		Hitbox deerh= new Hitbox(13, 8, 31, 30);
-		deerh.setBody(true);
-		deer.addHitbox(deerh);
 		deer.setScaling(3);
 		deer.setHealth(3);
 		
@@ -66,20 +60,12 @@ public class GameStateRun extends GameStateAbstract {
 		// Tree
 		AbstractEntity tree = new Tree(new TreeModel());
 		tree.setPosition(new Point(500, 150));
-		tree.addHitbox(new Hitbox(0, 0, 35, 21));
-		Hitbox treeh1 = new Hitbox(11, 21, 9, 42);
-		treeh1.setBody(true);
-		tree.addHitbox(treeh1);
 		tree.setScaling(3);
 		tree.setHealth(5);
 		
 		// Crate
 		AbstractEntity crate = new Crate(new CrateModel());
 		crate.setPosition(new Point(800, 200));
-		Hitbox crateh1 = new Hitbox(2, 2, 15, 15);
-		crateh1.setSolid(true);
-		crateh1.setBody(true);
-		crate.addHitbox(crateh1);
 		crate.setScaling(2);
 		crate.setHealth(3);
 		
