@@ -14,9 +14,9 @@ public class EntityStateFactory {
 	
 	public EntityStateAbstract createState(EntityStateContext context, String stateName){
 		switch (stateName) {
-		case "Basic Entity":
+		case "Basic_Entity":
 			return (new BasicEntityStateIdle(context));
-		case "Basic Null Entity":
+		case "Basic_Null_Entity":
 			return (new NoEntityState(context));
 		default:
 			return (new NoEntityState(context));

@@ -6,14 +6,17 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
+import model.BeaverModel;
 import model.ClawModel;
+import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 
 public class Beaver extends AbstractEntity {
 
-	public Beaver(AbstractModel model) {
-		super(model, "Basic Entity");
-		// TODO Auto-generated constructor stub
+	public Beaver() {
+		super();
+		setModel(new BeaverModel());
+		setState(new EntityStateContext(this, "Basic_Entity"));
 	}
 
 	@Override

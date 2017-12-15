@@ -7,15 +7,13 @@ import java.util.ArrayList;
 
 import hitbox.Hitbox;
 import model.AbstractModel;
+import model.PlatformModel;
 
 public class BasicPlatform extends AbstractEntity{
 
-	public BasicPlatform(AbstractModel model) {
-		super(model, "Basic Null Entity");
-		initializePlatform();
-	}
-	
-	public void initializePlatform() {
+	public BasicPlatform() {
+		super();
+		setModel(new PlatformModel());
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class OpenLevel {
 		//TODO: Initialize Key to Directory mapping for all images
 	}
 	
-	public Level getLevel(String levelName) {
+	public Level parseLevel(String levelName) {
 		//TODO: Use the map to use OpenFile and parse a Level file
 		
 		/*

@@ -15,6 +15,7 @@ import engine.Level;
 import force.Force;
 import hitbox.Hitbox;
 import model.AbstractModel;
+import model.EmptyModel;
 import resourceHandling.*;
 import states.entityState.EntityStateContext;
 import trigger.Trigger;
@@ -42,19 +43,15 @@ public abstract class AbstractEntity {
 	protected int moveSpeedX;
 	protected int jumpStrength;
 	
-	protected boolean isInvulnerable; // Currently not implemented
+	protected boolean isInvulnerable;
 	protected int health;
 	protected int damage;
 	
 	
-	public AbstractEntity(AbstractModel model, String state) {
-		initialize(model, state);
-	}
-	
-	public void initialize(AbstractModel model, String state) {
-		this.model = model;
+	public AbstractEntity() {
+		this.model = new EmptyModel();
 		this.behaviour = new NoBehaviour();
-		this.state = new EntityStateContext(this, state);
+		this.state = new EntityStateContext(this, "Basic_Null_Entity");
 		
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);		

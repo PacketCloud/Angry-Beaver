@@ -35,22 +35,24 @@ public class GameStateRun extends GameStateAbstract {
 	public Level loadLevel(String name) {
 		Level level = new Level();
 		// TODO: Level loading should be done with file utility
+		// OpenLevel openLevel = new OpenLevel();
+		// return openLevel.parseLevel(name);
 		
 		// Beaver
-		AbstractEntity beaver = new Beaver(new BeaverModel());
+		AbstractEntity beaver = new Beaver();
 		beaver.setPosition(new Point(400, 200));
 		beaver.setScaling(2.5);
 		beaver.setHealth(3);
 		
 		// Deer
-		AbstractEntity deer = new Deer(new DeerModel());
+		AbstractEntity deer = new Deer();
 		deer.setPosition(new Point(950, 250));
 		deer.setScaling(3);
 		deer.setHealth(3);
 		
 		
 		// Platform
-		AbstractEntity platform = new BasicPlatform(new PlatformModel());
+		AbstractEntity platform = new BasicPlatform();
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
 		platform.addHitbox(plath);
@@ -58,13 +60,14 @@ public class GameStateRun extends GameStateAbstract {
 		platform.setPosition(new Point(350,300));
 		
 		// Tree
-		AbstractEntity tree = new Tree(new TreeModel());
+		AbstractEntity tree = new Tree();
+		tree.setInvulnerable(true);
 		tree.setPosition(new Point(500, 150));
 		tree.setScaling(3);
 		tree.setHealth(5);
 		
 		// Crate
-		AbstractEntity crate = new Crate(new CrateModel());
+		AbstractEntity crate = new Crate();
 		crate.setPosition(new Point(800, 200));
 		crate.setScaling(2);
 		crate.setHealth(3);

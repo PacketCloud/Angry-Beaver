@@ -6,14 +6,17 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
+import model.DeerModel;
 import model.UppercutModel;
+import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 
 public class Deer extends AbstractEntity {
 
-	public Deer(AbstractModel model) {
-		super(model, "Basic Entity");
-		// TODO Auto-generated constructor stub
+	public Deer() {
+		super();
+		setModel(new DeerModel());
+		setState(new EntityStateContext(this, "Basic_Entity"));
 	}
 
 	@Override

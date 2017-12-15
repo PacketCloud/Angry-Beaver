@@ -30,8 +30,10 @@ public class KnockbackTrigger extends AbstractTrigger {
 		// Example of a knockback effect for an attack
 		// TODO: Allow TriggerFactory to dynamically create different forces of knockback
 		if(!entity1.getEntities().contains(entity2) && previousHits.get(entity1) != entity2) {
-			entity1.addForce(new TimedForce(xForce * entity2.facing(), yForce, duration));
-			previousHits.put(entity1, entity2);
+			if(!entity1.isInvulnerable()) {
+				entity1.addForce(new TimedForce(xForce * entity2.facing(), yForce, duration));
+				previousHits.put(entity1, entity2);
+			}
 		}
 	}
 }

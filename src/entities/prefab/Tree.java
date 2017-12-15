@@ -6,12 +6,13 @@ import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
 import model.LogModel;
+import model.TreeModel;
 
 public class Tree extends AbstractEntity {
 
-	public Tree(AbstractModel model) {
-		super(model, "Basic Null Entity");
-		// TODO Auto-generated constructor stub
+	public Tree() {
+		super();
+		setModel(new TreeModel());
 	}
 
 	@Override
