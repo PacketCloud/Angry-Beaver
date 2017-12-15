@@ -28,10 +28,6 @@ public class Tree extends AbstractEntity {
 	public AbstractEntity createLog() {
 		AbstractEntity Log = new Log(new LogModel());
 		Log.setPosition(new Point(getPosition()));
-		Hitbox Logh1 = new Hitbox(1, 1, 20, 13);
-		Logh1.setSolid(true);
-		Logh1.setBody(true);
-		Log.addHitbox(Logh1);
 		Log.setScaling(getScaling());
 		Log.setHealth(1);
 		

@@ -35,11 +35,6 @@ public class Deer extends AbstractEntity {
 		AbstractEntity Uppercut = new Uppercut(new UppercutModel());
 		Uppercut.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 24), 
 				(int) (position.getY() - 5 * scaling)));
-		Hitbox clawh1 = new Hitbox(4, 3, 17, 44);
-		clawh1.setTrigger(true);
-		Uppercut.addHitbox(clawh1);
-		Uppercut.setTrigger(new TriggerFactory().createTrigger("Damage KnockBack:-2:-10:250"));
-		Uppercut.setStatic(true);
 		Uppercut.setScaling(scaling);
 		Uppercut.setFacingRight(facingRight);
 		Uppercut.setDamage(1);
