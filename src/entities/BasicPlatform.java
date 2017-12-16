@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import hitbox.Hitbox;
 import model.AbstractModel;
-import model.PlatformModel;
+import model.prefab.PlatformModel;
 
 public class BasicPlatform extends AbstractEntity{
 

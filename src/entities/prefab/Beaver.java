@@ -6,8 +6,8 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
-import model.BeaverModel;
-import model.ClawModel;
+import model.prefab.BeaverModel;
+import model.prefab.ClawModel;
 import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 

@@ -2,7 +2,7 @@ package entities.prefab;
 
 import entities.AbstractEntity;
 import model.AbstractModel;
-import model.LogModel;
+import model.prefab.LogModel;
 
 public class Log extends AbstractEntity {
 

@@ -1,1 +1,3 @@
-Levels
+Entity:Deer Position:100,0 Scaling:11
+Entity:Tree Position:800,0 Scaling:6 Health:3
+Entity:Beaver Position:900,50 Scaling:7 Health:2

@@ -6,8 +6,8 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
-import model.DeerModel;
-import model.UppercutModel;
+import model.prefab.DeerModel;
+import model.prefab.UppercutModel;
 import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 

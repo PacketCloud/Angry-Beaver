@@ -10,13 +10,9 @@ import entities.prefab.Beaver;
 import entities.prefab.Crate;
 import entities.prefab.Deer;
 import entities.prefab.Tree;
+import fileUtility.OpenLevel;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
-import model.BeaverModel;
-import model.CrateModel;
-import model.DeerModel;
-import model.PlatformModel;
-import model.TreeModel;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -35,8 +31,8 @@ public class GameStateRun extends GameStateAbstract {
 	public Level loadLevel(String name) {
 		Level level = new Level();
 		// TODO: Level loading should be done with file utility
-		// OpenLevel openLevel = new OpenLevel();
-		// return openLevel.parseLevel(name);
+		OpenLevel openLevel = new OpenLevel();
+		level = openLevel.parseLevel(name);
 		
 		// Beaver
 		AbstractEntity beaver = new Beaver();
@@ -61,7 +57,6 @@ public class GameStateRun extends GameStateAbstract {
 		
 		// Tree
 		AbstractEntity tree = new Tree();
-		tree.setInvulnerable(true);
 		tree.setPosition(new Point(500, 150));
 		tree.setScaling(3);
 		tree.setHealth(5);
@@ -87,7 +82,6 @@ public class GameStateRun extends GameStateAbstract {
 		level.addEntity(platform);
 		level.addEntity(tree);
 		level.addEntity(crate);
-
 		
 		return level;
 	}

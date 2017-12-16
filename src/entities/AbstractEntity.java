@@ -35,7 +35,6 @@ public abstract class AbstractEntity {
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
-	protected boolean lastFacing;
 	
 	// Movement
 	protected Set<Force> forces;

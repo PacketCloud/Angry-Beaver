@@ -5,8 +5,8 @@ import java.awt.Point;
 import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
-import model.LogModel;
-import model.TreeModel;
+import model.prefab.LogModel;
+import model.prefab.TreeModel;
 
 public class Tree extends AbstractEntity {
 

@@ -2,7 +2,7 @@ package entities.prefab;
 
 import entities.AbstractEntity;
 import model.AbstractModel;
-import model.UppercutModel;
+import model.prefab.UppercutModel;
 import trigger.TriggerFactory;
 
 public class Uppercut extends AbstractEntity {

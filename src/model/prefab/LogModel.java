@@ -1,6 +1,7 @@
-package model;
+package model.prefab;
 
 import hitbox.Hitbox;
+import model.AbstractModel;
 import resourceHandling.Resource;
 
 public class LogModel extends AbstractModel {

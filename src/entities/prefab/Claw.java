@@ -2,7 +2,7 @@ package entities.prefab;
 
 import entities.AbstractEntity;
 import model.AbstractModel;
-import model.ClawModel;
+import model.prefab.ClawModel;
 import trigger.TriggerFactory;
 
 public class Claw extends AbstractEntity {

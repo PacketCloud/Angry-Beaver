@@ -1,5 +1,6 @@
-package model;
+package model.prefab;
 
+import model.AbstractModel;
 import resourceHandling.Resource;
 
 public class PlatformModel extends AbstractModel {
