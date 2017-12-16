@@ -15,7 +15,7 @@ import engine.Level;
 import force.Force;
 import hitbox.Hitbox;
 import model.AbstractModel;
-import model.EmptyModel;
+import model.prefab.EmptyModel;
 import resourceHandling.*;
 import states.entityState.EntityStateContext;
 import trigger.Trigger;

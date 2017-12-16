@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.Point;
 
+import model.ModelFactory;
 import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 
@@ -45,7 +46,11 @@ public class EntityFactory {
 				entity.setTrigger(new TriggerFactory().createTrigger(value));
 				break;
 			case "Model":
-				// TODO: Model Factory
+				try {
+					entity.setModel(new ModelFactory().createModel(value));
+				} catch (Exception e) {
+					System.out.println("Model " + value + " could not be found");
+				}
 				break;
 			case "Behaviour":
 				// TODO: Behaviour Factory

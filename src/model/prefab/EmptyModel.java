@@ -1,4 +1,6 @@
-package model;
+package model.prefab;
+
+import model.AbstractModel;
 
 public class EmptyModel extends AbstractModel {
 

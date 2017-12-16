@@ -18,8 +18,11 @@ public class ACTIONS {
 	public final static String R_MOVE_LEFT = "r_move_left";
 	
 	public final static String PAUSE = "pause";
+	
 	public final static String JUMP = "jump";
+	public final static String R_JUMP = "r_jump";
 	public final static String ATTACK = "attack";
 	public final static String R_ATTACK = "r_attack";
 	public final static String ATTACK2 = "attack2";
+	public final static String R_ATTACK2 = "r_attack2";
 }
