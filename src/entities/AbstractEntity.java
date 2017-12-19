@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.UUID;
 
 import behaviour.AbstractBehaviour;
 import behaviour.NoBehaviour;
@@ -56,7 +57,7 @@ public abstract class AbstractEntity {
 		this.lastPosition = new Point(0, 0);		
 		this.entities = new ArrayList<AbstractEntity>(); // Entities which are related
 		
-		this.id = null;
+		this.id = UUID.randomUUID().toString();
 		this.scaling = 1;
 		this.facingRight = false;
 
@@ -94,6 +95,7 @@ public abstract class AbstractEntity {
 	public void render(Graphics2D g) {
 		renderTexture(g);
 		renderHitboxes(g);
+		renderID(g);
 	}
 	
 	public void renderTexture(Graphics2D g) {
@@ -144,6 +146,11 @@ public abstract class AbstractEntity {
 			}
 			g.drawRect(h.position.x, h.position.y, h.width, h.height);
 		}
+	}
+	
+	public void renderID(Graphics2D g) {
+		// Printing of ID
+		g.drawString(getId(), (int) getPosition().getX(), (int) getPosition().getY());
 	}
 	
 	public void destroy() {

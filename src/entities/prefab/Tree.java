@@ -27,7 +27,7 @@ public class Tree extends AbstractEntity {
 	}
 
 	public AbstractEntity createLog() {
-		AbstractEntity Log = new Log(new LogModel());
+		AbstractEntity Log = new Log();
 		Log.setPosition(new Point(getPosition()));
 		Log.setScaling(getScaling());
 		Log.setHealth(1);

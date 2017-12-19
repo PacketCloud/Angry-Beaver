@@ -7,7 +7,7 @@ import trigger.TriggerFactory;
 
 public class Claw extends AbstractEntity {
 
-	public Claw(AbstractModel model) {
+	public Claw() {
 		super();
 		// TODO Auto-generated constructor stub
 		

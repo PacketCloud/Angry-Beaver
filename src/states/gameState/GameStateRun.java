@@ -1,11 +1,14 @@
 package states.gameState;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
 import behaviour.PlayerBehaviour;
 import engine.Level;
 import entities.*;
+import entities.prefab.Platform;
+import entities.prefab.Squirrel;
 import entities.prefab.Beaver;
 import entities.prefab.Crate;
 import entities.prefab.Deer;
@@ -46,9 +49,8 @@ public class GameStateRun extends GameStateAbstract {
 		deer.setScaling(3);
 		deer.setHealth(3);
 		
-		
 		// Platform
-		AbstractEntity platform = new BasicPlatform();
+		AbstractEntity platform = new Platform();
 		Hitbox plath =  new Hitbox(800, 50);
 		plath.setSolid(true);
 		platform.addHitbox(plath);
@@ -102,6 +104,7 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
+		g.setFont(new Font(gameTextFont, 0, gameTextSize));
 		currentLevel.drawLevel(g);
 	}
 	

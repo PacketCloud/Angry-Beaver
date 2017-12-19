@@ -1,17 +1,18 @@
-package entities;
+package entities.prefab;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import entities.AbstractEntity;
 import hitbox.Hitbox;
 import model.AbstractModel;
 import model.prefab.PlatformModel;
 
-public class BasicPlatform extends AbstractEntity{
+public class Platform extends AbstractEntity{
 
-	public BasicPlatform() {
+	public Platform() {
 		super();
 		setModel(new PlatformModel());
 	}

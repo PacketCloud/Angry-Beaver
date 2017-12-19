@@ -7,7 +7,7 @@ import trigger.TriggerFactory;
 
 public class Uppercut extends AbstractEntity {
 
-	public Uppercut(AbstractModel model) {
+	public Uppercut() {
 		super();
 		// TODO Auto-generated constructor stub
 		

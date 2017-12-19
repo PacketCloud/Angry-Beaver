@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.Point;
 
+import hitbox.Hitbox;
+import hitbox.HitboxFactory;
 import model.ModelFactory;
 import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
@@ -69,6 +71,11 @@ public class EntityFactory {
 				break;
 			case "Invulnerable":
 				entity.setInvulnerable(Boolean.parseBoolean(value));
+				break;
+			case "Hitbox":
+				Hitbox h = new HitboxFactory().createHitbox(value);
+				
+				entity.addHitbox(h);
 				break;
 			default:
 				

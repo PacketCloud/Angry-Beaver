@@ -1,3 +1,6 @@
-Entity:Deer Position:100,0 Scaling:11
-Entity:Tree Position:800,0 Scaling:6 Health:3
-Entity:Beaver Position:900,50 Scaling:7 Health:2
+Entity:Deer Position:1100,0 Scaling:6 Health:4
+Entity:Tree Position:1800,0 Scaling:6 Health:3
+Entity:Beaver Position:1900,50 Scaling:7 Health:2
+Entity:Platform Position:1150,350 Hitbox:0,0,900,50|Solid Static:true
+Entity:Acorn Scaling:4 Position:1600,200
+Entity:Squirrel Scaling:3 Position:1400,150 Health:2

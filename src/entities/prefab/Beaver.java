@@ -35,7 +35,7 @@ public class Beaver extends AbstractEntity {
 
 		// TODO: Code Cleanup
 		// TODO: In line 36, should line up the position of the new entity depending on its width rather than a magic number
-		AbstractEntity claw = new Claw(new ClawModel());
+		AbstractEntity claw = new Claw();
 		claw.setPosition(new Point((int) ((position.getX() + (-0.5 * facing() + 0.5) * texture.getWidth(null) * scaling) + (-0.5 * facing() - 0.5) * scaling * 16), 
 				(int) (position.getY() - 5 * scaling)));
 
