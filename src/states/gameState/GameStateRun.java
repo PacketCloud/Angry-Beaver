@@ -12,10 +12,12 @@ import entities.prefab.Squirrel;
 import entities.prefab.Beaver;
 import entities.prefab.Crate;
 import entities.prefab.Deer;
+import entities.prefab.EmptyEntity;
 import entities.prefab.Tree;
 import fileUtility.OpenLevel;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
+import trigger.TriggerFactory;
 
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
@@ -69,6 +71,16 @@ public class GameStateRun extends GameStateAbstract {
 		crate.setScaling(2);
 		crate.setHealth(3);
 		
+		// Out of bounds area
+		AbstractEntity empty = new EmptyEntity();
+		empty.setStatic(true);
+		Hitbox emptyh = new Hitbox(0,0,1500,50);
+		emptyh.setTrigger(true);
+		empty.addHitbox(emptyh);
+		empty.setDamage(100);
+		empty.setTrigger(new TriggerFactory().createTrigger("Damage"));
+		empty.setPosition(new Point(0,600));
+		
 		// Set behaviour, ID, camera, and HUD to player
 		AbstractEntity player = deer;
 		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
@@ -84,6 +96,7 @@ public class GameStateRun extends GameStateAbstract {
 		level.addEntity(platform);
 		level.addEntity(tree);
 		level.addEntity(crate);
+		level.addEntity(empty);
 		
 		return level;
 	}
@@ -111,6 +124,9 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
+		if (currentLevel.findByID("Player") == null) {
+			context.setGameState((new GameStateLose(context)));
+		}
 		currentLevel.updateLevel();
 		System.out.println("Running");
 		//context.repaint();
