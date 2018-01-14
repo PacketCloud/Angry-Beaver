@@ -46,7 +46,7 @@ public class GameStateRun extends GameStateAbstract {
 		beaver.setHealth(3);
 		
 		// Deer
-		AbstractEntity deer = new Deer();
+		AbstractEntity deer = new Beaver();
 		deer.setPosition(new Point(950, 250));
 		deer.setScaling(3);
 		deer.setHealth(3);

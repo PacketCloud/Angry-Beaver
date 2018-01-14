@@ -73,8 +73,8 @@ public class CollisionDetector {
 		int xDistance = getXDistance(h1, h2);
 		int yDistance = getYDistance(h1, h2);
 
-		System.out.println(xDistance);
-		System.out.println(yDistance);
+		//System.out.println(xDistance);
+		//System.out.println(yDistance);
 		return (xDistance < 0 && yDistance < 0);
 	}
 
