@@ -1,8 +1,9 @@
-package behaviour;
+package behaviour.prefab;
 
 import java.util.Iterator;
 import java.util.Set;
 
+import behaviour.AbstractBehaviour;
 import engine.Level;
 import entities.AbstractEntity;
 import keyInputs.ACTIONS;

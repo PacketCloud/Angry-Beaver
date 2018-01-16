@@ -4,16 +4,10 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import behaviour.PlayerBehaviour;
+import behaviour.prefab.*;
 import engine.Level;
 import entities.*;
-import entities.prefab.Platform;
-import entities.prefab.Squirrel;
-import entities.prefab.Beaver;
-import entities.prefab.Crate;
-import entities.prefab.Deer;
-import entities.prefab.EmptyEntity;
-import entities.prefab.Tree;
+import entities.prefab.*;
 import fileUtility.OpenLevel;
 import hitbox.Hitbox;
 import keyInputs.ACTIONS;
@@ -41,12 +35,13 @@ public class GameStateRun extends GameStateAbstract {
 		
 		// Beaver
 		AbstractEntity beaver = new Beaver();
+		beaver.setBehaviour(new AggressiveBehaviour());
 		beaver.setPosition(new Point(400, 200));
 		beaver.setScaling(2.5);
 		beaver.setHealth(3);
 		
 		// Deer
-		AbstractEntity deer = new Beaver();
+		AbstractEntity deer = new Deer();
 		deer.setPosition(new Point(950, 250));
 		deer.setScaling(3);
 		deer.setHealth(3);

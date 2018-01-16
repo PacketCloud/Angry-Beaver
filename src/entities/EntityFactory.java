@@ -2,6 +2,7 @@ package entities;
 
 import java.awt.Point;
 
+import behaviour.BehaviourFactory;
 import hitbox.Hitbox;
 import hitbox.HitboxFactory;
 import model.ModelFactory;
@@ -55,7 +56,11 @@ public class EntityFactory {
 				}
 				break;
 			case "Behaviour":
-				// TODO: Behaviour Factory
+				try {
+					entity.setBehaviour(new BehaviourFactory().createBehaviour(value));
+				} catch (Exception e) {
+					System.out.println("Behaviour " + value + " could not be found");
+				}
 				break;
 			case "State":
 				entity.setState(new EntityStateContext(entity, value));

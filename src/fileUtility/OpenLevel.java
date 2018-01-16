@@ -3,7 +3,7 @@ package fileUtility;
 import java.util.HashMap;
 import java.util.Map;
 
-import behaviour.PlayerBehaviour;
+import behaviour.prefab.PlayerBehaviour;
 import engine.Level;
 import entities.AbstractEntity;
 import entities.EntityFactory;

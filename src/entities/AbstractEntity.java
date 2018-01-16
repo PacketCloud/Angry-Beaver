@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import behaviour.AbstractBehaviour;
-import behaviour.NoBehaviour;
+import behaviour.prefab.NoBehaviour;
 import engine.Level;
 import force.Force;
 import hitbox.Hitbox;

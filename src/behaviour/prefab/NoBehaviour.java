@@ -1,5 +1,6 @@
-package behaviour;
+package behaviour.prefab;
 
+import behaviour.AbstractBehaviour;
 import engine.Level;
 import entities.AbstractEntity;
 

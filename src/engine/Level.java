@@ -109,7 +109,7 @@ public class Level {
 	 * Returns the entity associated with a given ID
 	 */
 	public AbstractEntity findByID(String id){
-		return ids.get(id);
+		return ids.getOrDefault(id, null);
 	}
 	
 	/*

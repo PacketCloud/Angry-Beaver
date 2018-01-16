@@ -2,11 +2,13 @@ package behaviour;
 
 import entities.AbstractEntity;
 import keyInputs.ACTIONS;
-//Will be used in entity (or state) to call correct behaviour methods depending on entity type
 
-public abstract class AbstractBehaviour implements BehaviourInterface {
+public abstract class AbstractBehaviour implements BehaviourInterface {	
+	private int detectionDistance;
 
-	public AbstractBehaviour () {}
+	public AbstractBehaviour() {
+		this.detectionDistance = 400;
+	}
 
 	@Override
 	public void doAction(String action, AbstractEntity entity) {
@@ -34,6 +36,14 @@ public abstract class AbstractBehaviour implements BehaviourInterface {
 			entity.attack2();
 			break;
 		}
+	}
+
+	public int getDetectionDistance() {
+		return detectionDistance;
+	}
+
+	public void setDetectionDistance(int detectionDistance) {
+		this.detectionDistance = detectionDistance;
 	}
 
 }
