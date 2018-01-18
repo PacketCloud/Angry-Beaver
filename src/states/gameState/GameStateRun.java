@@ -13,6 +13,9 @@ import hitbox.Hitbox;
 import keyInputs.ACTIONS;
 import trigger.TriggerFactory;
 
+/**
+ * Class GameStateRun is the Game State in which a Level can be played.
+ */
 public class GameStateRun extends GameStateAbstract {
 	public Level currentLevel;
 	
@@ -23,16 +26,15 @@ public class GameStateRun extends GameStateAbstract {
 	
 	public GameStateRun(GameStateContext context, String levelName) {
 		super(context);
-		// TODO: Level loading should be done with file utility
 		this.currentLevel = loadLevel(levelName);
 	}
 	
 	public Level loadLevel(String name) {
 		Level level = new Level();
-		// TODO: Level loading should be done with file utility
 		OpenLevel openLevel = new OpenLevel();
 		level = openLevel.parseLevel(name);
 		
+		// Below are default level entities. These will be removed in the future
 		// Beaver
 		AbstractEntity beaver = new Beaver();
 		beaver.setBehaviour(new AggressiveBehaviour());
@@ -98,7 +100,6 @@ public class GameStateRun extends GameStateAbstract {
 	
 	@Override
 	public void userInput(String action) {
-		// TODO Auto-generated method stub
 		if (action.equals(ACTIONS.PAUSE)) {
 			pause();
 		}
@@ -111,7 +112,6 @@ public class GameStateRun extends GameStateAbstract {
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		g.setFont(new Font(gameTextFont, 0, gameTextSize));
 		currentLevel.drawLevel(g);
 	}
@@ -124,12 +124,10 @@ public class GameStateRun extends GameStateAbstract {
 		}
 		currentLevel.updateLevel();
 		System.out.println("Running");
-		//context.repaint();
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 		super.pause();
 		context.setGameState(new GameStatePause(context, currentLevel));
 	}

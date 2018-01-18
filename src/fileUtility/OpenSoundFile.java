@@ -5,7 +5,7 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
+/**
  * OpenSoundFile opens the audio file from the given path
  * 
  * Example Usage:
@@ -15,7 +15,12 @@ import javax.sound.sampled.Clip;
  */
 public class OpenSoundFile {
 	File soundFile;
-		
+	
+	/**
+	 * Method OpenSoundFile opens a sound file given a path
+	 * 
+	 * @param path			String path to the sound file.
+	 */
 	public OpenSoundFile(String path) {
 		try {
 			File absFile = new File("");

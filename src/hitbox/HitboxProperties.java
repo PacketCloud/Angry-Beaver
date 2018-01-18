@@ -1,5 +1,14 @@
 package hitbox;
 
+/**
+ * Class HitboxProperties is an abstract class for Hitboxes to determine
+ * the type of Hitbox.
+ * 
+ * There are three types of hitboxes: Solid, Body, and Trigger.
+ * Any Hitbox can be more than one type.
+ * 
+ * @see CollisionDetector class for the interactions between the types of Hitboxes 
+ */
 public abstract class HitboxProperties {
 	private boolean isSolid = false;
 	private boolean isBody = false;

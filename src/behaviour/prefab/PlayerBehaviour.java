@@ -6,7 +6,13 @@ import java.util.Set;
 import behaviour.AbstractBehaviour;
 import engine.Level;
 import entities.AbstractEntity;
-import keyInputs.ACTIONS;
+
+/**
+ * Class PlayerBehaviour takes inputs from the Player.
+ * 
+ * An entity with the PlayerBehaviour class will be controlled
+ * by the Player.
+ */
 
 public class PlayerBehaviour extends AbstractBehaviour {
 	
@@ -16,6 +22,7 @@ public class PlayerBehaviour extends AbstractBehaviour {
 
 	@Override
 	public void run(AbstractEntity entity, Level level) {
+		// Get inputs from player and do actions
 		Set<String> inputSet = level.getInput();
 		
 		Iterator<String> itr = inputSet.iterator();

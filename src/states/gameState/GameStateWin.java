@@ -5,6 +5,12 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class GameStateWin is the Game State where the Player wins
+ * when playing a level.
+ * 
+ * Win conditions may change depending on the level.
+ */
 public class GameStateWin extends GameStateAbstract {
 	private String winTitle;
 	private ArrayList<String> winText;
@@ -12,7 +18,6 @@ public class GameStateWin extends GameStateAbstract {
 	
 	public GameStateWin(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		winTitle = "Level Complete";
 		winText = new ArrayList<String>(Arrays.asList("Level Select", "Menu", "Exit"));
 		chosen = 0;
@@ -20,13 +25,11 @@ public class GameStateWin extends GameStateAbstract {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		System.out.println("Win");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		g.setFont(new Font(titleFont, 0, titleSize));
 		g.setColor(titleColor);
 		g.drawString(winTitle, 290, 150);
@@ -47,7 +50,6 @@ public class GameStateWin extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		chosen--;
@@ -58,7 +60,6 @@ public class GameStateWin extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		chosen++;
@@ -69,7 +70,6 @@ public class GameStateWin extends GameStateAbstract {
 
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		
 		switch(chosen) {

@@ -2,12 +2,10 @@ package fileUtility;
 
 import java.awt.Dimension;
 
-/*
- * 	The Settings class loads Default Settings on creation.
- * 		Using loadUserSettings() will open settings.cfg and 
- * 		parse the contents. 
+/**
+ * The Settings class loads Default Settings on creation.
+ * It will then open and parse settings.cfg for Player Settings 
  */
-
 public class Settings {
 	String title;
 	Dimension windowSize;
@@ -22,9 +20,11 @@ public class Settings {
 		maxFPS = 60;
 	}
 	
+	/**
+	 * Method loadUserSettings will open and parse settings.cfg
+	 * for Player Settings
+	 */
 	public void loadUserSettings() {
-		// Go to OpenFile to open and parse settings.cfg		
-		
 		OpenFile settingFile = new OpenFile("/Settings.cfg");
 		while(settingFile.hasNextLine()) {
 			String[] split = settingFile.getNextLine().split("=", 2);
@@ -33,7 +33,10 @@ public class Settings {
 		 settingFile.close();
 	}
 	
-	// Method currently not in use
+	/**
+	 * Method saveUserSettings will save the defined settings values of 
+	 * the instance into settings.cfg
+	 */
 	public void saveUserSettings() {
 		// Go to WriteFile to format and write to settings.cfg
 		
@@ -55,6 +58,11 @@ public class Settings {
 		settingFile.close();
 	}
 	
+	/**
+	 * Method parseLine will parse a given set of strings as Settings values
+	 * 
+	 * @param split 		A String array
+	 */
 	public void parseLine(String[] split) {
 		// More cases should be added as more Settings features are defined
 		switch (split[0].toLowerCase()) {

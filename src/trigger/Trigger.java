@@ -2,7 +2,9 @@ package trigger;
 
 import entities.AbstractEntity;
 
-// entity1 triggers entity2
+/**
+ * Interface Trigger defines required methods for all Triggers
+ */
 public interface Trigger {
 	public void triggerEffects(AbstractEntity entity1, AbstractEntity entity2);
 }

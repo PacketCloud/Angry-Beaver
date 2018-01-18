@@ -8,18 +8,21 @@ import engine.Level;
 import entities.AbstractEntity;
 import entities.EntityFactory;
 
-/*
- * 	OpenLevel contains a map of all Level Keys to their Directories.
- * 		It will return an Level when given a key. 
+/** 
+ * Class OpenLevel parses a text file to build a Level 
  */
-
 public class OpenLevel {
 	private Map<String, String> imageMap = new HashMap<String, String>();
 	
 	public OpenLevel() {
-		//TODO: Initialize Key to Directory mapping for all images
 	}
-	
+	/**
+	 * Method parseLevel takes in a String levelName, opens the text file of that level,
+	 * and parses the file into a Level class.
+	 * 
+	 * @param levelName		A String of the text file name
+	 * @return				A Level instance
+	 */
 	public Level parseLevel(String levelName) {
 		//TODO: Use the map to use OpenFile and parse a Level file
 		Level loadedLevel = new Level();

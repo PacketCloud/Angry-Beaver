@@ -5,6 +5,12 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class GameStateLose is the Game State for losing the game.
+ * 
+ * This state will occur when the Level being played does not have
+ * an entity with the id of 'Player'
+ */
 public class GameStateLose extends GameStateAbstract {
 	private String loseTitle;
 	private ArrayList<String> loseText;
@@ -12,7 +18,6 @@ public class GameStateLose extends GameStateAbstract {
 	
 	public GameStateLose(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		 loseTitle = "GAME OVER";
 		 loseText = new ArrayList<String>(Arrays.asList("Level Select", "Menu", "Exit"));
 		 chosen = 0;
@@ -20,12 +25,12 @@ public class GameStateLose extends GameStateAbstract {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		System.out.println("Lose");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
+		// Set losing text
 		g.setFont(new Font(titleFont, 0, titleSize));
 		g.setColor(titleColor);
 		g.drawString(loseTitle, 290, 150);
@@ -46,7 +51,6 @@ public class GameStateLose extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		chosen--;
@@ -57,7 +61,6 @@ public class GameStateLose extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		chosen++;
@@ -68,7 +71,6 @@ public class GameStateLose extends GameStateAbstract {
 
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		
 		switch(chosen) {

@@ -4,9 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-/*
- * 	OpenFile is a class to help in creating a scanner to read text 
- * 		files when given a file path relative to Angry-Beaver.
+/**
+ * 	Class OpenFile is used to open and read text files 
  * 		
  * 	Usage: 
  * 			OpenFile opened = new OpenFile( [File Path] );
@@ -16,7 +15,7 @@ import java.util.Scanner;
  * 			opened.close();
  */
 
-public class OpenFile /*extends whatever main class */ {
+public class OpenFile {
 	private Scanner fileScan;
 	
 	public OpenFile(String path){
@@ -34,6 +33,13 @@ public class OpenFile /*extends whatever main class */ {
 		}
 	}
 	
+	/** 
+	 * Method hasNextLine checks if the file has a next line and returns
+	 * True if there is a next line.
+	 * 
+	 * @return		True if there exists a next line
+	 * 				False otherwise
+	 */
 	public Boolean hasNextLine() {
 		if (getFileScan().hasNextLine()) {
 			return true;
@@ -41,6 +47,11 @@ public class OpenFile /*extends whatever main class */ {
 		return false;
 	}
 	
+	/**
+	 * Method getNextLine returns the next line in the file
+	 * 
+	 * @return		String of the next line in the file
+	 */
 	public String getNextLine(){
 	    	String line = getFileScan().nextLine();
 		    System.out.println (line);
@@ -59,11 +70,7 @@ public class OpenFile /*extends whatever main class */ {
 		this.fileScan = fileScan;
 	}
 
-
-	//add static when main function is in this class
-	public void Open(String Path)throws IOException{
-		
-		
+	public void Open(String Path)throws IOException{		
 		try{
 			String filePath = new File(Path).getAbsolutePath();
 			File file = new File(filePath);

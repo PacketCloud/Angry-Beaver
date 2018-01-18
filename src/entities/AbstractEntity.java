@@ -21,6 +21,9 @@ import resourceHandling.*;
 import states.entityState.EntityStateContext;
 import trigger.Trigger;
 
+/**
+ * Class AbstractEntity is the abstract class for all entities.
+ */
 public abstract class AbstractEntity {
 	
 	protected Level level;
@@ -47,8 +50,8 @@ public abstract class AbstractEntity {
 	protected int health;
 	protected int damage;
 	
-	
 	public AbstractEntity() {
+		// Initialize the entity with default empty properties and values
 		this.model = new EmptyModel();
 		this.behaviour = new NoBehaviour();
 		this.state = new EntityStateContext(this, "Basic_Null_Entity");

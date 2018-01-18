@@ -4,6 +4,9 @@ import java.awt.Point;
 
 import entities.AbstractEntity;
 
+/**
+ * Class EntityStateContext is the context class for EntityStates.
+ */
 public class EntityStateContext {
 	public EntityStateAbstract entityState;
 	public AbstractEntity obj;
@@ -68,12 +71,10 @@ public class EntityStateContext {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return entityState.stateToString();
 	}
 
 	public void checkForNextState() {
-		// TODO Auto-generated method stub
 		entityState.checkForNextState();
 	}
 	
@@ -94,7 +95,6 @@ public class EntityStateContext {
 	}
 
 	public AbstractEntity makeEntity(String entity) {
-		// TODO Auto-generated method stub
 		return obj.makeEntity(entity);
 	}
 	

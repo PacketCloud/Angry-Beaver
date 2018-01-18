@@ -6,6 +6,10 @@ import java.awt.Graphics2D;
 
 import entities.AbstractEntity;
 
+/**
+ * Class HeadUpDisplay draws a HUD to provide information to the Player.
+ */
+
 public class HeadUpDisplay {
 
 	protected boolean displayHUD;
@@ -17,6 +21,11 @@ public class HeadUpDisplay {
 		focusEntity = null;
 	}
 
+	/**
+	 * Method render will draw the HUD, text, and other visual elements for the game
+	 * 
+	 * @param g			Graphics2D which will be drawn to
+	 */
 	public void render(Graphics2D g) {
 		// TODO: design HUD interface
 		g.setColor(Color.LIGHT_GRAY);
@@ -35,6 +44,9 @@ public class HeadUpDisplay {
 			g.drawString("HUD OFF", 20, 50);
 		}
 	}
+	
+	/******** Getters and Setters ********/
+	
 	public boolean isDisplayHUD() {
 		return displayHUD;
 	}

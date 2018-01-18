@@ -6,26 +6,25 @@ import java.awt.Font;
 
 import fileUtility.OpenImage;
 
+/**
+ * Class GameStateStart is the Game State that is initialized when the game
+ * starts.
+ */
 public class GameStateStart extends GameStateAbstract {
 	private String startText = "PRESS ANY KEY TO START";
 	private Image background = null;
 	
 	public GameStateStart(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		//context.repaint();
     	System.out.println("Start");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
 		drawBackground(g);
 		// TODO: Positioning of text based on the window size.
 		
@@ -40,7 +39,6 @@ public class GameStateStart extends GameStateAbstract {
 		if(background == null) {
 			try {
 				background = new OpenImage().Open("/Resources/Textures/Background/Background_MountainHorizon.png");
-				//Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
 				
 			} catch (Exception e){
 				System.out.println(e.toString());
@@ -51,9 +49,6 @@ public class GameStateStart extends GameStateAbstract {
 
 	@Override
 	public void userInput(String action) {
-		// TODO Auto-generated method stub
-		//super.userInput(action);
-		
 		context.setGameState(new GameStateMenu(context));
 	}
 }

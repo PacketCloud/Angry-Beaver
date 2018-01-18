@@ -8,6 +8,9 @@ import force.TimedForce;
 import trigger.AbstractTrigger;
 import trigger.Trigger;
 
+/**
+ * Class KnockbackTrigger is a Trigger where Entity2 will apply a force on Entity1.
+ */
 public class KnockbackTrigger extends AbstractTrigger {
 	protected Map<AbstractEntity, AbstractEntity> previousHits;
 	int xForce;

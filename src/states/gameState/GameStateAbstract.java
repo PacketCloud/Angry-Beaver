@@ -4,11 +4,10 @@ import java.awt.Color;
 
 import keyInputs.ACTIONS;
 
-/*	All actions in the game should be defined here
- * 		The actions will be overridden and will be dealt 
- * 		with depending on the extended GameState.
+/**
+ * Class GameStateAbstract is the abstract class for all GameStates.
+ * Inputs from the Player will be handled in Game States.
  */
-
 public abstract class GameStateAbstract implements GameStateInterface{
 	protected GameStateContext context;
 	

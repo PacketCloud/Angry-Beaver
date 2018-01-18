@@ -2,10 +2,12 @@
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import states.gameState.*;
 import engine.GameHandler;
 import engine.MainRuntime;
 
+/**
+ * Class GameStateContext is the context class for Game States.
+ */
 public class GameStateContext {
 	public GameStateAbstract state;
 	public GameHandler h;
@@ -20,19 +22,13 @@ public class GameStateContext {
 		yScale = (double) windowSize.getHeight()/1080;
 	}
 
-
 	public void initState() {
-		// TODO Auto-generated method stub
 		setGameState(new GameStateStart(this));
 	}
 
 	public void update() {
 		state.update();
 	}
-	
-	/*public void repaint() {
-		h.repaint();
-	}*/
 
 	public void userInput(String actionType) {
 		state.userInput(actionType);
@@ -47,7 +43,6 @@ public class GameStateContext {
 	}
 
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		g.scale(xScale, yScale);
 		state.render(g);
 	}

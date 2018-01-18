@@ -5,11 +5,11 @@ import trigger.effects.KnockbackTrigger;
 import trigger.effects.SimpleTrigger;
 
 
-/*
- * TriggerFactory creates a Trigger Decorator by recursively parsing a given String
+/**
+ * Class TriggerFactory is used to create a Trigger Decorator by recursively parsing a given String.
  * 
- *   Ex. Given "Damage|Damage", TriggerFactory will return a Trigger
- *   	equivalent to: new DamageTrigger( new DamageTrigger( new SimpleTrigger() ) )
+ * Ex. Given "Damage|Damage", TriggerFactory will return a Trigger
+ *  equivalent to: new DamageTrigger( new DamageTrigger( new SimpleTrigger() ) )
  */
 public class TriggerFactory {
 

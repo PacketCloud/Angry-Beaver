@@ -9,6 +9,10 @@ import java.util.Arrays;
 import fileUtility.OpenImage;
 import fileUtility.OpenSoundFile;
 
+/**
+ * Class GameStateMenu is the Game State where the main menu can be
+ * accessed.
+ */
 public class GameStateMenu extends GameStateAbstract {
 	private String menuTitle = "ANGRY BEAVER";
 	private ArrayList<String> menuText  = new ArrayList<String>(Arrays.asList("Play", "Options","Exit"));
@@ -17,19 +21,15 @@ public class GameStateMenu extends GameStateAbstract {
 	
 	public GameStateMenu(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		//context.repaint();
     	System.out.println("Menu");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		drawBackground(g);
 		
 		// TODO: Positioning of text based on the window size.
@@ -70,11 +70,9 @@ public class GameStateMenu extends GameStateAbstract {
 	
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		switch(chosen) {
 		case 0:
-			//context.setGameState(new GameStateRun(context, ""));
 			context.setGameState(new GameStateLevelSelect(context));
 			break;
 		case 1:
@@ -87,7 +85,6 @@ public class GameStateMenu extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		// Example of sound usage
@@ -101,7 +98,6 @@ public class GameStateMenu extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		// Example of sound usage

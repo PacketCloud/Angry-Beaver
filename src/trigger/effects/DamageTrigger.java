@@ -7,8 +7,8 @@ import entities.AbstractEntity;
 import trigger.AbstractTrigger;
 import trigger.Trigger;
 
-/*
- * Used for if Entity2 will Damage Entity1
+/**
+ * Class DamageTrigger is a Trigger where Entity2 will reduce the health of Entity1.
  */
 public class DamageTrigger extends AbstractTrigger {
 	protected Map<AbstractEntity, AbstractEntity> previousHits;
@@ -21,7 +21,6 @@ public class DamageTrigger extends AbstractTrigger {
 
 	@Override
 	public void triggerEffects(AbstractEntity entity1, AbstractEntity entity2) {
-		// TODO Auto-generated method stub
 		super.triggerEffects(entity1, entity2);
 		
 		// If entity2 is not a sub-entity of entity1 and this hit has not happened yet

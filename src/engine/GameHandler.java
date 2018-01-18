@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 import keyInputs.*;
 import states.gameState.*;
 
-/*
- * GameHandler holds the game loop and the current state of the game
+/**
+ * Class GameHandler holds the game loop and the current state of the game
  */
+
 public class GameHandler extends JPanel {
 	
+	private static final long serialVersionUID = -5336794019561227772L;
 	public MainRuntime mrt;
 	public GameStateContext state;
 	public Keymap keymap;
@@ -25,6 +27,13 @@ public class GameHandler extends JPanel {
 		maxFPS = MainRuntime.getSettings().getMaxFPS();
 	}
 
+	/**
+	 * Method keyPressed takes in a String defined by class ACTIONS
+	 * and treats this string as an input from the user. 
+	 * Game State will handle the input.
+	 * 
+	 * @param actionType	A string defined by ACTIONS
+	 */
 	public void keyPressed(String actionType) {
 		getGameState().userInput(actionType);
 	}
@@ -69,8 +78,6 @@ public class GameHandler extends JPanel {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		// TODO Auto-generated method stub
-		
 		return MainRuntime.getSettings().getWindowSize();
 	}
 	

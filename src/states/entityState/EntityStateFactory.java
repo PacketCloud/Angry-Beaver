@@ -2,9 +2,9 @@ package states.entityState;
 
 import states.entityState.basicEntityStates.BasicEntityStateIdle;
 
-/*
- * EntityStateFactory allows the EntityStateContext to initialize
- * a starting state for the entity given a string.
+/**
+ * Class EntityStateFactory is the factory class for creating an instance of
+ * a Entity State given a string.
  * 
  * The factory will default to BasicEntityStateIdle.
  */

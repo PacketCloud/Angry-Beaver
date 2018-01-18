@@ -7,10 +7,9 @@ import javax.swing.KeyStroke;
 
 import engine.*;
 
-/*
- * 	Keymap uses KeyBindings to declare keyboard strokes to an ACTIONS.
- * 		In the future, we may add functionality to change KeyBindings
- * 		and save the changes in a file. 
+/**
+ * Class Keymap uses KeyBindings to declare keyboard strokes to an ACTIONS.
+ * TODO: KeyBindings should be able to be changed
  */
 public class Keymap {
 
@@ -44,7 +43,6 @@ public class Keymap {
 	}
 	
 	private void initActions(ActionMap actionMap) {
-		//TODO: Pass the input handling to the LevelHandler.GameState class to deal with
 		actionMap.put(ACTIONS.MOVE_UP, new PlayerInput(this,ACTIONS.MOVE_UP));
 		actionMap.put(ACTIONS.MOVE_DOWN, new PlayerInput(this,ACTIONS.MOVE_DOWN));
 		actionMap.put(ACTIONS.MOVE_RIGHT, new PlayerInput(this,ACTIONS.MOVE_RIGHT));

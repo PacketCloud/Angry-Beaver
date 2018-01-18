@@ -1,12 +1,9 @@
 package states.entityState;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-
-import entities.AbstractEntity;
-import resourceHandling.ResourceCollection;
-
+/**
+ * Class EntityStateAbstract is an abstract class for all Entity States.
+ * Entity States determine the result of an action when performed.
+ */
 public abstract class EntityStateAbstract implements EntityStateInterface {
 	protected EntityStateContext context;
 	

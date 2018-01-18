@@ -9,8 +9,20 @@ import model.ModelFactory;
 import states.entityState.EntityStateContext;
 import trigger.TriggerFactory;
 
+/**
+ * Class EntityFactory is a factory class for creating entities from a given String
+ */
+
 public class EntityFactory {
 
+	/** 
+	 * Method createEntity will take in a string of the entity class and a string of parameters.
+	 * It will return an instance of the entity with the defined parameters.
+	 * 
+	 * @param entityName				String of the entity class name
+	 * @param parameters				String of parameters to set the entity to
+	 * @return							Returns a entity object
+	 */
 	public AbstractEntity createEntity(String entityName, String parameters) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 				
 		Class<?> cls = Class.forName("entities.prefab." + entityName);
@@ -24,6 +36,13 @@ public class EntityFactory {
 		return entity;
 	}
 	
+	/**
+	 * Method setParamter will set variables of the entity to the given values
+	 * 
+	 * @param entity			The entity to set the parameter to
+	 * @param type				A string of the type of parameter to set
+	 * @param value				A string of the value to set the parameter to
+	 */
 	public void setParameter(AbstractEntity entity, String type, String value) {
 		switch (type) {
 			case "Position":

@@ -10,6 +10,10 @@ import java.util.Arrays;
 import fileUtility.OpenImage;
 import fileUtility.Settings;
 
+/**
+ * Class GameStateOption is the Game State where the settings can be
+ * accessed.
+ */
 public class GameStateOption extends GameStateAbstract {
 	private String optionTitle = "OPTIONS";
 	
@@ -80,13 +84,11 @@ public class GameStateOption extends GameStateAbstract {
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		System.out.println("Option");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		drawBackground(g);
 		
 		// TODO: Positioning of text based on the window size.
@@ -137,7 +139,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		chosen--;
@@ -148,7 +149,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		chosen++;
@@ -159,7 +159,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void right() {
-		// TODO Auto-generated method stub
 		super.right();
 		
 		int holder = selection.get(chosen) + 1;
@@ -171,7 +170,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void left() {
-		// TODO Auto-generated method stub
 		super.left();
 		
 		int holder = selection.get(chosen) - 1;
@@ -183,7 +181,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		
 		switch(chosen) {

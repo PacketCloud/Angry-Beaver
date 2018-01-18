@@ -5,16 +5,18 @@ import java.awt.Point;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
 
+/**
+ * Class BasicEntityStateRising is a generalized Entity State for
+ * entities which are Rising (Moving up on the y-axis).
+ */
 public class BasicEntityStateRising extends EntityStateAbstract{
 
 	public BasicEntityStateRising(EntityStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public void right() {
-		// TODO Auto-generated method stub
 		super.right();
 		context.translate(context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(true);
@@ -22,7 +24,6 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 	
 	@Override
 	public void left() {
-		// TODO Auto-generated method stub
 		super.left();
 		context.translate(-context.getMoveSpeedX(), 0);
 		context.getEntity().setFacingRight(false);
@@ -30,15 +31,12 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 	
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
 		super.attack();
 		context.setEntityState(new BasicEntityStateAttack(context));
 	}
 	
 	@Override
 	public void checkForNextState() {
-		// TODO Auto-generated method stub
-		
 		Point curPos = context.getCurrentPosition();
 		Point lastPos = context.getLastPosition();
 		
@@ -59,7 +57,6 @@ public class BasicEntityStateRising extends EntityStateAbstract{
 
 	@Override
 	public String stateToString() {
-		// TODO Auto-generated method stub
 		return "Rising";
 	}
 

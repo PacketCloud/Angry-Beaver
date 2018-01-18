@@ -2,8 +2,19 @@ package hitbox;
 
 import java.awt.Point;
 
+/**
+ * Class HitboxFactory is a Factory class for creating Hitbox instances.
+ * 
+ */
 public class HitboxFactory {
 	
+	/**
+	 * Method createHitbox parses a given String as properties of the Hitbox
+	 *  
+	 * @param s			String of Hitbox properties in the form of:
+	 * 					X-Position,Y-Position,Width,Height|<Other Properties>
+	 * @return			Returns an instance of a Hitbox
+	 */
 	public Hitbox createHitbox(String s){
 		String[] split = s.split("\\|");
 		String[] params = split[0].split(",");
