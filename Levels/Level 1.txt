@@ -1,0 +1,21 @@
+// Player
+Player:Beaver Position:200,100 Scaling:3 Health:10 Speed:10
+
+// Starting Platform
+Entity:Platform Position:-325,200 Hitbox:0,0,1525,50|Solid Static:True
+
+// Arrow Keys
+Entity:EmptyEntity Position:0,50 Model:LeftArrowModel Scaling:2 Static:True 
+Entity:EmptyEntity Position:400,50 Model:RightArrowModel Scaling:2 Static:True 
+
+// Crate for pushing
+Entity:Crate Position:900,100 Scaling:3 Health:50
+
+Entity:Platform Position:1200,100 Hitbox:0,0,200,100|Solid Static:True
+
+//Out of bounds
+Entity:EmptyEntity Position:-1000,300 Hitbox:0,0,6000,50|Trigger Damage:100 Trigger:Damage Static:True
+
+//Entity:EmptyEntity Position:500,-100 Model:UpArrowModel Scaling:2 Static:True 
+Entity:EmptyEntity Position:800,0 Model:SKeyModel Scaling:2 Static:True 
+//Entity:EmptyEntity Position:900,0 Model:DKeyModel Scaling:2 Static:True

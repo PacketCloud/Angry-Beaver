@@ -35,6 +35,7 @@ public class GameStateRun extends GameStateAbstract {
 		level = openLevel.parseLevel(name);
 		
 		// Below are default level entities. These will be removed in the future
+		/*
 		// Beaver
 		AbstractEntity beaver = new Beaver();
 		beaver.setBehaviour(new AggressiveBehaviour());
@@ -94,7 +95,7 @@ public class GameStateRun extends GameStateAbstract {
 		level.addEntity(tree);
 		level.addEntity(crate);
 		level.addEntity(empty);
-		
+		*/
 		return level;
 	}
 	
