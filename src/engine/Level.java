@@ -29,6 +29,8 @@ public class Level {
 	private HeadUpDisplay HUD;
 	private CollisionDetector detector;
 	private Image background = null;
+	private Boolean win;
+	private Boolean lose;
 	
 	public Set<String> inputSet;
 	
@@ -41,13 +43,15 @@ public class Level {
 		inputSet = new HashSet<String>();
 		camera = new Camera();
 		HUD = new HeadUpDisplay();
+		win = false;
+		lose = false;
 	}
 	
 	/**
 	 * Method updateLevel will update the level one frame/tick
 	 */
 	public void updateLevel(){
-		
+
 		// Update all entities
 		for(AbstractEntity entity : entityList){
 			entity.update();
@@ -65,6 +69,9 @@ public class Level {
 		
 		// Update the position of the camera 
 		camera.updateCamera();
+		if (findByID("Player") == null) {
+			setLose(true);
+		}
 	}
 	
 	/**
@@ -246,4 +253,21 @@ public class Level {
 	public void removeInput(String action) {
 		inputSet.remove(action);
 	}
+
+	public Boolean isWin() {
+		return win;
+	}
+
+	public void setWin(Boolean win) {
+		this.win = win;
+	}
+
+	public Boolean isLose() {
+		return lose;
+	}
+
+	public void setLose(Boolean lose) {
+		this.lose = lose;
+	}
+	
 }

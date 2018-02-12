@@ -2,16 +2,12 @@ package states.gameState;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Point;
 
-import behaviour.prefab.*;
 import engine.Level;
-import entities.*;
-import entities.prefab.*;
+
 import fileUtility.OpenLevel;
-import hitbox.Hitbox;
+
 import keyInputs.ACTIONS;
-import trigger.TriggerFactory;
 
 /**
  * Class GameStateRun is the Game State in which a Level can be played.
@@ -33,69 +29,6 @@ public class GameStateRun extends GameStateAbstract {
 		Level level = new Level();
 		OpenLevel openLevel = new OpenLevel();
 		level = openLevel.parseLevel(name);
-		
-		// Below are default level entities. These will be removed in the future
-		/*
-		// Beaver
-		AbstractEntity beaver = new Beaver();
-		beaver.setBehaviour(new AggressiveBehaviour());
-		beaver.setPosition(new Point(400, 200));
-		beaver.setScaling(2.5);
-		beaver.setHealth(3);
-		
-		// Deer
-		AbstractEntity deer = new Deer();
-		deer.setPosition(new Point(950, 250));
-		deer.setScaling(3);
-		deer.setHealth(3);
-		
-		// Platform
-		AbstractEntity platform = new Platform();
-		Hitbox plath =  new Hitbox(800, 50);
-		plath.setSolid(true);
-		platform.addHitbox(plath);
-		platform.setStatic(true);
-		platform.setPosition(new Point(350,300));
-		
-		// Tree
-		AbstractEntity tree = new Tree();
-		tree.setPosition(new Point(500, 150));
-		tree.setScaling(3);
-		tree.setHealth(5);
-		
-		// Crate
-		AbstractEntity crate = new Crate();
-		crate.setPosition(new Point(800, 200));
-		crate.setScaling(2);
-		crate.setHealth(3);
-		
-		// Out of bounds area
-		AbstractEntity empty = new EmptyEntity();
-		empty.setStatic(true);
-		Hitbox emptyh = new Hitbox(0,0,1500,50);
-		emptyh.setTrigger(true);
-		empty.addHitbox(emptyh);
-		empty.setDamage(100);
-		empty.setTrigger(new TriggerFactory().createTrigger("Damage"));
-		empty.setPosition(new Point(0,600));
-		
-		// Set behaviour, ID, camera, and HUD to player
-		AbstractEntity player = deer;
-		PlayerBehaviour playerBehaviour = new PlayerBehaviour();
-		player.setBehaviour(playerBehaviour);
-		player.setId("Player");
-		level.focusCamera(player);
-		level.focusHUD(player);
-		level.displayHud(true);
-
-		// Add all entities into the level
-		level.addEntity(beaver);
-		level.addEntity(deer);
-		level.addEntity(platform);
-		level.addEntity(tree);
-		level.addEntity(crate);
-		level.addEntity(empty);
-		*/
 		return level;
 	}
 	
@@ -120,8 +53,11 @@ public class GameStateRun extends GameStateAbstract {
 	@Override
 	public void update() {
 		// TODO: Consider how to load the next level.
-		if (currentLevel.findByID("Player") == null) {
+		if(currentLevel.isLose()) {
 			context.setGameState((new GameStateLose(context)));
+		}
+		if(currentLevel.isWin()) {
+			context.setGameState((new GameStateWin(context)));
 		}
 		currentLevel.updateLevel();
 		System.out.println("Running");
