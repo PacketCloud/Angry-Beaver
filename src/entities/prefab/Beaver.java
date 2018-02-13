@@ -4,12 +4,8 @@ import java.awt.Image;
 import java.awt.Point;
 
 import entities.AbstractEntity;
-import hitbox.Hitbox;
-import model.AbstractModel;
 import model.prefab.BeaverModel;
-import model.prefab.ClawModel;
 import states.entityState.EntityStateContext;
-import trigger.TriggerFactory;
 
 public class Beaver extends AbstractEntity {
 

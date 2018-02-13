@@ -11,13 +11,7 @@ public class BeaverModel extends AbstractModel {
 		initialize();
 	}
 	
-	public void initialize() {
-		
-		/*Hitbox playerh= new Hitbox(2, 2, 20, 15);
-		playerh.setBody(true);
-		ArrayList<Hitbox> hitboxes = new ArrayList<Hitbox>();
-		hitboxes.add(playerh);*/
-		
+	public void initialize() {		
 		add(new Resource("Beaver Default", "/Resources/Sprites/Mobs/Beaver/Beaver_Idle.png", (float) 2.5, null, true, "Default"));
 		
 		add(new Resource("Beaver Walking", "/Resources/Sprites/Mobs/Beaver/Beaver_Walking.gif", (float) 2.5, null, true, "Walking"));

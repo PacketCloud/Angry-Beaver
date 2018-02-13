@@ -1,0 +1,24 @@
+// Player
+Player:Beaver Position:200,100 Scaling:3 Health:10 Speed:10
+
+// Starting Platform
+Entity:Platform Position:-300,200 Hitbox:0,0,1000,50|Solid Static:True
+
+Entity:EmptyEntity Position:400,50 Model:RightArrowModel Scaling:2 Static:True 
+Entity:EmptyEntity Position:900,-50 Model:DownArrowModel Scaling:2 Static:True
+
+// Crate for pushing
+Entity:Crate Position:900,575 Scaling:3 Health:50
+
+// Tree Platform
+Entity:Platform Position:-200,500 Hitbox:0,0,800,100|Solid Static:True
+Entity:Tree Position:-100,400 Scaling:3 Health:4
+
+// Exit Platform
+Entity:Platform Position:600,600 Hitbox:0,0,1000,50|Solid Static:True
+
+// Out of bounds
+Entity:EmptyEntity Position:-3000,700 Hitbox:0,0,6000,50|Trigger Damage:100 Trigger:Damage Static:True
+
+// Level Exit
+Entity:Lodge Position:1400,450 Scaling:2

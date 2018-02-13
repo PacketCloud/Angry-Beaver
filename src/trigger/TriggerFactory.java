@@ -1,9 +1,6 @@
 package trigger;
 
-import trigger.effects.DamageTrigger;
-import trigger.effects.KnockbackTrigger;
-import trigger.effects.SimpleTrigger;
-
+import trigger.effects.*;
 
 /**
  * Class TriggerFactory is used to create a Trigger Decorator by recursively parsing a given String.
@@ -30,6 +27,9 @@ public class TriggerFactory {
 			// The String input must be in a format of "KnockBack:xForce:yForce:duration"
 			String[] parse = split[0].split(",",4);
 			return new KnockbackTrigger(holder, Integer.parseInt(parse[1]), Integer.parseInt(parse[2]), Integer.parseInt(parse[3]));
+			
+		} else if(split[0].startsWith("Win")) {
+			return new WinTrigger(holder);
 			
 		} else {
 			return new SimpleTrigger();
