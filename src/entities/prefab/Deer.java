@@ -40,7 +40,6 @@ public class Deer extends AbstractEntity {
 				(int) (position.getY() - 5 * scaling)));
 		Uppercut.setScaling(scaling);
 		Uppercut.setFacingRight(facingRight);
-		Uppercut.setDamage(1);
 		
 		return Uppercut;
 	}

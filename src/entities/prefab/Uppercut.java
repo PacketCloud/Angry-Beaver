@@ -11,7 +11,7 @@ public class Uppercut extends AbstractEntity {
 		super();
 		// TODO Auto-generated constructor stub
 		
-		setTrigger(new TriggerFactory().createTrigger("Damage|KnockBack,-2,-10,250"));
+		setTrigger(new TriggerFactory().createTrigger("Damage,1|KnockBack,-2,-10,250"));
 		setStatic(true);
 		setModel(new UppercutModel());
 	}

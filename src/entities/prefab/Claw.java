@@ -10,7 +10,7 @@ public class Claw extends AbstractEntity {
 		super();
 		// TODO Auto-generated constructor stub
 		
-		setTrigger(new TriggerFactory().createTrigger("Damage|KnockBack,-5,-2,250"));
+		setTrigger(new TriggerFactory().createTrigger("Damage,1|KnockBack,-5,-2,250"));
 		setStatic(true);
 		setModel(new ClawModel());
 	}

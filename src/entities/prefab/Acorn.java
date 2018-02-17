@@ -10,7 +10,7 @@ public class Acorn extends AbstractEntity {
 		super();
 		// TODO Auto-generated constructor stub
 		
-		setTrigger(new TriggerFactory().createTrigger("Damage|KnockBack,-1,-2,250"));
+		setTrigger(new TriggerFactory().createTrigger("Damage,1|KnockBack,-1,-2,250"));
 		setModel(new AcornModel());
 	}
 }

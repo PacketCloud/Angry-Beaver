@@ -48,7 +48,6 @@ public abstract class AbstractEntity {
 	
 	protected boolean isInvulnerable;
 	protected int health;
-	protected int damage;
 	
 	public AbstractEntity() {
 		// Initialize the entity with default empty properties and values
@@ -71,7 +70,6 @@ public abstract class AbstractEntity {
 		
 		this.isInvulnerable = false;
 		this.health = 1;
-		this.damage = 0;
 	}
 
 	public void update() {
@@ -375,14 +373,6 @@ public abstract class AbstractEntity {
 
 	public void setHealth(int health) {
 		this.health = health;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
 	}
 
 	public boolean isInvulnerable() {

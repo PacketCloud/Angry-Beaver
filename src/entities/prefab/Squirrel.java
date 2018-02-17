@@ -41,7 +41,6 @@ public class Squirrel extends AbstractEntity {
 		acorn.addForce(new Force(-7 * facing(), 0));
 		acorn.setScaling(scaling);
 		acorn.setFacingRight(facingRight);
-		acorn.setDamage(1);
 		
 		return acorn;
 	}

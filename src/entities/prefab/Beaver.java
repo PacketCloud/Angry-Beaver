@@ -37,7 +37,6 @@ public class Beaver extends AbstractEntity {
 
 		claw.setScaling(scaling);
 		claw.setFacingRight(facingRight);
-		claw.setDamage(1);
 		
 		return claw;
 	}

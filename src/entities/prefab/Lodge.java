@@ -10,7 +10,7 @@ public class Lodge extends AbstractEntity {
 		super();
 		setModel(new LodgeModel());
 		setInvulnerable(true);
-		setTrigger(new TriggerFactory().createTrigger("Win"));
+		setTrigger(new TriggerFactory().createTrigger("Win,Player"));
 	}
 	
 }

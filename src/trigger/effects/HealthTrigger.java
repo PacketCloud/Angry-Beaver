@@ -7,17 +7,14 @@ import entities.AbstractEntity;
 import trigger.AbstractTrigger;
 import trigger.Trigger;
 
-/**
- * Class DamageTrigger is a Trigger where Entity2 will reduce the health of Entity1.
- */
-public class DamageTrigger extends AbstractTrigger {
+public class HealthTrigger extends AbstractTrigger {
 	protected Map<AbstractEntity, AbstractEntity> previousHits;
-	protected int damageValue;
+	protected int healValue;
 	
-	public DamageTrigger(Trigger nextTrigger, int damageValue) {
+	public HealthTrigger(Trigger nextTrigger, int healValue) {
 		super(nextTrigger);
 		previousHits = new HashMap<AbstractEntity, AbstractEntity>();
-		this.damageValue = damageValue;
+		this.healValue = healValue;
 	}
 
 	@Override
@@ -28,9 +25,8 @@ public class DamageTrigger extends AbstractTrigger {
 		if(!entity1.getEntities().contains(entity2) && previousHits.get(entity1) != entity2) {
 			if(!entity1.isInvulnerable()) {
 				// Entity1 is damaged by Entity2
-				entity1.setHealth(entity1.getHealth() - damageValue);
+				entity1.setHealth(entity1.getHealth() + healValue);
 				previousHits.put(entity1, entity2);
-				// TODO: Handle Attack Cooldowns?
 			}
 		}
 	}

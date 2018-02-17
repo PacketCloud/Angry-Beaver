@@ -55,9 +55,6 @@ public class EntityFactory {
 			case "Health":
 				entity.setHealth(Integer.parseInt(value));
 				break;
-			case "Damage":
-				entity.setDamage(Integer.parseInt(value));
-				break;
 			case "MoveSpeed":
 				entity.setMoveSpeedX(Integer.parseInt(value));
 				break;

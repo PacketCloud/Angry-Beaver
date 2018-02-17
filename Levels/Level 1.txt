@@ -17,7 +17,7 @@ Entity:Crate Position:700,175 Scaling:3 Health:50
 Entity:Platform Position:1000,100 Hitbox:0,0,500,100|Solid Static:True
 
 // Out of bounds
-Entity:EmptyEntity Position:-1000,300 Hitbox:0,0,6000,50|Trigger Damage:100 Trigger:Damage Static:True
+Entity:EmptyEntity Position:-1000,300 Hitbox:0,0,6000,50|Trigger Trigger:Damage,100 Static:True
 
 // Level Exit
-Entity:Lodge Position:1300,25 Scaling:2
+Entity:Lodge Position:1300,25 Scaling:2 Static:True
