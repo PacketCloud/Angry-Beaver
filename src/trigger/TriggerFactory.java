@@ -1,6 +1,7 @@
 package trigger;
 
 import trigger.effects.*;
+import trigger.effects.prefab.*;
 
 /**
  * Class TriggerFactory is used to create a Trigger Decorator by recursively parsing a given String.
@@ -42,6 +43,10 @@ public class TriggerFactory {
 			// The String input must be in a format of "Win,Id_for_winning"
 			String[] parse = split[0].split(",",2);
 			return new WinTrigger(holder, parse[1]);
+		
+		} else if(split[0].startsWith("Lodge")) {
+			// Trigger for Logs to build Lodges
+			return new LodgeTrigger(holder);
 			
 		} else {
 			return new SimpleTrigger();

@@ -3,6 +3,7 @@ package states.entityState;
 import java.awt.Point;
 
 import entities.AbstractEntity;
+import trigger.Trigger;
 
 /**
  * Class EntityStateContext is the context class for EntityStates.
@@ -120,5 +121,10 @@ public class EntityStateContext {
 	
 	public int getHealth() {
 		return obj.getHealth();
+	}
+
+	public void setTrigger(Trigger trigger) {
+		obj.setTrigger(trigger);
+		
 	}
 }

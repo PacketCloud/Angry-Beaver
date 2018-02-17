@@ -2,7 +2,7 @@ package entities.prefab;
 
 import entities.AbstractEntity;
 import model.prefab.LodgeModel;
-import trigger.TriggerFactory;
+import states.entityState.EntityStateContext;
 
 public class Lodge extends AbstractEntity {
 
@@ -10,7 +10,7 @@ public class Lodge extends AbstractEntity {
 		super();
 		setModel(new LodgeModel());
 		setInvulnerable(true);
-		setTrigger(new TriggerFactory().createTrigger("Win,Player"));
+		setState(new EntityStateContext(this, "Lodge_State_1"));
 	}
 	
 }

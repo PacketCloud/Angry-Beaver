@@ -20,4 +20,4 @@ Entity:Platform Position:1000,100 Hitbox:0,0,500,100|Solid Static:True
 Entity:EmptyEntity Position:-1000,300 Hitbox:0,0,6000,50|Trigger Trigger:Damage,100 Static:True
 
 // Level Exit
-Entity:Lodge Position:1300,25 Scaling:2 Static:True
+Entity:Lodge Position:1300,25 Scaling:2 Static:True State:Lodge_State_Complete
