@@ -25,7 +25,7 @@ public class HealthTrigger extends AbstractTrigger {
 		if(!entity1.getEntities().contains(entity2) && previousHits.get(entity1) != entity2) {
 			if(!entity1.isInvulnerable()) {
 				// Entity1 is damaged by Entity2
-				entity1.setHealth(entity1.getHealth() + healValue);
+				entity1.addHealth(healValue);
 				previousHits.put(entity1, entity2);
 			}
 		}

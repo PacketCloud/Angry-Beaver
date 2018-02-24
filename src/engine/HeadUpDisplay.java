@@ -39,7 +39,7 @@ public class HeadUpDisplay {
 			g.drawString("Following: " + focusEntity.toString(), 20, 75);
 			g.drawString("State: " + focusEntity.getState().toString(), 20, 100);
 			g.drawString("Position (Top-Left Corner): " + focusEntity.getPosition().toString(), 20, 125);
-			g.drawString("Health: " + focusEntity.getHealth(), 20, 150);
+			g.drawString("Health: " + focusEntity.getHealth() + "/" + focusEntity.getMaxHealth(), 20, 150);
 		} else {
 			g.drawString("HUD OFF", 20, 50);
 		}

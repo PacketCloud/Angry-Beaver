@@ -48,6 +48,7 @@ public abstract class AbstractEntity {
 	
 	protected boolean isInvulnerable;
 	protected int health;
+	protected int maxHealth;
 	
 	public AbstractEntity() {
 		// Initialize the entity with default empty properties and values
@@ -70,6 +71,7 @@ public abstract class AbstractEntity {
 		
 		this.isInvulnerable = false;
 		this.health = 1;
+		this.maxHealth = 5;
 	}
 
 	public void update() {
@@ -212,6 +214,16 @@ public abstract class AbstractEntity {
 		return null;
 	}
 	
+	public void addHealth(int value) {
+		health += value;
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+	
+	public void subHealth(int value) {
+		health -= value;
+	}
 	/******** Getters and Setters ********/
 	
 	public String getId() {
@@ -373,6 +385,14 @@ public abstract class AbstractEntity {
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 
 	public boolean isInvulnerable() {
