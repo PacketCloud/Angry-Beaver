@@ -56,7 +56,7 @@ public class Keymap {
 		actionMap.put(ACTIONS.PAUSE, new PlayerInput(this,ACTIONS.PAUSE));
 		
 		actionMap.put(ACTIONS.JUMP, new PlayerInput(this,ACTIONS.JUMP));
-		actionMap.put(ACTIONS.R_JUMP, new PlayerInput(this,ACTIONS.R_JUMP));
+		//actionMap.put(ACTIONS.R_JUMP, new PlayerInput(this,ACTIONS.R_JUMP));
 		actionMap.put(ACTIONS.ATTACK, new PlayerInput(this,ACTIONS.ATTACK));
 		actionMap.put(ACTIONS.R_ATTACK, new PlayerInput(this,ACTIONS.R_ATTACK));
 		actionMap.put(ACTIONS.ATTACK2, new PlayerInput(this,ACTIONS.ATTACK2));

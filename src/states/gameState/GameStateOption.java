@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import fileUtility.OpenImage;
 import fileUtility.Settings;
+import engine.MainRuntime;
 
 /**
  * Class GameStateOption is the Game State where the settings can be
@@ -29,7 +30,7 @@ public class GameStateOption extends GameStateAbstract {
 		
 		// TODO: define more options in the future
 		ArrayList<String> resolutionOptionsText = new ArrayList<String>(Arrays.asList("800x600", "1280x720", "1920x1080"));
-		ArrayList<String> fullscreenOptionsText = new ArrayList<String>(Arrays.asList("On", "Off"));
+		ArrayList<String> fullscreenOptionsText = new ArrayList<String>(Arrays.asList("true", "false"));
 		ArrayList<String> fpsOptionsText = new ArrayList<String>(Arrays.asList("30", "60"));
 		
 		optionsText = new ArrayList<ArrayList<String>>();
@@ -41,14 +42,22 @@ public class GameStateOption extends GameStateAbstract {
 		for(int i = 0; i < optionsText.size(); i++) {
 			selection.add(0);
 		}
-
+		
+		loadCurrentSettings();
+		
 		optionLabel = new ArrayList<String>(Arrays.asList("Resolution : ", "Fullscreen : ", "MaxFPS : ", "Cancel", "Save Settings"));
 		
 		loadCurrentSettings();
 	}
 
 	public void loadCurrentSettings() {
-		// Change ArrayList selection depending on what the current settings are 
+		// Change ArrayList selection depending on what the current settings are
+		Settings currentSettings = MainRuntime.getSettings();
+		String width = Integer.toString((int) currentSettings.getWindowSize().getWidth());
+		String height = Integer.toString((int) currentSettings.getWindowSize().getHeight());
+		selection.set(0, optionsText.get(0).indexOf(width + "x" + height));
+		selection.set(1, optionsText.get(1).indexOf(Boolean.toString(currentSettings.isFullscreen())));
+		selection.set(2, optionsText.get(2).indexOf(Integer.toString(currentSettings.getMaxFPS())));
 	}
 	
 	public void saveNewSettings() {
