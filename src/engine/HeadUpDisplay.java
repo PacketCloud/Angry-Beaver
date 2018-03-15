@@ -3,8 +3,11 @@ package engine;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 import entities.AbstractEntity;
+import resourceHandling.Resource;
+import resourceHandling.ResourceCollection;
 
 /**
  * Class HeadUpDisplay draws a HUD to provide information to the Player.
@@ -13,12 +16,20 @@ import entities.AbstractEntity;
 public class HeadUpDisplay {
 
 	protected boolean displayHUD;
-	
+	protected int scaling;	
 	protected AbstractEntity focusEntity;
+	
+	protected ResourceCollection resourceHUD;
+
 	
 	public HeadUpDisplay() {
 		displayHUD = false;
+		scaling = 4;
 		focusEntity = null;
+		resourceHUD = new ResourceCollection("HUD");
+		resourceHUD.add(new Resource("Empty Heart", "/Resources/Sprites/Misc/Hearts/Heart_Empty.png", (float) 2.5, null, true, "Empty Heart"));
+		resourceHUD.add(new Resource("Full Heart", "/Resources/Sprites/Misc/Hearts/Heart_Filled.png", (float) 2.5, null, true, "Filled Heart"));
+		resourceHUD.add(new Resource("Heart Default", "/Resources/Sprites/Misc/Hearts/Heart_Empty.png", (float) 2.5, null, true, "Default"));
 	}
 
 	/**
@@ -40,9 +51,38 @@ public class HeadUpDisplay {
 			g.drawString("State: " + focusEntity.getState().toString(), 20, 100);
 			g.drawString("Position (Top-Left Corner): " + focusEntity.getPosition().toString(), 20, 125);
 			g.drawString("Health: " + focusEntity.getHealth() + "/" + focusEntity.getMaxHealth(), 20, 150);
+			
+			renderHearts(g);
 		} else {
 			g.drawString("HUD OFF", 20, 50);
 		}
+	}
+	
+	public void renderHearts(Graphics2D g) {
+		int numFilledHearts = focusEntity.getHealth();
+		int numEmptyHearts = focusEntity.getMaxHealth() - numFilledHearts;
+		
+		int xPos = 0;
+		int yPos = 0;
+		Image filledHeart = resourceHUD.getImageIcon("Filled Heart");
+		Image emptyHeart = resourceHUD.getImageIcon("Empty Heart");
+		
+		for (int i = 0; i < numFilledHearts; i++) {
+			g.drawImage(filledHeart, xPos, yPos,
+				(int) (filledHeart.getWidth(null) * scaling),
+				(int) (filledHeart.getHeight(null) * scaling), 
+				null);
+			xPos += (int) (filledHeart.getWidth(null) * scaling);
+		}
+		
+		for (int i = 0; i < numEmptyHearts; i++) {
+			g.drawImage(emptyHeart, xPos, yPos,
+					(int) (emptyHeart.getWidth(null) * scaling),
+					(int) (emptyHeart.getHeight(null) * scaling), 
+					null);
+			xPos += (int) (filledHeart.getWidth(null) * scaling);
+		}
+		
 	}
 	
 	/******** Getters and Setters ********/

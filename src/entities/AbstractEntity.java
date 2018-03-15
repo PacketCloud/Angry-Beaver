@@ -223,6 +223,9 @@ public abstract class AbstractEntity {
 	
 	public void subHealth(int value) {
 		health -= value;
+		if (health < 0) {
+			health = 0;
+		}
 	}
 	/******** Getters and Setters ********/
 	
