@@ -3,7 +3,7 @@
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import engine.GameHandler;
-import engine.MainRuntime;
+import fileUtility.Settings;
 
 /**
  * Class GameStateContext is the context class for Game States.
@@ -17,7 +17,7 @@ public class GameStateContext {
 	public GameStateContext(GameHandler h) {
 		this.h = h;
 		initState();
-		Dimension windowSize = MainRuntime.getSettings().getWindowSize();
+		Dimension windowSize = Settings.getInstance().getWindowSize();
 		xScale = (double) windowSize.getWidth()/1920;
 		yScale = (double) windowSize.getHeight()/1080;
 	}

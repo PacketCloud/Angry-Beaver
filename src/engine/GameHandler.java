@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+import fileUtility.Settings;
 import keyInputs.*;
 import states.gameState.*;
 
@@ -24,7 +25,7 @@ public class GameHandler extends JPanel {
 		this.setFocusable(true);
 		this.state = new GameStateContext(this);
 		setKeymap(new Keymap(this));
-		maxFPS = MainRuntime.getSettings().getMaxFPS();
+		maxFPS = Settings.getInstance().getMaxFPS();
 	}
 
 	/**
@@ -78,7 +79,7 @@ public class GameHandler extends JPanel {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return MainRuntime.getSettings().getWindowSize();
+		return Settings.getInstance().getWindowSize();
 	}
 	
 	public GameStateContext getGameState() {

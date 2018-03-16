@@ -11,16 +11,10 @@ import fileUtility.*;
 public class MainRuntime {
 
 	private GameHandler lHandler;
-	private static Settings fSettings;
 	private JFrame frame = new JFrame();
 	
 	public MainRuntime() {
 		initFrame();
-	}
-	
-	public void loadSettings() {
-		fSettings = new Settings();
-		fSettings.loadUserSettings();
 	}
 	
 	/**
@@ -28,18 +22,18 @@ public class MainRuntime {
 	 */
 	public void initFrame() {
 		// Load game settings
-		loadSettings();
+		Settings settings = Settings.getInstance();
 		lHandler = new GameHandler();
 		
 		// Set game settings
-		frame.setTitle(fSettings.getTitle());
-		frame.setSize(fSettings.getWindowSize());
+		frame.setTitle(settings.getTitle());
+		frame.setSize(settings.getWindowSize());
 		
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// If fullscreen is enabled
-		if(fSettings.isFullscreen()) {
+		if(settings.isFullscreen()) {
 			frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 			frame.setUndecorated(true);
 		}
@@ -51,10 +45,6 @@ public class MainRuntime {
 	
 	public void startGame() {
 		lHandler.runLoop();
-	}
-	
-	public static Settings getSettings() {
-		return fSettings;
 	}
 	
 	public static void main(String[] args) {

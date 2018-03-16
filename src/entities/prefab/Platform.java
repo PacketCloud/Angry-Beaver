@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import entities.AbstractEntity;
+import fileUtility.Settings;
 import hitbox.Hitbox;
 import model.AbstractModel;
 import model.prefab.PlatformModel;
@@ -32,8 +33,11 @@ public class Platform extends AbstractEntity{
 					(int) (h.getWidth() * facing * scaling),//dx position to draw, dependent on direction facing and scale.
 					(int) (h.getHeight() * scaling),//dy position to draw, dependent on scale.
 					null);//observer, null.
-				g.setColor(Color.WHITE);
-				g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+				Boolean isDevelopment = Settings.getInstance().isDevelopment();
+				if (isDevelopment) {
+					g.setColor(Color.WHITE);
+					g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+				}
 			}
 		}
 	}

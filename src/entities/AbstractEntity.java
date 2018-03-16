@@ -13,6 +13,7 @@ import java.util.UUID;
 import behaviour.AbstractBehaviour;
 import behaviour.prefab.NoBehaviour;
 import engine.Level;
+import fileUtility.Settings;
 import force.Force;
 import hitbox.Hitbox;
 import model.AbstractModel;
@@ -97,8 +98,11 @@ public abstract class AbstractEntity {
 
 	public void render(Graphics2D g) {
 		renderTexture(g);
-		renderHitboxes(g);
-		renderID(g);
+		Boolean isDevelopment = Settings.getInstance().isDevelopment();
+		if (isDevelopment) {
+			renderHitboxes(g);
+			renderID(g);	
+		}
 	}
 	
 	public void renderTexture(Graphics2D g) {
@@ -108,9 +112,12 @@ public abstract class AbstractEntity {
 		if(texture != null) {
 			drawImage(g, texture);
 			
-			// Draw box around image
-			g.setColor(Color.WHITE);
-			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+			Boolean isDevelopment = Settings.getInstance().isDevelopment();
+			if (isDevelopment) {
+				// Draw box around image
+				g.setColor(Color.WHITE);
+				g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+			}
 		}
 		
 		// TODO: Make classes to handle the entity changing colors to change 'Status' 

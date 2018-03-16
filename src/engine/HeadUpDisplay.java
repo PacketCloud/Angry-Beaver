@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import entities.AbstractEntity;
+import fileUtility.Settings;
 import resourceHandling.Resource;
 import resourceHandling.ResourceCollection;
 
@@ -39,22 +40,24 @@ public class HeadUpDisplay {
 	 */
 	public void render(Graphics2D g) {
 		// TODO: design HUD interface
-		g.setColor(Color.LIGHT_GRAY);
-		g.setFont(new Font("Arial", 0, 24));
-
+		Boolean isDevelopment = Settings.getInstance().isDevelopment();
 		if(displayHUD && focusEntity != null) {
-			g.setColor(Color.LIGHT_GRAY);
-			g.setFont(new Font("Arial", 0, 24));
-			g.drawString("HUD ON", 20, 50);
-			
-			g.drawString("Following: " + focusEntity.toString(), 20, 75);
-			g.drawString("State: " + focusEntity.getState().toString(), 20, 100);
-			g.drawString("Position (Top-Left Corner): " + focusEntity.getPosition().toString(), 20, 125);
-			g.drawString("Health: " + focusEntity.getHealth() + "/" + focusEntity.getMaxHealth(), 20, 150);
-			
 			renderHearts(g);
+
+			if (isDevelopment) {
+				g.setColor(Color.LIGHT_GRAY);
+				g.setFont(new Font("Arial", 0, 24));
+				g.drawString("HUD ON", 20, 100);
+				
+				g.drawString("Following: " + focusEntity.toString(), 20, 125);
+				g.drawString("State: " + focusEntity.getState().toString(), 20, 150);
+				g.drawString("Position (Top-Left Corner): " + focusEntity.getPosition().toString(), 20, 175);
+				g.drawString("Health: " + focusEntity.getHealth() + "/" + focusEntity.getMaxHealth(), 20, 200);	
+			}			
 		} else {
-			g.drawString("HUD OFF", 20, 50);
+			if (isDevelopment) {
+				g.drawString("HUD OFF", 20, 100);
+			}
 		}
 	}
 	
@@ -82,6 +85,10 @@ public class HeadUpDisplay {
 					null);
 			xPos += (int) (filledHeart.getWidth(null) * scaling);
 		}
+		
+	}
+	
+	public void renderDetails(Graphics2D g) {
 		
 	}
 	

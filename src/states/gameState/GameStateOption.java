@@ -52,7 +52,7 @@ public class GameStateOption extends GameStateAbstract {
 
 	public void loadCurrentSettings() {
 		// Change ArrayList selection depending on what the current settings are
-		Settings currentSettings = MainRuntime.getSettings();
+		Settings currentSettings = Settings.getInstance();
 		String width = Integer.toString((int) currentSettings.getWindowSize().getWidth());
 		String height = Integer.toString((int) currentSettings.getWindowSize().getHeight());
 		selection.set(0, optionsText.get(0).indexOf(width + "x" + height));
@@ -62,7 +62,7 @@ public class GameStateOption extends GameStateAbstract {
 	
 	public void saveNewSettings() {
 		// Compile and save settings into settings.cfg
-		Settings settings = new Settings();
+		Settings settings = Settings.getInstance();
 		settings.setTitle("Angry-Beaver");
 		for(int i = 0; i < selection.size(); i++) {
 			String s = optionsText.get(i).get(selection.get(i));
@@ -74,9 +74,9 @@ public class GameStateOption extends GameStateAbstract {
 				
 			} else if(optionLabel.get(i).startsWith("Fullscreen")) {
 				if(s.equals("On")) {
-					settings.setisFullscreen(true);
+					settings.setFullscreen(true);
 				} else {
-					settings.setisFullscreen(false);
+					settings.setFullscreen(false);
 				}
 				
 			} else if(optionLabel.get(i).startsWith("MaxFPS")) {
