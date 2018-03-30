@@ -19,14 +19,14 @@ public class LodgeState1 extends EntityStateAbstract {
 
 	@Override
 	public void checkForNextState() {
-		if (context.getHealth() == 2) {
+		if (context.getHealth() >= 2) {
 			context.setEntityState(new LodgeStateComplete(context));
 		}
 	}
 
 	@Override
 	public String stateToString() {
-		return "Lodge State 1";
+		return "Lodge_Incomplete";
 	}
 
 }

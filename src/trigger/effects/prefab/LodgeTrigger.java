@@ -16,7 +16,7 @@ public class LodgeTrigger extends AbstractTrigger {
 		super.triggerEffects(entity1, entity2);
 		
 		if(entity1 instanceof Log) {
-			entity2.setHealth(entity2.getHealth() + 1);
+			entity2.addHealth(1);
 			entity1.destroy();
 		}
 	}

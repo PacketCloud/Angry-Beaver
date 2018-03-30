@@ -25,6 +25,6 @@ public class LodgeStateComplete extends EntityStateAbstract {
 
 	@Override
 	public String stateToString() {
-		return "Lodge Complete";
+		return "Lodge_Complete";
 	}
 }
