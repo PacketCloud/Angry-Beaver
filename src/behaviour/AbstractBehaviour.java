@@ -2,15 +2,30 @@ package behaviour;
 
 import entities.AbstractEntity;
 import keyInputs.ACTIONS;
-//Will be used in entity (or state) to call correct behaviour methods depending on entity type
 
-public abstract class AbstractBehaviour implements BehaviourInterface {
+/**
+ * Class AbstractBehaviour is the abstract class for behaviours.
+ * 
+ * A behaviour will determine how an entity will act.
+ */
 
-	public AbstractBehaviour () {}
+public abstract class AbstractBehaviour implements BehaviourInterface {	
+	private int detectionDistance;
 
+	public AbstractBehaviour() {
+		this.detectionDistance = 400;
+	}
+
+	/**
+	 * Method doAction takes a given action String and performs that action
+	 * on a given entity.
+	 * 
+	 * @param action    A String of what action the entity should be performed.
+	 * 					These Strings are defined in the ACTIONS class
+	 * @param entity	The entity which the action is performed on.
+	 */
 	@Override
 	public void doAction(String action, AbstractEntity entity) {
-		// TODO Auto-generated method stub
 		switch (action) {
 		case ACTIONS.MOVE_UP:
 			entity.up();
@@ -34,6 +49,16 @@ public abstract class AbstractBehaviour implements BehaviourInterface {
 			entity.attack2();
 			break;
 		}
+	}
+
+	/******** Getters and Setters ********/
+	
+	public int getDetectionDistance() {
+		return detectionDistance;
+	}
+
+	public void setDetectionDistance(int detectionDistance) {
+		this.detectionDistance = detectionDistance;
 	}
 
 }

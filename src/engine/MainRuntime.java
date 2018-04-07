@@ -3,39 +3,37 @@ package engine;
 import javax.swing.JFrame;
 
 import fileUtility.*;
-/* 
- * MainRuntime is the class which will get window settings
- * 	and initialize a window frame to start the game.
+
+/**
+ * Class MainRuntime will get game settings and initialize the game window.
  */
+
 public class MainRuntime {
 
 	private GameHandler lHandler;
-	private static Settings fSettings;
 	private JFrame frame = new JFrame();
 	
-	// This initializes the game settings. We can later save
-	// User settings in a file to read and set them here
 	public MainRuntime() {
 		initFrame();
 	}
 	
-	public void loadSettings() {
-		fSettings = new Settings();
-		fSettings.loadUserSettings();
-	}
-	
+	/**
+	 * Method initFrame will use the game settings to initialize the game window 
+	 */
 	public void initFrame() {
-		loadSettings();
+		// Load game settings
+		Settings settings = Settings.getInstance();
 		lHandler = new GameHandler();
 		
-		frame.setTitle(fSettings.getTitle());
-		frame.setSize(fSettings.getWindowSize());
+		// Set game settings
+		frame.setTitle(settings.getTitle());
+		frame.setSize(settings.getWindowSize());
 		
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// If fullscreen is enabled
-		if(fSettings.isFullscreen()) {
+		if(settings.isFullscreen()) {
 			frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 			frame.setUndecorated(true);
 		}
@@ -47,10 +45,6 @@ public class MainRuntime {
 	
 	public void startGame() {
 		lHandler.runLoop();
-	}
-	
-	public static Settings getSettings() {
-		return fSettings;
 	}
 	
 	public static void main(String[] args) {

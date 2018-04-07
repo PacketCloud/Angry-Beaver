@@ -1,10 +1,11 @@
 package states.entityState;
 
-import states.entityState.basicEntityStates.BasicEntityStateIdle;
+import states.entityState.basicEntityStates.*;
+import states.entityState.lodgeStates.*;
 
-/*
- * EntityStateFactory allows the EntityStateContext to initialize
- * a starting state for the entity given a string.
+/**
+ * Class EntityStateFactory is the factory class for creating an instance of
+ * a Entity State given a string.
  * 
  * The factory will default to BasicEntityStateIdle.
  */
@@ -13,11 +14,17 @@ public class EntityStateFactory {
 	public EntityStateFactory() {}
 	
 	public EntityStateAbstract createState(EntityStateContext context, String stateName){
+		
+		
 		switch (stateName) {
-		case "Basic Entity":
+		case "Basic_Entity":
 			return (new BasicEntityStateIdle(context));
-		case "Basic Null Entity":
+		case "Basic_Null_Entity":
 			return (new NoEntityState(context));
+		case "Lodge_State_1":
+			return (new LodgeState1(context));
+		case "Lodge_State_Complete":
+			return (new LodgeStateComplete(context));
 		default:
 			return (new NoEntityState(context));
 		}

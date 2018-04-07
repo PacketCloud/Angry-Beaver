@@ -4,19 +4,20 @@ import java.awt.Color;
 
 import keyInputs.ACTIONS;
 
-/*	All actions in the game should be defined here
- * 		The actions will be overridden and will be dealt 
- * 		with depending on the extended GameState.
+/**
+ * Class GameStateAbstract is the abstract class for all GameStates.
+ * Inputs from the Player will be handled in Game States.
  */
-
 public abstract class GameStateAbstract implements GameStateInterface{
 	protected GameStateContext context;
 	
 	// Standard text fonts, sizes, and colors
 	protected String titleFont = "Arial";
 	protected String textFont = "Comic Sans MS";
+	protected String gameTextFont = "Comic Sans MS";
 	protected int titleSize = 100;
 	protected int textSize = 50;
+	protected int gameTextSize = 18;
 	
 	protected Color titleColor = Color.BLACK;
 	protected Color defaultColor = Color.BLACK;

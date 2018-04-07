@@ -10,10 +10,13 @@ import java.util.Map;
 
 import fileUtility.OpenImage;
 
-/*
- * GameStateLevelSelect provides the user with a list of found level files
- * from the directory "/Levels". The user can choose from the list of level
- * to play from.
+/**
+ * Class GameStateLevelSelect is the Game State in which the Player
+ * selects a level from.
+ * 
+ * This state will provide the Player with a list of found level files
+ * from the directory "/Levels". The Player can choose from the list 
+ * of levels to play from.
  */
 public class GameStateLevelSelect extends GameStateAbstract {
 	private String levelSelectTitle = "LEVEL SELECTION";

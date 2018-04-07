@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/*
+/**
  * WriteFile uses BufferedWriter in order to write to a file
  * 
  * Usage:
@@ -37,7 +37,6 @@ public class WriteFile {
 			writer.write(string);
 			writer.write("\n");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,7 +45,6 @@ public class WriteFile {
 		try {
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

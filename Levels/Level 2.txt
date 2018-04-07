@@ -1,0 +1,16 @@
+// Player
+Player:Beaver Position:200,100 Scaling:3 Health:10 Speed:10
+
+// Starting Platform
+Entity:Platform Position:-300,200 Hitbox:0,0,700,50|Solid Static:True
+Entity:Tree Position:-100,0 Scaling:4 Health:4
+
+Entity:EmptyEntity Position:400,50 Model:RightArrowModel Scaling:2 Static:True 
+Entity:EmptyEntity Position:-200,-50 Model:SKeyModel Scaling:2 Static:True
+
+// Out of bounds
+Entity:EmptyEntity Position:-3000,300 Hitbox:0,0,6000,50|Trigger Trigger:Damage,100 Static:True
+
+// Level Exit
+Entity:Platform Position:400,225 Hitbox:0,0,600,50|Solid Static:True
+Entity:Lodge Position:700,150 Scaling:5

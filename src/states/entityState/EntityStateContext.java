@@ -3,7 +3,11 @@ package states.entityState;
 import java.awt.Point;
 
 import entities.AbstractEntity;
+import trigger.Trigger;
 
+/**
+ * Class EntityStateContext is the context class for EntityStates.
+ */
 public class EntityStateContext {
 	public EntityStateAbstract entityState;
 	public AbstractEntity obj;
@@ -68,12 +72,10 @@ public class EntityStateContext {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return entityState.stateToString();
 	}
 
 	public void checkForNextState() {
-		// TODO Auto-generated method stub
 		entityState.checkForNextState();
 	}
 	
@@ -94,7 +96,6 @@ public class EntityStateContext {
 	}
 
 	public AbstractEntity makeEntity(String entity) {
-		// TODO Auto-generated method stub
 		return obj.makeEntity(entity);
 	}
 	
@@ -120,5 +121,10 @@ public class EntityStateContext {
 	
 	public int getHealth() {
 		return obj.getHealth();
+	}
+
+	public void setTrigger(Trigger trigger) {
+		obj.setTrigger(trigger);
+		
 	}
 }

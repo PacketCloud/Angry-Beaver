@@ -2,29 +2,44 @@ package fileUtility;
 
 import java.awt.Dimension;
 
-/*
- * 	The Settings class loads Default Settings on creation.
- * 		Using loadUserSettings() will open settings.cfg and 
- * 		parse the contents. 
+/**
+ * The Settings class loads Default Settings on creation.
+ * It will then open and parse settings.cfg for Player Settings 
  */
-
 public class Settings {
-	String title;
-	Dimension windowSize;
-	boolean isFullscreen;
-	int maxFPS;
 	
-	public Settings() {
+	private static Settings settingsInstance = null;
+	
+	private String title;
+	private Dimension windowSize;
+	private boolean isFullscreen;
+	private int maxFPS;
+	private boolean isDevelopment;
+	
+	private Settings() {
 		// Default settings
 		setTitle("");
 		setWindowSize(new Dimension(1920, 1080));
-		isFullscreen = true;
-		maxFPS = 60;
+		setFullscreen(true);
+		setMaxFPS(60);
+		setDevelopment(true);
 	}
 	
-	public void loadUserSettings() {
-		// Go to OpenFile to open and parse settings.cfg		
+	public static Settings getInstance() {
+		if (settingsInstance == null) {
+			Settings userSettings = new Settings();
+			userSettings.loadUserSettings();
+			settingsInstance = userSettings;
+		}
 		
+		return settingsInstance;
+	}
+	
+	/**
+	 * Method loadUserSettings will open and parse settings.cfg
+	 * for Player Settings
+	 */
+	public void loadUserSettings() {
 		OpenFile settingFile = new OpenFile("/Settings.cfg");
 		while(settingFile.hasNextLine()) {
 			String[] split = settingFile.getNextLine().split("=", 2);
@@ -33,7 +48,10 @@ public class Settings {
 		 settingFile.close();
 	}
 	
-	// Method currently not in use
+	/**
+	 * Method saveUserSettings will save the defined settings values of 
+	 * the instance into settings.cfg
+	 */
 	public void saveUserSettings() {
 		// Go to WriteFile to format and write to settings.cfg
 		
@@ -55,6 +73,11 @@ public class Settings {
 		settingFile.close();
 	}
 	
+	/**
+	 * Method parseLine will parse a given set of strings as Settings values
+	 * 
+	 * @param split 		A String array
+	 */
 	public void parseLine(String[] split) {
 		// More cases should be added as more Settings features are defined
 		switch (split[0].toLowerCase()) {
@@ -99,7 +122,7 @@ public class Settings {
 		return isFullscreen;
 	}
 
-	public void setisFullscreen(boolean fullscreen) {
+	public void setFullscreen(boolean fullscreen) {
 		this.isFullscreen = fullscreen;
 	}
 
@@ -109,5 +132,14 @@ public class Settings {
 
 	public void setMaxFPS(int max_fps) {
 		this.maxFPS = max_fps;
-	}	
+	}
+
+	public boolean isDevelopment() {
+		return isDevelopment;
+	}
+
+	public void setDevelopment(boolean isDevelopment) {
+		this.isDevelopment = isDevelopment;
+	}
+	
 }

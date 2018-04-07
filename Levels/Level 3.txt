@@ -1,0 +1,20 @@
+// Player
+Player:Beaver Position:200,100 Scaling:3 Health:10 Speed:10
+
+// Starting Platform
+Entity:Platform Position:-325,200 Hitbox:0,0,1325,50|Solid Static:True
+// Exit Platform
+Entity:Platform Position:1000,225 Hitbox:0,0,500,50|Solid Static:True
+
+// Arrow Keys 
+Entity:EmptyEntity Position:400,50 Model:RightArrowModel Scaling:2 Static:True 
+Entity:EmptyEntity Position:700,50 Model:SKeyModel Scaling:2 Static:True
+
+// Aggressive Deer
+Entity:Deer Position:650,100 Scaling:3 Behaviour:AggressiveBehaviour Speed:1 Health:2
+
+// Out of bounds
+Entity:EmptyEntity Position:-1000,300 Hitbox:0,0,6000,50|Trigger Trigger:Damage,100 Static:True
+
+// Level Exit
+Entity:Lodge Position:1300,25 Scaling:5 State:Lodge_State_Complete

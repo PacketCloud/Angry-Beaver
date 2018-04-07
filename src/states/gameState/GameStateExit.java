@@ -6,24 +6,24 @@ import java.awt.Image;
 
 import fileUtility.OpenImage;
 
+/**
+ * Class GameStateExit is the Game State to confirm exiting the game.
+ */
 public class GameStateExit extends GameStateAbstract {
 	private String exitTitle = "The game will now exit";
 	private Image background = null;
 	
 	public GameStateExit(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		System.out.println("Exit");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		drawBackground(g);
 		// TODO: Positioning of text based on the window size.
 		// Set exit title
@@ -38,8 +38,6 @@ public class GameStateExit extends GameStateAbstract {
 		if(background == null) {
 			try {
 				background = new OpenImage().Open("/Resources/Textures/Background/Background_MountainHorizon.png");
-				//Image background = new ImageIcon(path + "/Resources/Textures/Background/Background_MountainHorizon.png").getImage();
-				
 			} catch (Exception e){
 				System.out.println(e.toString());
 			}
@@ -48,10 +46,7 @@ public class GameStateExit extends GameStateAbstract {
 	}
 
 	@Override
-	public void userInput(String action) {
-		// TODO Auto-generated method stub
-		//super.userInput(action);
-		
+	public void userInput(String action) {		
 		context.setGameState(new GameStateStop(context));
 	}
 }

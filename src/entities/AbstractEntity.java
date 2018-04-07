@@ -8,17 +8,23 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.UUID;
 
 import behaviour.AbstractBehaviour;
-import behaviour.NoBehaviour;
+import behaviour.prefab.NoBehaviour;
 import engine.Level;
+import fileUtility.Settings;
 import force.Force;
 import hitbox.Hitbox;
 import model.AbstractModel;
+import model.prefab.EmptyModel;
 import resourceHandling.*;
 import states.entityState.EntityStateContext;
 import trigger.Trigger;
 
+/**
+ * Class AbstractEntity is the abstract class for all entities.
+ */
 public abstract class AbstractEntity {
 	
 	protected Level level;
@@ -34,7 +40,6 @@ public abstract class AbstractEntity {
 	protected String id;
 	protected double scaling;
 	protected boolean facingRight;
-	protected boolean lastFacing;
 	
 	// Movement
 	protected Set<Force> forces;
@@ -42,25 +47,21 @@ public abstract class AbstractEntity {
 	protected int moveSpeedX;
 	protected int jumpStrength;
 	
-	protected boolean isInvulnerable; // Currently not implemented
+	protected boolean isInvulnerable;
 	protected int health;
-	protected int damage;
+	protected int maxHealth;
 	
-	
-	public AbstractEntity(AbstractModel model, String state) {
-		initialize(model, state);
-	}
-	
-	public void initialize(AbstractModel model, String state) {
-		this.model = model;
+	public AbstractEntity() {
+		// Initialize the entity with default empty properties and values
+		this.model = new EmptyModel();
 		this.behaviour = new NoBehaviour();
-		this.state = new EntityStateContext(this, state);
+		this.state = new EntityStateContext(this, "Basic_Null_Entity");
 		
 		this.position = new Point(0, 0);
 		this.lastPosition = new Point(0, 0);		
 		this.entities = new ArrayList<AbstractEntity>(); // Entities which are related
 		
-		this.id = null;
+		this.id = UUID.randomUUID().toString();
 		this.scaling = 1;
 		this.facingRight = false;
 
@@ -71,7 +72,7 @@ public abstract class AbstractEntity {
 		
 		this.isInvulnerable = false;
 		this.health = 1;
-		this.damage = 0;
+		this.maxHealth = 5;
 	}
 
 	public void update() {
@@ -97,7 +98,11 @@ public abstract class AbstractEntity {
 
 	public void render(Graphics2D g) {
 		renderTexture(g);
-		renderHitboxes(g);
+		Boolean isDevelopment = Settings.getInstance().isDevelopment();
+		if (isDevelopment) {
+			renderHitboxes(g);
+			renderID(g);	
+		}
 	}
 	
 	public void renderTexture(Graphics2D g) {
@@ -107,9 +112,12 @@ public abstract class AbstractEntity {
 		if(texture != null) {
 			drawImage(g, texture);
 			
-			// Draw box around image
-			g.setColor(Color.WHITE);
-			g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+			Boolean isDevelopment = Settings.getInstance().isDevelopment();
+			if (isDevelopment) {
+				// Draw box around image
+				g.setColor(Color.WHITE);
+				g.drawRect(position.x, position.y , (int) (texture.getWidth(null) * scaling), (int) (texture.getHeight(null) * scaling));
+			}
 		}
 		
 		// TODO: Make classes to handle the entity changing colors to change 'Status' 
@@ -148,6 +156,11 @@ public abstract class AbstractEntity {
 			}
 			g.drawRect(h.position.x, h.position.y, h.width, h.height);
 		}
+	}
+	
+	public void renderID(Graphics2D g) {
+		// Printing of ID
+		g.drawString(getId(), (int) getPosition().getX(), (int) getPosition().getY());
 	}
 	
 	public void destroy() {
@@ -208,6 +221,19 @@ public abstract class AbstractEntity {
 		return null;
 	}
 	
+	public void addHealth(int value) {
+		health += value;
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+	
+	public void subHealth(int value) {
+		health -= value;
+		if (health < 0) {
+			health = 0;
+		}
+	}
 	/******** Getters and Setters ********/
 	
 	public String getId() {
@@ -371,12 +397,12 @@ public abstract class AbstractEntity {
 		this.health = health;
 	}
 
-	public int getDamage() {
-		return damage;
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 
-	public void setDamage(int damage) {
-		this.damage = damage;
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 
 	public boolean isInvulnerable() {

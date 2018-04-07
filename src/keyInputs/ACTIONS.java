@@ -1,9 +1,9 @@
 package keyInputs;
 
-/*
- * 	ACTIONS holds Strings as final variables and is used within the packages 
- * 		keyInputs and gameState. Variables should be defined here as we 
- * 		decide to add in more actions for the Beaver.
+/**
+ * Class ACTIONS holds Strings to determine types of inputs from 
+ * the Player. 
+ * Variables should be defined here as we decide to add in more actions for the Beaver.
  */
 
 public class ACTIONS {
@@ -18,8 +18,11 @@ public class ACTIONS {
 	public final static String R_MOVE_LEFT = "r_move_left";
 	
 	public final static String PAUSE = "pause";
+	
 	public final static String JUMP = "jump";
+	public final static String R_JUMP = "r_jump";
 	public final static String ATTACK = "attack";
 	public final static String R_ATTACK = "r_attack";
 	public final static String ATTACK2 = "attack2";
+	public final static String R_ATTACK2 = "r_attack2";
 }

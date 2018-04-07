@@ -1,13 +1,13 @@
 package force;
 
-import entities.AbstractEntity;
-
+/**
+ * Class Gravity is a Force defined with dx = 0.
+ */
 public class Gravity extends Force {
 
 	// TODO: Terminal velocity
 	
 	public Gravity(int dy) {
 		super(0, dy);
-		// TODO Auto-generated constructor stub
 	}
 }

@@ -4,7 +4,10 @@ import java.awt.Image;
 import java.io.*;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Class OpenFile is used to open image files.
+ *
+ */
 public class OpenImage {
 	
 	public OpenImage() {

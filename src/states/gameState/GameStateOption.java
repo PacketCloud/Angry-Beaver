@@ -9,7 +9,12 @@ import java.util.Arrays;
 
 import fileUtility.OpenImage;
 import fileUtility.Settings;
+import engine.MainRuntime;
 
+/**
+ * Class GameStateOption is the Game State where the settings can be
+ * accessed.
+ */
 public class GameStateOption extends GameStateAbstract {
 	private String optionTitle = "OPTIONS";
 	
@@ -25,7 +30,7 @@ public class GameStateOption extends GameStateAbstract {
 		
 		// TODO: define more options in the future
 		ArrayList<String> resolutionOptionsText = new ArrayList<String>(Arrays.asList("800x600", "1280x720", "1920x1080"));
-		ArrayList<String> fullscreenOptionsText = new ArrayList<String>(Arrays.asList("On", "Off"));
+		ArrayList<String> fullscreenOptionsText = new ArrayList<String>(Arrays.asList("true", "false"));
 		ArrayList<String> fpsOptionsText = new ArrayList<String>(Arrays.asList("30", "60"));
 		
 		optionsText = new ArrayList<ArrayList<String>>();
@@ -37,19 +42,27 @@ public class GameStateOption extends GameStateAbstract {
 		for(int i = 0; i < optionsText.size(); i++) {
 			selection.add(0);
 		}
-
+		
+		loadCurrentSettings();
+		
 		optionLabel = new ArrayList<String>(Arrays.asList("Resolution : ", "Fullscreen : ", "MaxFPS : ", "Cancel", "Save Settings"));
 		
 		loadCurrentSettings();
 	}
 
 	public void loadCurrentSettings() {
-		// Change ArrayList selection depending on what the current settings are 
+		// Change ArrayList selection depending on what the current settings are
+		Settings currentSettings = Settings.getInstance();
+		String width = Integer.toString((int) currentSettings.getWindowSize().getWidth());
+		String height = Integer.toString((int) currentSettings.getWindowSize().getHeight());
+		selection.set(0, optionsText.get(0).indexOf(width + "x" + height));
+		selection.set(1, optionsText.get(1).indexOf(Boolean.toString(currentSettings.isFullscreen())));
+		selection.set(2, optionsText.get(2).indexOf(Integer.toString(currentSettings.getMaxFPS())));
 	}
 	
 	public void saveNewSettings() {
 		// Compile and save settings into settings.cfg
-		Settings settings = new Settings();
+		Settings settings = Settings.getInstance();
 		settings.setTitle("Angry-Beaver");
 		for(int i = 0; i < selection.size(); i++) {
 			String s = optionsText.get(i).get(selection.get(i));
@@ -61,9 +74,9 @@ public class GameStateOption extends GameStateAbstract {
 				
 			} else if(optionLabel.get(i).startsWith("Fullscreen")) {
 				if(s.equals("On")) {
-					settings.setisFullscreen(true);
+					settings.setFullscreen(true);
 				} else {
-					settings.setisFullscreen(false);
+					settings.setFullscreen(false);
 				}
 				
 			} else if(optionLabel.get(i).startsWith("MaxFPS")) {
@@ -80,13 +93,11 @@ public class GameStateOption extends GameStateAbstract {
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		System.out.println("Option");
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 		drawBackground(g);
 		
 		// TODO: Positioning of text based on the window size.
@@ -137,7 +148,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		chosen--;
@@ -148,7 +158,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		chosen++;
@@ -159,7 +168,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void right() {
-		// TODO Auto-generated method stub
 		super.right();
 		
 		int holder = selection.get(chosen) + 1;
@@ -171,7 +179,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void left() {
-		// TODO Auto-generated method stub
 		super.left();
 		
 		int holder = selection.get(chosen) - 1;
@@ -183,7 +190,6 @@ public class GameStateOption extends GameStateAbstract {
 
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		
 		switch(chosen) {

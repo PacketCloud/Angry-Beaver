@@ -8,10 +8,11 @@ import entities.AbstractEntity;
 import hitbox.Hitbox;
 import trigger.Trigger;
 
-/*
- * CollisionDetector checks for collisions between entities by
- * comparing their respective hitboxes for intersection 
+/**
+ * Class CollisionDetector checks for collisions between entities 
+ * by comparing their respective hitboxes for intersections. 
  */
+
 public class CollisionDetector {
 	private Level level;
 	
@@ -20,9 +21,11 @@ public class CollisionDetector {
 		this.level = level;
 	}
 
-	/*
-	 * Loop all entities against each other and get a map of hitboxes which intersect.
-	 * If intersections exist, then handle the collision depending on the properties of the hitbox.
+	/**
+	 * Method detectCollitions will check all entities against each 
+	 * other and find hitboxes which intersect.
+	 * If intersections exist, handle the collision depending on the 
+	 * properties of the hitbox.
 	 */
 	public void detectCollisions() {
 		for(AbstractEntity e1 : level.getEntities()) {
@@ -40,8 +43,12 @@ public class CollisionDetector {
 		}
 	}
 	
-	/*
-	 * Return a map of all hitboxes which intersect each other
+	/**	 
+	 * Method collisions returns a map of all hitboxes which intersect each other.
+	 * 
+	 * @param e1		Entity 1 to check hitboxes from
+	 * @param e2		Entity 2 to check hitboxes from
+	 * @return 			Map of all hitboxes which interect each other.
 	 */
 	public Map<Hitbox, Hitbox> collisions(AbstractEntity e1, AbstractEntity e2){
 		// Get absolute hitboxes from both entities
@@ -62,24 +69,31 @@ public class CollisionDetector {
 		return collisions;
 	}
 	
-	/*
-	 *  Checks the distance between two hitboxes on the X-axis and the Y-axis
-	 *  If either distance on the X-axis or Y-axis is negative, then the two hitboxes
-	 *  are intersecting.
+	/**
+	 * Method intersects checks the distance between two hitboxes on 
+	 * the X-axis and the Y-axis.
 	 *  
-	 *  Detecting an intersection uses the Separating Axis Theorem.
+	 * Detecting an intersection uses the Separating Axis Theorem.
+	 * 
+	 * @param h1		Hitbox 1 
+	 * @param h2		Hitbox 2
+	 * @return 			True if either distance on the X-axis or Y-axis is negative.
+	 * 		   			False otherwise.
 	 */
 	public boolean intersects(Hitbox h1, Hitbox h2) {
 		int xDistance = getXDistance(h1, h2);
 		int yDistance = getYDistance(h1, h2);
 
-		System.out.println(xDistance);
-		System.out.println(yDistance);
 		return (xDistance < 0 && yDistance < 0);
 	}
 
-	/*
-	 * Returns true if the entity intersects the given hitbox 
+	/**
+	 * Method intersectsArea checks if an entity intersects with the given hitbox.
+	 * 
+	 * @param e			AbstractEntity
+	 * @param hitbox 	hitbox to check if intersecting with the given entity
+	 * @return 			True if the entity intersects the given hitbox.
+	 * 					False otherwise.
 	 */
 	public boolean intersectsArea(AbstractEntity e, Hitbox hitbox) {
 		ArrayList<Hitbox> hitboxes = e.getAbsHitboxes();
@@ -92,8 +106,13 @@ public class CollisionDetector {
 		
 	}
 	
-	/*
-	 * Returns the distance between two hitboxes on the X-axis
+	/**
+	 * Method getXDistance takes two hitboxes and returns the distance between the hitboxes
+	 * on the X-axis.
+	 * 
+	 * @param h1		Hitbox 1
+	 * @param h2 		Hitbox 2
+	 * @return 			The distance separating hitbox 1 and hitbox 2 on the X-axis
 	 */
 	public int getXDistance(Hitbox h1, Hitbox h2) {
 		int xPos1 = (int) h1.getPosition().getX();
@@ -104,8 +123,14 @@ public class CollisionDetector {
 		return checkSperatingDistance(xPos1, xPos1 + width1, xPos2, xPos2 + width2);
 	}
 
-	/*
-	 * Returns the distance between two hitboxes on the Y-axis
+	/**
+	 * Method getXDistance takes two hitboxes and returns the distance between the hitboxes
+	 * on the Y-axis.
+	 * 
+	 * @param h1		Hitbox 1
+	 * @param h2 		Hitbox 2
+	 * 
+	 * @return 			The distance separating hitbox 1 and hitbox 2 on the Y-axis
 	 */
 	public int getYDistance(Hitbox h1, Hitbox h2) {
 		int yPos1 = (int) h1.getPosition().getY();
@@ -116,11 +141,13 @@ public class CollisionDetector {
 		return checkSperatingDistance(yPos1, yPos1 + height1, yPos2, yPos2 + height2);
 	}
 	
-	/*
-	 * x1 and x2 are the left and right bounds of hitbox 1
-	 * x3 and x4 are the left and right bounds of hitbox 2
+	/**
+	 * @param x1		integer of the left bound of hitbox 1
+	 * @param x2		integer of the right bound of hitbox 1
+	 * @param x3		integer of the left bound of hitbox 2
+	 * @param x4		integer of the right bound of hitbox 2
 	 * 
-	 * Given these values, check the distance between the hitboxes
+	 * @return			The distance between the two hitboxes
 	 */
 	public int checkSperatingDistance(int x1,int x2, int x3, int x4) {
 		int distance = x4 - x1;
@@ -133,8 +160,13 @@ public class CollisionDetector {
 		return distance;
 	}
 	
-	/*
-	 * For each intersecting hitbox between two entities, handle the collision depending on the properties of the hitboxes
+	/**
+	 * Method collisionResponse handles the collision depending on the properties of the hitboxes which intersect
+	 * 
+	 * @param e1			Entity 1			
+	 * @param e2			Entity 2
+	 * @param collisions	A map of the hitboxes which intersect 
+	 * 						between entity 1 and entity 2
 	 */
 	public void collisionResponse(AbstractEntity e1, AbstractEntity e2, Map<Hitbox, Hitbox> collisions) {
 		

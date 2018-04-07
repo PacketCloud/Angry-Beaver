@@ -1,8 +1,10 @@
 package hitbox;
 
-import java.awt.Graphics2D;
 import java.awt.Point;
 
+/**
+ * Class Hitbox defines a rectangular area as the space of an Entity 
+ */
 public class Hitbox extends HitboxProperties{
 	public Point position; // This is the position relative to the entity the Hitbox is associated with
 	public int height;

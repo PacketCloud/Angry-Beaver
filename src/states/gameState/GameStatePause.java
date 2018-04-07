@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 import engine.Level;
 
+/**
+ * Class GameStatePause is the Game State where the playing a level is paused.
+ */
 public class GameStatePause extends GameStateAbstract {
 	private String pauseTitle = "GAME PAUSED";
 	private ArrayList<String> pauseText = new ArrayList<String>(Arrays.asList("Resume", "Options", "Menu", "Exit"));
@@ -17,21 +20,17 @@ public class GameStatePause extends GameStateAbstract {
 	public GameStatePause(GameStateContext context, Level level) {
 		super(context);
 		this.pausedLevel = level;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void update() {
-		//context.repaint();
     	System.out.println("Paused");
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 		super.pause();
 		context.setGameState(new GameStateRun(context, pausedLevel));
-		//getH().getGameState().stateRun();
 	}
 
 	@Override
@@ -60,7 +59,6 @@ public class GameStatePause extends GameStateAbstract {
 	
 	@Override
 	public void jump() {
-		// TODO Auto-generated method stub
 		super.jump();
 		switch(chosen) {
 		case 0:
@@ -79,7 +77,6 @@ public class GameStatePause extends GameStateAbstract {
 
 	@Override
 	public void up() {
-		// TODO Auto-generated method stub
 		super.up();
 		
 		chosen--;
@@ -90,7 +87,6 @@ public class GameStatePause extends GameStateAbstract {
 
 	@Override
 	public void down() {
-		// TODO Auto-generated method stub
 		super.down();
 		
 		chosen++;

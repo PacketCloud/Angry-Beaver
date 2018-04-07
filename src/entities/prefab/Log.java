@@ -1,13 +1,14 @@
 package entities.prefab;
 
 import entities.AbstractEntity;
-import model.AbstractModel;
+import model.prefab.LogModel;
 
 public class Log extends AbstractEntity {
 
-	public Log(AbstractModel model) {
-		super(model, "Basic Null Entity");
+	public Log() {
+		super();
 		// TODO Auto-generated constructor stub
+		setModel(new LogModel());
 	}
 
 }

@@ -1,12 +1,17 @@
 package entities.prefab;
 
 import entities.AbstractEntity;
-import model.AbstractModel;
+import model.prefab.ClawModel;
+import trigger.TriggerFactory;
 
 public class Claw extends AbstractEntity {
 
-	public Claw(AbstractModel model) {
-		super(model, "Basic Null Entity");
+	public Claw() {
+		super();
 		// TODO Auto-generated constructor stub
+		
+		setTrigger(new TriggerFactory().createTrigger("Damage,1|KnockBack,-5,-2,250"));
+		setStatic(true);
+		setModel(new ClawModel());
 	}
 }

@@ -1,11 +1,5 @@
 package states.entityState;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
-import entities.AbstractEntity;
-import resourceHandling.ResourceCollection;
-
 public interface EntityStateInterface {
 	
 	public void up();

@@ -3,8 +3,8 @@ package trigger.effects;
 import entities.AbstractEntity;
 import trigger.Trigger;
 
-/*
- * SimpleTrigger is a trigger effect that does nothing
+/**
+ * Class SimpleTrigger is a Trigger that does nothing.
  */
 public class SimpleTrigger implements Trigger {
 	@Override

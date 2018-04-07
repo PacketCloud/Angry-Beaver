@@ -7,19 +7,26 @@ import entities.AbstractEntity;
 import states.entityState.EntityStateAbstract;
 import states.entityState.EntityStateContext;
 
+/**
+ * Class BasicEntityStateAttack is a generalized Entity State for
+ * entities which are in an attacking action.
+ *
+ * The duration of the attack state is limited by a timer.
+ */
 public class BasicEntityStateAttack extends EntityStateAbstract {
-	long startTime;
+	private long startTime;
+	private AbstractEntity attackEntity;
 	
-	AbstractEntity attackEntity;
+	
 	public BasicEntityStateAttack(EntityStateContext context) {
 		super(context);
 		
-		// Currently testing
+		// Set timer to limit the attack state
 		startTime = System.nanoTime() / 1000000;
 		attackEntity = context.makeEntity(stateToString());
 		
+		// If an entity is to be created when attacking
 		if(attackEntity != null) {
-			// Add claw as a sub-entity and as an entity in the level
 			context.addSubEntity(attackEntity);
 			context.getEntity().getLevel().addEntity(attackEntity);
 		}
@@ -27,7 +34,6 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 
 	@Override
 	public void right() {
-		// TODO Auto-generated method stub
 		super.right();
 		int x = context.getEntity().getMoveSpeedX();
 		context.translate(x, 0);
@@ -36,7 +42,6 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 	
 	@Override
 	public void left() {
-		// TODO Auto-generated method stub
 		super.left();
 		int x = context.getEntity().getMoveSpeedX();
 		context.translate(-x, 0);
@@ -44,14 +49,11 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 	}
 
 	@Override
-	public void checkForNextState() {
-		// TODO Auto-generated method stub
-		
+	public void checkForNextState() {		
 		long endTime = System.nanoTime() / 1000000 - startTime;
-		// The duration of Beaver_Claw.gif is 1000 milliseconds
 		if(endTime > 1000){
 			if(attackEntity != null) {
-				// Remove claw as a sub-entity and as an entity in the level
+				// Remove the attack entity as a sub-entity and as an entity in the level
 				context.removeSubEntity(attackEntity);
 				attackEntity.destroy();
 				
@@ -85,7 +87,6 @@ public class BasicEntityStateAttack extends EntityStateAbstract {
 
 	@Override
 	public String stateToString() {
-		// TODO Auto-generated method stub
 		return "Attack1";
 	}
 

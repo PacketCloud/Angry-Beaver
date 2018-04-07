@@ -2,13 +2,14 @@ package states.gameState;
 
 import java.awt.Graphics2D;
 
-import engine.GameHandler;
-
+/**
+ * Class GameStateStop is the Game State which signifies the
+ * game handler to stop running and close the game.
+ */
 public class GameStateStop extends GameStateAbstract {
 
 	public GameStateStop(GameStateContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -18,6 +19,5 @@ public class GameStateStop extends GameStateAbstract {
 
 	@Override
 	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
 	}
 }

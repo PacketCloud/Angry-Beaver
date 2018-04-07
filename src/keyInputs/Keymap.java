@@ -7,10 +7,9 @@ import javax.swing.KeyStroke;
 
 import engine.*;
 
-/*
- * 	Keymap uses KeyBindings to declare keyboard strokes to an ACTIONS.
- * 		In the future, we may add functionality to change KeyBindings
- * 		and save the changes in a file. 
+/**
+ * Class Keymap uses KeyBindings to declare keyboard strokes to an ACTIONS.
+ * TODO: KeyBindings should be able to be changed
  */
 public class Keymap {
 
@@ -36,13 +35,14 @@ public class Keymap {
 		inputMap.put(KeyStroke.getKeyStroke("ESCAPE"), ACTIONS.PAUSE);
 		
 		inputMap.put(KeyStroke.getKeyStroke("SPACE"), ACTIONS.JUMP);
+		inputMap.put(KeyStroke.getKeyStroke("released SPACE"), ACTIONS.R_JUMP);
 		inputMap.put(KeyStroke.getKeyStroke("S"), ACTIONS.ATTACK);
 		inputMap.put(KeyStroke.getKeyStroke("released S"), ACTIONS.R_ATTACK);
 		inputMap.put(KeyStroke.getKeyStroke("D"), ACTIONS.ATTACK2);
+		inputMap.put(KeyStroke.getKeyStroke("released D"), ACTIONS.R_ATTACK2);
 	}
 	
 	private void initActions(ActionMap actionMap) {
-		//TODO: Pass the input handling to the LevelHandler.GameState class to deal with
 		actionMap.put(ACTIONS.MOVE_UP, new PlayerInput(this,ACTIONS.MOVE_UP));
 		actionMap.put(ACTIONS.MOVE_DOWN, new PlayerInput(this,ACTIONS.MOVE_DOWN));
 		actionMap.put(ACTIONS.MOVE_RIGHT, new PlayerInput(this,ACTIONS.MOVE_RIGHT));
@@ -56,9 +56,11 @@ public class Keymap {
 		actionMap.put(ACTIONS.PAUSE, new PlayerInput(this,ACTIONS.PAUSE));
 		
 		actionMap.put(ACTIONS.JUMP, new PlayerInput(this,ACTIONS.JUMP));
+		//actionMap.put(ACTIONS.R_JUMP, new PlayerInput(this,ACTIONS.R_JUMP));
 		actionMap.put(ACTIONS.ATTACK, new PlayerInput(this,ACTIONS.ATTACK));
 		actionMap.put(ACTIONS.R_ATTACK, new PlayerInput(this,ACTIONS.R_ATTACK));
 		actionMap.put(ACTIONS.ATTACK2, new PlayerInput(this,ACTIONS.ATTACK2));
+		actionMap.put(ACTIONS.R_ATTACK2, new PlayerInput(this,ACTIONS.R_ATTACK2));
 	}
 	
 	public void inputAction(String actionType) {

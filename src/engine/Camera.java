@@ -4,8 +4,8 @@ import java.awt.Point;
 
 import entities.AbstractEntity;
 
-/*
- * The Camera class provides values to offset rendering.
+/**
+ * Class Camera provides values to offset rendering.
  * Camera will smoothly position itself to a given Entity or Point.
  */
 
